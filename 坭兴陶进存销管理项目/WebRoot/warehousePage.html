@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>仓库信息</title>
+</head>
+<body>
+	<script type="text/javascript" src="js/warehousePage.js"></script>
+	<form id="whpNewsBox" method="get" action="#">
+  			<div id="dmnavbox">
+			<a class="easyui-linkbutton" id="whpAddBT">新增</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="whpDeleteBT">删除</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="whpUpdateBT">修改</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="whpSearchBT">查询</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="whpClearBT">清空</a><span class="column"></span>
+<!-- 		<a class="easyui-linkbutton" id="whpOutput">导出</a><span class="column"></span> -->
+			<a class="easyui-linkbutton" id="whpCallbackBt">返回</a>
+			</div>
+			
+			<div id="whpInputNewsBox">
+				<div class="whpDivCss">
+					<label class="whpLableCss whpStarCss">仓库编号:</label><input name="warehouseId" id="warehouseId" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss whpStarCss">仓库名称:</label><input name="warehouseName" id="warehouseName" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss whpStarCss">仓库类型:</label><input name="warehouseType" id="warehouseType" class="dmInputCss">
+				</div>
+				
+				<div class="whpDivCss">
+					<label class="whpLableCss whpStarCss">仓库地址:</label><input type="text" class="inputCss specailInputCss2" name="warehouseAddress" autocomplete="off" disableautocomplete>
+				</div>
+			</div>
+			
+	</form>	
+	<!-- 显示仓库信息 -->
+	<table id="diswhNews"></table>
+	
+	<!-- 仓库更新信息界面 -->
+	<form method="get" action="#" id="whpUpdateBox">
+		<div class="udmRowCss">
+				<label class="dmLableCss uwhpStarCss">仓库编号:</label><input name="updateWarehouseId" id="updateWarehouseId" class="dmInputCss" autocomplete="off" disableautocomplete>
+  				<label class="dmLableCss uwhpStarCss">仓库名称:</label><input name="updateWarehouseName" id="updateWarehouseName" class="dmInputCss" autocomplete="off" disableautocomplete>
+				<label class="dmLableCss uwhpStarCss">仓库类型:</label><input name="updateWarehouseType" id="updateWarehouseType" class="dmInputCss">
+  			</div>
+  			
+  			<div class="udmRowCss">
+					<label class="dmLableCss whpLabelCss uwhpStarCss">仓库地址:</label><input name="updateWarehouseAddress" id="updateWarehouseAddress" class="whpSpeInput">
+			</div>
+		
+	</form>
+	
+	
+	<!--查询仓库信息界面 -->
+	<form method="get" action="#" id="whpSearchPage">
+		<div class="sdmRowCss">
+				<label class="dmLableCss">仓库编号:</label><input name="searchWarehouseId" id="searchWarehouseId" class="dmInputCss" autocomplete="off" disableautocomplete>
+  				<label class="dmLableCss">仓库名称:</label><input name="searchWarehouseName" id="searchWarehouseName" class="dmInputCss" autocomplete="off" disableautocomplete>
+				<label class="dmLableCss">仓库类型:</label><input name="searchWarehouseType" id="searchWarehouseType" class="dmInputCss">
+  		</div>
+	</form>
+	
+	<!-- 右键弹出界面 -->
+  	<div id=whpMenu  class="easyui-menu">
+    	<div id="whpUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="whpDeletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+    </div>  
+	
+	
+</body>
+</html>

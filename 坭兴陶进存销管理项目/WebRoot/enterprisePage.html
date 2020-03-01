@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>企业管理</title>
+    <meta charset="utf-8">
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/enterprisePage.css">
+    
+  </head>
+  
+  <body>
+  <script type="text/javascript" src="js/enterprisePage.js"></script>
+  <div id="enterpriseNav">
+		<div id="navboxs">
+		<a class="easyui-linkbutton" id="eqAdd">新增</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="eqDelete">删除</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="eqUpdate">修改</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="eqSearch">查询</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="output">导出</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="eqClear">清空</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="eqcallback">返回</a>
+		</div>
+		<form action="" method="POST" id="epOutBox">			<!-- eq时enterprise的缩写 -->
+  				<div class="row">
+  					<label class="labelCss starlabelCss">信用编码:</label><input type="text" name="creditCode" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">企业名称:</label><input type="text" name="cpyName" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">企业电话:</label><input type="text" name="cpyTelphone" class="inputCss" onkeyup="value=value.replace(/[^\d-]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">开户行:</label><input type="text" name="bankOfDeposit" class="inputCss" autocomplete="off" disableautocomplete>
+  				</div>
+  				
+  				<div class="row">
+  					<label class="labelCss starlabelCss">账号:</label><input type="text" name="cpyAccount" class="inputCss" onkeyup="value=value.replace(/[^\d]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">业务范围:</label><input type="text" name="business" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">注册资本:</label><input type="text" name="registeredCapital" class="inputCss" style="border:0px;" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">注册时间:</label><input type="text" name="registeredTime" class="inputCss">
+  				</div>
+  				
+  				<div class="row">			<!-- onmouseover="dis(this)" data-options="onChange:function(){fileup(this)},prompt:'请选择一个 '" -->
+  					<label class="labelCss starlabelCss">法定代表人:</label><input type="text" name="legalRepresentative"  class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">企业类型:</label><input type="text" name="cpyType" id="cpyType" class="inputCss">
+  					<label class="labelCss">传真:</label><input type="text" name="cpyFax" class="inputCss" onkeyup="value=value.replace(/[^\d-]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">电子邮件:</label><input type="text" name="cpyEmail" class="inputCss" autocomplete="off" disableautocomplete>
+  				</div>
+  				
+  				<div class="row">
+  					<label class="labelCss">邮政编码:</label><input type="text" name="cpyPostCode" class="inputCss" onkeyup="value=value.replace(/[^\d]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">人员数量:</label><input type="text" name="employeeAmout" class="inputCss" onkeyup="value=value.replace(/[^\d]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">企业联系人:</label><input type="text" name="contact" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">联系人电话:</label><input type="text" name="cpyContactTelphone" class="inputCss" onkeyup="value=value.replace(/[^\d]/g,'')" autocomplete="off" disableautocomplete>
+  				</div>
+  				
+  				<div class="row">
+  					<label class="labelCss">企业二维码:</label><input type="button" name="qrcodeOfCompany" id="QRCodeOfCompany"   class="inputCss specailImgBt" >
+  					<label class="labelCss">企业商标:</label><input type="button" name="trademark" id="trademark" class="inputCss specailImgBt">
+  					<label class="labelCss">微信二维码:</label><input type="button" name="qrcodeOfWebChat" id="QRCodeOfWebChat" class="inputCss specailImgBt">
+  				</div>
+  				
+  				<div class="row">
+  					<label class="labelCss">生产规模:</label><input type="text" class="inputCss specailInputCss" name="produceScale" autocomplete="off" disableautocomplete>
+  				</div>
+  				
+  				<div class="row">
+  					<label class="labelCss starlabelCss">企业地址:</label><input type="text" name="cpyAddress" class="inputCss specailInputCss" autocomplete="off" disableautocomplete>
+  				</div>
+  		
+  		</form>
+	</div>
+  	
+  	<!-- 显示企业信息 -->
+  	<table id="enterpriseNews">
+  	
+  	</table>
+  	
+  	<!-- 更新界面 -->
+  	<div id="updateEnterpriseBox">
+  	<form action="" method="POST" id="updateEnterpriseBox">			<!-- eq时enterprise的缩写 -->
+  				<div>
+  					<div id="headLineBox">
+		  			<label class="labelNewsCss">企业信息</label>
+		  			<div id="line"><span class="lightColorLine"></span><span class="grayColorLine longLine"></span></div>
+	  				</div>
+  				</div>
+  				
+  				<div class="row distance">
+  					<label class="labelCss starlabelCss">信用编码:</label><input type="text" name="updateCreditCode" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">企业名称:</label><input type="text" name="updateName" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">企业电话:</label><input type="text" name="updatetelphone" class="inputCss" onkeyup="value=value.replace(/[^\d-]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">开户行:</label><input type="text" name="updateBankOfDeposit" class="inputCss" autocomplete="off" disableautocomplete>
+  				</div>
+  				
+  				<div class="row">
+  					<label class="labelCss starlabelCss">账号:</label><input type="text" name="updateAccount" class="inputCss" onkeyup="value=value.replace(/[^\d]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">业务范围:</label><input type="text" name="updateBusiness" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">注册资本:</label><input type="text" name="updateRegisteredCapital" id="updateRegisteredCapital" class="inputCss"  style="width:220px;" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">注册时间:</label><input type="text" name="updateRegisteredTime" id="updateRegisteredTime" class="inputCss" style="width:220px;">
+  				</div>
+  				
+  				<div class="row">
+  					<label class="labelCss starlabelCss">法定代表人:</label><input type="text" name="updateLegalRepresentative" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">企业类型:</label><input type="text" name="updateType" id="updateType" class="inputCss" autocomplete="off" disableautocomplete >		<!-- 在此处写css样式原因是:ie浏览器渲染跟其他浏览器渲染出现问题,长度不一致 -->
+  					<label class="labelCss">传真:</label><input type="text" name="updateFax" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">电子邮件:</label><input type="text" name="updateEmail" class="inputCss" autocomplete="off" disableautocomplete>
+  				</div>
+  				
+  				<div class="row">
+  					<label class="labelCss">邮政编码:</label><input type="text" name="updatePostCode" class="inputCss" onkeyup="value=value.replace(/[^\d]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">人员数量:</label><input type="text" name="updateEmployeeAmout" id="updateEmployeeAmout" class="inputCss" onkeyup="value=value.replace(/[^\d]/g,'')" style="width:220px;" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">企业联系人:</label><input type="text" name="updateContact" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">联系人电话:</label><input type="text" name="updateContactTehpone" class="inputCss" onkeyup="value=value.replace(/[^\d]/g,'')" autocomplete="off" disableautocomplete>
+  				</div>
+  				
+  				<div class="row">
+  				</div>
+  				
+  				<div class="row">
+  					<label class="labelCss">生产规模:</label><input type="text" class="inputCss specailInputCss" name="updateProduceScale" autocomplete="off" disableautocomplete>
+  				</div>
+  				
+  				<div class="row">
+  					<label class="labelCss starlabelCss">企业地址:</label><input type="text" name="updateAddress" class="inputCss specailInputCss" autocomplete="off" disableautocomplete>
+  				</div>
+  				
+  				<div>
+  					<div id="headLineBox">
+		  			<label class="labelNewsCss">图片信息(点击图片可进行更换)</label>
+		  			<div id="line"><span class="lightColorLine"></span><span class="grayColorLine longLine"></span></div>
+	  				</div>
+	  				
+	  				<!-- 照片信息 -->
+	  				<div class="UpdateimgBox UwordPosition addLeftDistance">
+						<span id="span1">企业二维码:</span>
+						<img alt="无企业企业二维码图片,点击选择" id="updateEmQRCodeOfCompanyImg">
+					</div>
+	  				
+	  				<div class="UpdateimgBox UwordPosition" >
+						<span id="span2">企业微信公众号:</span>
+						<img alt="无企业微信公众号图片,点击选择" id="updateqrcodeOfWebChatImg" >
+					</div>
+					
+					<div class="UpdateimgBox UwordPosition UlastBox">
+						<span id="span3">企业商标:</span>
+						<img alt="无企业商标图片,点击选择" id="updatetrademarkImg" >
+					</div>
+	  				
+  				</div>
+  		
+  		</form>
+  	</div>
+  	
+  	<!-- 企业详细信息界面 -->
+  	<div id="enterpriseDetailNewBox">
+  			<div id="newsTable">
+	  			<div id="headLineBox">
+		  			<label class="labelNewsCss">注册信息</label>
+		  			<div id="line"><span class="lightColorLine"></span><span class="grayColorLine"></span></div>
+	  			</div>
+	  			
+	  			<!-- 注册信息表格 -->
+	  			<table id="registerNewsBox">
+	  				<tr>
+	  					<td class="tipNameCss" >企业名称</td>
+	  					<td id="disEName" class="inpurCommon">电子优先</td>
+	  					<td class="tipNameCss">信用代码</td>
+	  					<td id="disCreditCode" class="inpurCommon">124545</td>
+	  					<td class="tipNameCss">企业法人</td>
+	  					<td id="disLegalRepresentative" class="inpurCommon">李先生</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">账号</td>
+	  					<td id="disAccount"  class="inpurCommon">电子优先</td>
+	  					<td class="tipNameCss">开行户</td>
+	  					<td id="disBankOfDeposit"  class="inpurCommon">124545</td>
+	  					<td class="tipNameCss">注册资本(元)</td>
+	  					<td id="disRegisteredCapital"  class="inpurCommon">李先生</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss" >公司地址</td>
+	  					<td id="disAddress" class="inpurCommon" colspan="5" >124545</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">业务范围</td>
+	  					<td id="disBusiness"  class="inpurCommon" colspan="5">124545</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">生产规模</td>
+	  					<td id="disProduceScale"  class="inpurCommon" colspan="5">124545</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">企业类型</td>
+	  					<td id="disEType"  class="inpurCommon"  colspan="1">124545</td>
+	  					<td class="tipNameCss" style="width:60px">邮政编码</td>
+	  					<td id="disPostcode"  class="inpurCommon"  colspan="3">电子优先</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">注册时间</td>
+	  					<td id="disRegisteredTime"  class="inpurCommon" colspan="1" >124545</td>
+	  					<td class="tipNameCss">人员数量</td>
+	  					<td id="disEmployeeAmout"  class="inpurCommon"  colspan="3">电子优先</td>
+	  				</tr>
+	  			</table>
+	  			
+	  			<!-- 联系方式 -->
+	  			<div id="headLineBox">
+		  			<label class="labelNewsCss">联系信息</label>
+		  			<div id="line"><span class="lightColorLine"></span><span class="grayColorLine"></span></div>
+	  			</div>
+	  			
+	  			<table id="contactNews">
+	  				<tr>
+	  					<td class="tipNameCss" >公司电话</td>
+	  					<td id="eTelphone" class="inpurCommon" >124545</td>
+	  					<td class="tipNameCss" >电子邮箱</td>
+	  					<td id="eEail" class="inpurCommon" >124545</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss" >企业联系人</td>
+	  					<td id="eContact" class="inpurCommon" >124545</td>
+	  					<td class="tipNameCss" >联系人电话</td>
+	  					<td id="eContactTehpone" class="inpurCommon">124545</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss" >传真</td>
+	  					<td id="eFax" class="inpurCommon" colspan="10" >124545</td>
+	  				</tr>
+	  			</table>
+	  			
+	  			<div id="headLineBox">
+		  			<label class="labelNewsCss">照片信息</label>
+		  			<div id="line"><span class="lightColorLine"></span><span class="grayColorLine"></span></div>
+	  			</div>
+	  			
+	  			<!-- 照片信息 -->
+	  			<div class="imgBox img1">
+						<span id="span1">企业商标:</span>
+						<img alt="无企业商标图片" id="disTrademark">
+					</div>
+	  				
+	  				<div class="imgBox img2" >
+						<span id="span2">企业二维码:</span>
+						<img alt="无企业二维码图片" id="disQRCodeOfCompany" >
+					</div>
+					
+					<div class="imgBox img3">
+						<span id="span3">微信公众号:</span>
+						<img alt="无企业微信公众号图片" id="disQRCodeOfWebChat" >
+				</div>
+	  			
+  			</div>
+  		</div>
+  </body>
+</html>

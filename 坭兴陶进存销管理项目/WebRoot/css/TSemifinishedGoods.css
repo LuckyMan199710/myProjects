@@ -1,0 +1,98 @@
+html,body{
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+}
+
+/* 现在有一些页面的input的样式是使用相同的,如果有的页面需要修改一些样式又不能影响到其他页面,则可以在需要修改的地址加多一个类样式 */
+
+/* 添加界面的样式 */
+#tgInputNewsBox{
+	margin-top: 10px;
+	margin-left: 35px;
+}
+
+.tsSpecificationCss{
+	width: 585px;
+}
+
+.sgInputCss{
+	width: 1242px;
+}
+
+.tsTextAreaCss{
+	width: 1243px;
+	background: #fff3f3;
+    background-color: rgb(255, 243, 243);
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-image: none;
+    background-size: auto auto;
+    background-origin: padding-box;
+    background-clip: border-box;
+	border: 1px solid #95b8e7;
+	border-radius: 5px;
+	height: 60px;
+	padding: 5px;
+	box-sizing:border-box;
+	max-height: 60px;
+	max-width: 1243px;
+	min-height: 60px;
+	min-width: 1243px;
+	margin-left: 95px;
+	font-size: 12px !important;
+}
+
+
+	/* 查询窗体的样式 */
+	.tgpSearchBox{
+		margin-top: 35px;
+		margin-left: 5px;
+	}
+	
+	/* 更新窗体的样式 */
+	.tgAddDistance{
+		margin-top: 18px !important;
+	}
+	.utgRowCss{
+		margin-top: 10px;
+		margin-left: 10px;
+	}
+	.tgSpecialInput{
+		margin-top: -15px;
+	}
+	
+	/* 半成品规格输入框样式 */
+	.tgSpecificationCss{
+		width: 877px;
+	}
+	
+	/* 详细页面信息样式 */
+	#tgDisSgAttribute{
+		width: 100%;
+		height: 100%;
+		overflow: auto !important;
+		text-align: justify;
+		padding: 5px;
+		padding-top: 3px;
+		word-break:break-all;
+		box-sizing:border-box;
+	}
+	
+	/* 添加界面带星星的label提示 */
+	.tsgStarLabel{
+		background: url("../img/star.png") no-repeat;
+		background-position: 2px center;
+	}
+	.tsgStarLabelUnit{
+		background: url("../img/star.png") no-repeat;
+		background-position: 7px center;
+	}
+	
+	/* 更新界面带星星的label样式 */
+	.utsgStarLabel{
+		background: url("../img/star.png") no-repeat;
+		background-position: 0px center;
+	}

@@ -1,0 +1,24 @@
+[
+	{
+		"employeeId" : "123456",
+		"employeeName" : "小明",
+		"loginTime" : "2012-12-15 12:15:20",
+		"loginAddress" : "127.0.0.1",
+		"updateInfoTime" : "2015-15-5 15:13:12",
+		"timeOfLastLogin" : "2016-12-5 15:20:20"
+	},{
+		"employeeId" : "1234567",
+		"employeeName" : "小明2",
+		"loginTime" : "2012-11-15 12:15:20",
+		"loginAddress" : "128.0.0.1",
+		"updateInfoTime" : "2025-15-5 15:13:12",
+		"timeOfLastLogin" : "2116-12-5 15:20:20"
+	},{
+		"employeeId" : "12345675",
+		"employeeName" : "小明3",
+		"loginTime" : "2012-11-14 12:10:20",
+		"loginAddress" : "128.0.0.12",
+		"updateInfoTime" : "2025-15-5 15:15:12",
+		"timeOfLastLogin" : "2116-12-5 15:10:20"
+	}
+]

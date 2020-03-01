@@ -1,0 +1,31 @@
+html.body{
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+}
+
+/**
+	添加界面的样式
+*/
+
+.ratioNavBox{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	}
+
+/* 添加按钮的样式  */
+.ratioAddBt{
+	position: absolute;
+	width: 130px;
+	margin-left: 5px;
+	height: 25px;
+	border-radius: 5px;
+	border: 1px solid #95b8e7;
+	background: #fff3f3;
+}
+
+/* 显示信息的table样式*/
+.ratioTable{
+	margin-left: 30px;
+}
+

@@ -1,0 +1,41 @@
+[
+	{
+		"text" : "北部湾大学",
+		"state":"closed",    
+		"children" : [
+			{
+				"id" : "1",
+				"text" : "北部湾1"
+			},{
+				"id" : "2",
+				"text" : "北部湾2"
+			}
+		]
+	},
+	{
+		"text" : "钦州越远",
+		"state":"closed",    
+		"children" : [
+			{
+				"id" : "3",
+				"text" : "北部湾1sa"
+			},{
+				"id" : "4",
+				"text" : "北部湾2asd"
+			}
+		]
+	},
+	{
+		"text" : "钦州越远",
+		"state":"closed",    
+		"children" : [
+			{
+				"id" : "6",
+				"text" : "北部湾1sa"
+			},{
+				"id" : "7",
+				"text" : "北部湾2asd"
+			}
+		]
+	}
+]

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>盘点仓库管理</title>
+</head>
+<body>
+	<!-- 引入js文件 -->
+	<script type="text/javascript" src="js/InventoryPage.js"></script>
+	<!-- 添加加工明细界面 -->
+	<form id="ipNavForm" method="get" action="#">
+	  			<div id="dmnavbox">
+				<a class="easyui-linkbutton" id="ipAddBT">新增</a><span class="column"></span>
+				<a class="easyui-linkbutton" id="ipDeleteBT">删除</a><span class="column"></span>
+<!-- 				<a class="easyui-linkbutton" id="ipUpdateBT">修改</a><span class="column"></span> -->
+				<a class="easyui-linkbutton" id="ipSearchBT">查询</a><span class="column"></span>
+				<a class="easyui-linkbutton" id="ipClearBT">清空</a><span class="column"></span>
+				<a class="easyui-linkbutton" id="ipOutput">导出</a><span class="column"></span> 
+				<a class="easyui-linkbutton" id="ipCallbackBt">返回</a>
+				</div>
+				
+				<div id="ipInputPage">
+					<div class="whpDivCss">
+						<label class="tpdpLableCss whpStarCss addDistanceCss InVoAddDisCss">盘点仓库名称:</label><input name="whId" id="whId" class="dmInputCss" autocomplete="off" disableautocomplete>
+						<label class="tpdpLableCss ipStarCss InVoAddDisCss">盘点人:</label><input name="inventoryOperator" id="inventoryOperator" class="dmInputCss" autocomplete="off" disableautocomplete>
+						<label class="tpdpLableCss ipStarCss InVoAddDisCss">监盘人:</label><input name="supervisory" id="supervisory" class="dmInputCss" autocomplete="off" disableautocomplete>
+					</div>
+				</div>
+	</form>
+	
+	<!-- 更新盘点信息界面 -->
+<!-- 	<form method="get" action="#" id="ipUpdateBox"> -->
+<!-- 		<div class="udmRowCss tpdpSearchDivCss"> -->
+<!-- 				<label class="tpdpLableCss whpStarCss">盘点仓库名称:</label><input name="ipUwhId" id="ipUwhId" class="dmInputCss" autocomplete="off" disableautocomplete> -->
+<!--   				<label class="tpdpLableCss whpStarCss">盘&nbsp;&nbsp;&nbsp;点&nbsp;&nbsp;&nbsp;人:</label><input name="ipUinventoryOperator" id="ipUinventoryOperator" class="dmInputCss" autocomplete="off" disableautocomplete> -->
+<!--   		</div> -->
+  			
+<!--   		<div class="udmRowCss"> -->
+<!-- 				<label class="tpdpLableCss whpStarCss">监&nbsp;&nbsp;&nbsp;盘&nbsp;&nbsp;&nbsp;人:</label><input name="ipUsupervisory" id="ipUsupervisory" class="dmInputCss"> -->
+<!-- 		</div> -->
+<!-- 	</form> -->
+	
+	<!-- 查询界面 -->
+	<form method="get" action="#" id="ipSearchForm">
+		<div class="udmRowCss">
+					<label class="whpLableCss ">盘点仓库名称:</label><input name="ipSwhId" id="ipSwhId" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss ">盘&nbsp;点&nbsp;数&nbsp;量始:</label><input name="ipSinventoryAmountStart" id="ipSinventoryAmountStart" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+	  				<label class="whpLableCss ">盘&nbsp;点&nbsp;数&nbsp;量末:</label><input name="ipSinventoryAmountEnd" id="ipSinventoryAmountEnd" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  			</div>
+  			
+  			<div class="udmRowCss">
+  					<label class="whpLableCss ">盘&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点&nbsp;&nbsp;&nbsp;人:</label><input name="ipSinventoryOperator" id="ipSinventoryOperator" class="dmInputCss" autocomplete="off" disableautocomplete>
+	  				<label class="whpLableCss ">盘&nbsp;点&nbsp;时&nbsp;间&nbsp;始:</label><input name="inventoryTimeStart" id="inventoryTimeStart" class="dmInputCss" autocomplete="off" disableautocomplete>
+	  				<label class="whpLableCss ">盘&nbsp;点&nbsp;时&nbsp;间&nbsp;末:</label><input name="inventoryTimeEnd" id="inventoryTimeEnd" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+			</div>
+			
+			<div class="udmRowCss">
+					<label class="whpLableCss ">监&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;盘&nbsp;&nbsp;&nbsp;&nbsp;人:</label><input name="ipSsupervisory" id="ipSsupervisory" class="dmInputCss" autocomplete="off" disableautocomplete >
+			</div>
+		
+	</form>
+	
+	<!-- 查看详情界面 -->
+	<div id="ipDetailNews">
+  			<div id="newsTable">
+  				<!-- 仓库信息 -->
+	  			<div id="headLineBox">
+		  			<label class="labelNewsCss">盘点信息</label>
+		  			<div id="line"><span class="lightColorLine"></span><span class="grayColorLine"></span></div>
+	  			</div>
+	  			
+	  			<table id="contactNews">
+	  				<tr>
+	  					<td class="tipNameCss">仓库名称</td>
+	  					<td id="ipDisWarehouseName" class="inpurCommon" >暂无</td>
+	  					<td class="tipNameCss" >仓库类型</td>
+	  					<td id="ipDisWarehouseType" class="inpurCommon">暂无</td>
+	  					<td class="tipNameCss" >仓库原库存量</td>
+	  					<td id="ipDismwhSum" class="inpurCommon spelabel2 beformSum">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss" >盘点数量</td>
+	  					<td id=inventoryAmountDetail class="inpurCommon sepLabels realSum">暂无</td>
+	  					<td class="tipNameCss" >盘点时间</td>
+	  					<td id="inventoryTimeDetail" class="inpurCommon" colspan="8">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss" >仓库地址</td>
+	  					<td id="ipDisWarehouseAddress" class="inpurCommon" colspan="12"  >暂无</td>
+	  				</tr>
+	  			</table>
+  			
+  			
+	  			<div id="headLineBox">
+		  			<label class="labelNewsCss">盘点人信息</label>
+		  			<div id="line"><span class="lightColorLine"></span><span class="grayColorLine"></span></div>
+	  			</div>
+	  			
+	  			<!-- 盘点人信息表格 -->
+	  			<table id="registerNewsBox">
+	  				<tr>
+	  					<td class="tipNameCss" >盘点人编号</td>
+	  					<td id="ipInventoryOperator" class="inpurCommon">暂无</td>
+	  					<td class="tipNameCss">盘点人名称</td>
+	  					<td id="ipInventoryOperatorName" class="inpurCommon">暂无</td>
+	  					<td class="tipNameCss">所属部门</td>
+	  					<td id="ipInventoryOperatorDepart" class="inpurCommon">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">盘点人电话</td>
+	  					<td id="ipInventoryOperatorPhone"  class="inpurCommon"  colspan="1">暂无</td>
+	  					<td class="tipNameCss" style="width:60px">盘点人邮箱</td>
+	  					<td id="ipInventoryOperatorEmail"  class="inpurCommon"  colspan="3">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">邮政编码</td>
+	  					<td id="ipInventoryOperatorCode"  class="inpurCommon" colspan="1" >暂无</td>
+	  					<td class="tipNameCss">角色</td>
+	  					<td id="ipInventoryOperatorRole"  class="inpurCommon"  colspan="3">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">地址</td>
+	  					<td id="ipInventoryOperatorAddr"  class="inpurCommon" colspan="5">暂无</td>
+	  				</tr>
+	  			</table>
+	  			
+	  			<div id="headLineBox">
+		  			<label class="labelNewsCss">监制人信息</label>
+		  			<div id="line"><span class="lightColorLine"></span><span class="grayColorLine"></span></div>
+	  			</div>
+	  			<table id="registerNewsBox">
+	  				<tr>
+	  					<td class="tipNameCss" >监制人编号</td>
+	  					<td id="supervisoryId" class="inpurCommon">暂无</td>
+	  					<td class="tipNameCss">监制人名称</td>
+	  					<td id="supervisoryName" class="inpurCommon">暂无</td>
+	  					<td class="tipNameCss">所属部门</td>
+	  					<td id="supervisoryDepart" class="inpurCommon">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">监制人电话</td>
+	  					<td id="supervisoryPhone"  class="inpurCommon"  colspan="1">暂无</td>
+	  					<td class="tipNameCss" style="width:60px">监制人邮箱</td>
+	  					<td id="supervisoryEmail"  class="inpurCommon"  colspan="3">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">邮政编码</td>
+	  					<td id="supervisoryPostcode"  class="inpurCommon" colspan="1" >暂无</td>
+	  					<td class="tipNameCss">角色</td>
+	  					<td id="supervisoryRole"  class="inpurCommon"  colspan="3">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">地址</td>
+	  					<td id="supervisoryAddr"  class="inpurCommon" colspan="5">暂无</td>
+	  				</tr>
+	  			</table>
+	  			
+  			</div>
+  		</div>
+  	
+  	<!-- 显示盘点仓库中商品的信息 -->
+  	<div id="InventoryGoodsNews" class="InventoryGoodsNews">
+  			<form action="#" id="selectInputIForm">
+  			<div id="selectInputI" class="selectInputICss">
+  						<div class="topDistanse"></div>
+						<label class="InveSelectLabel">查询:</label><label class="InveTagCss">商品名称:</label><input name="InvenWhId" id="InvenWhId" class="dmInputCss InveInputCss" autocomplete="off" disableautocomplete>
+						<label class="InveTagCss">单位名称:</label><input name="InvenUnit" id="InvenUnit" class="dmInputCss InveInputCss" autocomplete="off" disableautocomplete>
+						<span id="leftDis"></span> <a class="easyui-linkbutton" id="InveSBT">查询</a> <span id="rightDis"></span>
+						<input type="button" value="完成盘点" id="completCount" class="completCount">
+						<div class="bottomDistance"></div>
+			</div>
+			</form>
+			<table id="InventoryGoodsTable" class="InventoryGoodsTable"></table>
+				
+  	</div>
+  	
+	
+	<!-- 右键弹出操作界面 -->
+  	<div id=ipMenu  class="easyui-menu">
+<!--     	<div id="ipUpdateMenu" data-options="iconCls:'icon-edit'">更新</div> -->
+    	<div id="ipDeletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+    	<div id="ipSeeMenu" data-options="iconCls:'icon-search'">查看</div>
+    </div>  
+	
+	<!-- 显示盘点记录的列表 -->
+	<table id="ipTable"></table>
+</body>
+</html>

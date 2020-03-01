@@ -1,0 +1,19 @@
+html,body{
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+}
+
+/* 查询界面样式 */
+
+/* 隐藏文本框的样式 */	
+	.hBox{
+		background: #f4f4f4 !important;
+	    height: 39px;
+	    margin-top: -6px;
+	}
+
+	.tLoginRowCss{
+		margin-top: 15px;
+		margin-bottom: 10px;
+	}

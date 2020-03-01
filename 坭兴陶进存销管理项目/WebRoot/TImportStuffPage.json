@@ -1,0 +1,129 @@
+{
+		"total" : "3",
+		"rows" :
+		[
+			{
+				"igId" : "1",
+				"spdId" : "11111111",
+				"spending" : "152",
+				"price" : "155",
+				"qrcode" : "img/a5.jpg",
+				"productMeno" :"这是备注",
+				"importDate" : "2015-10-20 20:16:52",
+				
+				"dicNum" : "1",
+				"cost" : "453.5",
+				
+				"gdsId" : "1",
+				"gdsName" : "坭兴陶培土",
+				"gdsModel" : "型号55555555555555555555555555555555555555555555555555555555555",
+				"gdsSpecification" : "商品规格",
+				"gdsUnit" : "单位1",
+				"isManual" : "0",
+				"gdsAttribute":"商品属性1",
+				
+				"CraftsmanId":"1",
+				"Craftsman":"迪迦",
+				"warehouseId" : "3",
+				"warehouseName" : "钦州坭兴陶材料管理仓库",
+				"forming":"成型",
+				"decorate":"装饰",
+				"fire":"",
+				"polish":"",
+				
+				"JempId" : "123",
+				"JempName" : "小米",
+				
+				"MempId" : "1232",
+				"MempName" : "监制人2",
+				
+				"cfmId" : "123",
+				"cfmName" : "小米",
+				
+				"cpyId" : "123",
+				"cpyName" : "企业名称",
+				
+				"quotietylId" : "123",
+				"quotietyValue" : "10",
+				
+				"spdDecorateId" : "1",
+				"spdDecorate" : "浮雕",
+				"spdAppearanceId" : "1",
+				"spdAppearance" : "山水",
+				
+				"pTypeId":"1",
+				"pType"  :"钦州坭兴陶管理仓库",
+				 
+				"shapeId" : "1",
+				"shape" :"钦州坭兴陶管理仓库",
+				
+				"ipsPics" : "img/a1.jpg|img/a2.jpg|img/a3.jpg|img/a4.jpg|img/a5.jpg|img/bc.jpg|img/bodybc.png|img/bodybc2.png|img/logo.png|img/text.png|img/rowbc.png",
+				"gdstatus" : "1"
+				
+			},
+			{
+				"igId" : "2",
+				"spdId" : "1111111122",
+				"spending" : "1452",
+				"price" : "155",
+				"qrcode" : "img/a3.jpg",
+				"productMeno" :"这是备注",
+				"importDate" : "2015-10-20 20:16:52",
+				
+				"dicNum" : "2",
+				"cost" : "154453.5",
+				
+				"gdsId" : "2",
+				"gdsName" : "坭兴陶培土2",
+				"gdsModel" : "型号2",
+				"gdsSpecification" : "商品规格2",
+				"shape" : "商品器型22",
+				"pType" : "商品类别2",
+				"gdsUnit" : "单位2",
+				"isManual" : "1",
+				"gdsAttribute":"商品属性2",
+				
+				"CraftsmanId":"2",
+				"Craftsman":"小怪兽",
+				"warehouseId" : "3",
+				"warehouseName" : "钦州坭兴陶材料管理仓库2",
+				
+				"forming":"成型",
+				"decorate":"装饰",
+				"fire":"",
+				"polish":"打磨",
+				
+				"JempId" : "1232",
+				"JempName" : "小米2",
+				
+				"MempId" : "1232",
+				"MempName" : "监制人",
+				
+				"cfmId" : "1232",
+				"cfmName" : "小米2",
+				
+				"cpyId" : "123",
+				"cpyName" : "企业名称2",
+				
+				"quotietylId" : "1232",
+				"quotietyValue" : "105",
+				
+				"spdDecorateId" : "2",
+				"spdDecorate" : "浮雕1",
+				"spdAppearanceId" : "2",
+				"spdAppearance" : "山水1",
+				
+				"pTypeId":"2",
+				"pType"  :"钦州坭兴陶管理仓库1",
+				 
+				"shapeId" : "2",
+				"shape" :"钦州坭兴陶管理仓库1",
+				
+				
+				"ipsPics" : "img/a1.jpg|img/a2.jpg|img/a3.jpg|img/a4.jpg|img/a5.jpg|img/bc.jpg|img/bodybc.png",
+				"gdstatus" : "0"
+				
+			}
+		],
+		"footer" : [{"cost":"总成本:600","qrcode":"","spending" : "总开销:800","price":"总售价:800"}]
+}

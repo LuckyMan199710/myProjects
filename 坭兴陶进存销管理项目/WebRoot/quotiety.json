@@ -1,0 +1,14 @@
+[
+	{
+		"quotietyValue" : "12.5",
+		"craftsmanLabel":"民间"
+	},
+	{
+		"quotietyValue" : "20.5",
+		"craftsmanLabel":"省级"
+	},
+	{
+		"quotietyValue" : "25.5",
+		"craftsmanLabel":"市级"
+	}
+]

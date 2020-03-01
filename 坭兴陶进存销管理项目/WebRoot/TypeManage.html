@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>类型管理</title>
+</head>
+<body>
+<script type="text/javascript" src="js/TypeManage.js"></script>
+
+<form method="get" action="#" id="TMFormBox1">
+		<div id="TMNewsBox">
+		<label class="dmLableCss dpStarInput">仓库类型:</label><input name="whTypeName" id="whTypeName" class="tmpInputCss" autocomplete="off" disableautocomplete>
+		<input type="button" value="添加" class="TMInputBtCss" id="TWarehouseTypeAddBt">
+		</div>
+</form>
+
+<form method="get" action="#" id="TMFormBox2">
+		<div id="TMNewsBox">
+		<label class="dmLableCss dpStarInput">器型名称:</label><input name="shapeName" id="shapeName" class="tmpInputCss" autocomplete="off" disableautocomplete>
+		<label><input type="button" value="添加" class="TMInputBtCss" id="TShapeAddBT"></label>
+		</div>
+</form>
+
+<form method="get" action="#" id="TMFormBox3">
+		<div id="TMNewsBox">
+		<label class="dmLableCss dpStarInput">类别名称:</label><input name="productTypeName" id="productTypeName" class="tmpInputCss" autocomplete="off" disableautocomplete>
+		<input type="button" value="添加" class="TMInputBtCss" id="TProductTypeAddBT">
+		</div>
+</form>
+
+<!-- 显示信息的盒子 -->
+<table id="outbox">
+        <tr><td><table 	id="key1" ></table></td>
+        	<td>&nbsp;&nbsp;</td>
+            <td><table  id="key2"></table></td>
+            <td>&nbsp;&nbsp;</td>
+            <td><table  id="key3"></table></td>
+        </tr>
+</table>
+
+<!-- 仓库类型批量删除 -->
+<div id="TWarehouseTypeNav">
+	<a class="easyui-linkbutton" id="TWTDeleteBT">批量删除</a><span class="column"></span>
+	<a class="easyui-linkbutton" id="TWTSearchBT">查找</a><span class="column"></span>
+	<a class="easyui-linkbutton" id="TWTCallbackBt">返回</a>
+</div>
+
+<!-- 仓库类型查询界面 -->
+	<form id="TWSearchPgae" method="get" action="#">
+		<div class="TWpSearchBox">
+				<label class="dmLableCss">仓库类型:</label><input name="TWSearchWhTypeName" id="TWSearchWhTypeName" class="dmInputCss" autocomplete="off" disableautocomplete>
+  		</div>
+	</form>
+	
+	<!-- 仓库类型更新界面 -->
+	<form id="TWUpdatePgae" method="get" action="#">
+		<div class="TWpSearchBox">
+				<label class="dmLableCss">仓库类型:</label><input name="TWUpdateWhTypeName" id="TWUpdateWhTypeName" class="dmInputCss" autocomplete="off" disableautocomplete>
+  		</div>
+	</form>
+
+<!-- 右键弹出界面 -->
+<div id="TWMenuBox"  class="easyui-menu">
+    	<div id="TWUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="TWDeletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+</div>    
+  		
+
+
+<!-- 器型批量删除 -->
+<div id="TSarehouseTypeNav">
+	<a class="easyui-linkbutton" id="TSDeleteBT">批量删除</a><span class="column"></span>
+	<a class="easyui-linkbutton" id="TSearchBT">查找</a><span class="column"></span>
+	<a class="easyui-linkbutton" id="TSCallbackBt">返回</a>
+</div>
+
+<!-- 器型的查询界面 -->
+<form id="TSSearchPgae" method="get" action="#">
+		<div class="TWpSearchBox">
+				<label class="dmLableCss">器型名称:</label><input name="TSSearchshapeName" id="TSSearchshapeName" class="dmInputCss" autocomplete="off" disableautocomplete>
+  		</div>
+</form>
+
+<!-- 器型更新界面 -->
+	<form id="TSUpdatePgae" method="get" action="#">
+		<div class="TWpSearchBox">
+				<label class="dmLableCss">器材名称:</label><input name="TSUpdateShapeName" id="TSUpdateShapeName" class="dmInputCss" autocomplete="off" disableautocomplete>
+  		</div>
+	</form>
+
+<!-- 右键弹出界面 -->
+<div id="TSMenuBox"  class="easyui-menu">
+    	<div id="TSUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="TSDeletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+</div>    
+  		
+
+
+<!-- 类别的批量删除 -->
+<div id="TPTarehouseTypeNav">
+	<a class="easyui-linkbutton" id="TPTDeleteBT">批量删除</a><span class="column"></span>
+	<a class="easyui-linkbutton" id="TPTSearchBT">查找</a><span class="column"></span>
+	<a class="easyui-linkbutton" id="TPTCallbackBt">返回</a>
+</div>
+
+<!-- 类别的查询界面 -->
+<form id="TPTSearchPgae" method="get" action="#">
+		<div class="TWpSearchBox">
+				<label class="dmLableCss">类别名称:</label><input name="TPTSearchProductTypeName" id="TPTSearchProductTypeName" class="dmInputCss" autocomplete="off" disableautocomplete>
+  		</div>
+</form>
+
+<!-- 类别更新界面 -->
+	<form id="TPTUpdatePgae" method="get" action="#">
+		<div class="TWpSearchBox">
+				<label class="dmLableCss">类别名称:</label><input name="TPTUpdateProductTypeName" id="TPTUpdateProductTypeName" class="dmInputCss" autocomplete="off" disableautocomplete>
+  		</div>
+	</form>
+
+
+<!-- 右键弹出界面 -->
+<div id="TPTMenuBox"  class="easyui-menu">
+    	<div id="TPTUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="TPTDeletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+</div>    
+  		
+
+</body>
+</html>

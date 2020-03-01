@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>半成品入库</title>
+</head>
+<body>
+<script type="text/javascript" src="js/TImportSemiGoods.js"></script>
+	<div id="TsemiNavBox">
+		<div id="navboxs">
+		<a class="easyui-linkbutton" id="TsemiAddBT">新增</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TsemiDeleteBT">删除</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TsemiUpdateBT">修改</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TsemiSearchBT">查询</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TsemioutputBT">导出</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TsemiClearBT">清空</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TsemicallbackBT">返回</a><span class="column afterCss"></span>
+		</div>
+		<form action="" method="POST" id="TsemiBox">			
+  				<div class="row">
+  					<label class="labelCss starlabelCss semiAddDisLabel">半成品名称:</label><input type="text" name="ipsIdOfStfGoods" id="ipsIdOfStfGoods" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">企业名称:</label><input type="text" name="ipsStfGoodsOfCompany" id="ipsStfGoodsOfCompany" class="inputCss"  autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">入库数量:</label><input type="text" name="ipsStfGoodsAmout" id="ipsStfGoodsAmout" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  					<label class="labelCss starlabelCss">单价:</label><input type="text" name="ipsStfGoodsUnitPrice" id="ipsStfGoodsUnitPrice" class="inputCss" style="border:0px;" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  				</div>
+  				
+  				<div class="row ">
+  					<label class="labelCss starlabelCss semiAddDisLabel">破损数量:</label><input type="text" name="ipsStfGoodsBrokenAmout" id="ipsStfGoodsBrokenAmout" class="inputCss" onkeyup="value=value.replace(/[^\d]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">残次品数量:</label><input type="text" name="ipsStfGoodslImperfectionAmout" id="ipsStfGoodslImperfectionAmout" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  					<label class="labelCss starlabelCss">所入仓库:</label><input type="text" name="ipsStfGoodsWarehouseId" id="ipsStfGoodsWarehouseId" class="inputCss">
+  					<label class="labelCss starlabelCss">经办人:</label><input type="text" name="ipsStfGoodsOperator"  id="ipsStfGoodsOperator"   class="inputCss" >
+  				</div>
+  				
+  				
+  				<div class="row TSFBottomRowCss">
+  					<label class="labelCss starlabelCss semiAddDisLabel">加工内容:</label><input type="text" name="ipsStfGoodsProcessId" id="ipsStfGoodsProcessId" class="inputCss" onkeyup="value=value.replace(/[^\d]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">技术人员:</label><input type="text" name="ipsStfGoodsCraftsmanId" id="ipsStfGoodsCraftsmanId" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  				</div>
+  				
+  			<!-- 存放图片的最外层盒子 -->
+  				<div class="tsgfImgBox" id="TsemiImgBox">
+					<div id="TsemiUploadBt" class="essUplaodBt">
+							<div class="plus">+</div>
+							<div class="addImgText">添加图片</div>
+							<div class="essTips">(最多15张)</div>
+					</div>
+				</div>
+			<!-- 添加界面中图片浏览的窗口 -->
+				<div id="TsemiADisplayBigImg" class="tispDisplayBigImg">
+							<span class="closeImgDialog" id="TsemiACloseImgDialog" title="关闭"><img alt="" src="img/dDel.png"></span>
+							<div id="TsemiAddseeDetialCount" class="seeDetialCount"><span id="TsemiAddNowIndex" class="nowIndex"></span><span class="italicCss">/</span><span id="TsemiAddAllCount" class="allCount"></span></div>
+							<div id="TsemiAddtheTureImgOutBox"  class="theTureImgOutBox">
+								<img alt="" src="img/a1.jpg" id="TsemiAddtheTureImg" class="theTureImg">
+							</div>
+							<span id="TsemiAddupImage" class="changeImgBt leftBtCss" title="上一张">&lt;</span><span id="TsemiAddnextImage" class="changeImgBt rightBtCss" title="下一张">&gt;</span>
+				</div>
+				
+			<!-- 更新界面中图片浏览的窗口 -->
+				<div id="TsemiUpdateDisplayBigImg" class="tispDisplayBigImg">
+							<span class="closeImgDialog" id="TsemiUpdateCloseImgDialog" title="关闭"><img alt="" src="img/dDel.png"></span>
+							<div id="tsemipuCount" class="seeDetialCount"><span id="TsemiUpdateNowIndex" class="nowIndex"></span><span class="italicCss">/</span><span id="TsemiUpdateAllCount" class="allCount"></span></div>
+							<div id="TsemiUpdateTheTureImgOutBox"  class="theTureImgOutBox">
+								<img alt="" src="img/a1.jpg" id="TsemiUpdateTheTureImg" class="theTureImg">
+							</div>
+							<span id="TsemiUpdateUpImage" class="changeImgBt leftBtCss" title="上一张">&lt;</span><span id="TsemiUpdateNextImage" class="changeImgBt rightBtCss" title="下一张">&gt;</span>
+				</div>
+				
+			<!-- 查看详情中图片浏览的窗口 -->
+				<div id="TsemiSeeDetailDisplayBigImg" class="tispDisplayBigImg">
+							<span class="closeImgDialog" id="TsemiSeeDetailCloseImgDialog" title="关闭"><img alt="" src="img/dDel.png"></span>
+							<div id="TsemiSeeDetialCount" class="seeDetialCount"><span id="TsemiSeedetialnowIndex" class="nowIndex"></span><span class="italicCss">/</span><span id="TsemiSeedetialAllCount" class="allCount"></span></div>
+							<div id="TsemiSeeDetailTheTureImgOutBox"  class="theTureImgOutBox">
+								<img alt="" src="img/a1.jpg" id="TsemiSeeDetailTheTureImg" class="theTureImg">
+							</div>
+							<span id="TsemiSeeDetailUpImage" class="changeImgBt leftBtCss" title="上一张">&lt;</span><span id="TsemiSeeDetailNextImage" class="changeImgBt rightBtCss" title="下一张">&gt;</span>
+				</div>
+  				
+  		</form>
+	</div>
+		<!-- 显示企业信息 -->
+  	<table id="TsemiDisRowBox"></table>
+  	
+  	<!-- 更新界面 -->
+  	<form action="#" method="get" id="TsemiUpdateBox">
+  			<div class="row TSFFirstDivCss">
+  					<label class="labelCss starlabelCss">半成品名称:</label><input type="text" name="TsemiUipsIdOfStfGoods" id="TsemiUipsIdOfStfGoods" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">企业名称:</label><input type="text" name="TsemiUipsStfGoodsOfCompany" id="TsemiUipsStfGoodsOfCompany" class="inputCss"  autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">单价:</label><input type="text" name="TsemiUipsStfGoodsUnitPrice" id="TsemiUipsStfGoodsUnitPrice" class="inputCss" style="border:0px;" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  			</div>
+  			
+  			<div class="row">
+  					<label class="labelCss starlabelCss">入库数量:</label><input type="text" name="TsemiUipsStfGoodsAmout" id="TsemiUipsStfGoodsAmout" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  					<label class="labelCss starlabelCss">破损数量:</label><input type="text" name="TsemiUipsStfGoodsBrokenAmout" id="TsemiUipsStfGoodsBrokenAmout" class="inputCss" onkeyup="value=value.replace(/[^\d]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">残次品数量:</label><input type="text" name="TsemiUipsStfGoodslImperfectionAmout" id="TsemiUipsStfGoodslImperfectionAmout" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  			</div>
+  			
+  			<div class="row">
+  					<label class="labelCss starlabelCss">所入仓库:</label><input type="text" name="TsemiUipsStfGoodsWarehouseId" id="TsemiUipsStfGoodsWarehouseId" class="inputCss">
+  					<label class="labelCss starlabelCss">经办人:</label><input type="text" name="TsemiUipsStfGoodsOperator"  id="TsemiUipsStfGoodsOperator"   class="inputCss" >
+  					<label class="labelCss starlabelCss">加工内容:</label><input type="text" name="TsemiUipsStfGoodsProcessId"  id="TsemiUipsStfGoodsProcessId"   class="inputCss" >
+  			</div>
+  			
+  			<div class="row">
+  					<label class="labelCss starlabelCss">技术人员:</label><input type="text" name="TsemiUipsStfGoodsCraftsmanId" id="TsemiUipsStfGoodsCraftsmanId" class="inputCss">
+  			</div>
+  			
+  			<div class="tsgfUpdateImgBox" id="TsemiUpdateImgBox">
+						<div id="TsemiUpdateUplaodBt" class="essUpdateUplaodBt">
+							<div class="plus">+</div>
+							<div class="addImgText">添加图片</div>
+							<div class="essTips">(最多15张)</div>	
+						</div>
+			</div>
+			
+  	</form>
+  	
+  	
+  	<!-- 查询界面 -->
+  	<form action="#" method="get" id="TsemiSearchBox">
+  			<div class="TSFrow TSFFirstDivCss">
+  					<label class="labelCss">半成品名称:</label><input type="text" name="TsemiSipsIdOfStfGoods" id="TsemiSipsIdOfStfGoods" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">企业名称:</label><input type="text" name="TsemiSipsStfGoodsOfCompany" id="TsemiSipsStfGoodsOfCompany" class="inputCss"  autocomplete="off" disableautocomplete>
+  					<label class="labelCss">所入仓库:</label><input type="text" name="TsemiSipsStfGoodsWarehouseId" id="TsemiSipsStfGoodsWarehouseId" class="inputCss">
+  					<label class="labelCss">经办人:</label><input type="text" name="TsemiSipsStfGoodsOperator"  id="TsemiSipsStfGoodsOperator"   class="inputCss" >
+  			</div>
+  			
+  			<div class="TSFrow">
+  					<label class="labelCss">入库数量:</label><input type="text" name="TsemiSipsStfGoodsAmoutStart" id="TsemiSipsStfGoodsAmoutStart" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  					<label class="labelCss">至:</label><input type="text" name="TsemiSipsStfGoodsAmoutEnd" id="TsemiSipsStfGoodsAmoutEnd" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  					<label class="labelCss">破损数量:</label><input type="text" name="TsemiSipsStfGoodsBrokenAmoutStart" id="TsemiSipsStfGoodsBrokenAmoutStart" class="inputCss" onkeyup="value=value.replace(/[^\d]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">至:</label><input type="text" name="TsemiSipsStfGoodsBrokenAmoutEnd" id="TsemiSipsStfGoodsBrokenAmoutEnd" class="inputCss" onkeyup="value=value.replace(/[^\d]/g,'')" autocomplete="off" disableautocomplete>
+  			</div>
+  			
+  			<div class="TSFrow">
+  					<label class="labelCss">残次品数量:</label><input type="text" name="TsemiSipsStfGoodslImperfectionAmoutStart" id="TsemiSipsStfGoodslImperfectionAmoutStart" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  					<label class="labelCss">至:</label><input type="text" name="TsemiSipsStfGoodslImperfectionAmoutEnd" id="TsemiSipsStfGoodslImperfectionAmoutEnd" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  					<label class="labelCss">单价:</label><input type="text" name="TsemiSipsStfGoodsUnitPriceStart" id="TsemiSipsStfGoodsUnitPriceStart" class="inputCss" style="border:0px;" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  					<label class="labelCss">至:</label><input type="text" name="TsemiSipsStfGoodsUnitPriceEnd" id="TsemiSipsStfGoodsUnitPriceEnd" class="inputCss" style="border:0px;" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  			</div>
+  			<div class="TSFrow">
+  					<label class="labelCss">入库时间始:</label><input type="text" name="TsemiSipsStfGoodsImportDateStart" id="TsemiSipsStfGoodsImportDateStart" class="inputCss" style="border:0px;" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  					<label class="labelCss">入库时间末:</label><input type="text" name="TsemiSipsStfGoodsImportDateEnd" id="TsemiSipsStfGoodsImportDateEnd" class="inputCss" style="border:0px;" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  					<label class="labelCss">加工内容:</label><input type="text" name="TsemiSipsStfGoodsProcessId" id="TsemiSipsStfGoodsProcessId" class="inputCss" style="border:0px;" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  					<label class="labelCss">技术人员:</label><input type="text" name="TsemiSipsStfGoodsCraftsmanId" id="TsemiSipsStfGoodsCraftsmanId" class="inputCss" style="border:0px;" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  			</div>
+  			
+  	</form>
+  	
+  	<!-- 查看详情界面 -->
+  	<div id="TsemiSeeDetailPage">
+  		<div id="tsfOutBox" >
+  			<!-- 入库信息 -->
+  			<div class="tsfheadLineBox">
+		  			<label class="tsoreTextCss">入库信息</label>
+		  			<div class="tsfline"><span class="tsfLightColorLine"></span><span class="tsfGrayColorLine tispLineCss"></span></div>
+	  		</div>
+  			<table id="tsfTable" class="tispOutBoxCss">
+	  				<tr>
+	  					<td class="tsfLCss" style="width:60px">半成品名称</td>
+	  					<td id="TsemiSsipsIdOfStfGoods"  class="inpurCommon"  colspan="3">暂无</td>
+	  					<td class="tsfLCss">企业名称</td>
+	  					<td id="TsemiSsipsStfGoodsOfCompany"  class="inpurCommon"  colspan="1">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss" style="width:60px">单价</td>
+	  					<td id="TsemiSsipsStfGoodsUnitPrice"  class="inpurCommon"  colspan="3">暂无</td>
+	  					<td class="tsfLCss">入库数量</td>
+	  					<td id="TsemiSsipsStfGoodsAmout"  class="inpurCommon"  colspan="3">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss" style="width:60px">破损数量</td>
+	  					<td id="TsemiSsipsStfGoodsBrokenAmout"  class="inpurCommon"  colspan="3">暂无</td>
+	  					<td class="tsfLCss" >残次品数量</td>
+	  					<td id="TsemiSsipsStfGoodslImperfectionAmout"  class="inpurCommon"  colspan="3">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss" style="width:60px">所入仓库</td>
+	  					<td id="TsemiSsipsStfGoodsWarehouseId"  class="inpurCommon"  colspan="3">暂无</td>
+	  					<td class="tsfLCss">经办人</td>
+	  					<td id="TsemiSsipsStfGoodsOperator"  class="inpurCommon"  colspan="1">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss" style="width:60px">加工内容</td>
+	  					<td id="TsemiSsipsStfGoodsProcessId"  class="inpurCommon"  colspan="3">暂无</td>
+	  					<td class="tsfLCss">技术人员</td>
+	  					<td id="TsemiSsipsStfGoodsCraftsmanId"  class="inpurCommon"  colspan="1">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss" style="width:60px">加工类型</td>
+	  					<td id="TsemiSTypeName"  class="inpurCommon"  colspan="3">暂无</td>
+	  					<td class="tsfLCss">技术风格</td>
+	  					<td id="TsemiSStyleName"  class="inpurCommon"  colspan="1">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">入库时间</td>
+	  					<td id="TsemiSsipsStfGoodsImportDate"  class="inpurCommon"  colspan="10">暂无</td>
+	  				</tr>
+	  			</table>
+	  			
+	  		<!-- 图片信息 -->
+  			<div class="tsfheadLineBox">
+		  			<label class="tsoreTextCss">图片信息</label>
+		  			<div class="tsfline"><span class="tsfLightColorLine"></span><span class="tsfGrayColorLine tispLineCss"></span></div>
+		  			
+		  			<div id="TsemisDetailImgBox" class="detailImgBox">
+		  			</div>
+		  			
+	  		</div>
+	  	</div>
+  	</div>
+  	
+	
+	<!-- 右键弹出界面 -->
+  	<div id=TsemiMenu  class="easyui-menu">
+    	<div id="TsemiUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="TsemieletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+    	<div id="TsemiSeeMenu" data-options="iconCls:'icon-search'">查看</div>
+    </div> 
+    <script type="text/javascript" src="js/TImportStuffPageImgLoad.js"></script>
+</body>
+</html>

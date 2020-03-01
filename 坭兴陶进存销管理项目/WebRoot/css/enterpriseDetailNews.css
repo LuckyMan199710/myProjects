@@ -1,0 +1,131 @@
+body{
+			font-size:12px;
+		}
+		#newsTable{
+			width:100%;
+			height:100%;
+			box-sizing: border-box;
+			padding-top: 2px;
+		}
+		/* 重写easyui中dialog的样式 */
+		.window,.window .window-body{
+			border-color: #dddbdb !important;
+		}
+		.window{
+			padding : 5px;
+		} 
+		
+		/* 头部行线的样式  */
+		.distance{
+			margin-top: 23px;
+		}
+		
+		#headLineBox{
+			margin-top:10px;
+			margin-left: 10px !important;
+			margin-right:10px;
+			height: 20px;
+			margin-bottom: 10px;
+		}
+			.lightColorLine{
+				display: inline-block;
+				height: 1px;
+				background: #ff0000;
+				width: 60px;
+				margin-bottom: 10px;
+			} 
+			.grayColorLine{
+				display:inline-block;
+				width: 808px;
+				height: 1px;
+				background: #ccc;
+				margin-bottom: 10px;
+			} 
+			
+			.longLine{
+				width: 1290px;
+			}
+			
+		/* label的样式 */
+		.labelNewsCss{
+			margin-bottom: 1px;
+			display: inline-block;
+			color: #0ca7f4;
+		}
+		
+		/* 注册信息表格 */
+		#registerNewsBox,#photoNews,#contactNews{
+			margin-top:15px;
+			margin-left: 10px;
+			margin-right: 10px;
+			border : 1px solid #ccc;
+			width:870px;
+			border-collapse:collapse !important;
+			margin-bottom: 25px;
+		}
+		
+		#registerNewsBox tr td,#photoNews tr td,#contactNews tr td{
+			border : 1px solid #ccc;
+		}
+		
+		/* 表格中提示标签的样式 */
+		.tipNameCss{
+			width:88px;
+			padding-left: 10px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+		
+		/* 显示信息共同使用的样式 */
+			.inpurCommon{
+				padding-left: 10px;
+				box-sizing: border-box;
+			}
+		
+		/* 信用代码 */
+		#disCreditCode{
+			width:180px;
+		}
+		/* 企业名称 */
+		#disEName,#eTelphone{
+			width:270px;
+		}
+		
+		/* 公司地址 */
+		#disAddress{
+		}
+		
+		/* 标签显示样式 */
+		.tipNameCss{
+			background: #f1f1f1;
+		}
+		
+		.imgBox{
+			display:inline-block;
+			width: 260px;
+			height: 153px;
+			margin-left: 18px;
+			margin-top: 5px;
+		}
+		#disTrademark,#disQRCodeOfCompany,#disQRCodeOfWebChat{
+			display: inline-block;
+			width: 180px;
+			height: 153px;
+			max-width: 100%;
+			max-height: 100%;
+			position: absolute;
+		}
+		#disTrademark{
+			left:70px;
+		}
+		#disQRCodeOfCompany,#disQRCodeOfWebChat{
+			left:80px;
+		}
+		.img1,.img2,.img3{
+			position: relative;
+		}
+		#span1,#span2,#span3{
+			position: absolute;
+			top:0px;
+			z-index: 9999;
+		}

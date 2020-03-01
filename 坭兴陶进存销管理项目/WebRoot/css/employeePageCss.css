@@ -1,0 +1,136 @@
+		/*头部的样式*/
+		
+		.datagrid-header-row td{font-weight: bold;}
+		
+		.headbc{
+			background: url("../img/mainBc.png") center no-repeat !important;
+		}
+		#head-title{
+			display:inline-block;
+			font-size:25px;
+			margin-left: 30px;
+		}
+		
+		/*操作按钮样式*/
+		#nav{
+			padding: 1px;
+		}
+		
+		
+		#text{
+			display:inline-block;
+			position: relative;
+			top:-6px;
+			margin-left: -10px;
+		}
+/* 		添加员工信息样式 */
+
+		.employeeTextCss{
+			display:inline-block;
+			width:80px;
+			text-align: center;
+			font-size:12px;
+		}
+		.inputStarCss{
+			background: url(../img/star.png) no-repeat;
+    		background-position: 15px center;
+		}
+		
+		/*修改员工的样式*/
+		
+		#updateOutBox{
+			margin-top: 18px; 
+		}
+		
+		.employeeTextCss2{
+			display:inline-block;
+			width:80px;
+			text-align: center;
+			font-size:12px;
+			height: 23px;
+			line-height: 23px;
+			margin-right: 3px;
+		}
+		
+		.leftCss2{
+			margin-left: -20px;
+		}
+		
+		.leftCss3{
+			
+		}
+		
+		.textbox-text{
+			height: 23px !important;
+			background: #fff3f3 !important;
+		}
+		
+		.employeeInputCss{
+			width: 230px;
+			height: 25px;
+			line-height: 25px;
+			box-sizing: border-box;
+			padding-left: 5px;
+			border:1px solid #95b8e7 !important;
+			background-color: #fff3f3;
+			border-radius: 5px; 
+		}
+		.row{
+			margin-top: 10px;
+			margin-left: 26px;
+		}
+		.row2{
+			margin-bottom: 10px;
+		}
+		/* 	地址栏输入框样式*/
+		.address{
+			width:1175px !important;
+		}
+		.address2{
+			width:865px !important
+		}
+		
+		/*显示单元格的样式*/
+		.datagrid-cell{
+			font-size: 12px !important;
+		}
+		
+		/*右键菜单的样式*/
+		#menu{
+			display: none;
+			width: 80px;
+			text-align: center !important;
+		}
+		
+
+		/* 查询弹窗的样式 */
+		#search{
+			display: none;
+		}
+		
+		#searchOutBox{
+			width: 540px;
+			height: 100px;
+			margin-top: 30px;
+		}
+		.rowStyle{
+			margin-top: 20px;
+		}
+		
+		.rowInputStyle{
+			display:inline-block;
+			width: 180px;
+			height: 25px;
+			box-sizing: border-box;
+			padding-left: 5px;
+			background: #f3f3f3 !important;
+			border:1px solid #95b8e7 !important;
+		}
+		
+		
+		
+		/* 查询部门的样式 */
+		.searchDepartmentBC{
+			background: #fff !important;
+		}
+		

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>系统登录管理</title>
+</head>
+<body>
+ <script type="text/javascript" src="js/TLogin.js"></script>
+ <!-- 查询文本框 -->
+ <div id="tLoginNewsBox">
+		<form action="" method="POST" id="searchTloginNews">					
+  				<div class="srow tLoginRowCss">									
+  					<label class="labelCss ">登录员工号:</label><input type="text" name="tLoginEmployeeId" id="tLoginEmployeeId" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss ">登录时间始:</label><input type="text" name="loginTimeStart" id="loginTimeStart" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss ">登录时间末:</label><input type="text" name="loginTimeEnd" id="loginTimeEnd"  class="searchInputCss" autocomplete="off" disableautocomplete>
+  					<span class="moveRightCss"></span>
+  					<a  href="#" id="tLoginSearchBt" class="spBT">查询</a>
+  					<a  href="#" id="tLoginClear" class="spBT">清空</a>
+  					<a  href="#" id="tLoginOutput" class="spBT">返回</a>
+  					<a  href="#" id="tLoginMore" class="spBT">更多</a>
+  				</div>
+  		<div id="tLoginShowBox" >
+			 <div class="hBox">   
+    				<div class="srow">									
+  					<label class="labelCss ">登&nbsp;&nbsp;&nbsp;录&nbsp;&nbsp;&nbsp;IP:</label><input type="text" name="loginAddress" id="loginAddress" class="searchInputCss"  autocomplete="off" disableautocomplete>
+  					<label class="labelCss ">更新时间始:</label><input type="text" name="updateInfoTimeStart" id="updateInfoTimeStart" class="searchInputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss ">更新时间末:</label><input type="text" name="updateInfoTimeEnd" id="updateInfoTimeEnd" class="searchInputCss"  autocomplete="off" disableautocomplete>
+  					</div>
+    		</div>  
+		</div>
+		</form>
+  		
+	</div>
+	
+	
+	<!-- 显示登录记录信息 -->
+  	<table id="tLoginTable">
+  	</table>
+  	
+</body>
+</html>

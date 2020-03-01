@@ -1,0 +1,94 @@
+html,body{
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+}
+
+/* 添加信息的样式 */
+.mtpSpecificationCss{
+	width: 567px;
+}
+#mtpInputNewsBox{
+	margin-left: 25px;
+}
+.mtpTextAreaCss{
+	width: 1223px;
+	background: #fff3f3;
+    background-color: rgb(255, 243, 243);
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-image: none;
+    background-size: auto auto;
+    background-origin: padding-box;
+    background-clip: border-box;
+	border: 1px solid #95b8e7;
+	border-radius: 5px;
+	height: 60px;
+	padding: 5px;
+	box-sizing:border-box;
+	max-height: 60px;
+	max-width: 1223px;
+	min-height: 60px;
+	min-width: 1223px;
+	margin-left: 95px;
+	font-size: 12px !important;
+}
+
+.materialsDiv{
+	position: relative;
+	height: 60px;
+	width: 100%;
+}
+
+	/* textarea中label的样式 */
+	.mtpLabelScss{
+		position: absolute !important;
+		top: 0px;
+	}
+	
+	/* 查询窗体的样式 */
+	.mtpSearchBox{
+		margin-top: 35px;
+		margin-left: 5px;
+	}
+	
+	/* 更新窗体的样式 */
+	.umtpRowCss{
+		margin-top: 23px;
+		margin-left: 15px;
+	}
+	
+	/* 查看详情中材料成分的样式 */
+	.metrialTdNameCss{
+		height: 68px;
+	}
+	
+	.metrialTdValueCss{
+		height: 68px;
+		padding-right: 5px;
+	}
+	
+	#mtpDisMtlForm{
+		width: 100%;
+		height: 100%;
+		overflow: auto !important;
+		text-align: justify;
+		padding: 5px;
+		padding-top: 3px;
+		word-break:break-all;
+		box-sizing:border-box;
+	}
+	
+	/* 添加界面带星星的label提示输入 */
+	.whpStarLabel{
+		background: url("../img/star.png") no-repeat;
+		background-position: 7px center;
+	}
+	
+	/* 更新界面带星星的label输入框 */
+	.uwhpStarLabel{
+		background: url("../img/star.png") no-repeat;
+		background-position: 4px center;
+	}

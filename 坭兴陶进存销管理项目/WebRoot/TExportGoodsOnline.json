@@ -1,0 +1,44 @@
+[
+	{
+		"egoId" : "1",
+		"egoProductDetailId" : "2",
+		"egoOperator" : "abc",
+		"egoExportDate" : "2015-12-5",
+		"egoOrderNumber" : "abc1234566",
+		"egoExpressNumber" : "wuliudanhap123",
+		"egoAccount" : "abc123",
+		"egoName" : "小明",
+		"egoPhone" : "122354565",
+		"egoAddress" : "广西钦州市北部湾大学12号",
+		"egoRemarks" : "请两天内发货",
+		"egoOnlineStore" : "淘淘更快乐"
+	},
+	{
+		"egoId" : "2",
+		"egoProductDetailId" : "3",
+		"egoOperator" : "abcd",
+		"egoExportDate" : "2015-12-5 15:21:12",
+		"egoOrderNumber" : "abc1234566",
+		"egoExpressNumber" : "wuliudanhap123",
+		"egoAccount" : "abc123",
+		"egoName" : "小明2",
+		"egoPhone" : "122354565",
+		"egoAddress" : "广西钦州市北部湾大学12号",
+		"egoRemarks" : "请两天内发货",
+		"egoOnlineStore" : "淘淘更快乐2"
+	},
+	{
+		"egoId" : "3",
+		"egoProductDetailId" : "3",
+		"egoOperator" : "abc",
+		"egoExportDate" : "2015-12-5 12:23:23",
+		"egoOrderNumber" : "abc1234566",
+		"egoExpressNumber" : "wuliudanhap123",
+		"egoAccount" : "abc123",
+		"egoName" : "小明3",
+		"egoPhone" : "122354565",
+		"egoAddress" : "广西钦州市北部湾大学12号",
+		"egoRemarks" : "请两天内发货",
+		"egoOnlineStore" : "淘淘更快乐3"
+	}
+]

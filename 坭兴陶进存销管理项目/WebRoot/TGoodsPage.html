@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>商品管理</title>
+</head>
+<body>
+<script type="text/javascript" src="js/TGoodsPage.js"></script>
+	<form id="TGPNewsBox" method="get" action="#">
+  			<div id="TGPnavbox">
+			<a class="easyui-linkbutton" id="TGPAddBT">新增</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="TGPDeleteBT">删除</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="TGPUpdateBT">修改</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="TGPSearchBT">查询</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="TGPClearBT">清空</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="TGPCallbackBt">返回</a>
+			</div>
+			
+			<div id="TGPInputNewsBox">
+				<div class="whpDivCss">
+					<label class="whpLableCss whpStarLabel">商品名称:</label><input name="gdsName" id="gdsName" class="tgsInputCss" autocomplete="off" disableautocomplete>
+					<!-- <label class="whpLableCss">商品型号:</label><input name="gdsModel" id="gdsModel" class="tgsInputCss" autocomplete="off" disableautocomplete> -->
+					<label class="whpLableCss ">商品器型:</label><input name="shape" id="shape" class="tgsInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss ">商品类别:</label><input name="pType" id="pType" class="tgsInputCss tgsTypeCss" autocomplete="off" disableautocomplete>
+				</div>
+				<div class="whpDivCss">
+					<label class="whpLableCss whpStarLabel">单位名称:</label><input name="gdsUnit" id="gdsUnit" class="tgsInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss whpStarLabel">是否手工:</label><input name="isManual" id="isManual" class="tgsInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss">商品规格:</label><input name="gdsSpecification" id="gdsSpecification" class="tgsInputCss tgsSfcCss">
+				</div>
+				
+				<div class="whpDivCss materialsDiv">
+					<label class="whpLableCss">商品属性:</label><textarea class="mtpTextAreaCss" name="gdsAttribute" id="gdsAttribute" autocomplete="off" disableautocomplete></textarea>
+				</div>
+			</div>
+			
+	</form>	
+	
+	<!-- 显示仓库信息 -->
+	<table id="disTGPNews"></table>
+	
+	<!-- 查询商品信息窗体 -->
+	<form action="#" method="get" id="tgsSearchBox">
+				<div class="tgsSearchRowsCss">
+				<label class="dmLableCss uMhpLabelCss">商品名称:</label><input name="searchGdsName" id="searchGdsName" class="dmInputCss">
+				<label class="dmLableCss">单位名称:</label><input name="searchmgdsUnit" id="searchmgdsUnit" class="dmInputCss">
+				<label class="dmLableCss">是否手工:</label><input name="searcheIsManual" id="searcheIsManual" class="dmInputCss">
+				</div>
+				
+				<div class="tgsSearchRowsCss">
+					<label class="dmLableCss uMhpLabelCss">商品器型:</label><input name="searchShape" id="searchShape" class="dmInputCss">
+					<label class="dmLableCss">商品类别:</label><input name="searchPType" id="searchPType" class="dmInputCss">
+				</div>
+	</form>
+	
+	<!-- 更新商品信息界面 -->
+	<form method="get" action="#" id="tgsUpdateNewsBox">
+  			<div class="utgRowCss tgAddDistance">
+  				<label class="dmLableCss utsgStarLabel">商品名称:</label><input name="tgsUpdateGdsName" id="tgsUpdateGdsName" class="dmInputCss" autocomplete="off" disableautocomplete>
+  				<label class="dmLableCss ">商品型号:</label><input name="tgsUpdateGdsModel" id="tgsUpdateGdsModel" class="dmInputCss" autocomplete="off" disableautocomplete>
+				<label class="dmLableCss">商品器型:</label><input name="tgsUpdateShape" id="tgsUpdateShape" class="dmInputCss">
+  			</div>
+  			<div class="utgRowCss">
+  				<label class="dmLableCss utsgStarLabel">单位名称:</label><input name="tgsUpdateGdsUnit" id="tgsUpdateGdsUnit" class="dmInputCss" autocomplete="off" disableautocomplete>
+  				<label class="dmLableCss utsgStarLabel">是否手工:</label><input name="tgsUpdateIsManual" id="tgsUpdateIsManual" class="dmInputCss">
+  				<label class="dmLableCss ">商品类别:</label><input name="tgsUpdatePType" id="tgsUpdatePType" class="dmInputCss" autocomplete="off" disableautocomplete>
+  			</div>
+  			<div class="utgRowCss">
+  				<label class="dmLableCss">商品规格:</label><input name="tgsUpdateGdsSpecification" id="tgsUpdateGdsSpecification" class="dmInputCss tgSpecificationCss">
+  			</div>
+  			<div class="utgRowCss">
+					<label class="dmLableCss">商品属性:</label><textarea name="tgsUpdateGdsAttribute" id="tgsUpdateGdsAttribute" class="usepcialInputCss tgSpecialInput" autocomplete="off" disableautocomplete></textarea>
+			</div>
+  	</form>
+  	
+  	
+  	<!-- 查看界面 -->
+  	<div id="tgsSeeDetailPage">
+  		<div id="tgProductNewsMore">
+  			<table id="registerNewsBox">
+	  				<tr>
+	  					<td class="tipNameCss">商品名称</td>
+	  					<td id="tgsDisGdsName"  class="inpurCommon"  colspan="1">124545</td>
+	  					<td class="tipNameCss" style="width:60px">商品型号</td>
+	  					<td id="tgsDisGdsModel"  class="inpurCommon"  colspan="3">电子优先</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">商品器型</td>
+	  					<td id="tgsDisShape"  class="inpurCommon"  colspan="1">124545</td>
+	  					<td class="tipNameCss" style="width:60px">商品类别</td>
+	  					<td id="tgsDisPType"  class="inpurCommon"  colspan="3">电子优先</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">单位名称</td>
+	  					<td id="tgsDisGdsUnit"  class="inpurCommon"  colspan="1">124545</td>
+	  					<td class="tipNameCss" style="width:60px">是否手工</td>
+	  					<td id="tgDisIsManual"  class="inpurCommon"  colspan="3">电子优先</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">商品规格</td>
+	  					<td id="tgsDisGdsSpecification"  class="inpurCommon" colspan="5">124545</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss metrialTdNameCss">商品属性属性</td>
+	  					<td  class="inpurCommon metrialTdValueCss" colspan="5">
+	  					<div id="tgsDisGdsAttribute">测试测试</div>
+	  					</td>
+	  				</tr>
+	  			</table>
+  		</div>
+  	</div>
+  	
+	
+	<!-- 右键弹出界面 -->
+  	<div id=tgsMenu  class="easyui-menu">
+    	<div id="tgsUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="tgsDeletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+    	<div id="tgsSeeMenu" data-options="iconCls:'icon-search'">查看</div>
+    </div>  
+	
+</body>
+</html>

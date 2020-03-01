@@ -1,0 +1,35 @@
+{
+		"total" : "1",
+		"rows" :
+		[
+			{
+				"inventoryId" : "1",
+				"whId" : "1",
+				"whIdName" : "钦州坭兴陶材料管理仓库",
+				"whType" : "材料仓",
+				"whAddr" : "钦州北部湾大学18号",
+				"originalAmount" : "80",
+				"inventoryOperator" : "1",
+				"inventoryOperatorName" : "小米",
+				"inventoryOperatorDepart" : "秘书部",
+				"inventoryOperatorPhone" : "1787575454",
+				"inventoryOperatorPostCode" : "121212",
+				"inventoryOperatorEmail" : "1212@qq",
+				"inventoryOperatorRole" : "超级管理员",
+				"inventoryOperatorAdrr" : "广西省钦州市北部湾大学12号",
+				"supervisory" : "1",
+				"supervisoryName" : "小米",
+				"supervisoryDepart" : "秘书部",
+				"supervisoryPhone" : "1787575454",
+				"supervisoryPostCode" : "121212",
+				"supervisoryEmail" : "1212@qq",
+				"supervisoryRole" : "超级管理员",
+				"supervisoryAdrr" : "广西省钦州市北部湾大学12号",
+				"inventoryAmount" : "600",
+				"storeSum":"60",
+				"countSum":"",
+				"inventoryTime" : "2016-5-16 10:12:22"
+			}
+		],
+		"footer" : [{"inventoryAmount":"盘点后所有仓库总数量:800"}]
+}

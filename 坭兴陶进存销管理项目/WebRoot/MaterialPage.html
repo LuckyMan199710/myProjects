@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>材料管理界面</title>
+</head>
+<body>
+	<script type="text/javascript" src="js/MaterialPage.js"></script>
+	
+	<!-- 材料管理添加页面 -->
+	<form id="mtpNewsBox" method="get" action="#">
+  			<div id="dmnavbox">
+			<a class="easyui-linkbutton" id="mtpAddBT">新增</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="mtpDeleteBT">删除</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="mtpUpdateBT">修改</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="mtpSearchBT">查询</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="mtpClearBT">清空</a><span class="column"></span>
+<!-- 		<a class="easyui-linkbutton" id="whpOutput">导出</a><span class="column"></span> -->
+			<a class="easyui-linkbutton" id="mtpCallbackBt">返回</a>
+			</div>
+			
+			<div id="mtpInputNewsBox">
+				<div class="whpDivCss">
+					<label class="whpLableCss whpStarLabel">材料名称:</label><input name="mtlName" id="mtlName" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss whpStarLabel">单位名称:</label><input name="mtlUnit" id="mtlUnit" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss">材料规格:</label><input name="mtlSpecification" id="mtlSpecification" class="dmInputCss mtpSpecificationCss">
+				</div>
+				
+				<div class="whpDivCss materialsDiv">
+					<label class="whpLableCss mtpLabelScss">材料成分:</label><textarea class="mtpTextAreaCss" name="mtlForm" id="mtlForm" autocomplete="off" disableautocomplete></textarea>
+				</div>
+			</div>
+			
+	</form>	
+	
+	<!-- 显示仓库信息 -->
+	<table id="dismtpNews"></table>
+	
+	<!-- 查询界面 -->
+	<form id="mtpSearchPgae" method="get" action="#">
+		<div class="mtpSearchBox">
+				<label class="dmLableCss">材料名称:</label><input name="mtpSearchMtlName" id="mtpSearchMtlName" class="dmInputCss" autocomplete="off" disableautocomplete>
+  				<label class="dmLableCss">单位名称:</label><input name="mtpSearchMtlUnit" id="mtpSearchMtlUnit" class="dmInputCss" autocomplete="off" disableautocomplete>
+  		</div>
+	</form>
+	
+	<!-- 更新界面 -->
+	<form method="get" action="#" id="mtpUpdateNewsBox">
+  			<div class="umtpRowCss">
+  				<label class="dmLableCss uwhpStarLabel">材料名称:</label><input name="mtpUpdateMtlName" id="mtpUpdateMtlName" class="dmInputCss" autocomplete="off" disableautocomplete>
+  				<label class="dmLableCss uwhpStarLabel">单位名称:</label><input name="mtpUpdateMtlUnit" id="mtpUpdateMtlUnit" class="dmInputCss" autocomplete="off" disableautocomplete>
+				<label class="dmLableCss">材料规格:</label><input name="mtpUpdateMtlSpecification" id="mtpUpdateMtlSpecification" class="dmInputCss">
+  			</div>
+  			<div class="udmRowCss">
+					<label class="dmLableCss demSpe demSpe2">材料成分:</label><textarea name="updateMtlForm" id="updateMtlForm" class="usepcialInputCss" autocomplete="off" disableautocomplete></textarea>
+			</div>
+  	</form>
+  	
+  	<!-- 查看界面 -->
+  	<div id="mtpSeeDetailPage">
+  		<div id="meterialNewsMore">
+  			<table id="registerNewsBox">
+	  				<tr>
+	  					<td class="tipNameCss">材料名称</td>
+	  					<td id="mtpDisMtlName"  class="inpurCommon"  colspan="1">124545</td>
+	  					<td class="tipNameCss" style="width:60px">单位名称</td>
+	  					<td id="mtpDisMtlUnit"  class="inpurCommon"  colspan="3">电子优先</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">材料规格</td>
+	  					<td id="mtpDisMtlSpecification"  class="inpurCommon" colspan="5">124545</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss metrialTdNameCss">材料成分</td>
+	  					<td  class="inpurCommon metrialTdValueCss" colspan="5">
+	  					<div id="mtpDisMtlForm">测试测试</div>
+	  					</td>
+	  				</tr>
+	  			</table>
+  		</div>
+  		
+  		<div>
+  			
+  		</div>
+  	</div>
+  	
+  	<!-- 右键弹出界面 -->
+  	<div id=mtpMenu  class="easyui-menu">
+    	<div id="mtpUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="mtpDeletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+    	<div id="mtpSeeMenu" data-options="iconCls:'icon-search'">查看</div>
+    </div>  
+  	
+  	
+</body>
+</html>

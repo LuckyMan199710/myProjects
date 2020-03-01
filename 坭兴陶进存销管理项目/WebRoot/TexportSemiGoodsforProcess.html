@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>半成品委托加工界面</title>
+</head>
+<body>
+<script type="text/javascript" src="js/TexportSemiGoodsforProcess.js" charset="utf-8"></script>
+	<!-- 添加界面 -->
+	<form id="tsgfNavForm" method="get" action="#">			<!-- tsgf是网页名称的每个单词的首字母组合 -->
+  			<div id="TemNavs">
+			<a class="easyui-linkbutton" id="tsgfAddBT">新增</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="tsgfDeleteBT">删除</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="tsgfUpdateBT">修改</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="tsgfSearchBT">查询</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="tsgfClearBT">清空</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="tsgfOutput">导出</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="tsgfCallbackBt">返回</a>
+			</div>
+			
+			<div id="tsgfInputBox">
+				<div class="whpDivCss ExSemiAddDisLable">
+					<label class="whpLableCss whpStarCss">半成品名称:</label><input name="idOfSemiFinishedGoods" id="idOfSemiFinishedGoods" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss whpStarCss">所出仓库:</label><input name="essWarehouseId" id="essWarehouseId" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss whpStarCss">出库数量:</label><input name="esspAmout" id="esspAmout" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+					<label class="whpLableCss whpStarCss">出库单价:</label><input name="esspUnitPrice" id="esspUnitPrice" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+				</div>
+				
+				<div class="whpDivCss ExSemiAddDisLable">
+					<label class="whpLableCss whpStarCss">经办人:</label><input name="essOperator" id="essOperator" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss whpStarCss">公司名称:</label><input name="essCompanyId" id="essCompanyId" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss whpStarCss">加工内容:</label><input name="processId" id="processId" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss whpStarCss">技术人员:</label><input name="craftsmanId" id="craftsmanId" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<span class="essLine"></span>
+				</div>
+				<!-- 图片外层盒子 -->
+				<div class="tsgfImgBox" id="tsgfImgBox">
+					<div id="essUplaodBt" class="essUplaodBt">
+							<div class="plus">+</div>
+							<div class="addImgText">添加图片</div>
+							<div class="essTips">(最多15张)</div>
+					</div>
+				</div>
+				<!-- 添加界面中图片浏览的窗口 -->
+				<div id="tppDisplayBigImg" class="tppDisplayBigImg">
+							<span class="closeImgDialog" id="closeImgDialog" title="关闭"><img alt="" src="img/dDel.png"></span>
+							<div id="seeDetialCount" class="seeDetialCount"><span id="addNowIndex" class="nowIndex"></span><span class="italicCss">/</span><span id="addAllCount" class="allCount"></span></div>
+							<div id="theTureImgOutBox"  class="theTureImgOutBox">
+								<img alt="" src="img/a1.jpg" id="theTureImg" class="theTureImg">
+							</div>
+							<span id="upImage" class="changeImgBt leftBtCss" title="上一张">&lt;</span><span id="nextImage" class="changeImgBt rightBtCss" title="下一张">&gt;</span>
+				</div>
+				
+				<!-- 更新界面中图片浏览的窗口 -->
+				<div id="tppUpdateDisplayBigImg" class="tppDisplayBigImg">
+							<span class="closeImgDialog" id="updateCloseImgDialog" title="关闭"><img alt="" src="img/dDel.png"></span>
+							<div id="seeDetialCount" class="seeDetialCount"><span id="updateNowIndex" class="nowIndex"></span><span class="italicCss">/</span><span id="updateAllCount" class="allCount"></span></div>
+							<div id="updateTheTureImgOutBox"  class="theTureImgOutBox">
+								<img alt="" src="img/a1.jpg" id="updateTheTureImg" class="theTureImg">
+							</div>
+							<span id="updateUpImage" class="changeImgBt leftBtCss" title="上一张">&lt;</span><span id="updateNextImage" class="changeImgBt rightBtCss" title="下一张">&gt;</span>
+				</div>
+				
+				<!-- 查看详情中图片浏览的窗口 -->
+				<div id="tppSeeDetailDisplayBigImg" class="tppDisplayBigImg">
+							<span class="closeImgDialog" id="seeDetailCloseImgDialog" title="关闭"><img alt="" src="img/dDel.png"></span>
+							<div id="seeDetialCount" class="seeDetialCount"><span id="nowIndex" class="nowIndex"></span><span class="italicCss">/</span><span id="allCount" class="allCount"></span></div>
+							<div id="seeDetailTheTureImgOutBox"  class="theTureImgOutBox">
+								<img alt="" src="img/a1.jpg" id="seeDetailTheTureImg" class="theTureImg">
+							</div>
+							<span id="seeDetailUpImage" class="changeImgBt leftBtCss" title="上一张">&lt;</span><span id="seeDetailNextImage" class="changeImgBt rightBtCss" title="下一张">&gt;</span>
+				</div>
+			</div>
+			
+	</form>
+	
+		<!-- 更新界面 -->
+	<form method="get" action="#" id="essUpdateForm">
+		<div class="udmRowCss">
+					<label class="whpLableCss whpStarCss">半成品名称:</label><input name="essUidOfSemiFinishedGoods" id="essUidOfSemiFinishedGoods" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss whpStarCss">所出仓库:</label><input name="essUwarehouseId" id="essUwarehouseId" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss whpStarCss">出库数量:</label><input name="essUesspAmout" id="essUesspAmout" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  			</div>
+  			
+  			<div class="udmRowCss">
+  				<label class="whpLableCss whpStarCss">出库单价:</label><input name="essUesspUnitPrice" id="essUesspUnitPrice" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+				<label class="whpLableCss whpStarCss">经办人:</label><input name="essUoperator" id="essUoperator" class="dmInputCss" autocomplete="off" disableautocomplete>
+				<label class="whpLableCss whpStarCss">公司名称:</label><input name="essUcompanyId" id="essUcompanyId" class="dmInputCss" autocomplete="off" disableautocomplete>
+			</div>
+			
+			<div class="udmRowCss">
+  					<label class="whpLableCss whpStarCss">加工内容:</label><input name="updateProcessId" id="updateProcessId" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss whpStarCss">技术人员:</label><input name="updateCraftsmanId" id="updateCraftsmanId" class="dmInputCss" autocomplete="off" disableautocomplete>
+			</div>
+			
+				<div class="tsgfUpdateImgBox" id="tsgfUpdateImgBox">
+						<div id="essUpdateUplaodBt" class="essUpdateUplaodBt">
+							<div class="plus">+</div>
+							<div class="addImgText">添加图片</div>
+							<div class="essTips">(最多15张)</div>	
+						</div>
+				</div>
+		
+	</form>
+	
+	
+	<!-- 查询界面 -->
+	<form method="get" action="#" id="essSearchForm">
+			<div class="udmRowCss">
+					<label class="whpLableCss ">半成品名称:</label><input name="essSidOfSemiFinishedGoods" id="essSidOfSemiFinishedGoods" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss ">出库数量始:</label><input name="essSesspAmoutStart" id="essSesspAmoutStart" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+					<label class="whpLableCss ">出库数量末:</label><input name="essSesspAmoutEnd" id="essSesspAmoutEnd" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  			</div>
+  			
+  			<div class="udmRowCss">
+	  				<label class="whpLableCss ">出库单价始:</label><input name="essSesspUnitPriceStart" id="essSesspUnitPriceStart" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+	  				<label class="whpLableCss ">出库单价末:</label><input name="essSesspUnitPriceEnd" id="essSesspUnitPriceEnd" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+	  				<label class="whpLableCss ">所出仓库:</label><input name="essSwarehouseId" id="essSwarehouseId" class="dmInputCss" autocomplete="off" disableautocomplete>
+			</div>
+			
+			<div class="udmRowCss">
+					<label class="whpLableCss ">出库时间始:</label><input name="essSexportDateStart" id="essSexportDateStart" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss ">出库时间末:</label><input name="essSexportDateEnd" id="essSexportDateEnd" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss ">经办人:</label><input name="essSoperator" id="essSoperator" class="dmInputCss" autocomplete="off" disableautocomplete>
+			</div>
+			
+			<div class="udmRowCss">
+				<label class="whpLableCss ">公司名称:</label><input name="essScompanyId" id="essScompanyId" class="dmInputCss" autocomplete="off" disableautocomplete>
+				<label class="whpLableCss ">加工内容:</label><input name="essSProcessId" id="essSProcessId" class="dmInputCss" autocomplete="off" disableautocomplete>
+				<label class="whpLableCss ">技术人员:</label><input name="essSCraftsmanId" id="essSCraftsmanId" class="dmInputCss" autocomplete="off" disableautocomplete>
+			</div>
+		
+	</form>
+	
+	<!-- 查看详情界面 -->
+  	<div id="essSeeDetailPage">
+  		<div id="tsfOutBox" >
+  			<!-- 半成品出库信息 -->
+  			<div class="tsfheadLineBox">
+		  			<label class="tsoreTextCss">出库半成品信息</label>
+		  			<div class="tsfline"><span class="tsfLightColorLine"></span><span class="tsfGrayColorLine essLineCss"></span></div>
+	  		</div>
+  			<table id="tsfTable" class="essDetailTables">
+	  				<tr>
+	  					<td class="tsfLCss ">半成品名称</td>
+	  					<td id="essDetailIdOfSemiFinishedGoods"  class="inpurCommon temDetialInputCss"  colspan="5">暂无</td>
+	  					<td class="tsfLCss">出库数量</td>
+	  					<td id="essDetailEsspAmout"  class="inpurCommon"  colspan="5">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">出库单价</td>
+	  					<td id="essDetailEsspUnitPrice"  class="inpurCommon temDetialInputCss"  colspan="5">暂无</td>
+	  					<td class="tsfLCss" style="width:60px">所出仓库</td>
+	  					<td id="essDetailWarehouseId"  class="inpurCommon "  colspan="5">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">经办人</td>
+	  					<td id="essDetailOperator"  class="inpurCommon temDetialInputCss"  colspan="5">暂无</td>
+	  					<td class="tsfLCss" style="width:60px">公司名称</td>
+	  					<td id="essDetailCompanyId"  class="inpurCommon "  colspan="5">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">加工内容</td>
+	  					<td id="essDetailAddContent"  class="inpurCommon temDetialInputCss"  colspan="5">暂无</td>
+	  					<td class="tsfLCss" style="width:60px">加工风格</td>
+	  					<td id="essDetailAddStyle"  class="inpurCommon "  colspan="5">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">加工类型</td>
+	  					<td id="essDetailAddType"  class="inpurCommon temDetialInputCss"  colspan="5">暂无</td>
+	  					<td class="tsfLCss" style="width:60px">技术人员</td>
+	  					<td id="essDetailTecknologyPerson"  class="inpurCommon "  colspan="5">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">出库时间</td>
+	  					<td id="essDetailExportDate"  class="inpurCommon "  colspan="10">暂无</td>
+	  				</tr>
+	  			</table>
+	  			
+	  			<!-- 图片信息 -->
+  			<div class="tsfheadLineBox">
+		  			<label class="tsoreTextCss">图片信息</label>
+		  			<div class="tsfline"><span class="tsfLightColorLine"></span><span class="tsfGrayColorLine essLineCss"></span></div>
+		  			
+		  			<div id="detailImgBox" class="detailImgBox">
+		  				
+		  			</div>
+		  			
+	  		</div>
+	  	</div>	
+  	</div>
+	
+	<!-- 右键弹出界面 -->
+  	<div id=essMenu  class="easyui-menu">
+    	<div id="essUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="essDeletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+    	<div id="essSeeMenu" data-options="iconCls:'icon-search'">查看</div>
+    </div> 
+	
+	<table id="tsgfTable"></table>
+	
+</body>
+</html>

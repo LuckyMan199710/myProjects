@@ -1,0 +1,56 @@
+#outbox{
+	position: absolute;
+	top:100px;
+}
+
+/* 表单样式 */
+#TMFormBox1,#TMFormBox2,#TMFormBox3{
+	display: inline-block;
+	margin-top: 20px;
+}
+
+#TMNewsBox{
+	height: 25px !important;
+}
+
+#TMFormBox2,#TMFormBox3{
+	margin-left: 15px;	
+}
+
+.TMInputBtCss{
+	width: 130px;
+	margin-left: 5px;
+	height: 25px;
+	border-radius: 5px;
+	border: 1px solid #95b8e7;
+	background: #fff3f3;
+}
+
+/* 批量删除和查询和返回按钮 */
+#TWarehouseTypeNav,#TSarehouseTypeNav,#TPTarehouseTypeNav{
+	margin-top: -8px;
+}
+
+/* 添加输入框的样式 */
+.tmpInputCss{
+	width: 230px;
+	height: 25px;
+	line-height:25px;
+	box-sizing: border-box !important;
+	padding-left: 5px;
+	border: 1px solid #95b8e7;
+	background-color: #fff3f3;
+	border-radius: 5px;
+	font-size: 12px !important;
+}
+
+/* 添加按钮样式 */
+#TWarehouseTypeAddBt,#TShapeAddBT,#TProductTypeAddBT{
+	cursor: pointer;
+}
+
+/* 仓库类型的查询界面样式 */
+.TWpSearchBox{
+	margin-top: 35px;
+	margin-left: 15px;
+}

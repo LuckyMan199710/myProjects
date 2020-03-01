@@ -1,0 +1,20 @@
+[
+	{
+		"warehouseId" : "123",
+		"warehouseName" : "西安集合时间获得",
+		"warehouseType" : "材料仓",
+		"warehouseAddress" : "广西钦州市北部湾大学12号"
+	},
+	{
+		"warehouseId" : "456",
+		"warehouseName" : "南宁市阿萨德",
+		"warehouseType" : "半成品仓",
+		"warehouseAddress" : "广西钦州市北部湾大学12号"
+	},
+	{
+		"warehouseId" : "789",
+		"warehouseName" : "钦州市撒打算萨达",
+		"warehouseType" : "成品仓",
+		"warehouseAddress" : "广西钦州市北部湾大学12号"
+	}
+]

@@ -1,0 +1,43 @@
+[{
+    "id":"1000",
+    "name":"坭兴陶1",
+    "category":"陶瓷",
+    "frame":"花鸟",
+    "decorate":"浮雕",
+    "Craftsmen":"小明",
+    "Warehouseissued":"1号仓库"
+},
+{
+    "id":"1001",
+    "name":"坭兴陶2",
+    "category":"陶瓷",
+    "frame":"山水",
+    "decorate":"浮雕",
+    "Craftsmen":"小强",
+    "Warehouseissued":"2号仓库"
+},
+{
+    "id":"1002",
+    "name":"坭兴陶3",
+    "category":"陶瓷",
+    "frame":"花鸟",
+    "decorate":"浮雕",
+    "Craftsmen":"马云",
+    "Warehouseissued":"2号仓库"
+},{
+     "id":"1003",
+    "name":"坭兴陶4",
+    "category":"陶瓷",
+    "frame":"花鸟",
+    "decorate":"浮雕",
+    "Craftsmen":"小明",
+    "Warehouseissued":"3号仓库"
+},{
+     "id":"1005",
+    "name":"坭兴陶5",
+    "category":"陶瓷",
+    "frame":"花鸟",
+    "decorate":"浮雕",
+    "Craftsmen":"小明",
+    "Warehouseissued":"10号仓库"
+}]

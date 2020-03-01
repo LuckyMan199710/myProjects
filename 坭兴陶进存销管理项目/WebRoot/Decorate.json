@@ -1,0 +1,14 @@
+[
+     {
+        "DecorateId":"1",
+        "DecorateName":"浮雕"
+     },
+     {
+         "DecorateId":"2",
+        "DecorateName":"打磨"
+     },
+     {
+         "DecorateId":"3",
+        "DecorateName":"炼制"
+     }
+]

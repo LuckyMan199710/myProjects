@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>公司详情</title>
+	<meta charset="utf-8">
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="js/jquery-easyui-1.5.5.2/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery-easyui-1.5.5.2/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="js/jquery-easyui-1.5.5.2/locale/easyui-lang-zh_CN.js" charset="UTF-8"></script>
+	<link rel="stylesheet" href="js/jquery-easyui-1.5.5.2/themes/default/easyui.css" type="text/css"/>
+	<link rel="stylesheet" href="js/jquery-easyui-1.5.5.2/themes/icon.css" type="text/css"/>
+	<script type="text/javascript" src="js/enterpriseDetailNews.js" ></script>
+	
+<!-- 		//上传图片的信息提示方法 -->
+<!-- //	function uploadImg(obj){ -->
+<!-- //		 var isUpload=($(obj).filebox('getValue').indexOf('.png')!=-1||$(obj).filebox('getValue').indexOf('.jpg')!=-1||$(obj).filebox('getValue').indexOf('.jpeg')!=-1||$(obj).filebox('getValue').indexOf('.bmp')!=-1) -->
+<!-- //		 if(isUpload){ -->
+<!-- //			 coursePptChange(obj); -->
+<!-- //			 fileup(obj); -->
+<!-- //			$.messager.show({ -->
+<!-- //				title : '图片上传提示', -->
+<!-- //				timeout : 1000, -->
+<!-- //				height : 100, -->
+<!-- //				showType:'show', -->
+<!-- //				msg : '上传图片成功', -->
+<!-- //				style : { -->
+<!-- //					right:'', -->
+<!-- //					top:document.body.scrollTop+document.documentElement.scrollTop, -->
+<!-- //					bottom:'' -->
+<!-- //				} -->
+<!-- //			}); -->
+<!-- //		 }else{ -->
+<!-- //			 $.messager.show({ -->
+<!-- //					title : '图片上传提示', -->
+<!-- //					timeout : 1000, -->
+<!-- //					height : 100, -->
+<!-- //					showType:'show', -->
+<!-- //					msg : '上传图片失败', -->
+<!-- //					style : { -->
+<!-- //						right:'', -->
+<!-- //						top:document.body.scrollTop+document.documentElement.scrollTop, -->
+<!-- //						bottom:'', -->
+<!-- //						textAlign:'center' -->
+<!-- //					} -->
+<!-- //				}); -->
+<!-- //		 } -->
+<!-- //	} -->
+	<style type="text/css">
+		body{
+			font-size:12px;
+		}
+		#newsTable{
+			width:100%;
+			height:100%;
+			box-sizing: border-box;
+			padding-top: 2px;
+		}
+		/* 重写easyui中dialog的样式 */
+		.window,.window .window-body{
+			border-color: #dddbdb !important;
+		}
+		.window{
+			padding : 5px;
+		} 
+		
+		/* 头部行线的样式  */
+		#headLineBox{
+			margin-top:10px;
+			margin-left: 10px;
+			margin-right:10px;
+			height: 20px;
+			margin-bottom: 10px;
+		}
+			.lightColorLine{
+				display: inline-block;
+				height: 1px;
+				background: #ff0000;
+				width: 60px;
+				margin-bottom: 20px;
+			} 
+			.grayColorLine{
+				display:inline-block;
+				width: 805px;
+				height: 1px;
+				background: #ccc;
+				margin-bottom: 20px;
+			} 
+		
+		/* label的样式 */
+		.labelNewsCss{
+			margin-bottom: 1px;
+			display: inline-block;
+			color: #0ca7f4;
+		}
+		
+		/* 注册信息表格 */
+		#registerNewsBox,#photoNews,#contactNews{
+			margin-left: 10px;
+			margin-right: 10px;
+			border : 1px solid #ccc;
+			width:870px;
+			border-collapse:collapse !important;
+			margin-bottom: 35px;
+		}
+		
+		#registerNewsBox tr td,#photoNews tr td,#contactNews tr td{
+			border : 1px solid #ccc;
+		}
+		
+		/* 表格中提示标签的样式 */
+		.tipNameCss{
+			width:88px;
+			padding-left: 10px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+		
+		/* 显示信息共同使用的样式 */
+			.inpurCommon{
+				padding-left: 10px;
+				box-sizing: border-box;
+			}
+		
+		/* 信用代码 */
+		#disCreditCode{
+			width:180px;
+		}
+		/* 企业名称 */
+		#disEName,#eTelphone{
+			width:270px;
+		}
+		
+		/* 公司地址 */
+		#disAddress{
+		}
+		
+		/* 标签显示样式 */
+		.tipNameCss{
+			background: #f1f1f1;
+		}
+		
+		.imgBox{
+			display:inline-block;
+			width: 260px;
+			height: 153px;
+			margin-left: 18px;
+		}
+		#disTrademark,#disQRCodeOfCompany,#disQRCodeOfWebChat{
+			display: inline-block;
+			width: 180px;
+			height: 153px;
+			max-width: 100%;
+			max-height: 100%;
+			position: absolute;
+		}
+		#disTrademark{
+			left:70px;
+		}
+		#disQRCodeOfCompany{
+			left:80px;
+		}
+		#disQRCodeOfWebChat{
+			left:80px;
+		}
+		.img1,.img2,.img3{
+			position: relative;
+		}
+		#span1,#span2,#span3{
+			position: absolute;
+			top:0px;
+			z-index: 9999;
+		}
+		#span1{
+		}
+		
+	</style>
+		
+  </head>
+  
+  <body>
+  
+  		<div id="enterpriseDetailNewBox">
+  			<div id="newsTable">
+	  			<div id="headLineBox">
+		  			<label class="labelNewsCss">注册信息</label>
+		  			<div id="line"><span class="lightColorLine"></span><span class="grayColorLine"></span></div>
+	  			</div>
+	  			
+	  			<!-- 注册信息表格 -->
+	  			<table id="registerNewsBox">
+	  				<tr>
+	  					<td class="tipNameCss" >企业名称</td>
+	  					<td id="disEName" class="inpurCommon">电子优先</td>
+	  					<td class="tipNameCss">信用代码</td>
+	  					<td id="disCreditCode" class="inpurCommon">124545</td>
+	  					<td class="tipNameCss">企业法人</td>
+	  					<td id="disLegalRepresentative" class="inpurCommon">李先生</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">账号</td>
+	  					<td id="disAccount"  class="inpurCommon">电子优先</td>
+	  					<td class="tipNameCss">开行户</td>
+	  					<td id="disBankOfDeposit"  class="inpurCommon">124545</td>
+	  					<td class="tipNameCss">注册资本(元)</td>
+	  					<td id="disRegisteredCapital"  class="inpurCommon">李先生</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss" >公司地址</td>
+	  					<td id="disAddress" class="inpurCommon" colspan="5" >124545</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">主营范围</td>
+	  					<td id="disBusiness"  class="inpurCommon" colspan="5">124545</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">生产规模</td>
+	  					<td id="disProduceScale"  class="inpurCommon" colspan="5">124545</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">企业类型</td>
+	  					<td id="disEType"  class="inpurCommon"  colspan="1">124545</td>
+	  					<td class="tipNameCss" style="width:60px">邮政编码</td>
+	  					<td id="disPostcode"  class="inpurCommon"  colspan="3">电子优先</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">注册时间</td>
+	  					<td id="disRegisteredTime"  class="inpurCommon" colspan="1" >124545</td>
+	  					<td class="tipNameCss">人员数量</td>
+	  					<td id="disEmployeeAmout"  class="inpurCommon"  colspan="3">电子优先</td>
+	  				</tr>
+	  			</table>
+	  			
+	  			
+	  			<!-- 照片信息 -->
+	  			<div id="headLineBox">
+		  			<label class="labelNewsCss">联系信息</label>
+		  			<div id="line"><span class="lightColorLine"></span><span class="grayColorLine"></span></div>
+	  			</div>
+	  			
+	  			<table id="contactNews">
+	  				<tr>
+	  					<td class="tipNameCss" >公司电话</td>
+	  					<td id="eTelphone" class="inpurCommon" colspan="5" >124545</td>
+	  					<td class="tipNameCss" >电子邮箱</td>
+	  					<td id="eEail" class="inpurCommon" colspan="5" >124545</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss" >企业联系人</td>
+	  					<td id="eContact" class="inpurCommon" colspan="5" >124545</td>
+	  					<td class="tipNameCss" >联系人电话</td>
+	  					<td id="eContactTehpone" class="inpurCommon" colspan="5" >124545</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss" >传真</td>
+	  					<td id="eFax" class="inpurCommon" colspan="10" >124545</td>
+	  				</tr>
+	  			</table>
+	  			
+	  			
+	  			<!-- 照片信息 -->
+	  			<div id="headLineBox">
+		  			<label class="labelNewsCss">照片信息</label>
+		  			<div id="line"><span class="lightColorLine"></span><span class="grayColorLine"></span></div>
+	  			</div>
+	  			
+<!-- 	  			<table id="photoNews"> -->
+<!-- 	  				<tr> -->
+<!-- 	  					<td class="tipNameCss" >企业商标</td> -->
+<!-- 	  					<td id="disTrademark" class="inpurCommon" colspan="5" >124545</td> -->
+<!-- 	  				</tr> -->
+<!-- 	  				<tr> -->
+<!-- 	  					<td class="tipNameCss" >企业二维码</td> -->
+<!-- 	  					<td id="disQRCodeOfCompany" class="inpurCommon" colspan="5" >asdasdasd5</td> -->
+<!-- 	  				</tr> -->
+<!-- 	  				<tr> -->
+<!-- 	  					<td class="tipNameCss" >微信公众号</td> -->
+<!-- 	  					<td id="disQRCodeOfWebChat" class="inpurCommon" colspan="5" >124545</td> -->
+<!-- 	  				</tr> -->
+<!-- 	  			</table> -->
+
+					<div class="imgBox img1">
+						<span id="span1">企业商标:</span>
+						<img alt="无企业商标图片" id="disTrademark" src="img/bc.jpg">
+					</div>
+	  				
+	  				<div class="imgBox img2" >
+						<span id="span2">企业二维码:</span>
+						<img alt="无企业商标图片" id="disQRCodeOfCompany"  src="img/bc.jpg">
+					</div>
+					
+					<div class="imgBox img3">
+						<span id="span3">微信公众号:</span>
+						<img alt="无企业商标图片" id="disQRCodeOfWebChat"  src="img/bc.jpg">
+					</div>
+	  			
+  			</div>
+  		</div>
+  			
+  </body>
+</html>

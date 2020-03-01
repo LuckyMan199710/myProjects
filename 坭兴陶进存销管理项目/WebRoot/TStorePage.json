@@ -1,0 +1,50 @@
+{
+		"total" : "3",
+		"rows" : 
+		[
+			{
+			    "storeId" : "1",
+			    "storeType" : "1",
+			    "storeTypeName" : "材料入库",
+			    "storeSum":"60",
+				"countSum":"50",
+			    "warehouseId" : "1",
+			    "warehouseName" : "广西钦州坭兴陶仓库",
+			    "idOfStuff" : "1",
+			    "idOfStuffName" : "坭兴陶培土",
+			    "storeAmout" : "500",
+			    "sumAmoutPrice" : "60000",
+			    "updatetDate" : "2012-10-5 10:25:26"
+			},
+			{
+			    "storeId" : "2",
+			    "storeType" : "2",
+			    "storeSum":"60",
+				"countSum":"50",
+			    "storeTypeName" : "半成品入库",
+			    "warehouseId" : "2",
+			    "warehouseName" : "广西钦州坭兴陶仓库",
+			    "idOfStuff" : "2",
+			    "idOfStuffName" : "坭兴陶培土半成品",
+			    "storeAmout" : "5000",
+			    "sumAmoutPrice" : "260000",
+			    "updatetDate" : "2012-10-5 10:25:26"
+			},
+			{
+			    "storeId" : "3",
+			    "storeType" : "3",
+			    "storeSum":"60",
+				"countSum":"",
+			    "storeTypeName" : "成品入库",
+			    "warehouseId" : "3",
+			    "warehouseName" : "广西钦州坭兴陶仓库",
+			    "idOfStuff" : "3",
+			    "idOfStuffName" : "坭兴陶培土成品",
+			    "storeAmout" : "600",
+			    "sumAmoutPrice" : "1060000",
+			    "updatetDate" : "2015-10-5 10:25:26"
+			}
+			
+		],
+		"footer" : [{"storeAmout" : "库存总量:8000","sumAmoutPrice":"总价:800000"}]
+}

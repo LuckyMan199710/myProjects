@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>个人首页</title>
+</head>
+<body>
+	<!-- 引进个人首页脚本 -->
+	<script type="text/javascript" src="js/PersonNews.js"></script>
+	<!-- 个人信息展示 -->
+	<div class="personNesDisBox" class="personNesDisBox">
+		<header class="newHeader">个人信息</header>
+		<span class="headerLine"></span>
+		<img alt="" src="img/editPersonNews.png" id="editPersonNews" class="editPersonNews" title="修改个人信息">
+		<img alt="" src="img/personBackIcon.png" id="personBack" class="personBack" title="返回首页">
+		<!-- 工号和密码 -->
+		<div class="outDivCss">
+				<div class="leftDivCss">
+					<span class="tagNameCss">工号:</span>
+					<span id="personID">15005418</span>
+				</div>
+				
+				<div class="rightDivCss">
+					<span class="tagNameCss">密码:</span>
+					<span id="personPW">15005418</span>
+				</div>
+		</div>
+		
+		<!-- 姓名和部门 -->
+		<div class="outDivCss">
+				<div class="leftDivCss">
+					<span class="tagNameCss">姓名:</span>
+					<span id="personName">15005418</span>
+				</div>
+				
+				<div class="rightDivCss">
+					<span class="tagNameCss">部门:</span>
+					<span id="personDepartment">15005418</span>
+				</div>
+		</div>
+		
+		<!-- 电话和邮箱 -->
+		<div class="outDivCss">
+				<div class="leftDivCss">
+					<span class="tagNameCss">电话:</span>
+					<span id="personPhone">15005418</span>
+				</div>
+				
+				<div class="rightDivCss">
+					<span class="tagNameCss">邮箱:</span>
+					<span id="personEmail">15005418</span>
+				</div>
+		</div>
+		
+		<!-- 邮码和角色 -->
+		<div class="outDivCss">
+				<div class="leftDivCss">
+					<span class="tagNameCss">邮码:</span>
+					<span id="personCode">15005418</span>
+				</div>
+				
+				<div class="rightDivCss">
+					<span class="tagNameCss">角色:</span>
+					<span id="personRole">15005418</span>
+				</div>
+		</div>
+		
+		<!-- 地址 -->
+		<div class="outDivCss">
+				<div class="allRowDivCss">
+					<span class="allRowTagCss1">家庭地址:</span>
+					<span id="personAddress" class="commonLongTextCss"></span>
+				</div>
+		</div>
+		
+		<!-- 上次登录时间 -->
+		<div class="outDivCss">
+				<div class="allRowDivCss">
+					<span class="allRowTagCss2">上次登录时间:</span>
+					<span id="personLastLoginTime" class="commonLongTextCss">15005418</span>
+				</div>
+		</div>
+		
+		<img alt="" src="img/personBc.png" class="PersonBC">
+	</div>
+	<div class="foldtl"></div>
+	
+	<!--更新用户信息 -->
+	<form id=personUpdateBox>
+		<div id="personUpdateOutBox">
+			<div class="row firstRowCss personRowCss">
+				<input id="updateLoginId" type="hidden">
+				<label class="employeeTextCss2 leftCss2 inputStarCss">姓名:</label><input class="employeeInputCss" name="updatePersonName" id="updatePersonName" type="text" autocomplete="off" disableautocomplete>
+				<label class="employeeTextCss2">密码:</label><input class="employeeInputCss" name="updatePersonPassword" id="updatePersonPassword" type="text" autocomplete="off" disableautocomplete>
+				<label class="employeeTextCss2">电话:</label><input class="employeeInputCss" name="updatePersonPhone" id="updatePersonPhone" type="tel" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+			</div>
+			
+			<div class="row personRowCss">
+				<label class="employeeTextCss2 leftCss2 ">邮箱:</label><input class="employeeInputCss" name="updatePersonEmail" id="updatePersonEmail" type="email" autocomplete="off" disableautocomplete>
+				<label class="employeeTextCss2">邮编:</label><input class="employeeInputCss" name="updatePersonCode" id="updatePersonCode" type="text" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+			</div>
+			
+			<div class="row row2 personRowCss">
+				<label class="employeeTextCss2 leftCss2" >地址:</label><input class="employeeInputCss address2" name="updatePersonAddress" id="updatePersonAddress" type="text" autocomplete="off" disableautocomplete>
+			</div>	
+		</div>
+	</form>
+	
+</body>
+</html>

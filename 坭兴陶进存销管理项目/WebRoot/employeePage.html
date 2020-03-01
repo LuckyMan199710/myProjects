@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>员工管理</title>
+<meta charset="utf-8">
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="this is my page">
+<meta name="content-type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+
+<!--导入员工管理脚本 -->
+	<script type="text/javascript" src="js/employeePage.js"></script>
+<!--更新用户信息 -->
+	<form id=updateBox Style="margin:0px; padding:0px 5px 5px 5px;">
+		<div id="updateOutBox">
+			<div class="row">
+				<label class="employeeTextCss2 leftCss2 inputStarCss">部门:</label><input class="employeeInputCss" name="updateEmployeeDepartment" id="updateEmployeeDepartment" type="text">
+				<label class="employeeTextCss2  inputStarCss">编号:</label><input class="employeeInputCss" name="updateEmployeeId" type="text" autocomplete="off" disableautocomplete>
+				<label class="employeeTextCss2">密码:</label><input class="employeeInputCss" name="updateEmployeePW" type="text" autocomplete="off" disableautocomplete>
+			</div>
+			
+			<div class="row">
+				<label class="employeeTextCss2 leftCss2 inputStarCss">姓名:</label><input class="employeeInputCss" name="updateEmployeeName" type="text" autocomplete="off" disableautocomplete>
+				<label class="employeeTextCss2 inputStarCss ">身份:</label><input class="employeeInputCss" name="updateEmployeeIdentity" id="updateEmployeeIdentity"  type="text">
+				<label class="employeeTextCss2">电话:</label><input class="employeeInputCss" name="updateEmployeePhone" type="tel" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+			</div>
+			
+			<div class="row">
+				<label class="employeeTextCss2 leftCss2">邮箱:</label><input class="employeeInputCss" name="updateEmployeeEmail" type="email" autocomplete="off" disableautocomplete>
+				<label class="employeeTextCss2">邮编:</label><input class="employeeInputCss" name="updateEmployeeCode" type="text" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+				<label class="employeeTextCss2 ">状态:</label><input class="employeeInputCss" name="updateEmployeeStatus" id="updateEmployeeStatus" type="text">
+			</div>
+			
+			<div class="row row2">
+				<label class="employeeTextCss2 leftCss2" >地址:</label><input class="employeeInputCss address2" name="updateEmployeeAddr" type="text" autocomplete="off" disableautocomplete>
+			</div>	
+		</div>
+	</form>
+	
+<!--添加员工信息 -->
+
+	<!--用户的信息汇总 -->
+	<table id="employeeNews"></table>
+	
+	<!-- 导航条 -->
+	<div id="nav">
+		<div id="navbox">
+		<a class="easyui-linkbutton" id="addEmployee">新增</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="deleteEmployees">删除</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="updateEmployee">修改</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="searchEmployee">查询</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="clearEmployee">清空</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="ecallback">返回</a>
+		</div>
+		<form id="DIV_toolbar" Style="margin:0px; padding:0px 5px 5px 5px;" autocomplete="off" disableautocomplete>
+		<div id="emploueeNewsOutBox">
+			<div class="row">
+				<label class="employeeTextCss inputStarCss">部门:</label><input class="employeeInputCss" name="department" id="department"  type="text">
+				<label class="employeeTextCss leftCss inputStarCss" >编号:</label><input class="employeeInputCss" name="employeeId" autocomplete="off" disableautocomplete  type="text">
+				<label class="employeeTextCss inputStarCss">姓名:</label><input class="employeeInputCss" name="empName" type="text" autocomplete="off" disableautocomplete >
+				<label class="employeeTextCss leftCss inputStarCss" >身份:</label><input class="employeeInputCss" name="role"  type="text">
+			</div>
+			
+			<div class="row">
+				<label class="employeeTextCss">电话:</label><input class="employeeInputCss" name="empTelphone" type="tel" autocomplete="off" disableautocomplete  onkeyup="value=value.replace(/[^\d]/g,'')">
+				<label class="employeeTextCss">邮箱:</label><input class="employeeInputCss" name="empEmail" autocomplete="off" disableautocomplete  type="email">
+				<label class="employeeTextCss">邮编:</label><input class="employeeInputCss" name="empPostCode" autocomplete="off" disableautocomplete  type="text" onkeyup="value=value.replace(/[^\d]/g,'')">
+			</div>
+			
+			<div class="row row2">
+				<label class="employeeTextCss">地址:</label><input class="employeeInputCss address" name="empAddress" autocomplete="off" disableautocomplete  type="text">
+			</div>	
+		</div>
+	</form>
+	
+	</div>
+	
+	 <!--员工的查询弹窗 -->
+	<form id="search" method="Post" action="#">
+  		<div id="searchOutBox">	
+  			<div class="rowStyle">																		<!--autocomplete="off" disableautocomplete是关掉谷歌默认的自动提示,防止出现样式破坏  -->
+  				<label class="employeeTextCss">账号:</label><input name="searchID" class="rowInputStyle" type="text" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  				<label class="employeeTextCss">姓名:</label><input name="searchName" class="rowInputStyle" autocomplete="off" disableautocomplete type="text">
+  				
+  			</div>
+  			<div class="rowStyle">
+  				<label class="employeeTextCss">电话:</label><input name="searchPhone" class="rowInputStyle" type="text" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  				<label class="employeeTextCss">部门:</label><input name="searchDepartment" id="searchDepartment" class="rowInputStyle" type="text" >
+  			</div>
+  			</div>
+  		</form>
+    
+	
+	
+	
+</body>
+</html>

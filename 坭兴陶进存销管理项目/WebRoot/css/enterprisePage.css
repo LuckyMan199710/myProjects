@@ -1,0 +1,139 @@
+html,body{
+	margin: 0px;
+	pading:0px;
+	font-size: 12px;
+	}
+
+	/* 企业的datagrid中查看详情的样式 */
+	.searchText{
+		color:#27b1e9 !important;
+		letter-spacing:3px;
+		cursor: pointer;
+	}
+	
+	.searchText:HOVER{
+		color:red !important;	
+	}
+
+	#epOutBox{
+		margin: 10px auto;
+	}
+	
+	/*导航样式*/
+	.column{
+			background:#cacaca;
+			display: inline-block;
+			width: 1px;
+			height: 27px;
+			position: relative;
+			top:9px;
+		}
+		
+		#navbox{
+			margin-top: -6px;
+		}
+		
+
+/*文本样式*/
+	
+	.row{
+		margin-top: 10px;
+	}
+	
+	.labelCss{
+			display:inline-block;
+			width:70px;
+			text-align: left;
+			font-size:12px;
+			margin-left: 8px;
+			padding-left:13px;
+	}
+	
+	.starlabelCss{
+			background: url("../img/star.png")  no-repeat;
+			background-position: 0px center;
+	}
+	
+	.inputCss{
+			width: 220px;
+			height: 25px;
+			line-height: 25px;
+			box-sizing: border-box;
+			padding-left: 5px;
+			border:1px solid #95b8e7 !important;
+			border-radius: 5px; 
+			background-color: #fff3f3;
+			box-sizing: border-box !important;
+			line-height: 25px !important;
+	}
+	/*
+		重写easyui的样式
+	*/	
+	.combo,.numberbox{border:1px solid #95b8e7 !important;}
+	
+	/* 企业地址和生产规模的样式 */
+	.specailInputCss{
+		width: 1224px;
+	}
+	
+	/* 更新界面样式 */
+	
+	#updateEnterpriseBox{
+	padding-top: 5px;
+	}
+	
+	/* 图片按钮样式-如企业图片，公总号二维码 */
+	.specailImgBt{
+		text-align: left;
+		font-size: 14px;
+		color:#4f4f4f;
+		background: url("../img/imgBt.png") center no-repeat;
+		line-height: 25px !important;
+		box-sizing:border-box;
+		vertical-align: middle !important;
+	}
+	.specailImgBt:HOVER {
+		cursor: pointer;
+	}
+	
+	/* 更新界面中图片信息的样式 */
+	
+	.UpdateimgBox{
+			display:inline-block;
+			width: 350px;
+			height: 153px;
+			margin-left: 18px;
+			margin-top: 5px;
+		}
+		
+	#updateqrcodeOfWebChatImg,#updateEmQRCodeOfCompanyImg,#updatetrademarkImg{
+			display: inline-block;
+			width: 220px;
+			height: 153px;
+			max-width: 100%;
+			max-height: 100%;
+			position: absolute;
+			left:100px;
+		}
+	#updateqrcodeOfWebChatImg:HOVER,#updateEmQRCodeOfCompanyImg:HOVER,#updatetrademarkImg:HOVER{
+		cursor: pointer;
+	}
+	
+		#updateqrcodeOfWebChatImg{
+			left:120px;
+		}
+		#updatetrademarkImg{
+			left:80px;
+		}
+		.addLeftDistance{
+			margin-left: 100px;
+		}
+
+	.UwordPosition{
+			position: relative;
+		}
+	
+	.UlastBox{
+		margin-left: 50px;
+	}
+		

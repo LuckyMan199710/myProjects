@@ -1,0 +1,18 @@
+html,body{
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+}
+
+/* 添加界面样式 */
+.tpdpLableCss{
+	display: inline-block;
+    width: 116px;
+    text-align: center;
+    font-size: 12px !important;
+}
+
+/* 查询界面样式 */
+.tpdpSearchDivCss{
+	margin-top: 20px;
+}

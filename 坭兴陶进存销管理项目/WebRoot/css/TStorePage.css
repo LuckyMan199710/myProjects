@@ -1,0 +1,21 @@
+/* 库存管理主界面样式 */
+#TStoreOutBox{
+	padding-top: 10px;
+}
+.TSinnerBox{
+		background: #f4f4f4 !important;
+		overflow: hidden;
+		height: 92px;
+		margin-top: -10px;
+		margin-bottom: -21px;
+}
+.TStoreBt{
+	margin-right: 10px;
+}
+
+.tsoreAddCss{
+	margin-left: 9px;
+}
+.TsoreAddDisLabel{
+	width: 75px !important;
+}

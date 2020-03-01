@@ -1,0 +1,87 @@
+html,body{
+	padding: 0px;
+	margin: 0px;
+	font-size: 12px;
+}
+
+/* 添加界面的样式 */
+.InVoAddDisCss{
+	width: 108px;
+}
+
+
+/* 必填选项中星星的样式 */
+.ipStarCss{
+	background: url("../img/star.png") no-repeat;
+    background-position-x: 0%;
+    background-position-y: 0%;
+	background-position: 27px center;
+}
+.ipStarCssSum{
+	background: url("../img/star.png") no-repeat;
+    background-position-x: 0%;
+    background-position-y: 0%;
+	background-position: 22px center;
+}
+.addDistanceCss{
+	margin-left: 23px;
+}
+.beformSum{
+	color:#fa8d85;
+}
+.realSum{
+	color:green;
+}
+
+/* 仓库商品信息界面样式 */
+.InventoryGoodsNews{
+	box-sizing: border-box;
+}
+/* 查询条件label的样式 */
+.InveSelectLabel{
+	padding-left: 15px;
+	font-size: 12px !important;
+}
+.InveTagCss{
+	display: inline-block;
+    width: 61px;
+    text-align: center;
+    font-size: 12px !important;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+.InveInputCss{
+	height: 28px;
+}
+
+.topDistanse{
+	padding-top: 13px !important;
+}
+.bottomDistance{
+	padding-bottom: 13px !important;
+}
+/* 查询按钮的左右边距 */
+#leftDis{
+	display: inline-block;
+	padding-left: 6px;
+}
+
+#rightDis{
+	padding-right: 6px;
+}
+
+/* 完成盘点按钮样式 */
+.completCount{
+	position: absolute;
+    right: 12px;
+    height: 28px;
+    background: #a0c7dd;
+    border: 1px solid #ddd;
+    color: #029df6;
+    border-radius: 3px;
+}
+.completCount:HOVER {
+	cursor: pointer;
+	background: #c1cee3;
+	color: red;
+}

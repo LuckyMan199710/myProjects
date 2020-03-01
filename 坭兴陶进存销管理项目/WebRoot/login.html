@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>登录界面</title>
+<meta charset="UTF-8">
+<script type="text/javascript" src="js/jquery-easyui-1.5.5.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-easyui-1.5.5.2/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="js/jquery-easyui-1.5.5.2/locale/easyui-lang-zh_CN.js" charset="UTF-8"></script>
+<script type="text/javascript" src="js/login.js"></script>
+<link rel="stylesheet" href="js/jquery-easyui-1.5.5.2/themes/default/easyui.css" type="text/css"/>
+<link rel="stylesheet" href="js/jquery-easyui-1.5.5.2/themes/icon.css" type="text/css"/>
+<link rel="stylesheet" href="css/login.css">
+</head>
+	<body>
+	<div id="header">
+	</div>
+	<img alt="" src="img/simple.png" id="simple1">
+	<img alt="" src="img/simple2.png" id="simple2">
+	<div id="enterpriseImg">
+		<img alt="" src="img/logo4.png" id="logo">
+		<img alt="" src="img/text.png" id="pageTitle">
+	</div>
+	<form id="mm" action="#" method="post" onsubmit="return goLogin()">
+			<h3 id="title">登录界面</h3>
+			<a href="javascript:void(0)" id="hint"></a>			<!--错误提示	 -->
+			<input type="text" name="username"  id="username" placeholder="用户名" autocomplete="off" ><br>
+			<input type="password" name="password"  id="password" placeholder="密码" ><br>
+			
+			<label style="margin-bottom:20px" id="codeBox">
+          	<input type="text" name="code" placeholder="验证码" id="code">
+          	<img alt="" src="/sysyfaces/checkImgs" id="cheImg" onclick="changImg(this)">
+        	</label>
+			
+			
+			<label style="margin-bottom:20px" id="employeeBox">
+            <input type="radio" checked="checked" id="employee" name="identity"  checked="checked" value="employee">
+            <span>员工</span>
+        	</label>
+        	
+        	<label style="margin-bottom:20px" id="adminBox">
+            <input type="radio"  id="admin" name="identity" value="admin">
+            <span>管理员</span>
+        	</label>
+        	
+        	<label style="margin-bottom:20px" id="pwbox">
+            <input type="checkbox"  id="rememberPW" name="identity" value="rememberPassword">
+            <span>记住密码</span>
+        	</label>
+        	
+        	<input type="submit" value="登录" id="login" >
+			
+	</form>
+	
+		<footer id="footer">
+			@版权所有2018钦州学院电信软件开发工作室
+		</footer>
+	
+	</body>
+
+</html>

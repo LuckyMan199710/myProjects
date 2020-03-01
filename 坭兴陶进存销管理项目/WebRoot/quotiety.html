@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>相关系数管理界面</title>
+</head>
+<body>
+	<!-- 引进js文件 -->
+	<script type="text/javascript" src="js/quotiety.js"></script>
+	
+	<form method="get" action="#" id="ratioForm" class="ratioForm">
+		<!-- 导航 -->
+		<div id="ratioMenu">
+			<a class="easyui-linkbutton" id="ratioUpdateBT">更新</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="ratioSearchBT">查找</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="ratioDeleteBT">删除</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="ratioBackBT">返回</a>
+		</div>
+		
+		<!-- 添加界面 -->
+		<div id="ratioNavBox" class="ratioNavBox">
+			<label class="dmLableCss dpStarInput">相关系数:</label><input name="quotietyValue" id="quotietyValue" class="tmpInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+			<input type="button" value="添加" class="ratioAddBt" id="ratioAddBt">
+		</div>
+		
+	</form>
+	
+	<!-- 更新界面 -->
+	<form id="ratioUpdatePage" method="get" action="#">
+		<div class="TWpSearchBox">
+				<label class="dmLableCss">相关系数:</label><input name="ratioUquotietyValue" id="ratioUquotietyValue" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  		</div>
+	</form>
+	
+	<!-- 查询界面 -->
+	<form id="ratioSearchPage" method="get" action="#">
+			<div class="TWpSearchBox">
+					<label class="dmLableCss">相关系数始:</label><input name="ratioSquotietyValueStart" id="ratioSquotietyValue" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+					<label class="dmLableCss">相关系数末:</label><input name="ratioSquotietyValueEnd" id="ratioSquotietyValue" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+	  		</div>
+	</form>
+	
+	<!-- 右键弹出界面 -->
+	<div id="ratioRightMenu" class="easyui-menu">
+    	<div id="ratioRighUpdate" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="ratioRighDelet" data-options="iconCls:'icon-cancel'">删除</div>
+	</div>    
+	
+	<!-- 显示信息的Table -->
+	<table id="ratioTable" class="ratioTable"></table>
+		
+</body>
+</html>

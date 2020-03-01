@@ -1,0 +1,36 @@
+[
+	{
+		"id" : "1",
+		"name" : "广西坭兴陶进销贸易有限公司",
+		"cpyTelphone" : "156756985",
+		"legalRepresentative" : "李某某",
+		"contact" : "何先生",
+		"cpyContactTelphone" : "1567566745",
+		"cpyEmail" : "126@qq.com",
+		"cpyFax" : "asdadasdas",
+		"cpyAddress" : "广西钦州市钦南区12号"
+		
+	},
+	{
+		"id" : "2",
+		"name" : "广西达内科技有限公司",
+		"cpyTelphone" : "012-54241",
+		"legalRepresentative" : "可某某",
+		"contact" : "王先生",
+		"cpyContactTelphone" : "1567566745",
+		"cpyEmail" : "126@qq.com",
+		"cpyFax" : "asdadasdas",
+		"cpyAddress" : "广西钦州市钦南区18号"	
+	},
+	{
+		"id" : "3",
+		"name" : "广西坭兴陶进销贸易有限公司",
+		"cpyTelphone" : "156756985",
+		"legalRepresentative" : "李某某",
+		"contact" : "何先生",
+		"cpyContactTelphone" : "1567566745",
+		"cpyEmail" : "126@qq.com",
+		"cpyFax" : "asdadasdas",
+		"cpyAddress" : "广西钦州市钦南区12号"
+	}
+]

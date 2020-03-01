@@ -1,0 +1,28 @@
+[{
+    "name":"坭兴陶A",
+    "number":27,
+    "address":"江苏南京",
+    "money":"6000"
+},
+{
+    "name":"坭兴陶B",
+    "number":15,
+    "address":"福建泉州",
+    "money":"4000"
+},
+{
+    "name":"坭兴陶C",
+    "number":52,
+    "address":"安徽合肥",
+    "money":"9800"
+},{
+    "name":"坭兴陶D",
+    "number":47,
+    "address":"江西景德镇",
+    "money":"12300"
+},{
+    "name":"坭兴陶E",
+    "number":7,
+    "address":"广东汕头",
+    "money":"2000"
+}]

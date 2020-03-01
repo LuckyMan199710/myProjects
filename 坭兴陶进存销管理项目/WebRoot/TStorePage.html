@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>库存管理</title>
+</head>
+<body>
+	<script type="text/javascript" src="js/TStorePage.js"></script>
+	<div id="TStoreOutBox">
+		<form action="" method="POST" id="TStoreForm">					
+  				<div class="srow sprow tsoreAddCss">									
+  					<label class="labelCss TsoreAddDisLabel">库存类型:</label><input type="text" name="storeType" id="storeType" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss TsoreAddDisLabel">仓库名称:</label><input type="text" name="wareHouseId" id="wareHouseId" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss TsoreAddDisLabel">库存内容名称:</label><input type="text" name="idOfStuff" id="idOfStuff" class="inputCss TStoreBt" autocomplete="off" disableautocomplete>
+  					<span class="moveRightCss"></span>
+  					<a  href="#" id="TStoreSeach" class="spBT">查询</a>
+  					<a  href="#" id="TStoreClear" class="spBT">清空</a>
+  					<a  href="#" id="TStoreOutput" class="spBT">导出</a>
+  					<a  href="#" id="TStoreMore" class="spBT">更多</a>
+  					<a  href="#" id="TStoreBack" class="spBT">返回</a>
+  				</div>
+  		<div id="TSoreShadow" >
+			 <div class="TSinnerBox">   
+    				<div class="srow tsoreAddCss">										
+  					<label class="labelCss TsoreAddDisLabel">库存量始:</label><input type="text" name="storeAmoutStart" id="storeAmoutStart" class="searchInputCss" onkeyup="value=value.replace(/[^\d-]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss TsoreAddDisLabel">库存量末:</label><input type="text" name="storeAmoutEnd" id="storeAmoutEnd" class="searchInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d-]/g,'')">
+  					<label class="labelCss TsoreAddDisLabel">总价始:</label><input type="text" name="sumAmoutPriceStart" id="sumAmoutPriceStart" class="searchInputCss" onkeyup="value=value.replace(/[^\d.]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss TsoreAddDisLabel">总价末:</label><input type="text" name="sumAmoutPriceEnd" id="sumAmoutPriceEnd" class="searchInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  					</div>
+  					
+  					<div class="srow tsoreAddCss">										<!-- 写内联样式:style="width:220px;"是为了解决ie浏览器显示错位的问题 -->
+  					<label class="labelCss TsoreAddDisLabel">更新时间始:</label><input type="text" name="updatetDateStart" id="updatetDateStart" class="searchInputCss"  autocomplete="off" disableautocomplete style="width:220px;">
+  					<label class="labelCss TsoreAddDisLabel">更新时间末:</label><input type="text" name="updatetDateEnd" id="updatetDateEnd" class="searchInputCss" onkeyup="value=value.replace(/[^\d]/g,'')" autocomplete="off" disableautocomplete>
+  					</div>
+    		</div>  
+		</div>
+	</form>
+</div>
+
+	<!-- 显示库存信息 -->
+  	<table id="TStoreDisTable">
+  	
+  	</table>
+
+</body>
+</html>

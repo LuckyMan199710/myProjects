@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>测试</title>
+	<meta charset="utf-8">
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="js/jquery-easyui-1.5.5.2/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery-easyui-1.5.5.2/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="js/jquery-easyui-1.5.5.2/locale/easyui-lang-zh_CN.js" charset="UTF-8"></script>
+	<link rel="stylesheet" href="js/jquery-easyui-1.5.5.2/themes/default/easyui.css" type="text/css"/>
+	<link rel="stylesheet" href="js/jquery-easyui-1.5.5.2/themes/icon.css" type="text/css"/>
+	<link rel="stylesheet" href="css/employeePageCss.css" type="text/css" >
+	<style type="text/css">
+		#div1{
+			display:inline-block;
+			width: 100px;
+			height: 110px;
+			border: 1px solid red;
+			margin-left: 15px;
+			margin-top: 5px;
+			position: absolute;
+			z-index: 55;
+		}
+		
+		#img1{
+			display:inline-block;
+			width: 100px;
+			height: 110px;
+			z-index: 66;
+		}
+		#span1{
+			display: inline-block;
+			position: absolute;
+			top:0px;
+			right: 0px;
+			width: 40px;
+			height: 30px;
+			z-index: 88;
+			display: none;
+		}
+		#bigImg{
+			width:800px;
+			height:600px;
+			background: #ccc;
+			position:absolute;
+			z-index: 100;
+			display: none;
+		}
+		.aa{
+			font-size: 20px;
+			position: absolute;
+			top:0px;
+			right: 0px;
+		}
+	</style>
+	<script type="text/javascript">
+			$(function(){
+				$("#div1").mouseover(function(){
+					$("#span1").css('display','inline-block');
+				});
+				
+				$("#div1").mouseout(function(){
+					$("#span1").css('display','none');
+				});
+				$("#span1").click(function(){
+					alert('点击了删除');
+				});
+				$("#img1").click(function(){
+					$("#bigImg").css('display','block');
+					$("#bigSS").attr('src','img/logo.png');
+				});
+				$(".aa").click(function(){
+					$("#bigImg").css('display','none');
+				});
+			});
+	</script>	
+  </head>
+  <body>
+  	<div>
+  		<div id="div1">
+  			<img alt="" src="img/bc.jpg" id="img1">
+  			<img id="span1" src="img/logo.png">
+  		</div>
+  		
+  		<div id="bigImg">
+  			<span class="aa">//</span>
+  			<img alt="" src="" id="bigSS">
+  		</div>
+  	</div>
+  		
+ </body>
+</html>

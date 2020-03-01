@@ -1,0 +1,19 @@
+[
+	{
+		"TProcessStyleId":"1",
+		"TProcessStyleName":"水墨"
+	},
+	{
+		"TProcessStyleId":"2",
+		"TProcessStyleName":"山水"
+	},
+	{
+		"TProcessStyleId":"3",
+		"TProcessStyleName":"水墨2"
+	},
+	{
+		"TProcessStyleId":"4",
+		"TProcessStyleName":"雕塑"
+	}
+	
+]

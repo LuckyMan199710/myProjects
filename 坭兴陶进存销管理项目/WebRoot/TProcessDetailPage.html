@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>半成品加工明细管理</title>
+</head>
+<body>
+<script type="text/javascript" src="js/TProcessDetailPage.js"></script>
+<!-- 添加加工明细界面 -->
+<form id="tpdpNavForm" method="get" action="#">
+  			<div id="dmnavbox">
+			<a class="easyui-linkbutton" id="tpdpAddBT">新增</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="tpdpDeleteBT">删除</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="tpdpUpdateBT">修改</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="tpdpSearchBT">查询</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="tpdpClearBT">清空</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="tpdpOutput">导出</a><span class="column"></span> 
+			<a class="easyui-linkbutton" id="tpdpCallbackBt">返回</a>
+			</div>
+			
+			<div id="tpdpInputPage">
+				<div class="whpDivCss">
+					<label class="tpdpLableCss whpStarCss">委托加工名称:</label><input name="tpdpExportId" id="tpdpExportId" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="tpdpLableCss whpStarCss">加工内容名称:</label><input name="tpdpProcessId" id="tpdpProcessId" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="tpdpLableCss whpStarCss">技术人员名称:</label><input name="tpdpCraftsmanId" id="tpdpCraftsmanId" class="dmInputCss">
+					<label class="tpdpLableCss whpStarCss">所出仓库名称:</label><input name="tpdpWarehouseId" id="tpdpWarehouseId" class="dmInputCss">
+				</div>
+			</div>
+	</form>	
+	
+	<!-- 查询加工明细信息界面 -->
+	<form method="get" action="#" id="tpdpSearchBox">
+	
+		<div class="udmRowCss tpdpSearchDivCss">
+				<label class="tpdpLableCss ">委托加工名称:</label><input name="tpdpSExportId" id="tpdpSExportId" class="dmInputCss" autocomplete="off" disableautocomplete>
+  				<label class="tpdpLableCss ">加工内容名称:</label><input name="tpdpSProcessId" id="tpdpSProcessId" class="dmInputCss" autocomplete="off" disableautocomplete>
+  		</div>
+  			
+  		<div class="udmRowCss">
+				<label class="tpdpLableCss ">技术人员名称:</label><input name="tpdpSCraftsmanId" id="tpdpSCraftsmanId" class="dmInputCss">
+				<label class="tpdpLableCss ">所出仓库名称:</label><input name="tpdpSWarehouseId" id="tpdpSWarehouseId" class="dmInputCss">
+		</div>
+		
+	</form>
+	
+	<!-- 更新加工明细信息界面 -->
+	<form method="get" action="#" id="tpdpUpdateBox">
+	
+		<div class="udmRowCss tpdpSearchDivCss">
+				<label class="tpdpLableCss whpStarCss">委托加工名称:</label><input name="tpdpUExportId" id="tpdpUExportId" class="dmInputCss" autocomplete="off" disableautocomplete>
+  				<label class="tpdpLableCss whpStarCss">加工内容名称:</label><input name="tpdpUProcessId" id="tpdpUProcessId" class="dmInputCss" autocomplete="off" disableautocomplete>
+  		</div>
+  			
+  		<div class="udmRowCss">
+				<label class="tpdpLableCss whpStarCss">技术人员名称:</label><input name="tpdpUCraftsmanId" id="tpdpUCraftsmanId" class="dmInputCss">
+				<label class="tpdpLableCss whpStarCss">所出仓库名称:</label><input name="tpdpUWarehouseId" id="tpdpUWarehouseId" class="dmInputCss">
+		</div>
+		
+	</form>
+	
+	<!-- 右键弹出界面 -->
+  	<div id=tpdpMenu  class="easyui-menu">
+    	<div id="tpdpUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="tpdpDeletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+    </div> 
+	
+	<!-- 显示数据 -->
+	<table id="tpdpTable"></table>
+</body>
+</html>

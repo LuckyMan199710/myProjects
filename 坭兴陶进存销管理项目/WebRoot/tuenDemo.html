@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/example.css" type="text/css">
+<link rel="stylesheet" href="css/turn.css" type="text/css">
+<script type="text/javascript" src="js/jquery-easyui-1.5.5.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.slides.min.js"></script>
+
+</head>
+<body>
+ <div id="slides">
+    <img src="img/a1.jpg">
+    <img src="img/a2.jpg">
+    <img src="img/a3.jpg">
+    <img src="img/a4.jpg">
+    <img src="img/a5.jpg">
+    <img src="img/a5.jpg">
+    <img src="img/a5.jpg">
+    <img src="img/a5.jpg">
+    <img src="img/a5.jpg">
+    <img src="img/a5.jpg">
+    <img src="img/a5.jpg">
+  </div>
+  <script>
+    $(function(){
+      $("#slides").slidesjs({
+        width: 940,
+        height: 428,
+        play: {
+            active: true,
+            auto: true,
+            interval: 4000,
+            swap: true
+          }
+      });
+    });
+  </script>
+</body>
+</html>

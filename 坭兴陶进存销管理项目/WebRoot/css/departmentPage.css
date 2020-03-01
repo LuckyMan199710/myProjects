@@ -1,0 +1,108 @@
+html,body{
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+}
+
+
+.dmRowCss{
+	margin-left: 10px;
+	margin-top: 10px;
+	
+}
+/* 输入框样式*/
+.dmInputCss{
+	width: 230px;
+	height: 25px ;
+	line-height: 25px;
+	box-sizing: border-box;
+	padding-left: 5px;
+	border:1px solid #95b8e7 !important;
+	background-color: #fff3f3;
+	border-radius: 5px; 
+	font-size: 12px !important;
+}
+
+.dmLableCss{
+	display: inline-block;
+	width: 80px;
+	margin-left: 10px;
+	font-size: 12px !important;
+	text-align: center;
+}
+
+#dmNavsBox{
+	padding-bottom: 8px;
+}
+
+
+/* 重写easyui文本框样式 */
+	.textbox-text{
+			height: 23px ;
+			background: #fff3f3 !important;
+			vertical-align: middle;
+			line-height: 23px !important;
+		}
+	/* 输入框样式*/
+
+	.sepcialInputCss{
+		font-szie:12px !important;
+		padding: 5px;
+		border:1px solid #95b8e7 !important;
+		background-color: #fff3f3;
+		border-radius: 5px; 
+		width: 1300px;
+		height: 50px;
+		max-width: 1300px;
+		max-height: 50px;
+		min-width: 1300px;
+		min-height: 50px;
+		margin-left: 90px;
+	}
+	
+	.demSpe{
+		position:absolute;
+		top:90px;
+		display:inline-block;
+		text-align: center;
+	}
+	.demSpe2{
+		top:105px;
+	}
+	
+	/* 更新界面的样式 */
+	.udmRowCss{
+		margin-top:25px;
+		margin-left: 15px;
+	}
+	.usepcialInputCss{
+		font-size:12px !important;
+		padding: 5px;
+		border:1px solid #95b8e7 !important;
+		background-color: #fff3f3;
+		border-radius: 5px; 
+		width: 865px;
+		height: 115px;
+		max-width: 865px;
+		max-height: 115px;
+		min-width: 865px;
+		min-height: 115px;
+		margin-left: 90px;
+	}
+	
+	
+	/* 查询界面 */
+	.sdmRowCss{
+		margin-top:35px;
+		margin-left: 15px;
+	}
+	.textbox .textbox-text{
+		font-size: 12px;
+	}
+	
+	/* 添加提示输入框位必写框的样式 */
+	.dpStarInput{
+		background: url("../img/star.png") no-repeat;
+		background-position: 2px center;
+	}
+	

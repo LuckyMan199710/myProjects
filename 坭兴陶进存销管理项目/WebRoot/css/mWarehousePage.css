@@ -1,0 +1,41 @@
+html,body{
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+}
+
+ /* 添加按钮样式 */
+ #mWhpInputBox{
+ 	margin: 10px 0px 13px 0px;
+ }
+ 
+ .mWhpDistance{
+ 	margin-left: 50px;
+ }
+ 
+ /* 更新窗体和查询窗体 */
+ #mWhpUpdateBox,#mWhpSearchBox{
+ 	padding-top: 30px;
+ }
+ 
+ .uMhpLabelCss{
+ 	margin-left: 22px;
+ }
+ 
+ /* 详细信息的label样式 */
+ .sepLabels{
+ 	width: 250px;
+ }
+ .spelabel2{
+ 	width: 153px;
+ }
+ 
+ /* 添加界面带星星的label样式 */
+ .mwhpStar{
+ 	background: url("../img/star.png") no-repeat;
+    background-position: 2px center;
+ }
+ .mwhpStarStatus{
+ 	background: url("../img/star.png") no-repeat;
+    background-position: 12px center;
+ }

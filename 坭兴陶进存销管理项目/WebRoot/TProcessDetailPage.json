@@ -1,0 +1,38 @@
+[
+	{
+		"tpdpExportId" : "1",
+		"tpdpExportName" : "坭兴陶培土",
+		"tpdpProcessId" : "1",
+		"tpdpProcessName" : "荷花",
+		"processStyleName" : "水墨",
+		"processTypeName" : "雕塑", 
+		"tpdpCraftsmanId" : "1",
+		"tpdpCraftsmanName" : "小明",
+		"tpdpWarehouseId" : "1",
+		"tpdpWarehouseName" : "钦州坭兴陶材料管理仓库"
+	},
+	{
+		"tpdpExportId" : "2",
+		"tpdpExportName" : "坭兴陶培土2",
+		"tpdpProcessId" : "2",
+		"tpdpProcessName" : "山水画",
+		"processStyleName" : "山水",
+		"processTypeName" : "炼制", 
+		"tpdpCraftsmanId" : "2",
+		"tpdpCraftsmanName" : "小明2",
+		"tpdpWarehouseId" : "2",
+		"tpdpWarehouseName" : "钦州坭兴陶半成品管理仓库"
+	},
+	{
+		"tpdpExportId" : "3",
+		"tpdpExportName" : "坭兴陶培土3",
+		"tpdpProcessId" : "3",
+		"tpdpProcessName" : "蝴蝶",
+		"processStyleName" : "水墨2",
+		"processTypeName" : "打磨", 
+		"tpdpCraftsmanId" : "3",
+		"tpdpCraftsmanName" : "小明3",
+		"tpdpWarehouseId" : "3",
+		"tpdpWarehouseName" : "钦州坭兴陶成品管理仓库"
+	}
+]

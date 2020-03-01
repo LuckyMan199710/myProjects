@@ -1,0 +1,260 @@
+/* 网页底部的样式 */
+.webBottomCss{
+	text-align:center;
+	padding:5px;
+	font-size:12px;
+	height:25px;
+	line-height: 25px;
+}
+
+	/* logo的样式 */
+	#logo{
+			margin-left: 70px;
+			margin-top: 15px;
+		}
+
+	/* 登录的用户样式 */
+	.loginBox{
+		position: absolute;
+		width: 125px;
+		height: 31px;
+		top: 38px;
+		left: 1300px;
+	}
+	
+	/*
+		选项卡的样式
+	**/
+	#tab-tools{
+		border: 0px solid !important;
+		border-bottom: 1px solid #84bef4 !important; 
+		border-left: 1px solid #84bef4 !important; 
+	}
+	.autoLoadMenu{
+		display:inline-block;
+		text-decoration: none;
+		color: #2b2222;
+		height: 31px;
+		border: 0px solid #ccc !important;
+		font-size: 12px;
+		border-radius: 0px !important;
+		padding-top: 1px !important;
+		border-left: 1px solid #ccc;
+	}
+	.autoLoadMenu:HOVER{
+		cursor: pointer;
+		background: #93bcf2;
+		border-bottom: 1px solid #92c1de!important;
+		border-top: 1px solid #92c1de!important;
+		color: #fff;
+	}
+	
+	/* 隐藏操作文本框 */
+	.handlerBox{
+		display:none;
+		width: 109px;
+		height: 94px;
+		border: 1px solid #bedcf1;
+		background:#ccc;
+		position: fixed;
+		z-index: 66666666666666;
+		left: 1472px;
+		top: 140px;
+		-webkit-box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+		-moz-box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+		box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+		background: #c3d8e4;
+	}
+	/* 关闭所有打开的界面 */
+	.closeAllTabs{
+		display: block;
+		display: block;
+		padding: 12px;
+		font-size: 12px;
+	}
+	.closeCss{
+		padding-top:0px; 
+	}
+	.closeAllTabs:HOVER{
+		cursor: pointer;
+		color: #18a9e7;
+	}
+	
+	/* 自动下载订单配置 */
+	.autoLoadMenuSetting{
+		display: block;
+		padding-left: 8px;
+		font-size: 12px !important;
+	}
+	
+	.autoLoadMenuSetting:HOVER{
+		cursor: pointer;
+		color: #18a9e7;
+	}
+	
+	
+	
+	/* 关闭界面的图片按钮 */	
+	.changeBox{
+		display:inline-block;
+		position: relative;
+		height: 31px;
+		left: 0px;
+		border: 0px solid !important;
+		background: red;
+		border-radius: 0px !important;
+		padding: 0px !important;
+		
+	}
+	.changeBox:HOVER{
+		background: #ccc !important;
+	}
+	
+	/* 登录头像 */
+	.loginUserImgBox{
+		width: 45px;
+		height: 45px;
+		border-radius: 50%;
+		border: 3px solid #c6d7e7;
+		margin-left: -3px;
+	}
+	.loginUserImgBox:HOVER{
+		border: 3px solid #bbdef7;
+		cursor: pointer;
+	}
+	
+	.loginUserName{
+		display: inline-block;
+		position: absolute;
+		top: 14px;
+		margin-left: 11px;
+		font-family: sans-serif;
+		font-size: 15px;
+		font-weight: normal;
+		color: #0b538d;
+		background: url("../img/userArr.png") no-repeat 50px 2px;
+		width: 70px;
+	}
+	.loginUserName:HOVER{
+		cursor: pointer;
+		color: #dae4ed;
+		background: url("../img/userArr2.png") no-repeat 50px 2px;
+	}
+
+	/* 首页界面时间 */
+		#time{
+			display: block !important;
+			position: absolute;
+			right: 70px;
+			top: 13px;
+			font-size: 14px;
+			font-family: sans-serif;
+			color: #0b538d;
+		}
+	
+	/* 隐藏的操作菜单 */
+	.hidderBox{
+		position: fixed;
+		width: 101px;
+		height: 86px;
+		top: 87px;
+		left: 1338px;
+		border: 1px solid #9ec4e4;
+		z-index: 999999889;
+		border-top-left-radius: 12px;
+		border-top-right-radius: 12px;
+		border-bottom-left-radius: 2px;
+		border-bottom-right-radius: 2px;
+		background: rgba(185, 215, 231,0.8);
+		box-sizing: border-box;
+		text-align: center;
+		display: none;
+		-webkit-box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+		-moz-box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+		box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+	}
+	
+	/* 个人信息按钮 */
+	.personNews{
+		margin-top: 17px;
+		margin-bottom: 10px;
+		font-size: 13px;
+		color: #38a8e0;
+		width: 100%;
+		background: url("../img/personNews.png") no-repeat 8px center;
+		padding-left: 5px;
+	}
+	
+	/* 箭头 */
+	.connectImg{
+		position: absolute;
+		top: -24px;
+		left: 28px;
+	}
+	
+	/* 安全退出 */
+	.safeQuit{
+		margin-top:15px;
+		font-size: 13px;
+		color: #38a8e0;
+		width: 100%;
+		background: url("../img/quit.png") no-repeat 8px center;
+		padding-left: 5px;
+	}
+	.personNews:HOVER,.safeQuit:HOVER{
+		color: #0b81bc;
+		cursor: pointer;
+	}
+	
+	/* 自动下载订单订单窗体 */
+	.menuHeadBox{
+		border: 1px solid #ccc;
+	    height: 73px;
+	    margin-top: 18px;
+	    margin-left: 10px;
+	    margin-right: 10px;
+	}
+	.menuTipBox{
+		border: 1px solid #ccc;
+	    height: 274px;
+	    margin-top: 49px;
+	    margin-left: 10px;
+	    margin-right: 10px;
+	    box-shadow: 0px 0px 12px 4px #d6ecf3;
+	    overflow-x: hidden;
+	    overflow-y: scroll;
+	    word-wrap: break-word;
+	    word-break: keep-all;
+	    padding: 5px;
+	}
+	.menuTipBox:HOVER {
+		box-shadow: 0px 0px 12px 4px #c4e3ee;
+	}
+	
+	/* 标题设置显示 */
+	.hearTitle{
+		margin-top: 0px;
+	    background: #ebf3f6;
+	    height: 33px;
+	    line-height: 33px;
+	    padding-left: 12px;
+	    font-size: 12px;
+	    color: #463c3c;
+	}
+	.currentShop{
+		font-size: 12px;
+	    padding-left: 12px;
+	}
+	
+	.munuStatus{
+		font-size: 12px;
+    	padding-left: 163px;
+	}
+	
+	.loadStatusText{
+		margin-left: 12px;
+	    font-size: 12px;
+	    position: absolute;
+	    margin-top: 28px;
+	    color: #4b4b5f;
+	}

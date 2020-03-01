@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>部门管理</title>
+	<meta charset="utf-8">
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="js/jquery-easyui-1.5.5.2/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery-easyui-1.5.5.2/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="js/jquery-easyui-1.5.5.2/locale/easyui-lang-zh_CN.js" charset="UTF-8"></script>
+	<link rel="stylesheet" href="js/jquery-easyui-1.5.5.2/themes/default/easyui.css" type="text/css"/>
+	<link rel="stylesheet" href="js/jquery-easyui-1.5.5.2/themes/icon.css" type="text/css"/>
+  </head>
+  
+  <body>
+  		<script type="text/javascript" src="js/departmentPage.js" charset="utf-8"></script>
+  		<!-- 部门导航 -->			<!-- dm---表示department -->
+  		<div id="dmNavsBox">
+  			<div id="dmnavbox">
+			<a class="easyui-linkbutton" id="dmAddBT">新增</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="dmDeleteBT">删除</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="dmUpdateBT">修改</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="dmSearchBT">查询</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="dmClearBT">清空</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="dmOutput">导出</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="dmCallbackBt">返回</a>
+			</div>
+			
+			<form id="inputContentBox">
+				<div class="dmRowCss">
+					<label class="dmLableCss dpStarInput">部门编号:</label><input name="dptId" id="dptId" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="dmLableCss dpStarInput">部门名称:</label><input name="depName" id="depName" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="dmLableCss">所属公司:</label><input name="company" id="company" class="dmInputCss">
+				</div>
+				
+				<div class="dmRowCss">
+					<label class="dmLableCss demSpe">部门简介:</label><textarea name="dptDesc" id="depBriefNews" class="sepcialInputCss" autocomplete="off" disableautocomplete style="font-size:12px;"></textarea>
+				</div>
+			</form>
+			
+  		</div>
+  		
+  		<!-- 显示数据的界面 -->
+  		<table id="dmpNewsBox"></table>
+  		
+  		<!-- 更新界面 -->
+  		<form method="get" action="#" id="demUpdateFormBox">
+  			<div class="udmRowCss">
+  				<label class="dmLableCss dpStarInput">部门编号:</label><input name="updateDptId" id="updateDptId" class="dmInputCss" autocomplete="off" disableautocomplete>
+  				<label class="dmLableCss dpStarInput">部门名称:</label><input name="updateDepName" id="updateDepName" class="dmInputCss" autocomplete="off" disableautocomplete>
+				<label class="dmLableCss">所属公司:</label><input name="updateCompany" id="updateCompany" class="dmInputCss">
+  			</div>
+  			<div class="udmRowCss">
+					<label class="dmLableCss demSpe demSpe2">部门简介:</label><textarea name="updateDptDesc" id="updateDptDesc" class="usepcialInputCss" autocomplete="off" disableautocomplete></textarea>
+			</div>
+  		</form>
+  		
+  		
+  		<!-- 查询界面 -->
+  		<form method="get" action="#" id="demSearchFormBox">
+  			<div class="sdmRowCss">
+  				<label class="dmLableCss">部门编号:</label><input name="searchDptId" id="searchDptId" class="dmInputCss" autocomplete="off" disableautocomplete>
+  				<label class="dmLableCss">部门名称:</label><input name="searchDemDepName" id="searchDepName" class="dmInputCss" autocomplete="off" disableautocomplete>
+				<label class="dmLableCss">所属公司:</label><input name="searchDemCompany" id="searchCompany" class="dmInputCss">
+  			</div>
+  		</form>
+  		
+  		
+  	<!-- 右键弹出界面 -->
+  	<div id=depMenuBox  class="easyui-menu">
+    	<div id="depUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="depDeletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+    </div>    
+  		
+  </body>
+</html>

@@ -1,0 +1,45 @@
+[
+	{
+		"empId" : "1", 
+		"employeeId" : "152",
+		"passwd" : "15323454",
+		"empName" : "小米",
+		"departmentID" : "1",
+		"department" : "北部湾1",
+		"role" : "超级管理员",
+		"empTelphone" : "156545487",
+		"empEmail" : "1233@asd",
+		"empPostCode" : "153588",
+		"aStatus" : "1",
+		"empAddress" : "广西省钦州市北部湾大学12号"
+	},
+	{
+		"empId" : "2", 
+		"employeeId" : "154",
+		"passwd" : "15323454",
+		"empName" : "小米",
+		"departmentID" : "2",
+		"department" : "北部湾2",
+		"role" : "普通员工",
+		"empTelphone" : "156545487",
+		"empEmail" : "1233@asd",
+		"empPostCode" : "153588",
+		"aStatus" : "1",
+		"empAddress" : "广西省钦州市北部湾大学12号"
+	},
+	{
+		"empId" : "3", 
+		"employeeId" : "151",
+		"passwd" : "15323454",
+		"empName" : "小米",
+		"departmentID" : "3",
+		"department" : "北部湾1sa",
+		"role" : "普通员工",
+		"empTelphone" : "156545487",
+		"empEmail" : "1233@asd",
+		"empPostCode" : "153588",
+		"aStatus" : "0",
+		"empAddress" : "广西省钦州市北部湾大学12号sasdas"
+	}
+	
+]

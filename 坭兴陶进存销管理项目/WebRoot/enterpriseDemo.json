@@ -1,0 +1,52 @@
+[
+	{
+	    "cpyId" : "1",
+	    "creditCode" : "123056",
+	    "cpyName" : "广西黑马程序员科技有限公司",
+	    "cpyTelphone" : "156756985",
+	    "bankOfDeposit" : "国家开发银行",
+	    "cpyAccount" : "642431354865456",
+	    "business" : "java,c#,c,c++",
+	    "registeredCapital" : "20000",
+	    "registeredTime" : "2012-10-5 10:25:26",
+	    "legalRepresentative" : "李某某",
+	    "qrcodeOfCompany" : "img/bc.jpg",
+	    "qrcodeOfWebChat" : "img/bc.jpg",
+	    "cpyEmail" : "126@qq.com",
+	    "cpyPostCode" : "537211",
+	    "trademark" : "img/bc.jpg",
+	    "employeeAmout" : "8000",
+	    "contact" : "何先生",
+	    "cpyContactTelphone" : "1567566745",
+	    "cpyFax" : "asdadasdas",
+	    "cpyType" :"1",
+	    "produceScale" : "主要以录制视频教学为生",
+	    "cpyAddress" : "广西钦州市钦南区12号"
+	},
+	{
+	    
+	    "cpyId" : "2",
+	    "creditCode" : "123057",
+	    "cpyName" : "广西达内科技有限公司",
+	    "cpyTelphone" : "012-54241",
+	    "bankOfDeposit" : "国家开发银行",
+	    "cpyAccount" : "642431354865457",
+	    "business" : "java,c#,c,c++,python",
+	    "registeredCapital" : "50000",
+	    "registeredTime" : "2013-10-5 10:25:26",
+	    "legalRepresentative" : "可某某",
+	    "qrcodeOfCompany" : "c:r/li,png",
+	    "qrcodeOfWebChat" : "c:rr/n.png",
+	    "cpyEmail" : "128@qq.com",
+	    "cpyPostCode" : "537211",
+	    "trademark" : "c:rr/n.png",
+	    "employeeAmout" : "8000",
+	    "contact" : "王先生",
+	    "cpyContactTelphone" : "1567566745",
+	    "cpyFax" : "asdadasdas",
+	    "cpyType" : "0",
+	    "produceScale" : "主要以录制视频教学为生",
+	    "cpyAddress" : "广西钦州市钦南区18号"
+	}
+	
+]

@@ -1,0 +1,94 @@
+html,body{
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+	
+}
+
+/* 加工内容添加界面 */
+#tppImgOutBox{
+	width: 150px;
+	height: 160px;
+	max-width:180px;
+	max-height:180px;
+	position: absolute;
+	z-index: 96666666;
+	display: none;
+	text-align: center;
+	margin: auto;
+	line-height: 160px;
+	background: #fff;
+	vertical-align: middle;
+	background: rgba(200, 54, 54, 0);
+}
+
+#tppRowImg{
+	width: auto;
+	height: auto;
+	max-width: 180px;
+	max-height: 180px;
+	vertical-align:middle;
+}
+
+#tppInputPage{
+	margin-left: 15px;
+	margin-bottom: 15px;
+}
+
+/* 添加界面的图片样式 */
+#processTypePic{
+	position: absolute;
+	top: 76px;
+	display: inline-block;
+	width: 148px;
+	height: 152px;
+	margin-left: 10px;
+	border: 1px solid #ccc;
+	right: 10px;
+	z-index: 66666685;
+	background: rgba(174, 209, 229,0.5);
+	display: none;
+}
+
+/* 上传按钮的样式 */
+.uploadImgBtCss{
+	margin-left: 20px;
+	width: 100px;
+	background: #85a6b1;
+	border-radius: 2px;
+}
+
+/* 更新图片的按钮样式 */
+.uploadUpdateImgBtCss{
+	margin-left: 90px;
+	width: 230px;
+	background: #85a6b1;
+	border-radius: 2px;
+	height: 26px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+/* 更新界面的图片样式 */
+.tppUpdateImgCss{
+	width: 180px;
+	height: 130px;
+	border: 1px solid #ccc;
+	position: absolute;
+	top: 45px;
+	margin-left: 20px;
+	max-height: 130px;
+	max-width: 180px;
+}
+
+.tppUpdateDivCss{
+	margin-top: 30px;
+}
+
+.tsppUploadBtCss{
+	width: 95px;
+	height: 25px;
+	position: absolute;
+	line-height: 19px;
+	background: #b5d4e7
+}

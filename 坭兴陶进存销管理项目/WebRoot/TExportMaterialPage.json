@@ -1,0 +1,46 @@
+{
+		"total" : "3",
+		"rows" : 
+		[
+			{
+				"eptMaterialId" : "1",
+				"eptIdOfMaterial" : "1",
+				"eptIdOfMaterialName" : "泥土",
+				"eptMaterialAmout" :  "300",
+				"eptUnitPrice" : "65.2",
+				"eptWarehouseId" : "1",
+				"eptWarehouseName" : "坭兴陶材料管理系统1",
+				"eptMaterialOperator" : "112121",
+				"eptMaterialOperatorName" : "小米2",
+				"exportDate" : "2012-5-12 20:30:25",
+				"eptMaterialPics" : "img/a1.jpg|img/a2.jpg|img/a3.jpg|img/a4.jpg|img/a5.jpg|img/bc.jpg|img/bodybc.png|img/bodybc2.png|img/logo.png|img/text.png|img/rowbc.png"
+			},
+			{
+				"eptMaterialId" : "2",
+				"eptIdOfMaterial" : "2",
+				"eptIdOfMaterialName" : "泥土2",
+				"eptMaterialAmout" :  "500",
+				"eptUnitPrice" : "68.2",
+				"eptWarehouseId" : "2",
+				"eptWarehouseName" : "坭兴陶材料管理系统2",
+				"eptMaterialOperator" : "112122",
+				"eptMaterialOperatorName" : "小米",
+				"exportDate" : "2015-5-12 20:30:25",
+				"eptMaterialPics" : "img/a1.jpg|img/a2.jpg|img/a3.jpg|img/a4.jpg"
+			},
+			{
+				"eptMaterialId" : "3",
+				"eptIdOfMaterial" : "3",
+				"eptIdOfMaterialName" : "泥土3",
+				"eptMaterialAmout" :  "800",
+				"eptUnitPrice" : "65.7",
+				"eptWarehouseId" : "3",
+				"eptWarehouseName" : "坭兴陶材料管理系统3",
+				"eptMaterialOperator" : "212121",
+				"eptMaterialOperatorName" : "小米3",
+				"exportDate" : "2018-5-12 20:30:25",
+				"eptMaterialPics" : "img/a1.jpg|img/a2.jpg|img/a3.jpg|img/a4.jpg|img/a5.jpg"
+			}
+		],
+		"footer" : [{"eptMaterialAmout" : "出库总量:8000"}]
+}

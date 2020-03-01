@@ -1,0 +1,280 @@
+html,body{
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+}
+
+/* 覆盖easyui的datagrid的标题的样式 */
+.datagrid-header-row td{
+	background-color:#E0ECEF;
+	}
+
+/* 公用的圆形的样式 */
+.circle{
+	display:inline-block;
+	width: 62px;
+	height: 62px;
+	border-radius:50%;
+	background: rgba(172, 208, 228,0.7); 
+	margin-top: 10px;
+}
+.commnerHover:HOVER{
+	cursor: pointer;
+	color: #4da0d1;
+}
+/* 点击时切换标题颜色 */
+.changeColor{
+	color: #0e527a;	
+}
+
+.allImgCss{
+	width: 50px;
+	height: 50px;
+}
+.circle:HOVER{
+	background: #88bddc;
+	cursor: pointer;
+}
+
+
+/* 企业信息管理样式 */
+.enterDisBOX{
+	display:block;
+	padding-top: 15px !important;
+	padding-left: 30px;
+	width: 100%;
+	height: 123px;
+	box-sizing: border-box;
+}
+
+/* 两个类做 */
+.EMcomment{
+	display:inline-block;
+	font-size: 16px;
+	margin-top: 20px;
+	margin-left: 18px;
+	width: 130px;
+    padding-left: 16px;
+}
+.EMTitle{
+    background:url("../img/destination.png") -2px center no-repeat;
+}
+.EMTitle2{
+    background:url("../img/destination3.png") -2px center no-repeat;
+}
+
+
+/* 企业管理 */
+.enterpCircle{
+	margin-left: 91px;
+}
+
+/* 图片样式 */
+.enterpImg{
+	margin-left: 10px;
+    margin-top: 6px;
+}
+
+/* 文字样式 */
+.enterWord{
+	width:100px;
+	display: inline-block;
+	margin-top: 8px;
+    margin-left: 5px;
+    color: #0e527a;
+}
+
+.semiWord{
+	margin-left: 5px;
+}
+
+/* 箭头样式 */
+.enterArr1{
+	display: inline-block;
+	margin-top: 26px;
+    position: absolute;
+    left: 208px;
+}
+.enterArr2{
+	 left: 352px;
+}
+.enterArr3{
+	left: 492px;
+}
+
+.enterArr4{
+	left: 638px;
+}
+
+.enterArr5{
+	left: 780px;
+}
+
+.enterArr6{
+	left: 921px;
+}
+
+.enterArr7{
+	left: 1061px;
+}
+
+/* 部门管理距离左边样式 */
+.departmentCircle{
+	margin-left: 76px;
+}
+/* 图片位置样式 */
+.department{
+	margin-left: 5.5px;
+    margin-top: 4px;
+}
+.semiCss{
+	 margin-top: 7px;
+}
+
+
+/* 仓库信息管理样式 */
+.warehouseABox{
+	padding-left: 30px;
+	width: 100%;
+	height: 100px;
+	box-sizing: border-box;
+	margin-top: -9px;
+}
+.WMComment{
+	display: block;
+    font-size: 16px;
+    margin-left: 18px;
+    margin-top: 18px;
+    width: 130px;
+    padding-left: 16px;
+    margin-bottom: 19px;
+}
+
+.WMTtile{
+    background: url(../img/destination.png) -2px center no-repeat;
+}
+.WMTtile2{
+    background: url(../img/destination3.png) -2px center no-repeat;
+}
+
+
+/* 商品信息管理样式 */
+.goodsOutBox{
+	padding-left: 30px;
+	width: 100%;
+	height: 230px;
+	box-sizing: border-box;
+	margin-top: -10px;
+	
+}
+
+/* 公用的样式 */
+.goodsComment{
+	display: block;
+    position: absolute;
+}
+.GMComment{
+	display: block;
+    font-size: 16px;
+    margin-left: 18px;
+    margin-top: 18px;
+    width: 130px;
+    margin-bottom: 19px;
+    padding-left: 16px;
+}
+
+.GMTititle{
+	background: url(../img/destination.png) -2px center no-repeat;
+}
+.GMTititle2{
+    background: url(../img/destination3.png) -2px center no-repeat;
+}
+
+/* 入库管理 */
+.importM{
+	margin-top: 22px;
+}
+.goodsEnterArr1{
+	margin-top: 112px;
+}
+
+/* 材料出库 */
+.goodsExMetial{
+	margin-left: 90px;
+    margin-top: 45px;
+}
+
+/* 半成品出库 */
+.semiExport{
+	margin-left: 232px;
+    margin-top: -91px;
+}
+.semiArr2{
+    margin-top: 112px;
+}
+.semiOutCss{
+	margin-left: -5px;
+}
+
+/* 商品明细 */
+.goodsDetial{
+	margin-left: 662px;
+    margin-top: 45px;
+}
+
+/* 加工类型 */
+.processType{
+	margin-left: 374px;
+}
+
+/* 加工内容 */
+.processContent{
+	margin-left: 374px;
+}
+.semiArr3{
+	left: 493px;
+    margin-top: 112px;
+}
+
+/* 商品风格 */
+.goodsStyle{
+	margin-top: 112px;
+    left: 779px;
+}
+.stroreStyle{
+	margin-left: 802px;
+}
+
+/* 从业人员 */
+.dramMan{
+	margin-left: 518px;
+}
+
+/* 半成品加工明细 */
+.semiGoods{
+	margin-left: 519px;
+}
+.semiGoodWord{
+	margin-left:4px;
+}
+
+/* 库存管理 */
+.storeArr{
+	left: 492px;
+	margin-top: 193px;
+}
+.stroeDiv{
+	margin-left: 232px;
+    margin-top: 45px;
+}
+
+/* 盘点仓库 */
+.innovtArr{
+	left: 639px;
+    margin-top: 112px;
+}
+.innvoDiv{
+	margin-left: 661px;
+    margin-top: -91px;
+}
+}

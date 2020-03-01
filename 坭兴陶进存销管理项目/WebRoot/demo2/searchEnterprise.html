@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>searchEnterprise.html</title>
+	<meta charset="utf-8">
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+  </head>
+  
+  <body>
+  	 <script type="text/javascript" src="js/searchEnterprise.js"></script>
+	 <div id="sEnterpriseOutBox">
+		<form action="" method="POST" id="searchEqNews">					<!-- eq是enterprise的缩写 -->
+  				<div class="srow sprow">									<!-- sp是seachPage的缩写 -->
+  					<label class="labelCss ">信用编码:</label><input type="text" name="spCreditCode" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss ">企业名称:</label><input type="text" name="spName" class="inputCss" autocomplete="off" disableautocomplete>
+  					<a  href="#" id="spSearchBt" class="spBT">查询</a>
+  					<a  href="#" id="spClear" class="spBT">清空</a>
+  					<a  href="#" id="spOutput" class="spBT">导出</a>
+  					<a  href="#" id="spMore" class="spBT">更多</a>
+  				</div>
+  		<div id="shadowDiv" >
+			 <div class="ba">   
+    				<div class="srow">										<!-- sp是seachPage的缩写 -->
+  					<label class="labelCss ">企业电话:</label><input type="text" name="spTelphone" class="searchInputCss" onkeyup="value=value.replace(/[^\d-]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss ">开户行:</label><input type="text" name="spBankOfDeposit" class="searchInputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss ">账号:</label><input type="text" name="spAccount" class="searchInputCss" onkeyup="value=value.replace(/[^\d]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss ">业务范围:</label><input type="text" name="spBusiness" class="searchInputCss" autocomplete="off" disableautocomplete>
+  					</div>
+  					
+  					<div class="srow">										<!-- 写内联样式:style="width:220px;"是为了解决ie浏览器显示错位的问题 -->
+  					<label class="labelCss ">注册资本:</label><input type="text" name="spRegisteredCapital" class="searchInputCss"  autocomplete="off" disableautocomplete style="width:220px;">
+  					<label class="labelCss ">注册时间:</label><input type="text" name="spRegisteredTime" class="searchInputCss" style="width:220px;" autocomplete="off" disableautocomplete style="width:220px;">
+  					<label class="labelCss ">法定代表人:</label><input type="text" name="spLegalRepresentative"  class="searchInputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">联系人电话:</label><input type="text" name="spContactTehpone" class="searchInputCss" onkeyup="value=value.replace(/[^\d]/g,'')" autocomplete="off" disableautocomplete>
+  					</div>
+  					
+  					<div class="srow">			
+  					<label class="labelCss ">企业类型:</label><input type="text" name="spType" class="searchInputCss" style="width:220px;">
+  					<label class="labelCss ">企业地址:</label><input type="text" name="spAddress" class="searchInputCss spInputCss" autocomplete="off" disableautocomplete>
+  					</div>
+  					
+    		</div>  
+		</div>
+		</form>
+  		
+	</div>
+	
+	
+	 	<!-- 显示企业信息 -->
+  	<table id="sDispalyNews">
+  	
+  	</table>
+	
+	
+  </body>
+</html>

@@ -1,0 +1,252 @@
+html,body{
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+}
+/* 初始化显示内容样式 下拉列表样式*/
+.afterCss{
+	display:inline-block;
+	margin-right: 3px;
+}
+/* 筛选条件的样式 */
+#selectCondition{
+	position: absolute;
+	margin-left: 1031px;
+	top:15px;
+}
+
+/* 添加入库界面样式(输入文本框样式是和企业信息的输入文本框样式一样的,如果需要更改,则可以给他添加一类样式即可(减少代码的重复率) */
+.TSFBottomRowCss{
+	margin-bottom: 10px;
+}
+.TSFrow{
+	margin-left: 15px;
+	margin-top:10px;
+}
+
+/* 添加窗口样式 */
+.tispDisplayBigImg{
+	position: relative;
+    width: 1445px;
+    height: 800px;
+    background: #ccc;
+    display: none;
+    z-index: 9999999999999;
+    margin-top: -283px;
+    margin-left: -2px !important;
+    background: rgba(195, 219, 233, 0.8);
+    vertical-align: middle;
+    margin-left: auto;
+}
+.TimAddDIstanceLabelSoe{
+	margin-left: 24px;
+}
+
+/* 添加界面商品二维码图片样式 */
+.ipsGoodsQrcodeCss{
+	display:inline-block;
+	width: 140px;
+	height: 128px;
+	max-height:128px;
+	max-width:140px;
+	border: 2px solid #bedaea;
+}
+
+/* 更新界面样式 */
+.TSFFirstDivCss{
+	margin-top: 25px;
+}
+.importGoodsImgBoxCss{
+	display: block;
+    width: 1300px;
+    height: auto;
+    min-height: 110px;
+    max-height: 230px !important;
+    max-width: 1300px !important;
+    white-space: normal;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-left: 6px;
+    box-sizing: border-box;
+    z-index: 8888;
+    position: relative;
+    white-space: normal;
+}
+
+/* 更新界面商品二维码的样式 */
+.ipsGoodsQrcodeUpdateCss{
+	display: inline-block;
+	width: 147px;
+	height: 128px;
+	max-height: 128px;
+	max-width: 147px;
+	border: 2px solid #bedaea;
+}
+
+
+/* 查询样式的修改 */
+#TSFSearchBox{
+	padding-left: -50px;
+}
+
+/* 查看详情界面样式 */
+		
+		/* 标题样式 */
+		.tsfLCss{
+			width:95px;
+			padding-left: 10px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			background: #f1f1f1;
+		}
+
+		#tsfTable,.commonsTablesCss{
+			margin-top:15px;
+			margin-left: 10px;
+			margin-right: 10px;
+			border : 1px solid #ccc;
+			width:870px;
+			border-collapse:collapse !important;
+			margin-bottom: 25px;
+		}
+		
+		#tsfTable tr td,.commonsTablesCss tr td{
+			border : 1px solid #ccc;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow:ellipsis !important;
+		}
+
+		/* 行线显示 */
+		.tsfheadLineBox{
+			margin-top:10px;
+			margin-left: 10px !important;
+			margin-right:10px;
+			height: 20px;
+			margin-bottom: 10px;
+		}
+		
+		.tsfLightColorLine{
+				display: inline-block;
+				height: 1px;
+				background: #ff0000;
+				width: 60px;
+				margin-bottom: 10px;
+			} 
+		.tsfGrayColorLine{
+				display:inline-block;
+				width: 808px;
+				height: 1px;
+				background: #ccc;
+				margin-bottom: 10px;
+			} 
+		/* 查看详细中的图片 */
+		#seeImgsBox{
+			margin-left: 120px;
+			margin-top: 20px;
+			margin-bottom: 5px;
+		}
+		.tsoreTextCss{
+			color:#0ca7f4;
+		}
+	/* 显示信息的table的样式 */
+	.tispOutBoxCss{
+		margin-left: 40px !important;
+		width: 902px !important;
+	}
+	
+	/* 横线样式  */
+	.tispLineCss{
+		width: 875px;
+	}
+	
+	/* table的样式 */
+	#tsfGoodsTable,#tsfImportTable{
+		/* 设置table的大小固定 */
+		table-layout: fixed;
+	}
+	
+	/* 表格的行样式*/
+	.imGoodsCss{
+		width: 344px;
+	}
+	
+	/* 详细界面商品二维码图片 */	
+	.tsfSessGoodsImgBox{
+		display: inline-block;
+		position: absolute;
+		width: 141px;
+		height: 146px;
+		border: 2px solid #acacac;
+		top: 160px;
+		right: 56px;
+	}
+	
+	/* 经过商品二维码的样式 */
+	.tsfSeeTrueImg:HOVER{
+		cursor: pointer;
+	}
+	/* 覆盖 */
+	.tgSpecialInput{
+		margin-top: 0px;
+	}
+	.usepcialInputCss{
+	font-size: 12px !important;
+    padding: 5px;
+    border: 1px solid #95b8e7 !important;
+    background-color: #fff3f3;
+    border-radius: 5px;
+    width: 865px;
+    height: 115px;
+    max-width: 865px;
+    max-height: 115px;
+    min-width: 865px;
+    min-height: 115px;
+    margin-left:0px;
+	}
+	.mtpLabelScss {
+    position: relative !important;
+    top: -100px;
+}
+.TSFBottomRowCss{
+	margin-bottom:20px;
+}
+.longTextCss{
+	width:540px;
+}
+/*  .tispDisplayBigImg1{
+	position: relative;
+    width: 1310px;
+    height: 800px;
+    background: #ccc;
+    display: none;
+    z-index: 9999999999999;
+    margin-top: -283px;
+    margin-left: -2px !important;
+    background: rgba(195, 219, 233, 0.8);
+    vertical-align: middle;
+    margin-left: auto;
+}
+.theTureImgOutBox1{
+    max-width: 1100px;
+    max-height: 630px;
+    width: 1200px;
+    height: 629px;
+    margin-left: 110px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 630px;
+}  */
+/* #tispSeeDetailDisplayBigImg{
+	position: relative;
+    width: 1445px;
+    height: 800px;
+    background: #ccc;
+    display: block;
+    z-index: 9999999999999;
+    margin-top: -283px;
+    margin-left: -2px !important;
+    background: rgba(195, 219, 233, 0.8);
+    vertical-align: middle;
+    margin-left: auto;
+} */

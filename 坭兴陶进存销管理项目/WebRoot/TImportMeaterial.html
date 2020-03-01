@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>材料入库</title>
+</head>
+<body>
+<script type="text/javascript" src="js/TImportMaterial.js"></script>
+	<div id="TINavBox">
+		<div id="navboxs">
+		<a class="easyui-linkbutton" id="TIpmAddBT">新增</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TIpmDeleteBT">删除</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TIpmUpdateBT">修改</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TIpmSearchBT">查询</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TIpmoutputBT">导出</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TIpmClearBT">清空</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TIpmcallbackBT">返回</a><span class="column afterCss"></span>
+		</div>
+		<form action="" method="POST" id="TimOutBox">			
+  				<div class="row">
+  					<label class="labelCss starlabelCss meAddDIsLabel">材料名称:</label><input type="text" name="ipsIdOfMaterial" id="ipsIdOfMaterial" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">企业名称:</label><input type="text" name="ipsMtlIdOfCompany" id="ipsMtlIdOfCompany" class="inputCss"  autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">入库数量:</label><input type="text" name="ipsMtlAmout" id="ipsMtlAmout" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  					<label class="labelCss starlabelCss">单价:</label><input type="text" name="ipsMtlUnitPrice" id="ipsMtlUnitPrice" class="inputCss" style="border:0px;" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  				</div>
+  				
+  				<div class="row TSFBottomRowCss">
+  					<label class="labelCss starlabelCss meAddDIsLabel">破损数量:</label><input type="text" name="ipsMtlBrokenAmout" id="ipsMtlBrokenAmout" class="inputCss" onkeyup="value=value.replace(/[^\d]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">残次品数量:</label><input type="text" name="ipsMtlImperfectionAmout" id="ipsMtlImperfectionAmout" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  					<label class="labelCss starlabelCss">所入仓库:</label><input type="text" name="mtlWarehouseId" id="mtlWarehouseId" class="inputCss">
+  					<label class="labelCss starlabelCss">经办人:</label><input type="text" name="ipsMtlOperator"  id="ipsMtlOperator"   class="inputCss" >
+  				</div>
+  				
+  			<!-- 存放图片的最外层盒子 -->
+  				<div class="tsgfImgBox" id="TIAImgBox">
+					<div id="TIUploadBt" class="essUplaodBt">
+							<div class="plus">+</div>
+							<div class="addImgText">添加图片</div>
+							<div class="essTips">(最多15张)</div>
+					</div>
+				</div>
+			<!-- 添加界面中图片浏览的窗口 -->
+				<div id="TiADisplayBigImg" class="tispDisplayBigImg">
+							<span class="closeImgDialog" id="TiACloseImgDialog" title="关闭"><img alt="" src="img/dDel.png"></span>
+							<div id="tispAddseeDetialCount" class="seeDetialCount"><span id="TiaAddNowIndex" class="nowIndex"></span><span class="italicCss">/</span><span id="TiaAddAllCount" class="allCount"></span></div>
+							<div id="TiAAddtheTureImgOutBox"  class="theTureImgOutBox">
+								<img alt="" src="img/a1.jpg" id="TiaAddtheTureImg" class="theTureImg">
+							</div>
+							<span id="TiaAddupImage" class="changeImgBt leftBtCss" title="上一张">&lt;</span><span id="TiaAddnextImage" class="changeImgBt rightBtCss" title="下一张">&gt;</span>
+				</div>
+				
+			<!-- 更新界面中图片浏览的窗口 -->
+				<div id="TiAUpdateDisplayBigImg" class="tispDisplayBigImg">
+							<span class="closeImgDialog" id="TiAUpdateCloseImgDialog" title="关闭"><img alt="" src="img/dDel.png"></span>
+							<div id="tispuCount" class="seeDetialCount"><span id="TiAUpdateNowIndex" class="nowIndex"></span><span class="italicCss">/</span><span id="TiAUpdateAllCount" class="allCount"></span></div>
+							<div id="TiAUpdateTheTureImgOutBox"  class="theTureImgOutBox">
+								<img alt="" src="img/a1.jpg" id="TiAUpdateTheTureImg" class="theTureImg">
+							</div>
+							<span id="TiAUpdateUpImage" class="changeImgBt leftBtCss" title="上一张">&lt;</span><span id="TiAUpdateNextImage" class="changeImgBt rightBtCss" title="下一张">&gt;</span>
+				</div>
+				
+			<!-- 查看详情中图片浏览的窗口 -->
+				<div id="TiASeeDetailDisplayBigImg" class="tispDisplayBigImg">
+							<span class="closeImgDialog" id="TiASeeDetailCloseImgDialog" title="关闭"><img alt="" src="img/dDel.png"></span>
+							<div id="TiaSeeDetialCount" class="seeDetialCount"><span id="TiASeedetialnowIndex" class="nowIndex"></span><span class="italicCss">/</span><span id="TiASeedetialAllCount" class="allCount"></span></div>
+							<div id="TiASeeDetailTheTureImgOutBox"  class="theTureImgOutBox">
+								<img alt="" src="img/a1.jpg" id="TiASeeDetailTheTureImg" class="theTureImg">
+							</div>
+							<span id="TiASeeDetailUpImage" class="changeImgBt leftBtCss" title="上一张">&lt;</span><span id="TiASeeDetailNextImage" class="changeImgBt rightBtCss" title="下一张">&gt;</span>
+				</div>
+  				
+  		</form>
+	</div>
+		<!-- 显示企业信息 -->
+  	<table id="TIpmDisRowBox"></table>
+  	
+  	<!-- 更新界面 -->
+  	<form action="#" method="get" id="TImUpdateBox">
+  			<div class="row TSFFirstDivCss">
+  					<label class="labelCss starlabelCss">材料名称:</label><input type="text" name="TipmuipsIdOfMaterial" id="TipmuipsIdOfMaterial" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">企业名称:</label><input type="text" name="TipmuipsMtlIdOfCompany" id="TipmuipsMtlIdOfCompany" class="inputCss"  autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">单价:</label><input type="text" name="TipmuipsMtlUnitPrice" id="TipmuipsMtlUnitPrice" class="inputCss" style="border:0px;" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  			</div>
+  			
+  			<div class="row">
+  					<label class="labelCss starlabelCss">入库数量:</label><input type="text" name="TipmuipsMtlAmout" id="TipmuipsMtlAmout" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  					<label class="labelCss starlabelCss">破损数量:</label><input type="text" name="TipmuipsMtlBrokenAmout" id="TipmuipsMtlBrokenAmout" class="inputCss" onkeyup="value=value.replace(/[^\d]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">残次品数量:</label><input type="text" name="TipmuipsMtlImperfectionAmout" id="TipmuipsMtlImperfectionAmout" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  			</div>
+  			
+  			<div class="row">
+  					<label class="labelCss starlabelCss">所入仓库:</label><input type="text" name="TipmumtlWarehouseId" id="TipmumtlWarehouseId" class="inputCss">
+  					<label class="labelCss starlabelCss">经办人:</label><input type="text" name="TipmuipsMtlOperator"  id="TipmuipsMtlOperator"   class="inputCss" >
+  			</div>
+  			
+  			<div class="tsgfUpdateImgBox" id="TiAUpdateImgBox">
+						<div id="TiAUpdateUplaodBt" class="essUpdateUplaodBt">
+							<div class="plus">+</div>
+							<div class="addImgText">添加图片</div>
+							<div class="essTips">(最多15张)</div>	
+						</div>
+			</div>
+			
+  	</form>
+  	
+  	
+  	<!-- 查询界面 -->
+  	<form action="#" method="get" id="TIpmSearchBox">
+  			<div class="TSFrow TSFFirstDivCss">
+  					<label class="labelCss">材料名称:</label><input type="text" name="TIpmipsIdOfMaterial" id="TIpmipsIdOfMaterial" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">企业名称:</label><input type="text" name="TIpmipsMtlIdOfCompany" id="TIpmipsMtlIdOfCompany" class="inputCss"  autocomplete="off" disableautocomplete>
+  					<label class="labelCss">所入仓库:</label><input type="text" name="TIpmmtlWarehouseId" id="TIpmmtlWarehouseId" class="inputCss">
+  					<label class="labelCss">经办人:</label><input type="text" name="TIpmipsMtlOperator"  id="TIpmipsMtlOperator"   class="inputCss" >
+  			</div>
+  			
+  			<div class="TSFrow">
+  					<label class="labelCss">入库数量:</label><input type="text" name="TIpmipsMtlAmoutStart" id="TIpmipsMtlAmoutStart" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  					<label class="labelCss">至:</label><input type="text" name="TIpmipsMtlAmoutEnd" id="TIpmipsMtlAmoutEnd" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  					<label class="labelCss">破损数量:</label><input type="text" name="TIpmipsMtlBrokenAmoutStart" id="TIpmipsMtlBrokenAmoutStart" class="inputCss" onkeyup="value=value.replace(/[^\d]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">至:</label><input type="text" name="TIpmipsMtlBrokenAmoutEnd" id="TIpmipsMtlBrokenAmoutEnd" class="inputCss" onkeyup="value=value.replace(/[^\d]/g,'')" autocomplete="off" disableautocomplete>
+  			</div>
+  			
+  			<div class="TSFrow">
+  					<label class="labelCss">残次品数量:</label><input type="text" name="TIpmipsMtlImperfectionAmoutStart" id="TIpmipsMtlImperfectionAmoutStart" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  					<label class="labelCss">至:</label><input type="text" name="TIpmipsMtlImperfectionAmoutEnd" id="TIpmipsMtlImperfectionAmoutEnd" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  					<label class="labelCss">单价:</label><input type="text" name="TIpmipsMtlUnitPriceStart" id="TIpmipsMtlUnitPriceStart" class="inputCss" style="border:0px;" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  					<label class="labelCss">至:</label><input type="text" name="TIpmipsMtlUnitPriceEnd" id="TIpmipsMtlUnitPriceEnd" class="inputCss" style="border:0px;" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  			</div>
+  			<div class="TSFrow">
+  					<label class="labelCss">入库时间始:</label><input type="text" name="TIpmMaterialImportDateStart" id="TIpmMaterialImportDateStart" class="inputCss" style="border:0px;" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  					<label class="labelCss">入库时间末:</label><input type="text" name="TIpmMaterialImportDateEnd" id="TIpmMaterialImportDateEnd" class="inputCss" style="border:0px;" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  			</div>
+  			
+  	</form>
+  	
+  	<!-- 查看详情界面 -->
+  	<div id="TimMSeeDetailPage">
+  		<div id="tsfOutBox" >
+  			<!-- 入库信息 -->
+  			<div class="tsfheadLineBox">
+		  			<label class="tsoreTextCss">入库信息</label>
+		  			<div class="tsfline"><span class="tsfLightColorLine"></span><span class="tsfGrayColorLine tispLineCss"></span></div>
+	  		</div>
+  			<table id="tsfTable" class="tispOutBoxCss">
+	  				<tr>
+	  					<td class="tsfLCss">材料名称</td>
+	  					<td id="timSeeIpsIdOfStuff"  class="inpurCommon"  colspan="3">电子优先</td>
+	  					<td class="tsfLCss">企业名称</td>
+	  					<td id="timSeeIpsIdOfCompany"  class="inpurCommon"  colspan="1">124545</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss" style="width:60px">单价</td>
+	  					<td id="timSeeIpsUnitPrice"  class="inpurCommon"  colspan="3">124545</td>
+	  					<td class="tsfLCss">入库数量</td>
+	  					<td id="timSeeIpsAmout"  class="inpurCommon"  colspan="3">电子优先</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss" style="width:60px">破损数量</td>
+	  					<td id="timSeeIpsBrokenAmout"  class="inpurCommon"  colspan="3">124545</td>
+	  					<td class="tsfLCss" >残次品数量</td>
+	  					<td id="timSeeIpsImperfectionAmout"  class="inpurCommon"  colspan="3">电子优先</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss" style="width:60px">所入仓库</td>
+	  					<td id="timSeeWarehouseId"  class="inpurCommon"  colspan="3">电子优先</td>
+	  					<td class="tsfLCss">经办人</td>
+	  					<td id="timSeeIpsOperator"  class="inpurCommon"  colspan="1">124545</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">入库时间</td>
+	  					<td id="timSeeImportDate"  class="inpurCommon"  colspan="10">电子优先</td>
+	  				</tr>
+	  			</table>
+	  			
+	  		
+	  		<!-- 图片信息 -->
+  			<div class="tsfheadLineBox">
+		  			<label class="tsoreTextCss">图片信息</label>
+		  			<div class="tsfline"><span class="tsfLightColorLine"></span><span class="tsfGrayColorLine tispLineCss"></span></div>
+		  			
+		  			<div id="timDetailImgBox" class="detailImgBox">
+		  			</div>
+		  			
+	  		</div>
+	  	</div>
+  	</div>
+  	
+	
+	<!-- 右键弹出界面 -->
+  	<div id=TimMenu  class="easyui-menu">
+    	<div id="TimUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="TimDeletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+    	<div id="TimSeeMenu" data-options="iconCls:'icon-search'">查看</div>
+    </div> 
+    <script type="text/javascript" src="js/TImportStuffPageImgLoad.js"></script>
+</body>
+</html>

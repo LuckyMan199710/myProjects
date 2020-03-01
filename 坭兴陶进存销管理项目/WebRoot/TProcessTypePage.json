@@ -1,0 +1,18 @@
+[
+	{
+		"TProcessTypeId":"1",
+		"TProcessTypeName":"雕塑"
+	},
+	{
+		"TProcessTypeId":"2",
+		"TProcessTypeName":"炼制"
+	},
+	{
+		"TProcessTypeId":"3",
+		"TProcessTypeName":"打磨"
+	},
+	{
+		"TProcessTypeId":"4",
+		"TProcessTypeName":"雕塑4"
+	}
+]

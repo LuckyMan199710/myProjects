@@ -1,0 +1,35 @@
+[
+	{
+		"processTypeId" : "1",
+		"processTypeName" : "荷花",
+		"processStyle" : "1",
+		"processStyleName" : "水墨",
+		"processType" : "1",
+		"processTypeKey" : "雕塑",
+		"processTypePic" : "img/a1.jpg"
+	},{
+		"processTypeId" : "2",
+		"processTypeName" : "山水画",
+		"processStyle" : "2",
+		"processStyleName" : "山水",
+		"processType" : "2",
+		"processTypeKey" : "炼制",
+		"processTypePic" : "img/logo4.png"
+	},{
+		"processTypeId" : "3",
+		"processTypeName" : "蝴蝶",
+		"processStyle" : "3",
+		"processStyleName" : "水墨2",
+		"processType" : "3",
+		"processTypeKey" : "打磨",
+		"processTypePic" : "img/a1.jpg"
+	},{
+		"processTypeId" : "4",
+		"processTypeName" : "建筑",
+		"processStyle" : "2",
+		"processStyleName" : "山水",
+		"processType" : "2",
+		"processTypeKey" : "炼制",
+		"processTypePic" : "img/a1.jpg"
+	}
+]

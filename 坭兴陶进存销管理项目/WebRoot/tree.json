@@ -1,0 +1,46 @@
+[
+	{
+		"text":"企业模块",
+		"state":"closed",
+		"iconCls":"icon-large-chart",
+		"children":[
+			{
+			    "text":"企业管理"
+			},
+			{
+			    
+			"text":"员工管理"
+			
+			},
+			{
+			    
+			"text":"部门管理"
+			
+			}
+		]
+	},
+	{
+		"text":"仓库模块",
+		"state":"closed",
+		"iconCls":"icon-save",
+		"children":[
+		{"text":"仓库信息"},
+		{"text":"仓库管理"},
+		{"text":"材料管理"},
+		{"text":"商品管理"},
+		{"text":"类型管理"},
+		{"text":"半成品管理"}
+		]
+	},
+	{
+		"text":"商品模块",
+		"state":"closed",
+		"iconCls":"icon-save",
+		"children":[
+		{"text":"入库管理"},
+		{"text":"库存管理"},
+		{"text":"材料出库管理"},
+		{"text":"半成品出库管理"}
+		]
+	}
+]

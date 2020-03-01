@@ -1,0 +1,58 @@
+html,body{
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px !important;
+}
+
+/* 包含label的div的样式 */
+.whpDivCss{
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+
+/* label标签的样式 */
+.whpLableCss{
+	display:inline-block;
+	width: 94px;
+	text-align: center;
+	font-size: 12px !important;
+}
+#whpInputNewsBox{
+	margin-left: 25px;
+}
+
+/* 更新界面地址输入栏的样式 */
+.whpSpeInput{
+	width: 878px;
+	height: 25px ;
+	line-height: 25px;
+	box-sizing: border-box;
+	padding-left: 5px;
+	border:1px solid #95b8e7 !important;
+	background-color: #fff3f3;
+	border-radius: 5px; 
+	font-size: 12px !important;
+	margin-bottom: 20px;
+}
+
+.whpLabelCss{
+	margin-left: 10px;
+}
+
+/* 仓库地址的样式 */
+.specailInputCss2{
+	width: 1292px;
+}
+
+/* 添加界面带星星的表示必输入 */
+.whpStarCss{
+		background: url("../img/star.png") no-repeat;
+		background-position: 8px center;
+}
+
+/* 更新界面带星星的输入label样式 */
+.uwhpStarCss{
+		background: url("../img/star.png") no-repeat;
+		background-position: 4px center;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>半成品页面</title>
+</head>
+<body>
+<script type="text/javascript" src="js/TSemifinishedGoods.js"></script>
+	
+<!-- 材料管理添加页面 -->
+	<form id="tgNewsBox" method="get" action="#">
+  			<div id="tgnavbox">
+			<a class="easyui-linkbutton" id="tgAddBT">新增</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="tgDeleteBT">删除</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="tgUpdateBT">修改</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="tgSearchBT">查询</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="tgClearBT">清空</a><span class="column"></span>
+<!-- 		<a class="easyui-linkbutton" id="whpOutput">导出</a><span class="column"></span> -->
+			<a class="easyui-linkbutton" id="tgCallbackBt">返回</a>
+			</div>
+			
+			<div id="tgInputNewsBox">
+				<div class="whpDivCss">
+					<label class="whpLableCss tsgStarLabel">半成品名称:</label><input name="sgName" id="sgName" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss tsgStarLabelUnit">单位名称:</label><input name="sgUnit" id="sgUnit" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss">半成品型号:</label><input name="sgModel" id="sgModel" class="dmInputCss tsSpecificationCss">
+				</div>
+				<div class="whpDivCss">
+					<label class="whpLableCss">半成品规格:</label><input name="sgSpecification" id="sgSpecification" class="dmInputCss sgInputCss">
+				</div>
+				<div class="whpDivCss materialsDiv">
+					<label class="whpLableCss mtpLabelScss">半成品属性:</label><textarea class="tsTextAreaCss" name="sgAttribute" id="sgAttribute" autocomplete="off" disableautocomplete></textarea>
+				</div>
+			</div>
+			
+	</form>	
+	
+	<!-- 显示仓库信息 -->
+	<table id="distgNews"></table>
+	
+	<!-- 查询界面 -->
+	<form id="tgSearchPgae" method="get" action="#">
+		<div class="tgpSearchBox">
+				<label class="dmLableCss">材料名称:</label><input name="tgSearchSgName" id="tgSearchSgName" class="dmInputCss" autocomplete="off" disableautocomplete>
+  				<label class="dmLableCss">单位名称:</label><input name="tgSearchsgUnit" id="tgSearchsgUnit" class="dmInputCss" autocomplete="off" disableautocomplete>
+  		</div>
+	</form>
+	
+	<!-- 更新界面 -->
+	<form method="get" action="#" id="tgUpdateNewsBox">
+  			<div class="utgRowCss tgAddDistance">
+  				<label class="dmLableCss utsgStarLabel">半成品名称:</label><input name="tgUpdateSgName" id="tgUpdateSgName" class="dmInputCss" autocomplete="off" disableautocomplete>
+  				<label class="dmLableCss tsgStarLabel">单位名称:</label><input name="tgUpdateSgUnit" id="tgUpdateSgUnit" class="dmInputCss" autocomplete="off" disableautocomplete>
+				<label class="dmLableCss">半成品型号:</label><input name="tgUpdateSgModel" id="tgUpdateSgModel" class="dmInputCss">
+  			</div>
+  			<div class="utgRowCss">
+  				<label class="dmLableCss">半成品规格:</label><input name="tgUpdateSgSpecification" id="tgUpdateSgSpecification" class="dmInputCss tgSpecificationCss">
+  			</div>
+  			<div class="utgRowCss">
+					<label class="dmLableCss">半成品属性:</label><textarea name="tgupdateSgAttribute" id="tgupdateSgAttribute" class="usepcialInputCss tgSpecialInput" autocomplete="off" disableautocomplete></textarea>
+			</div>
+  	</form>
+  	
+  	<!-- 查看界面 -->
+  	<div id="tgSeeDetailPage">
+  		<div id="tgmeterialNewsMore">
+  			<table id="registerNewsBox">
+	  				<tr>
+	  					<td class="tipNameCss">半成品名称</td>
+	  					<td id="tgDisSgName"  class="inpurCommon"  colspan="1">124545</td>
+	  					<td class="tipNameCss" style="width:60px">单位名称</td>
+	  					<td id="tgDisSgUnit"  class="inpurCommon"  colspan="3">电子优先</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">半成品型号</td>
+	  					<td id="tgDisSgModel"  class="inpurCommon" colspan="5">124545</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">半成品规格</td>
+	  					<td id="tgDisSgSpecification"  class="inpurCommon" colspan="5">124545</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss metrialTdNameCss">半成品属性</td>
+	  					<td  class="inpurCommon metrialTdValueCss" colspan="5">
+	  					<div id="tgDisSgAttribute">测试测试</div>
+	  					</td>
+	  				</tr>
+	  			</table>
+  		</div>
+  		
+  		<div>
+  			
+  		</div>
+  	</div>
+  	
+  	
+  		<!-- 右键弹出界面 -->
+  	<div id=tgMenu  class="easyui-menu">
+    	<div id="tgUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="tgDeletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+    	<div id="tgSeeMenu" data-options="iconCls:'icon-search'">查看</div>
+    </div>  
+	
+</body>
+</html>

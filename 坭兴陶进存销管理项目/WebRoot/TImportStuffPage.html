@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>入库界面</title>
+</head>
+<body>
+<script type="text/javascript" src="js/TImportStuffPage.js"></script>
+			
+	<div id="TSFNavBox">
+		<div id="navboxs">
+		<a class="easyui-linkbutton" id="TSFAddBT">新增</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TSFDeleteBT">作废</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TSFUpdateBT">修改</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TSFSearchBT">查询</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TSFallocationBT">调拨</a><span class="column afterCss"></span>
+		<a class="easyui-linkbutton" id="TSFoutinBT">导入</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TSFoutputBT">导出</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TSFClearBT">清空</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TSFcallbackBT">返回</a><span class="column afterCss"></span>		 
+<!-- 		<div id="selectCondition"><label class="labelCss starlabelCss">筛选:</label><input type="text" id="initCondition" name="initCondition" class="inputCss"></div> -->
+		</div>
+	</div>
+		<!-- 显示企业信息 -->
+  	<table id="TSFDisRowsBox"></table>
+  	
+  	<!-- 调拨界面 -->
+  	<form action="#" method="get" id="TSFallocationBox">
+  	 <label class="labelCss starlabelCss">所入仓库:</label><input type="text" name="tsfUspdWarehouseId" id="tsfUspdWarehouseId" class="inputCss" autocomplete="off" disableautocomplete> 
+  	</form>
+  	
+  	<!-- 更新界面 -->
+  	<form action="#" method="get" id="TSFUpdateBox">
+  			<div class="row TSFFirstDivCss">
+  					<label class="labelCss starlabelCss">商品名称:</label><input type="text" name="tsfUidOfGoods" id="tsfUidOfGoods" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">公司名称:</label><input type="text" name="tsfUspdCompanyId" id="tsfUspdCompanyId" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">商品类别:</label><input type="text" name="tsfUpType" id="tsfUpType" class="inputCss" autocomplete="off" disableautocomplete>
+  					<!-- <label class="labelCss starlabelCss">加工内容:</label><input type="text" name="tsfUProcessId" id="tsfUProcessId" class="inputCss"  autocomplete="off" disableautocomplete> -->
+  					<!-- <label class="labelCss starlabelCss">装饰内容:</label><input type="text" name="tsfUDecorateId" id="tsfUDecorateId" class="inputCss"  autocomplete="off" disableautocomplete> 
+  					<label class="labelCss starlabelCss">画面内容:</label><input type="text" name="tsfUAppearance" id="tsfUAppearance" class="inputCss"  autocomplete="off" disableautocomplete> -->
+					<label class="labelCss starlabelCss">商品二维码:</label><img alt="" src="" id="updaetQrcode" class="ipsGoodsQrcodeUpdateCss">
+  			</div>
+  			<div class="row">
+  			<label class="labelCss starlabelCss">商品器型:</label><input type="text" name="tsfUshape" id="tsfUshape" class="inputCss" autocomplete="off" disableautocomplete>
+  			<label class="labelCss starlabelCss">装饰内容:</label><input type="text" name="tsfUDecorateId" id="tsfUDecorateId" class="inputCss"  autocomplete="off" disableautocomplete> 
+  			<label class="labelCss starlabelCss">画面内容:</label><input type="text" name="tsfUAppearance" id="tsfUAppearance" class="inputCss"  autocomplete="off" disableautocomplete>
+  			</div>
+  			<div class="row">					
+  					<label class="labelCss starlabelCss">成&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本:</label><input type="text" name="tsfUcost" id="tsfUcost" class="inputCss" onkeyup="value=value.replace(/[^\d.]/g,'')" autocomplete="off" disableautocomplete>
+  					<!-- <label class="labelCss starlabelCss">所入仓库:</label><input type="text" name="tsfUspdWarehouseId" id="tsfUspdWarehouseId" class="inputCss" autocomplete="off" disableautocomplete > -->
+  					<label class="labelCss starlabelCss">开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销:</label><input type="text" name="tsfUspending"  id="tsfUspending"   class="inputCss" onkeyup="value=value.replace(/[^\d.]/g,'')">
+  					<label class="labelCss starlabelCss">工艺师:</label><input type="text" name="tsfUCraftsmanId" id="tsfUCraftsmanId" class="inputCss" autocomplete="off" disableautocomplete >
+  				   <input id="forming" type="checkbox" value="成型" name="check">成型
+                   <input id="decorate" type="checkbox" value="装饰" name="check">装饰
+                   <input id="fire" type="checkbox" value="烧制" name="check">烧制
+                   <input id="polish" type="checkbox" value="打磨" name="check">打磨 
+  			</div>
+  			
+  			<div class="row">
+  					<label class="labelCss starlabelCss">经&nbsp;&nbsp;办&nbsp;&nbsp;人:</label><input type="text" name="tsfUegOperator" id="tsfUegOperator" class="inputCss"  autocomplete="off" disableautocomplete >
+  					<label class="labelCss ">监&nbsp;&nbsp;制&nbsp;&nbsp;人:</label><input type="text" name="tsfUmonitor" id="tsfUmonitor" class="inputCss" autocomplete="off" disableautocomplete>
+  			</div>
+  			<div class="row">
+  					<label class="labelCss starlabelCss">相关系数:</label><input type="text" name="tsfUQuotietyValue"  id="tsfUQuotietyValue"   class="inputCss" onkeyup="value=value.replace(/[^\d.]/g,'')">
+  					<label class="labelCss ">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</label><input type="text" name="tsfUproductMeno"  id="tsfUproductMeno"   class="inputCss" autocomplete="off" disableautocomplete >
+  			</div>
+  			
+  			<div class="importGoodsImgBoxCss" id="tispUpdateImgBox">
+						<div id="tispUpdateUplaodBt" class="essUpdateUplaodBt">
+							<div class="plus">+</div>
+							<div class="addImgText">添加图片</div>
+							<div class="essTips">(最多15张)</div>	
+						</div>
+			</div>
+  	</form>
+  	    		<!-- 更新界面中图片浏览的窗口 -->
+				<div id="tispUpdateDisplayBigImg" class="tispDisplayBigImg">
+							<span class="closeImgDialog" id="tispUpdateCloseImgDialog" title="关闭"><img alt="" src="img/dDel.png"></span>
+							<div id="tispuCount" class="seeDetialCount"><span id="tispUpdateNowIndex" class="nowIndex"></span><span class="italicCss">/</span><span id="tispUpdateAllCount" class="allCount"></span></div>
+							<div id="tispUpdateTheTureImgOutBox"  class="theTureImgOutBox">
+								<img alt="" src="img/a1.jpg" id="tispUpdateTheTureImg" class="theTureImg">
+							</div>
+							<span id="tispUpdateUpImage" class="changeImgBt leftBtCss" title="上一张">&lt;</span><span id="tispUpdateNextImage" class="changeImgBt rightBtCss" title="下一张">&gt;</span>
+			</div>
+			<!-- 查看详情中图片浏览的窗口 -->
+			<div id="tispSeeDetailDisplayBigImg" class="tispDisplayBigImg">
+							<span class="closeImgDialog" id="tispSeeDetailCloseImgDialog" title="关闭"><img alt="" src="img/dDel.png"></span>
+							<div id="tispSeeDetialCount" class="seeDetialCount"><span id="tispSeedetialnowIndex" class="nowIndex"></span><span class="italicCss">/</span><span id="tispSeedetialAllCount" class="allCount"></span></div>
+							<div id="tispSeeDetailTheTureImgOutBox"  class="theTureImgOutBox">
+								<img alt="" src="img/a1.jpg" id="tispSeeDetailTheTureImg" class="theTureImg">
+							</div>
+						  <span id="tispSeeDetailUpImage" class="changeImgBt leftBtCss" title="上一张">&lt;</span><span id="tispSeeDetailNextImage" class="changeImgBt rightBtCss" title="下一张">&gt;</span>
+			</div>
+			<!-- 添加界面中图片浏览的窗口 -->
+				<div id="tispDisplayBigImg" class="tispDisplayBigImg">
+							<span class="closeImgDialog" id="tispCloseImgDialog" title="关闭"><img alt="" src="img/dDel.png"></span>
+							<div id="tispAddseeDetialCount" class="seeDetialCount"><span id="tispAddNowIndex" class="nowIndex"></span><span class="italicCss">/</span><span id="tispAddAllCount" class="allCount"></span></div>
+							<div id="tispAddtheTureImgOutBox"  class="theTureImgOutBox">
+								<img alt="" src="img/a1.jpg" id="tispAddtheTureImg" class="theTureImg">
+							</div>
+							<span id="tispAddupImage" class="changeImgBt leftBtCss" title="上一张">&lt;</span><span id="tispAddnextImage" class="changeImgBt rightBtCss" title="下一张">&gt;</span>
+				</div>
+  	<!-- 查询界面 -->
+  	<form action="#" method="get" id="TSFSearchBox">
+  			<div class="TSFrow TSFFirstDivCss">
+  					<label class="labelCss">商&nbsp;品&nbsp;名&nbsp;称:</label><input type="text" name="tsfSidOfGoods" id="tsfSidOfGoods" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">商品成本始:</label><input type="text" name="tsfSgoodsCostStart" id="tsfSgoodsCostStart" class="inputCss" onkeyup="value=value.replace(/[^\d.]/g,'')" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">商品成本末:</label><input type="text" name="tsfSgoodsCostEnd" id="tsfSgoodsCostEnd" class="inputCss" onkeyup="value=value.replace(/[^\d.]/g,'')" autocomplete="off" disableautocomplete>
+  			</div>
+  			
+  			<div class="TSFrow">
+  			        <label class="labelCss">商&nbsp;品&nbsp;编&nbsp;号:</label><input type="text" name="gdsid" id="gdsid" class="inputCss" autocomplete="off" disableautocomplete>
+  					<!-- <label class="labelCss">商品开销始:</label><input type="text" name="tsfSgoodsSpengingStart" id="tsfSgoodsSpengingStart" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  					<label class="labelCss">商品开销末:</label><input type="text" name="tsfSgoodsSpengingEnd" id="tsfSgoodsSpengingEnd" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')"> -->
+  					<label class="labelCss">商品类别:</label><input name="tsfSpType" id="tsfSpType" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">商品器型:</label><input name="tsfSshape" id="tsfSshape" class="inputCss" autocomplete="off" disableautocomplete>
+  			</div>
+  			
+  			<div class="TSFrow">
+  					<label class="labelCss">所&nbsp;入&nbsp;仓&nbsp;库:</label><input type="text" name="tsfSspdWarehouseId" id="tsfSspdWarehouseId" class="inputCss" disableautocomplete>
+  					<label class="labelCss">零&nbsp;售&nbsp;价&nbsp;始:</label><input type="text" name="tsfSgoodsQuotietyValueStart"  id="tsfSgoodsQuotietyValueStart"   class="inputCss" onkeyup="value=value.replace(/[^\d.]/g,'')">
+  					<label class="labelCss">零&nbsp;售&nbsp;价&nbsp;末:</label><input type="text" name="tsfSgoodsQuotietyValueEnd"  id="tsfSgoodsQuotietyValueEnd"   class="inputCss" onkeyup="value=value.replace(/[^\d.]/g,'')">
+  			</div>
+  			<div class="TSFrow">
+  					<label class="labelCss">经&nbsp;&nbsp;&nbsp;办&nbsp;&nbsp;&nbsp;人:</label><input type="text" name="tsfSigOperator" id="tsfSigOperator" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">入库时间始:</label><input type="text" name="tsfSIimportDateStart" id="tsfSIimportDateStart" class="inputCss"  autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  					<label class="labelCss">入库时间末:</label><input type="text" name="tsfSIimportDateEnd" id="tsfSIimportDateEnd" class="inputCss"  autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  			</div>
+  			
+  			<div class="TSFrow">
+  			<label class="labelCss">装&nbsp;饰&nbsp;内&nbsp;容:</label><input type="text" name="tsfSDecorateId" id="tsfSDecorateId" class="inputCss"  autocomplete="off" disableautocomplete >
+  					<!-- <label class="labelCss">加&nbsp;工&nbsp;内&nbsp;容:</label><input type="text" name="tsfSProcessId" id="tsfSProcessId" class="inputCss"  autocomplete="off" disableautocomplete > -->
+  					<label class="labelCss">画&nbsp;面&nbsp;内&nbsp;容:</label><input type="text" name="tsfSAppearance" id="tsfSAppearance" class="inputCss"  autocomplete="off" disableautocomplete >
+  					<label class="labelCss">工&nbsp;&nbsp;&nbsp;艺&nbsp;&nbsp;&nbsp;师:</label><input type="text" name="tsfSCraftsmanId" id="tsfSCraftsmanId" class="inputCss"  autocomplete="off" disableautocomplete >
+  			</div>
+  			<div class="TSFrow">	
+  			<label class="labelCss">单位名称:</label><input  name="tsfSUnit" id="tsfSUnit"  class="inputCss" autocomplete="off" disableautocomplete>
+  			<label class="labelCss">公&nbsp;司&nbsp;名&nbsp;称:</label><input type="text" name="tsfScompanyId" id="tsfScompanyId" class="inputCss"  autocomplete="off" disableautocomplete>
+  			</div>
+  	</form>
+  	<!-- 入库界面 -->
+  	   <form action="" method="POST" id="TSFoutBox">			<!-- TSF时TImportStuffPage的缩写 -->
+  				<div class="row TSFBottomRowCss">
+  					<label class="labelCss starlabelCss TimAddDIstanceLabelSoe">商品名称:</label><input type="text" name="idOfGoods" id="idOfGoods" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">公司名称:</label><input type="text" name="tStoreCompanyId" id="tStoreCompanyId" class="inputCss"  autocomplete="off" disableautocomplete>
+  					<label class="labelCss ">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</label><input type="text" name="productMeno"  id="productMeno"   class="inputCss" autocomplete="off" disableautocomplete >
+  					<label class="labelCss starlabelCss">商品二维码:</label><img alt="" src="" id="qrcode" class="ipsGoodsQrcodeCss">
+  				</div>
+  				
+  				<div class="row TSFBottomRowCss">
+  					<!--  <label class="labelCss starlabelCss TimAddDIstanceLabelSoe">加工内容:</label><input type="text" name="ProcessId"  id="ProcessId"   class="inputCss" disableautocomplete>  -->
+  					<label class="labelCss starlabelCss TimAddDIstanceLabelSoe">装饰内容:</label><input type="text" name="DecorateId" id="DecorateId" class="inputCss"  autocomplete="off" disableautocomplete> 
+  					<label class="labelCss starlabelCss">画面内容:</label><input type="text" name="Appearance" id="Appearance" class="inputCss"  autocomplete="off" disableautocomplete>
+  					<label class="labelCss starlabelCss">工&nbsp;&nbsp;艺&nbsp;师:</label><input type="text" name="CraftsmanId" id="CraftsmanId" class="inputCss"  autocomplete="off" disableautocomplete>
+  				   <input  type="checkbox" value="成型" name="check">成型
+                   <input type="checkbox" value="装饰" name="check">装饰
+                   <input type="checkbox" value="烧制" name="check">烧制
+                   <input type="checkbox" value="打磨" name="check">打磨
+  				</div>
+  				
+  				<div class="row TSFBottomRowCss">
+  					<label class="labelCss starlabelCss TimAddDIstanceLabelSoe">所入仓库:</label><input type="text" name="spdWarehouseId" id="spdWarehouseId" class="inputCss" disableautocomplete>
+  					<label class="labelCss starlabelCss">经&nbsp;&nbsp;办&nbsp;人:</label><input type="text" name="igOperator"  id="igOperator"   class="inputCss"  disableautocomplete>
+  					<label class="labelCss ">监&nbsp;&nbsp;制&nbsp;人:</label><input type="text" name="monitor" id="monitor" class="inputCss" autocomplete="off" disableautocomplete >
+  					
+  				</div>
+  				
+  				<div id="TSFshowPriceRow" class="row TSFBottomRowCss">
+  					<label class="labelCss  starlabelCss TimAddDIstanceLabelSoe">开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销:</label><input type="text" name="spending" id="spending" class="inputCss" onkeyup="value=value.replace(/[^\d.]/g,'')">
+  					<label class="labelCss starlabelCss">相关系数:</label><input type="text" name="goodsQuotietyValue" id="goodsQuotietyValue" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  					<label class="labelCss">成&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本:</label><input type="text" name="cost" id="cost" class="inputCss aa"  autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  					<label class="labelCss">外购成本:</label><input type="text" name="Othercost" id="Othercost" class="inputCss aa"  autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  					<input type="hidden" name="price" id="price">
+  				</div>
+  				
+  				<div class="row TSFBottomRowCss">
+  					<!-- <label class="labelCss  starlabelCss  TimAddDIstanceLabelSoe">商品名称:</label><input name="gdsName" id="gdsName" class="inputCss" autocomplete="off" disableautocomplete> -->
+  					<label class="labelCss TimAddDIstanceLabelSoe">商品器型:</label><input name="shape" id="shape" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">商品类别:</label><input name="pType" id="pType" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss  starlabelCss">单位名称:</label><input  name="Unit" id="Unit"  class="inputCss" autocomplete="off" disableautocomplete>
+  				</div> 
+  				
+  				<div class="row TSFBottomRowCss">
+  					<label class="labelCss starlabelCss TimAddDIstanceLabelSoe">是否手工:</label><input name="isManual" id="isManual" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">商品规格:</label><input name="tgsUpdateGdsSpecification" id="tgsUpdateGdsSpecification" class="inputCss" autocomplete="off" disableautocomplete>
+  					<!-- <label class="labelCss starlabelCss">商品价格:</label><input name="tgsUpdateGdsPrice" id="tgsUpdateGdsPrice" class="inputCss" autocomplete="off" disableautocomplete> -->
+  				</div>
+  				<div class="row TSFBottomRowCss">
+					<label class="labelCss TimAddDIstanceLabelSoe mtpLabelScss">商品属性:</label><textarea name="tgsUpdateGdsAttribute" id="tgsUpdateGdsAttribute" class="usepcialInputCss tgSpecialInput" autocomplete="off" disableautocomplete></textarea>
+			</div>
+  			<!-- 存放图片的最外层盒子 -->
+  				<div class="tsgfImgBox" id="tispImgBox">
+					<div id="tispUplaodBt" class="essUplaodBt">
+							<div class="plus">+</div>
+							<div class="addImgText">添加图片</div>
+							<div class="essTips">(最多15张)</div>
+					</div>
+				</div>
+  		</form>		
+  	<form action="" method="POST" id="TSFoutinBox" enctype="multipart/form-data">
+  	      <input  type="file" name="file" style="margin-top:20px;margin-left:10px;">
+  	</form>				
+  	<!-- 查看详情界面 -->
+  	<div id="tsfSeeDetailPage">
+  		<div id="tsfOutBox" >
+  			<!-- 入库信息 -->
+  			<div class="tsfheadLineBox">
+		  			<label class="tsoreTextCss">商品信息</label>
+		  			<div class="tsfline"><span class="tsfLightColorLine"></span><span class="tsfGrayColorLine tispLineCss"></span></div>
+	  		</div>
+  			<table id="tsfGoodsTable" class="tispOutBoxCss commonsTablesCss">
+	  				<tr>
+	  					<td class="tsfLCss">商品名称</td>
+	  					<td id="tsfSeeGoodName"  class="inpurCommon imGoodsCss"  colspan="1">暂无</td>
+	  					<td class="tsfLCss">商品型号</td>
+	  					<td id="tsfSeeGoodModel"  class="inpurCommon imGoodsCss"  colspan="3">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">商品器型</td>
+	  					<td id="tsfSeeGoodShape"  class="inpurCommon imGoodsCss"  colspan="1">暂无</td>
+	  					<td class="tsfLCss" style="width:60px">商品类别</td>
+	  					<td id="tsfSeeGoodPtype"  class="inpurCommon imGoodsCss"  colspan="3">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">商品单位</td>
+	  					<td id="tsfSeeGoodUnit"  class="inpurCommon imGoodsCss"  colspan="1">暂无</td>
+	  					<td class="tsfLCss" style="width:60px">是否手工</td>
+	  					<td id="tsfSeeGoodIsManual"  class="inpurCommon imGoodsCss"  colspan="3">暂无</td>
+	  				</tr>
+	  				
+	  				<tr>
+	  					<td class="tsfLCss">出售价格</td>
+	  					<td id="tsfSeeGoodPrice"  class="inpurCommon imGoodsCss"  colspan="1">暂无</td>
+	  					<td class="tsfLCss" style="width:60px">入库时间</td>
+	  					<td id="tsfSeeGoodImportTime"  class="inpurCommon imGoodsCss"  colspan="3">暂无</td>
+	  				</tr>
+	  				
+	  				<tr>
+	  					<td class="tsfLCss">商品规格</td>
+	  					<td id="tsfSeeGdsSpecification"  class="inpurCommon imGoodsCss"  colspan="10">暂无</td>
+	  				</tr>
+	  				
+	  				<tr>
+	  					<td class="tsfLCss">商品属性</td>
+	  					<td id="tsfSeeGoodgdsAttribute"  class="inpurCommon imGoodsCss"  colspan="10">暂无</td>
+	  				</tr>
+	  			</table>
+	  			
+	  		<div class="tsfheadLineBox">
+		  			<label class="tsoreTextCss">入库信息</label>
+		  			<div class="tsfline"><span class="tsfLightColorLine"></span><span class="tsfGrayColorLine tispLineCss"></span></div>
+	  		</div>
+  			<table id="tsfImportTable" class="tispOutBoxCss commonsTablesCss">
+	  				<tr>
+	  					<td class="tsfLCss">供货商</td>
+	  					<td id="tsfSeeGoodCompany"  class="inpurCommon imGoodsCss"  colspan="1">暂无</td>
+	  					<td class="tsfLCss">装饰内容</td>
+	  					<td id="tsfSeeGoodDecorate"  class="inpurCommon imGoodsCss"  colspan="3">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">画面内容</td>
+	  					<td id="tsfSeeGoodAppearance"  class="inpurCommon imGoodsCss"  colspan="1">暂无</td>
+	  					 <td class="tsfLCss">商品状态</td>
+	  					<td id="tsfSeeGoodStatus"  class="inpurCommon imGoodsCss"  colspan="3">暂无</td> 
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">技术人员</td>
+	  					<td id="tsfSeeGoodGraftMan"  class="inpurCommon imGoodsCss"  colspan="1">暂无</td>
+	  					<td class="tsfLCss" style="width:60px">加工成本</td>
+	  					<td id="tsfSeeGoodCost"  class="inpurCommon imGoodsCss"  colspan="3">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">所入仓库</td>
+	  					<td id="tsfSeeGoodWarehouse"  class="inpurCommon imGoodsCss"  colspan="1">暂无</td>
+	  					<td class="tsfLCss" style="width:60px">经办人</td>
+	  					<td id="tsfSeeGoodOperator"  class="inpurCommon imGoodsCss"  colspan="3">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">监制人</td>
+	  					<td id="tsfSeeGoodMonitor"  class="inpurCommon imGoodsCss"  colspan="1">暂无</td>
+	  					<td class="tsfLCss" style="width:60px">入库开销</td>
+	  					<td id="tsfSeeGoodSpening"  class="inpurCommon imGoodsCss"  colspan="3">暂无</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">相关系数</td>
+	  					<td id="tsfSeeQuotiety"  class="inpurCommon imGoodsCss"  colspan="1">暂无</td>
+	  					<td class="tsfLCss" style="width:60px">商品二维码</td>
+	  					<td id="tsfSeeGoodQcode"  class="inpurCommon imGoodsCss"  colspan="3"><span id="tsfSeeTrueImg" class="tsfSeeTrueImg">暂无</span></td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">备注</td>
+	  					<td id="tsfSeeGoodMemo"  class="inpurCommon"  colspan="10">暂无</td>
+	  				</tr>
+	  			</table>
+	  		
+	  		<!-- 图片信息 -->
+  			<div class="tsfheadLineBox">
+		  			<label class="tsoreTextCss">图片信息</label>
+		  			<div class="tsfline"><span class="tsfLightColorLine"></span><span class="tsfGrayColorLine tispLineCss"></span></div>
+		  			
+		  			<div id="tispDetailImgBox" class="detailImgBox">
+		  			</div>
+	  		</div>
+	  		
+	  		<!-- 商品二维码 -->
+	  		<img alt="" src="" id="tsfSessGoodsImgBox" class="tsfSessGoodsImgBox">
+	  	</div>
+  	</div>
+
+			
+  	<!-- 鼠标移动到图片栏显相应的图片 -->
+	<div id="TimportPage" class="moveImgDisImg">
+  		<img alt="" src="" id="TimportGoodsRowImg" class="theTrueDisImg">
+	</div>
+	
+	<!-- 右键弹出界面 -->
+  	<div id=TSFMenu  class="easyui-menu">
+    	<div id="TSFUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="TSFDeletMenu" data-options="iconCls:'icon-cancel'">作废</div>
+    	<div id="TSFSeeMenu" data-options="iconCls:'icon-search'">查看</div>
+    </div> 
+      	  
+    <script type="text/javascript" src="js/TImportStuffPageImgLoad.js"></script>
+</body>
+</html>

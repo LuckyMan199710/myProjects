@@ -1,0 +1,40 @@
+{
+		"total" : "3",
+		"rows" : 
+		[
+			{
+				"dicNum" : "1",
+				"dicMtlValue" : "12.4",
+				"dicEmkValue" : "11",
+				"dicCarvingValue" : "55",
+				"dicBurningValue" : "20",
+				"dicPolishValue" : "45",
+				"dicPackingValue" : "22",
+				"dicLogisticsValue" :"12",
+				"dicTotalValue" : "123"
+			},
+			{
+				"dicNum" : "2",
+				"dicMtlValue" : "2.4",
+				"dicEmkValue" : "1",
+				"dicCarvingValue" : "552",
+				"dicBurningValue" : "0",
+				"dicPolishValue" : "5",
+				"dicPackingValue" : "22",
+				"dicLogisticsValue" :"128",
+				"dicTotalValue" : "1238"
+			},
+			{
+				"dicNum" : "2",
+				"dicMtlValue" : "2.4",
+				"dicEmkValue" : "1",
+				"dicCarvingValue" : "552",
+				"dicBurningValue" : "210",
+				"dicPolishValue" : "415",
+				"dicPackingValue" : "212",
+				"dicLogisticsValue" :"12",
+				"dicTotalValue" : "123"
+			}
+		],
+		"footer" : [{"dicTotalValue" : "总计:6000"}]
+}

@@ -1,0 +1,27 @@
+[
+	{
+		"warehouseId" : "1",
+		"warehouseName" : "钦州坭兴陶材料管理仓库",
+		"warehouseType" : "1",
+		"warehouseTypeName" : "材料仓",
+		"storeAmout" : "80",
+		"warehouseAddress" : "钦州北部湾大学18号"
+		
+	},
+	{
+		"warehouseId" : "2",
+		"warehouseName" : "钦州坭兴陶半成品管理仓库",
+		"warehouseType" : "2",
+		"warehouseTypeName" : "半成品仓",
+		"storeAmout" : "60",
+		"warehouseAddress" : "钦州北部湾大学18号"
+	},
+	{
+		"warehouseId" : "3",
+		"warehouseName" : "钦州坭兴陶成品管理仓库",
+		"warehouseType" : "3",
+		"storeAmout" : "30",
+		"warehouseTypeName" : "成品仓",
+		"warehouseAddress" : "钦州北部湾大学18号"
+	}
+]

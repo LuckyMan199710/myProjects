@@ -1,0 +1,50 @@
+[
+	{
+		"mwhId" : "1",
+		"employeeId" : "121212",
+		"wareHouseId" : "45454",
+		"mwhStatus" : "0",
+		"warehouseName" : "广西钦州坭兴陶仓库",
+		"warehouseType" : "材料仓",
+		"warehouseAddress" : "钦州北部湾大学18121号",
+		"empName" : "李某某",
+		"department" : "秘书部",
+		"empTelphone" : "187545445",
+		"empEmail" : "145454@qq.com",
+		"empPostCode" : "121221",
+		"role" : "普通员工",
+		"empAddress" : "钦州北部湾大学18121号"
+	},
+	{
+		"mwhId" : "2",
+		"employeeId" : "121212",
+		"wareHouseId" : "45454",
+		"mwhStatus" : "1",
+		"warehouseName" : "广西钦州坭兴陶仓库",
+		"warehouseType" : "成品仓",
+		"warehouseAddress" : "钦州北部湾大学18121号",
+		"empName" : "何某某",
+		"department" : "销售部",
+		"empTelphone" : "187545445",
+		"empEmail" : "145454@qq.com",
+		"empPostCode" : "121221",
+		"role" : "超级管理员",
+		"empAddress" : "钦州北部湾大学18121号"
+	},
+	{
+		"mwhId" : "3",
+		"employeeId" : "1asd212",
+		"wareHouseId" : "454554",
+		"mwhStatus" : "0",
+		"warehouseName" : "广西灵山坭兴陶仓库",
+		"warehouseType" : "半成品仓",
+		"warehouseAddress" : "钦州北部湾大学18121号",
+		"empName" : "两某某",
+		"department" : "秘书部",
+		"empTelphone" : "187545445",
+		"empEmail" : "145454@qq.com",
+		"empPostCode" : "121221",
+		"role" : "超级管理员",
+		"empAddress" : "钦州北部湾大学18121号"
+	}
+]

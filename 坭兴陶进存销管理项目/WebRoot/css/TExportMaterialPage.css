@@ -1,0 +1,57 @@
+/* 添加界面的样式 */
+html,body{
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+}
+
+.TemDivCss{
+	margin-left: 16px !important;
+}
+
+/* 更新界面样式 */
+.temImgCss{
+			width: 230px;
+			height: 25px;
+			line-height: 25px;
+			box-sizing: border-box;
+			padding-left: 5px;
+			border:1px solid #95b8e7 !important;
+			border-radius: 5px; 
+			background-color: #fff3f3;
+			box-sizing: border-box !important;
+			line-height: 25px !important;
+	}
+	
+/* 图片按钮样式*/
+	.temBt{
+		text-align: left;
+		font-size: 14px;
+		color:#4f4f4f;
+		background: url("../img/imgBt.png") 7.5px center no-repeat;
+		line-height: 25px !important;
+		box-sizing:border-box;
+		vertical-align: middle !important;
+	}
+
+/* 查看详情界面信息 */
+.temDetialInputCss{
+	width: 130px;
+}
+.temDisplayCss{
+	position: relative;
+    width: 1445px;
+    height: 800px;
+    background: #ccc;
+    display: none;
+    z-index: 9999999999999;
+    background: rgba(195, 219, 233, 0.8);
+    vertical-align: middle;
+    margin-left: auto;
+	margin-top: -243px ;
+    margin-left: -2px ;
+}
+.temTableLCss{
+	margin-left: 39px !important;
+	width: 908px !important;
+}

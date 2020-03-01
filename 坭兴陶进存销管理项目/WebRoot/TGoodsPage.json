@@ -1,0 +1,43 @@
+[
+	{
+		"gdsId" : "1",
+		"gdsName" : "清朝坭兴陶大碗",
+		"gdsModel" : "中大型,呈现遁形",
+		"gdsSpecification" : "15*15：68*96",
+		"gdsAttribute" : "青色,带有青花瓷图案",
+		"gdsUnit" : "钦州坭兴陶开发有限公司",
+		"shape" : "大碗状",
+		"pType" : "遁形",
+		"storeSum":"60",
+		"countSum":"50",
+		"profitAndLoss":"0",
+		"isManual" : "0"
+	},
+	{
+		"gdsId" : "2",
+		"gdsName" : "清朝坭兴陶大碗2",
+		"gdsModel" : "中大型,呈现遁形2",
+		"gdsSpecification" : "15*15：68*962",
+		"gdsAttribute" : "青色,带有青花瓷图案2",
+		"gdsUnit" : "钦州坭兴陶开发有限公司2",
+		"shape" : "大碗状2",
+		"pType" : "遁形2",
+		"storeSum":"60",
+		"countSum":"50",
+		"profitAndLoss":"0",
+		"isManual" : "1"
+	},{
+		"gdsId" : "3",
+		"gdsName" : "清朝坭兴陶大碗3",
+		"gdsModel" : "中大型,呈现遁形3",
+		"gdsSpecification" : "15*15：68*96",
+		"gdsAttribute" : "青色,带有青花瓷图案3",
+		"gdsUnit" : "钦州坭兴陶开发有限公司3",
+		"shape" : "大碗状3",
+		"pType" : "遁形3",
+		"storeSum":"60",
+		"countSum":"50",
+		"profitAndLoss":"0",
+		"isManual" : "0"
+	}
+]

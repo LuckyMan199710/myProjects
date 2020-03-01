@@ -1,0 +1,273 @@
+html,body{
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+}
+
+/* 显示界面样式 */
+.TexAddDistance{
+	height: 5px;
+	width: 100%;
+}
+
+/* table的样式 */
+#ExportOutNewsTable,#ExporPersontNewsTable,#ExportUNewsTable,#ExportUpdatePersonNewsTable,#goodsDetails{
+	/* 设置table的大小固定 */
+	table-layout: fixed;
+}
+/* 鼠标移上去显示的图片样式*/
+.moveImgDisImg{
+	width: 160px;
+	height: 160px;
+	position: absolute;
+	z-index: 96666666;
+	max-width:180px;
+	max-height:180px;
+	display: none;
+	text-align: center;
+	margin: auto;
+	line-height: 160px;
+	background: #fff;
+	vertical-align: middle;
+	background: rgba(200, 54, 54, 0);
+}
+.theTrueDisImg{
+	height:auto;
+	width:auto;
+	max-width: 180px;
+	max-height: 180px;
+	vertical-align:middle;
+}
+
+/* 出库界面样式 */
+.ExportRowCss{
+	margin-left: 10px;
+    margin-top: 18px;
+}
+
+.ExportInputCss{
+	width: 170px;
+    height: 25px;
+    line-height: 25px;
+    box-sizing: border-box;
+    padding-left: 5px;
+    border: 1px solid #95b8e7 !important;
+    background-color: #fff3f3;
+    border-radius: 5px;
+    font-size: 12px !important;	
+}
+
+.ExportLableCss{
+	display: inline-block;
+    width: 77px;
+    margin-left: 6px;
+    font-size: 12px !important;
+    text-align: center;
+}
+
+/* 确认出库按钮样式 */
+.confirmExportGoods{
+	margin-left: 18px;
+    border: 1px solid #ccc;
+    box-sizing: border-box !important;
+    height: 25px;
+    line-height: 24px;
+    padding-top: -9px;
+    position: absolute;
+    width: 84px;
+    border-radius: 5px;
+    background: #eaf2ff;
+}
+.confirmExportGoods:HOVER {
+	background: #cddaef;
+}
+
+/* 出库备注样式 */
+.exportMeno{
+	position: absolute;
+    display: inline-block;
+    width: 428px;
+    height: 50px;
+    min-width:428px;
+	min-height:50px;
+	max-width:428px;
+	max-height:50px;
+    text-align: -webkit-auto;
+    word-wrap: break-word;
+    border: 1px solid #95b8e7 !important;
+    background-color: #fff3f3;
+    box-sizing: border-box;
+    padding-left: 5px;
+    border-radius: 5px;
+    font-size: 12px !important;
+    padding-top: 5px;
+    word-wrap: break-word;
+    word-break: keep-all;
+    overflow-y: scroll
+}
+#exportMeno{
+	position: absolute;
+    display: inline-block;
+    width: 428px;
+    height: 50px;
+    min-width:428px;
+	min-height:50px;
+	max-width:428px;
+	max-height:50px;
+    text-align: -webkit-auto;
+    word-wrap: break-word;
+    border: 1px solid #95b8e7 !important;
+    background-color: #fff3f3;
+    box-sizing: border-box;
+    padding-left: 5px;
+    border-radius: 5px;
+    font-size: 12px !important;
+    padding-top: 5px;
+    word-wrap: break-word;
+    word-break: keep-all;
+    overflow-y: scroll
+}
+/* 更新界面备注 */
+.texUExportMeno{
+	min-width:507px;
+	max-width:507px;
+}
+
+/* 同步打印预览样式 */
+.printBox{
+	display: inline-block;
+    position: absolute;
+    width: 99px;
+    height: 20px;
+    right: 22px;
+    font-size: 12px;
+    line-height: 20px;
+}
+/* 同步打印不预览样式 */
+.printLable2{
+	position: absolute;
+	top: 28px;
+}
+.printLable{
+	position: absolute;
+}
+.printText{
+	position: absolute;
+    width: 100px;
+    top: -1px;
+}
+
+/* 出库详细信息横线样式 */
+.ExportGoodsLineCss{
+	 width: 554px;
+}
+
+/* 显示详细信息table样式 */
+.ExportNewsTable{
+	margin-top: 15px;
+    margin-left: 10px;
+    margin-right: -5px;
+    border: 1px solid #ccc;
+    border-collapse: collapse !important;
+    margin-bottom: 25px;
+    margin-left: 16px !important;
+    width: 608px !important;
+} 
+
+.ExportLineCss{
+ 	margin-top: 46px;
+    margin-left: 10px !important;
+    margin-right: 10px;
+    height: 20px;
+    margin-bottom: 10px;
+ }
+ .operatorDivCss{
+ 	margin-top: 15px;
+ }
+ 
+ /* 设置当文字超出长度时使用省略号显示 */
+.ExportNewsTable tr td,.temTableLayoutCss tr td{
+	    border: 1px solid #ccc;
+	    overflow: hidden;
+		white-space: nowrap;
+		text-overflow:ellipsis !important;
+}
+/* 查看商品详情的界面 */
+.temTableLayoutCss{
+	border-collapse:collapse !important;
+}
+.temTableLayoutCss tr td{
+	border: 1px solid #ccc;
+}
+
+/* 添加商品信息和表格之间间距的样式 */
+.addTemGrip{
+	margin-bottom: 22px;
+}
+
+/* table中td的样式 */
+.texLablesCss{
+	width: 55px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background: #f1f1f1;
+}
+.textTdWidthLength{
+	width: 175px;
+}
+
+/* 出库界面鼠标移到商品二维码时出现图片*/
+.TrueQcodes{
+	position: absolute;
+    display: inline-block;
+    width: 155px;
+    height: 155px;
+    border: 2px solid #95b8e7;
+    z-index: 666866;
+    top: 225px;
+    right: 35px;
+    display:none;
+}
+
+/* 更新界面的样式 */
+
+.texUpdateInputCss{
+	width: 210px;
+    height: 25px;
+    line-height: 25px;
+    box-sizing: border-box;
+    padding-left: 5px;
+    border: 1px solid #95b8e7 !important;
+    background-color: #fff3f3;
+    border-radius: 5px;
+    font-size: 12px !important;	
+}
+.texGoodQrcodeWord{
+	padding-left: 5px;
+}
+
+/* 查看详情的界面样式 */
+/* 商品二维码 */
+.detailPageqcodeImg{
+	display: inline-block;
+    width: 119px;
+    height: 119px;
+    border: 2px solid #aabcda;
+    position: absolute;
+    z-index: 666666;
+    top: 88px;
+    right: 53px;
+}
+.detailPageqcodeImg:HOVER{
+	cursor: pointer;
+	 border: 3px solid #8ec0dd;
+}
+
+/* label的样式 */
+.goodsDetialabelcss{
+	width: 30px;
+}
+#ExportOutSeeDetailPage{
+	margin-top:50px;
+}

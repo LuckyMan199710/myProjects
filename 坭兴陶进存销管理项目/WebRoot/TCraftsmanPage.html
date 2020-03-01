@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>从业技术人员管理界面</title>
+</head>
+<body>
+	<script type="text/javascript" src="js/TCraftsmanPage.js"></script>
+	
+	<!-- 添加界面 -->
+	 <div id="TcmDivBox">
+		<div id="navboxs">
+		<a class="easyui-linkbutton" id="TcmAdd">新增</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TcmDelete">删除</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TcmUpdate">修改</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TcmSearch">查询</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="Tcmoutput">导出</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="TcmClear">清空</a><span class="column"></span>
+		<a class="easyui-linkbutton" id="Tcmcallback">返回</a>
+		</div>
+		<form action="" method="POST" id="TcmFormBox">			
+  				<div class="row">
+  					<label class="labelCss starlabelCss">人员姓名:</label><input type="text" name="cfmName" id="cfmName" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss ">身份证号:</label><input type="text" name="idCard" id="idCard" class="inputCss"  autocomplete="off" disableautocomplete>
+  					<label class="labelCss ">出生年月:</label><input type="text" name="cfmBirthday" id="cfmBirthday" class="inputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d-]/g,'')">
+  					<label class="labelCss ">图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;片:</label><img id="cfmPic" alt="从业人员图片" src="">
+  				</div>
+  				
+  				<div class="row">
+  					<label class="labelCss ">政治面貌:</label><input type="text" name="policitalStatus" id="policitalStatus" class="inputCss"  autocomplete="off" disableautocomplete>
+  					<label class="labelCss ">职称:</label><input type="text" name="cfmTitle" id="cfmTitle" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss ">学历:</label><input type="text" name="qualification" id="qualification" class="inputCss" style="border:0px;" autocomplete="off" disableautocomplete>
+  					<input type="button" value="上传图片" id="TcmUploadImg" class="tcmImgBtCSS">
+  				</div>
+  				
+  				<div class="row">			
+  					<label class="labelCss ">联系电话:</label><input type="text" name="cfmTelphone" id="cfmTelphone"  class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss ">邮政编码:</label><input type="text" name="cfmPostCode" id="cfmPostCode" class="inputCss">
+  					<label class="labelCss ">籍贯:</label><input type="text" name="nativePlace" id="nativePlace" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss ">职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务:</label><input type="text" name="duty" id="duty" class="inputCss">
+  				</div>
+  				
+  				<div class="row">
+  					<label class="labelCss">特长:</label><input type="text" class="inputCss TcmStrongPointCss" name="strongPoint" id="strongPoint" autocomplete="off" disableautocomplete>
+  					<label class="labelCss">地址:</label><input type="text" name="cfmAddress" id="cfmAddress" class="inputCss TcmAdressCss" onkeyup="value=value.replace(/[^\d-]/g,'')" autocomplete="off" disableautocomplete>
+  				</div>
+  				
+  				<div class="row">
+  					<label class="labelCss">获奖情况:</label><input type="text" name="awards" id="awards" class="inputCss specailInputCss" autocomplete="off" disableautocomplete>
+  				</div>
+  				
+  				<div class="dmRowCss">
+					<label class="labelCss TcmProCss">专业:</label><textarea name="professional" id="professional" class="sepcialInputCss TcmProfessionalCss" autocomplete="off" disableautocomplete style="font-size:12px;"></textarea>
+				</div>
+  		
+  		</form>
+	</div>
+	
+	<!-- 查询界面 -->
+	<form method="get" action="#" id="TcmSearchForm">
+		<div class="udmRowCss">
+					<label class="whpLableCss ">人员姓名:</label><input name="tcmScfmName" id="tcmScfmName" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss ">身份证号:</label><input name="tcmSidCard" id="tcmSidCard" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+					<label class="whpLableCss ">政治面貌:</label><input name="tcmSpolicitalStatus" id="tcmSpolicitalStatus" class="dmInputCss" autocomplete="off">
+  			</div>
+  			
+  			<div class="udmRowCss">
+  				<label class="whpLableCss ">学历:</label><input name="tcmSqualification" id="tcmSqualification" class="dmInputCss" autocomplete="off" >
+  				<label class="whpLableCss ">籍贯:</label><input name="tcmSnativePlace" id="tcmSnativePlace" class="dmInputCss" autocomplete="off" disableautocomplete >
+  				<label class="whpLableCss ">电话:</label><input name="tcmScfmTelphone" id="tcmScfmTelphone" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')"" >
+			</div>
+			
+			<div class="udmRowCss">
+				<label class="whpLableCss ">职务:</label><input name="tcmSduty" id="tcmSduty" class="dmInputCss" autocomplete="off" disableautocomplete>
+			</div>
+		
+	</form>
+	
+	<!-- 更新界面 -->
+  	<form action="#" method="get" id="TCMUpdateBox">
+  			<div class="row TSFFirstDivCss">
+  					<label class="labelCss starlabelCss">人员姓名:</label><input type="text" name="tcmUcfmName" id="tcmUcfmName" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss ">身份证号:</label><input type="text" name="tcmUidCard" id="tcmUidCard" class="inputCss" autocomplete="off" disableautocomplete >
+  					<label class="labelCss ">图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;片:</label><img id="tcmCfmPic" alt="从业人员图片" src="">
+  			</div>
+  			
+  			<div class="row">
+  					<label class="labelCss ">出生年月:</label><input type="text" name="tcmUcfmBirthday" id="tcmUcfmBirthday" class="inputCss" autocomplete="off" disableautocomplete>
+  					<label class="labelCss ">政治面貌:</label><input type="text" name="tcmUpolicitalStatus" id="tcmUpolicitalStatus" class="inputCss"  autocomplete="off" disableautocomplete>
+  					<label class="tcmTips ">建议大小:140px*170px</label>
+  			</div>
+  			
+  			<div class="row">
+  					<label class="labelCss ">职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称:</label><input type="text" name="tcmUcfmTitle" id="tcmUcfmTitle" class="inputCss" style="border:0px;" autocomplete="off" disableautocomplete >
+  					<label class="labelCss ">学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历:</label><input type="text" name="tcmUqualification" id="tcmUqualification" class="inputCss">
+  			</div>
+  			
+  			<div class="row">
+  					<label class="labelCss ">邮政编码:</label><input type="text" name="tcmUcfmPostCode" id="tcmUcfmPostCode" class="inputCss" style="border:0px;" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  					<label class="labelCss ">籍&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;贯:</label><input type="text" name="tcmUnativePlace" id="tcmUnativePlace" class="inputCss">
+  			</div>
+  			
+  			<div class="row">
+  				<label class="labelCss ">联系电话:</label><input type="text" name="tcmUcfmTelphone"  id="tcmUcfmTelphone"   class="inputCss" onkeyup="value=value.replace(/[^\d.]/g,'')" >
+  				<label class="labelCss ">职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务:</label><input type="text" name="tcmUduty"  id="tcmUduty"   class="inputCss" >
+  				<input type="button" value="更新图片" id="TcmUploadImgInUpdatePage" class="tcmImgBtCSS">
+  			</div>
+  			
+  			<div class="row">
+  					<label class="labelCss ">特&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长:</label><input type="text" name="tcmUstrongPoint" id="tcmUstrongPoint" class="inputCss tcmUpdateCSS" style="border:0px;" autocomplete="off" disableautocomplete >
+  			</div>
+  			
+  			<div class="row">
+  					<label class="labelCss ">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址:</label><input type="text" name="tcmUcfmAddress" id="tcmUcfmAddress" class="inputCss tcmUpdateCSS" style="border:0px;" autocomplete="off" disableautocomplete >
+  			</div>
+  			
+  			<div class="row">
+  					<label class="labelCss ">获奖情况:</label><input type="text" name="tcmUawards" id="tcmUawards" class="inputCss tcmUpdateCSS" style="border:0px;" autocomplete="off" disableautocomplete >
+  			</div>
+  			
+  			<div class="row">
+  					<label class="labelCss TcmProCss tcmUprocss">专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业:</label><textarea name="tcmUprofessional" id="tcmUprofessional" class="sepcialInputCss tcmUpdateAareCSS" autocomplete="off" disableautocomplete style="font-size:12px;"></textarea>
+  			</div>
+  			
+  			
+  	</form>
+  	
+  	<!-- 查看详情界面 -->
+  	<div id="tcmSeeDetailPage">
+  		<div id="tsfOutBox">
+  			<!-- 入库信息 -->
+  			<div class="tsfheadLineBox">
+		  			<label class="tsoreTextCss">技术人员基本信息</label>
+		  			<div class="tsfline"><span class="tsfLightColorLine"></span><span class="tsfGrayColorLine"></span></div>
+	  		</div>
+  			<table id="tsfTable">
+	  				<tr>
+	  					<td class="tsfLCss">姓名</td>
+	  					<td id="tcmDcfmName"  class="inpurCommon"  colspan="1">124545</td>
+	  					<td class="tsfLCss">身份证号</td>
+	  					<td id="tcmDidCard"  class="inpurCommon"  colspan="3">电子优先</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">出生年月</td>
+	  					<td id="tcmDcfmBirthday"  class="inpurCommon"  colspan="1">124545</td>
+	  					<td class="tsfLCss" style="width:60px">政治面貌</td>
+	  					<td id="tcmDpolicitalStatus"  class="inpurCommon"  colspan="3">电子优先</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">职称</td>
+	  					<td id="tcmDcfmTitle"  class="inpurCommon"  colspan="1">124545</td>
+	  					<td class="tsfLCss" style="width:60px">学历</td>
+	  					<td id="tcmDqualification"  class="inpurCommon"  colspan="3">电子优先</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss" style="width:60px">职务</td>
+	  					<td id="tcmDduty"  class="inpurCommon"  colspan="1">电子优先</td>
+	  					<td class="tsfLCss" style="width:60px">邮政编码</td>
+	  					<td id="tcmDcfmPostCode"  class="inpurCommon"  colspan="3">电子优先</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">籍贯</td>
+	  					<td id="tcmDnativePlace"  class="inpurCommon"  colspan="1">124545</td>
+	  					<td class="tsfLCss">联系电话</td>
+	  					<td id="tcmDcfmTelphone"  class="inpurCommon"  colspan="3">124545</td>
+	  				</tr>
+	  				
+	  				<tr>
+	  					<td class="tsfLCss">特长</td>
+	  					<td id="tcmDstrongPoint"  class="inpurCommon"  colspan="10">124545</td>
+	  				</tr>
+	  				
+	  				<tr>
+	  					<td class="tsfLCss">地址</td>
+	  					<td id="tcmDcfmAddress"  class="inpurCommon"  colspan="10">124545</td>
+	  				</tr>
+	  				
+	  				<tr>
+	  					<td class="tsfLCss">获奖情况</td>
+	  					<td id="tcmDawards"  class="inpurCommon"  colspan="10">124545</td>
+	  				</tr>
+	  				
+	  				<tr>
+	  					<td class="tsfLCss">专业</td>
+	  					<td id="tcmDprofessional"  class="inpurCommon"  colspan="10">124545</td>
+	  				</tr>
+	  			</table>
+	  			
+	  			<img id="tcmManImg" class="tcmManImg" alt="从业人员照片" src="">
+	  		</div>	
+  	</div>
+  	
+  	<!-- 鼠标移动显示技术人员的图片 -->
+  	<div id="disImgBox">
+  		<img alt="" src="" id="disChooseImg">
+  	</div>
+  	
+  	<!-- 显示从业技术人员信息 -->
+  	<table id="TcmTable">
+  	
+  	</table>
+  	
+  	<!-- 右键弹出界面 -->
+  	<div id=TcmMenu  class="easyui-menu">
+    	<div id="TcmUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="TcmDeletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+    	<div id="TcmSeeMenu" data-options="iconCls:'icon-search'">查看</div>
+    </div> 
+  	
+  	
+	
+</body>
+</html>

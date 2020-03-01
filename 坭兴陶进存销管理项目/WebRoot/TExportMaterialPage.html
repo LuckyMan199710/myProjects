@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>材料出库管理</title>
+</head>
+<body>
+	<script type="text/javascript" src="js/TExportMaterialPage.js"></script>
+	<!-- 添加界面 -->
+	<form id="TemNavsForm" method="get" action="#">
+  			<div id="TemNavs">
+			<a class="easyui-linkbutton" id="TemAddBT">新增</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="TemDeleteBT">删除</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="TemUpdateBT">修改</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="TemSearchBT">查询</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="TemClearBT">清空</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="TemOutput">导出</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="TemCallbackBt">返回</a>
+			</div>
+			
+			<div id="whpInputNewsBox">
+				<div class="whpDivCss TemDivCss">
+					<label class="whpLableCss whpStarCss">材料名称:</label><input name="eptIdOfMaterial" id="eptIdOfMaterial" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss whpStarCss">所出仓库:</label><input name="eptWarehouseId" id="eptWarehouseId" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss whpStarCss">出库数量:</label><input name="eptMaterialAmout" id="eptMaterialAmout" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+					<label class="whpLableCss whpStarCss">出库单价:</label><input name="eptUnitPrice" id="eptUnitPrice" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+				</div>
+				
+				<div class="whpDivCss TemDivCss">
+					<label class="whpLableCss whpStarCss">经办人:</label><input name="eptMaterialOperator" id="eptMaterialOperator" class="dmInputCss" autocomplete="off" disableautocomplete>
+				</div>
+			</div>
+			
+			<!-- 存放图片的最外层盒子 -->
+  				<div class="tsgfImgBox" id="temImgBox">
+					<div id="temUplaodBt" class="essUplaodBt">
+							<div class="plus">+</div>
+							<div class="addImgText">添加图片</div>
+							<div class="essTips">(最多15张)</div>
+					</div>
+				</div>
+				
+			<!-- 添加界面中图片浏览的窗口 -->
+				<div id="temDisplayBigImg" class="temDisplayCss">
+							<span class="closeImgDialog" id="temCloseImgDialog" title="关闭"><img alt="" src="img/dDel.png"></span>
+							<div id="temAddseeDetialCount" class="seeDetialCount"><span id="temAddNowIndex" class="nowIndex"></span><span class="italicCss">/</span><span id="temAddAllCount" class="allCount"></span></div>
+							<div id="temAddtheTureImgOutBox"  class="theTureImgOutBox">
+								<img alt="" src="img/a1.jpg" id="temAddtheTureImg" class="theTureImg">
+							</div>
+							<span id="temAddupImage" class="changeImgBt leftBtCss" title="上一张">&lt;</span><span id="temAddnextImage" class="changeImgBt rightBtCss" title="下一张">&gt;</span>
+				</div>
+				
+			<!-- 更新界面中图片浏览的窗口 -->
+				<div id="temUpdateDisplayBigImg" class="tppDisplayBigImg">
+							<span class="closeImgDialog" id="temupdateCloseImgDialog" title="关闭"><img alt="" src="img/dDel.png"></span>
+							<div id="temUSeeDetialCount" class="seeDetialCount"><span id="temUpdateNowIndex" class="nowIndex"></span><span class="italicCss">/</span><span id="temUpdateAllCount" class="allCount"></span></div>
+							<div id="temUpdateTheTureImgOutBox"  class="theTureImgOutBox">
+								<img alt="" src="img/a1.jpg" id="temUpdateTheTureImg" class="theTureImg">
+							</div>
+							<span id="temUpdateUpImage" class="changeImgBt leftBtCss" title="上一张">&lt;</span><span id="temUpdateNextImage" class="changeImgBt rightBtCss" title="下一张">&gt;</span>
+				</div>
+				
+			<!-- 查看详情中图片浏览的窗口 -->
+				<div id="temSeeDetailDisplayBigImg" class="tppDisplayBigImg">
+							<span class="closeImgDialog" id="temSeeDetailCloseImgDialog" title="关闭"><img alt="" src="img/dDel.png"></span>
+							<div id="temSeeDetialCount" class="seeDetialCount"><span id="temDetailnowIndex" class="nowIndex"></span><span class="italicCss">/</span><span id="temDetailAllCount" class="allCount"></span></div>
+							<div id="temDetailSeeDetailTheTureImgOutBox"  class="theTureImgOutBox">
+								<img alt="" src="img/a1.jpg" id="temDetailSeeDetailTheTureImg" class="theTureImg">
+							</div>
+							<span id="temDetailSeeDetailUpImage" class="changeImgBt leftBtCss" title="上一张">&lt;</span><span id="temDetailSeeDetailNextImage" class="changeImgBt rightBtCss" title="下一张">&gt;</span>
+				</div>
+			
+	</form>	
+	
+	<!-- 更新界面 -->
+	<form method="get" action="#" id="TemUpdateForm">
+		<div class="udmRowCss">
+					<label class="whpLableCss whpStarCss">材料名称:</label><input name="temUeptIdOfMaterial" id="temUeptIdOfMaterial" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss whpStarCss">所出仓库:</label><input name="temUeptWarehouseId" id="temUeptWarehouseId" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss whpStarCss">出库数量:</label><input name="temUeptMaterialAmout" id="temUeptMaterialAmout" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  			</div>
+  			
+  			<div class="udmRowCss">
+  				<label class="whpLableCss whpStarCss">出库单价:</label><input name="temUeptUnitPrice" id="temUeptUnitPrice" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+				<label class="whpLableCss whpStarCss">经办人:</label><input name="temUeptMaterialOperator" id="temUeptMaterialOperator" class="dmInputCss" autocomplete="off" disableautocomplete>
+			</div>
+			<!-- 添加图片按钮 -->
+			<div class="tsgfUpdateImgBox" id="temUpdateImgBox">
+						<div id="temUpdateUplaodBt" class="essUpdateUplaodBt">
+							<div class="plus">+</div>
+							<div class="addImgText">添加图片</div>
+							<div class="essTips">(最多15张)</div>	
+						</div>
+				</div>
+		
+	</form>
+	
+	<!-- 查询界面 -->
+	<form method="get" action="#" id="TemSearchForm">
+		<div class="udmRowCss">
+					<label class="whpLableCss ">材料名称:</label><input name="temSeptIdOfMaterial" id="temSeptIdOfMaterial" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss ">出库数量始:</label><input name="temSeptMaterialAmout" id="temSeptMaterialAmout" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+					<label class="whpLableCss ">出库数量末:</label><input name="temSeptMaterialAmoutEnd" id="temSeptMaterialAmoutEnd" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d]/g,'')">
+  			</div>
+  			
+  			<div class="udmRowCss">
+  				<label class="whpLableCss ">出库单价始:</label><input name="temSeptUnitPrice" id="temSeptUnitPrice" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  				<label class="whpLableCss ">出库单价末:</label><input name="temSeptUnitPriceEnd" id="temSeptUnitPriceEnd" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  				<label class="whpLableCss ">所出仓库:</label><input name="temSeptWarehouseId" id="temSeptWarehouseId" class="dmInputCss" autocomplete="off" disableautocomplete>
+			</div>
+			
+			<div class="udmRowCss">
+				<label class="whpLableCss ">经办人:</label><input name="temSeptMaterialOperator" id="temSeptMaterialOperator" class="dmInputCss" autocomplete="off" disableautocomplete>
+				<label class="whpLableCss ">出库时间始:</label><input name="temSexportDateStart" id="temSexportDateStart" class="dmInputCss" autocomplete="off" disableautocomplete>
+				<label class="whpLableCss ">出库时间末:</label><input name="temSexportDateEnd" id="temSexportDateEnd" class="dmInputCss" autocomplete="off" disableautocomplete>
+			</div>
+		
+	</form>
+	
+	<!-- 查看界面 -->
+  	<div id="temSeeDetailPage">
+  		<div id="tsfOutBox">
+  			<!-- 材料出库信息 -->
+  			<div class="tsfheadLineBox">
+		  			<label class="tsoreTextCss">出库材料信息</label>
+		  			<div class="tsfline"><span class="tsfLightColorLine"></span><span class="tsfGrayColorLine essLineCss"></span></div>
+	  		</div>
+  			<table id="tsfTable" class="temTableLCss">
+	  				<tr>
+	  					<td class="tsfLCss">材料名称</td>
+	  					<td id="temDeptIdOfMaterial"  class="inpurCommon temDetialInputCss"  colspan="5">124545</td>
+	  					<td class="tsfLCss">出库数量</td>
+	  					<td id="temDeptMaterialAmout"  class="inpurCommon "  colspan="5">电子优先</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">出库单价</td>
+	  					<td id="temDeptUnitPrice"  class="inpurCommon temDetialInputCss"  colspan="5">124545</td>
+	  					<td class="tsfLCss" style="width:60px">所出仓库</td>
+	  					<td id="temDeptWarehouseId"  class="inpurCommon "  colspan="5">电子优先</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">经办人</td>
+	  					<td id="temDeptMaterialOperator"  class="inpurCommon"  colspan="5">124545</td>
+	  					<td class="tsfLCss">出库时间</td>
+	  					<td id="temDeptExportDate"  class="inpurCommon"  colspan="5">124545</td>
+	  				</tr>
+	  			</table>
+	  		
+	  		<!-- 图片信息 -->
+  			<div class="tsfheadLineBox">
+		  			<label class="tsoreTextCss">图片信息</label>
+		  			<div class="tsfline"><span class="tsfLightColorLine"></span><span class="tsfGrayColorLine essLineCss"></span></div>
+		  			
+		  			<div id="temDetailImgBox" class="detailImgBox">
+		  				
+		  			</div>
+		  			
+	  		</div>
+	  		
+	  	</div>	
+  	</div>
+	
+	
+	<!-- 右键弹出界面 -->
+  	<div id=TemMenu  class="easyui-menu">
+    	<div id="TemUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="TemDeletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+    	<div id="TemSeeMenu" data-options="iconCls:'icon-search'">查看</div>
+    </div> 
+	
+	<table id="TemTable" ></table>
+	
+</body>
+</html>

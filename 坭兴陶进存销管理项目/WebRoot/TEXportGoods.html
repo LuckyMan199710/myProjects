@@ -1,0 +1,561 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>商品出库管理</title>
+</head>
+<body>
+<script type="text/javascript" src="js/TEXportGoods.js"></script>
+<script language="javascript" src="js/LodopFuncs.js"></script>
+<!-- <object  id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0>  -->
+<!-- 	<embed id="LODOP_EM" type="application/x-print-lodop" width=0 height=0></embed> -->
+<!-- </object> -->
+
+<!-- 显示界面 -->
+<form id="TexgNavsForm" method="get" action="#">
+  			<div id="TexgNavs">
+			<a class="easyui-linkbutton" id="TexgAddBT">出库</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="TexgDeleteBT">删除</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="TexgUpdateBT">修改</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="TexgSearchBT">查询</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="TexgOutput">导出</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="TexgPrint">打印</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="TexgCallbackBt">返回</a>
+			</div>
+			<div class="TexAddDistance"></div>
+</form>	
+	
+	<!-- 商品出库 -->
+	<form id="ExportGoodsBox"  action="">
+				<div id="ExprotInputBoxx" class="ExportRowCss">			    
+					<label class="ExportLableCss dpStarInput">商品编号:</label><input type="text" class="ExportInputCss" id="goodsId" name="goodsId" autocomplete="off" disableautocomplete >
+					<label class="ExportLableCss dpStarInput">经办人:</label><input name="egoperator" id="egOperator" class="ExportInputCss" autocomplete="off" disableautocomplete>
+					<input type="button" value="确认出库" id="confirmExportGoods" class="confirmExportGoods">
+				</div>
+				<div  class="ExportRowCss">			    
+					<label class="ExportLableCss dpStarInput">买&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;家:</label><input type="text" class="ExportInputCss" id="buyer" name="buyer" autocomplete="off" disableautocomplete >
+					<label class="ExportLableCss dpStarInput">联系方式:</label><input name="phoneNum" id="phoneNum" class="ExportInputCss" autocomplete="off" disableautocomplete>
+				</div>
+				<div  class="ExportRowCss">			    
+					<label class="ExportLableCss dpStarInput">所出店铺:</label><input type="text" class="ExportInputCss" id="shopOut" name="shopOut" autocomplete="off" disableautocomplete >
+					<label class="ExportLableCss">买家留言:</label><input name="message" id="message" class="ExportInputCss" autocomplete="off" disableautocomplete>
+				</div>
+				<div class="ExportRowCss">
+					<label class="ExportLableCss">出库备注:</label>
+					<textarea id="exportMeno"  name="exportmeno" class="exportMeno" rows="3" placeholder="此处可填写用户下单时所写的备注如:地址,联系方式等"></textarea>
+					<div class="printBox">
+						<label class="printLable"><input type="radio" id="sameTimePrint" name="print"><span class="printText">同步打印(预览)</span></label>
+						<label class="printLable2"><input type="radio" id="sameTimePrintNoPreview" name="print"><span class="printText">同步打印(不预览)</span></label>
+					</div>
+				</div>
+				
+				
+		<div id="ExportOutSeeDetailPage">
+	  		<!-- <div id="tsfOutBox">
+	  			材料出库信息
+	  			<div class="ExportLineCss">
+			  			<label class="tsoreTextCss">出库商品信息</label>
+			  			<div class="tsfline"><span class="tsfLightColorLine"></span><span class="tsfGrayColorLine ExportGoodsLineCss"></span></div>
+		  		</div>
+	  			<table id="ExportOutNewsTable" class="ExportNewsTable">
+		  				<tr>
+		  					<td class="texLablesCss">商品名称</td>
+		  					<td id="texGoodName"  class="inpurCommon temDetialInputCss textTdWidthLength"  colspan="5"></td>
+		  					<td class="texLablesCss">出库数量</td>
+		  					<td id="texGoodCount"  class="inpurCommon temDetialInputCss"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">出售价格</td>
+		  					<td id="texGoodPrice"  class="inpurCommon"  colspan="5"></td>
+		  					<td class="texLablesCss">商品成本</td>
+		  					<td id="texGoodCost"  class="inpurCommon"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">商品型号</td>
+		  					<td id="texGoodModel"  class="inpurCommon temDetialInputCss"  colspan="5"></td>
+		  					<td class="texLablesCss" style="width:60px">商品规格</td>
+		  					<td id="texGoodSpecification"  class="inpurCommon temDetialInputCss"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">商品类别</td>
+		  					<td id=texGoodType  class="inpurCommon"  colspan="5"></td>
+		  					<td class="texLablesCss">商品器型</td>
+		  					<td id="texGoodShape"  class="inpurCommon"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">供货商</td>
+		  					<td id="texGoodCompanyName"  class="inpurCommon"  colspan="5"></td>
+		  					<td class="texLablesCss">是否手工</td>
+		  					<td id="texGoodIsManual"  class="inpurCommon"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">加工内容</td>
+		  					<td id="texGoodProcessContent"  class="inpurCommon"  colspan="5"></td>
+		  					<td class="texLablesCss">技术人员</td>
+		  					<td id="texGoodGraftsMan"  class="inpurCommon"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">所出仓库</td>
+		  					<td id="texGoodWarehouse"   class="inpurCommon"  colspan="11"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">监制人</td>
+		  					<td id="texGoodMonitor"  class="inpurCommon"  colspan="5"></td>
+		  					<td class="texLablesCss">商品二维码</td>
+		  					<td id="texGoodQrcode" colspan="5"  ><span id="texGoodQrcodeWord" class="texGoodQrcodeWord"></span></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">出库时间</td>
+		  					<td id="texGoodTime"  class="inpurCommon"  colspan="11"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">商品备注</td>
+		  					<td id="texGoodProductMeno"  class="inpurCommon"  colspan="11"></td>
+		  				</tr>
+		  				
+		  			</table>
+		  		
+		  		经办人的详细信息
+		  		<div class="ExportLineCss operatorDivCss">
+			  			<label class="tsoreTextCss">经办人信息</label>
+			  			<div class="tsfline"><span class="tsfLightColorLine"></span><span class="tsfGrayColorLine ExportGoodsLineCss"></span></div>
+		  		</div>
+		  		
+		  		<table id="ExporPersontNewsTable" class="ExportNewsTable">
+		  				<tr>
+		  					<td class="texLablesCss">姓名</td>
+		  					<td id="texEgOperatorName"  class="inpurCommon temDetialInputCss textTdWidthLength"  colspan="5"></td>
+		  					<td class="texLablesCss">部门</td>
+		  					<td id="texEgOperatorDepartment"  class="inpurCommon temDetialInputCss"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">电话</td>
+		  					<td id="texEgOperatorPhone"  class="inpurCommon"  colspan="5"></td>
+		  					<td class="texLablesCss">邮箱</td>
+		  					<td id="texEgOperatorEmail"  class="inpurCommon"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">邮政编码</td>
+		  					<td id="texEgOperatorCode"  class="inpurCommon temDetialInputCss"  colspan="5"></td>
+		  					<td class="texLablesCss" style="width:60px">角色</td>
+		  					<td id="texEgOperatorRole"  class="inpurCommon temDetialInputCss"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">地址</td>
+		  					<td id="texEgOperatorAddress"  class="inpurCommon"  colspan="11"></td>
+		  				</tr>
+		  				
+		  			</table>
+		  		
+		  	</div>
+		  	鼠标移动二维码图片时显示图片
+		  	<img alt="" src="" id="TrueQcodes" class="TrueQcodes"> -->	
+		  	
+		  	<table id="tsfOutBox"></table>
+		  	
+  	</div>
+	</form>
+	
+	<!--查询商品出库信息界面 -->
+	<form method="get" action="#" id="TexgSearchBox">
+		<div class="sdmRowCss">
+				<label class="dmLableCss">商品名称:</label><input name="TexgSgoodsId" id="TexgSgoodsId" class="dmInputCss" autocomplete="off" disableautocomplete>
+  				<label class="dmLableCss">经办人:</label><input name="TexgSegOperator" id="TexgSegOperator" class="dmInputCss" autocomplete="off" disableautocomplete>
+  		</div>
+  		<div class="sdmRowCss">
+  				<label class="dmLableCss">出库时间始:</label><input name="TexgSegExportDateStart" id="TexgSegExportDateStart" class="dmInputCss" autocomplete="off" disableautocomplete>
+				<label class="dmLableCss">出库时间末:</label><input name="TexgSegExportDateEnd" id="TexgSegExportDateEnd" class="dmInputCss" autocomplete="off" disableautocomplete>
+  		</div>
+	</form>
+	
+	<!--更新商品出库信息 -->
+	<form method="get" action="#" id="TexgUearchBox">
+		<div class="ExportRowCss">
+				<input type="hidden" name="egId" id="TexgegId"> 
+				<input type="hidden" name="exportGoodsDate" id="TexgexportGoodsDate">
+				<label class="ExportLableCss dpStarInput">商品编号:</label><input name="TexgUgoodsId" id="TexgUgoodsId" class="texUpdateInputCss" autocomplete="off" disableautocomplete>
+  				<label class="ExportLableCss dpStarInput">经办人:</label><input name="TexgUegOperator" id="TexgUegOperator" class="texUpdateInputCss" autocomplete="off" disableautocomplete>
+  		</div>
+  		
+  		<div class="ExportRowCss">
+				<label class="ExportLableCss">出库备注:</label>
+				<textarea id="TexUExportMeno"  name="TexUExportMeno" class="exportMeno texUExportMeno" rows="3" placeholder="此处可填写用户下单时所写的备注如:地址,联系方式等"></textarea>
+		</div>
+  		
+  		<div id="TextUSeeDetailPage">
+	  		<div id="TextUOutBox">
+	  			<!-- 更新商品信息 -->
+	  			<div class="ExportLineCss">
+			  			<label class="tsoreTextCss">更新商品信息</label>
+			  			<div class="tsfline"><span class="tsfLightColorLine"></span><span class="tsfGrayColorLine ExportGoodsLineCss"></span></div>
+		  		</div>
+	  			<table id="ExportUNewsTable" class="ExportNewsTable">
+		  				<tr>
+		  					<td class="texLablesCss">商品名称</td>
+		  					<td id="texUpdateGoodName"  class="inpurCommon temDetialInputCss textTdWidthLength "  colspan="5"></td>
+		  					<td class="texLablesCss">出库数量</td>
+		  					<td id="texUpdateGoodCount"  class="inpurCommon temDetialInputCss"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">出售价格</td>
+		  					<td id="texUpdateGoodPrice"  class="inpurCommon"  colspan="5"></td>
+		  					<td class="texLablesCss">商品成本</td>
+		  					<td id="texUpdateGoodCost"  class="inpurCommon"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">商品型号</td>
+		  					<td id="texUpdateGoodModel"  class="inpurCommon temDetialInputCss"  colspan="5"></td>
+		  					<td class="texLablesCss" style="width:60px">商品规格</td>
+		  					<td id="texUpdateGoodSpecification"  class="inpurCommon temDetialInputCss"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">商品类别</td>
+		  					<td id=texUpdateGoodType  class="inpurCommon"  colspan="5"></td>
+		  					<td class="texLablesCss">商品器型</td>
+		  					<td id="texUpdateGoodShape"  class="inpurCommon"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">供货商</td>
+		  					<td id="texUpdateGoodCompanyName"  class="inpurCommon"  colspan="5"></td>
+		  					<td class="texLablesCss">是否手工</td>
+		  					<td id="texUpdateGoodIsManual"  class="inpurCommon"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">加工内容</td>
+		  					<td id="texUpdateGoodProcessContent"  class="inpurCommon"  colspan="5"></td>
+		  					<td class="texLablesCss">技术人员</td>
+		  					<td id="texUpdateGoodGraftsMan"  class="inpurCommon"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">所出仓库</td>
+		  					<td id="texUpdateGoodWarehouse"  class="inpurCommon"  colspan="11"></td>
+		  					
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">监制人</td>
+		  					<td id="texUpdateGoodMonitor"  class="inpurCommon"  colspan="5"></td>
+		  					<td class="texLablesCss">商品二维码</td>
+		  					<td id="texUpdateGoodQrcode"    colspan="5"><span id="texUpdateGoodQrcodeWord" class="texGoodQrcodeWord"></span></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">出库时间</td>
+		  					<td id="texUpdateGoodTime"  class="inpurCommon"  colspan="11"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">商品备注</td>
+		  					<td id="texUpdateGoodProductMeno"  class="inpurCommon"  colspan="11"></td>
+		  				</tr>
+		  				
+		  			</table>
+		  		
+		  		<!-- 经办人的详细信息 -->
+		  		<div class="ExportLineCss operatorDivCss">
+			  			<label class="tsoreTextCss">经办人信息</label>
+			  			<div class="tsfline"><span class="tsfLightColorLine"></span><span class="tsfGrayColorLine ExportGoodsLineCss"></span></div>
+		  		</div>
+		  		
+		  		<table id="ExportUpdatePersonNewsTable" class="ExportNewsTable">
+		  				<tr>
+		  					<td class="texLablesCss">姓名</td>
+		  					<td id="texEgUpdateOperatorName"  class="inpurCommon temDetialInputCss textTdWidthLength"  colspan="5"></td>
+		  					<td class="texLablesCss">部门</td>
+		  					<td id="texEgUpdateOperatorDepartment"  class="inpurCommon temDetialInputCss"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">电话</td>
+		  					<td id="texEgUpdateOperatorPhone"  class="inpurCommon"  colspan="5"></td>
+		  					<td class="texLablesCss">邮箱</td>
+		  					<td id="texEgUpdateOperatorEmail"  class="inpurCommon"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">邮政编码</td>
+		  					<td id="texEgUpdateOperatorCode"  class="inpurCommon temDetialInputCss"  colspan="5"></td>
+		  					<td class="texLablesCss" style="width:60px">角色</td>
+		  					<td id="texEgUpdateOperatorRole"  class="inpurCommon temDetialInputCss"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="texLablesCss">地址</td>
+		  					<td id="texEgUpdateOperatorAddress"  class="inpurCommon"  colspan="11"></td>
+		  				</tr>
+		  				
+		  			</table>
+		  		
+		  	</div>
+		  	<!-- 鼠标移动二维码图片时显示图片 -->
+		  	<img alt="" src="" id="UpdateTrueQcodes" class="TrueQcodes">	
+  	</div>	
+	</form>
+	
+	<!-- 查看详情界面 -->
+  	<div id="texGoodsDetails">
+  		<div id="texGoodsOutBox">
+  			<!-- 商品信息 -->
+  			<div class="tsfheadLineBox addTemGrip">
+		  			<label class="tsoreTextCss">商品信息</label>
+		  			<div class="tsfline"><span class="tsfLightColorLine"></span><span class="tsfGrayColorLine essLineCss"></span></div>
+	  		</div>
+	  		
+  			<table id="goodsDetails" class="temTableLCss temTableLayoutCss">
+	  				<tr>
+	  					<td class="tsfLCss goodsDetialabelcss">商品名称</td>
+	  					<td id="temDetailGoodsName"  class="inpurCommon temDetialInputCss"  colspan="5"></td>
+	  					<td class="tsfLCss goodsDetialabelcss">出库数量</td>
+	  					<td id="temDetailExprotSum"  class="inpurCommon temDetialInputCss"  colspan="5"></td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">商品成本</td>
+	  					<td id="temDetailGoodsCost"  class="inpurCommon"  colspan="5"></td>
+	  					<td class="tsfLCss" style="width:60px">出售价格</td>
+	  					<td id="temDetailSellPrice"  class="inpurCommon temDetialInputCss"  colspan="5"></td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">供货商</td>
+	  					<td id="temDetailCompany"  class="inpurCommon"  colspan="5"></td>
+	  					<td class="tsfLCss">是否手工</td>
+	  					<td id="temDetailIsManual"  class="inpurCommon"  colspan="5"></td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">商品类别</td>
+	  					<td id="temDetailGoodsType"  class="inpurCommon"  colspan="5"></td>
+	  					<td class="tsfLCss">商品器型</td>
+	  					<td id="temDetailModel"  class="inpurCommon"  colspan="5"></td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">商品规格</td>
+	  					<td id="temDetailSpecification"  class="inpurCommon"  colspan="5"></td>
+	  					<td class="tsfLCss"> 商品型号</td>
+	  					<td id="temDetailShape"  class="inpurCommon"  colspan="5"></td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">加工内容</td>
+	  					<td id="temDetailContent"  class="inpurCommon"  colspan="5"></td>
+	  					<td class="tsfLCss">技术人员</td>
+	  					<td id="temDetailGraftMan"  class="inpurCommon"  colspan="5"></td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">所出仓库</td>
+	  					<td id="temDetailExportWarehouse"  class="inpurCommon"  colspan="5"></td>
+	  					<td class="tsfLCss">监制人</td>
+	  					<td id="temDetailMonitor"  class="inpurCommon"  colspan="5"></td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">出库时间</td>
+	  					<td id="temDetailExportTime"  class="inpurCommon"  colspan="11"></td>
+	  				</tr>
+	  				<tr>
+		  				<td class="texLablesCss">出库备注</td>
+		  				<td id="texSearchExportMeno"  class="inpurCommon"  colspan="11"></td>
+		  			</tr>
+	  				<tr>
+	  					<td class="tsfLCss">商品备注</td>
+	  					<td id="temDetailMeno"  class="inpurCommon"  colspan="11"></td>
+	  				</tr>
+	  			</table>
+	  			
+	  			
+	  		<!-- 经办人信息 -->
+  			<div class="tsfheadLineBox addTemGrip">
+		  			<label class="tsoreTextCss">经办人信息</label>
+		  			<div class="tsfline"><span class="tsfLightColorLine"></span><span class="tsfGrayColorLine essLineCss"></span></div>
+	  		</div>
+	  		
+  			<table id="goodsDetails" class="temTableLCss temTableLayoutCss">
+	  				<tr>
+	  					<td class="tsfLCss goodsDetialabelcss">姓名</td>
+	  					<td id="temDetailManName"  class="inpurCommon temDetialInputCss"  colspan="5"></td>
+	  					<td class="tsfLCss goodsDetialabelcss">部门</td>
+	  					<td id="temDetailManDepartment"  class="inpurCommon temDetialInputCss"  colspan="5"></td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">电话</td>
+	  					<td id="temDetailManPhone"  class="inpurCommon temDetialInputCss"  colspan="5"></td>
+	  					<td class="tsfLCss" style="width:60px">邮箱</td>
+	  					<td id="temDetailManEmail"  class="inpurCommon temDetialInputCss"  colspan="5"></td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">邮编</td>
+	  					<td id="temDetailManCode"  class="inpurCommon"  colspan="5"></td>
+	  					<td class="tsfLCss">角色</td>
+	  					<td id="temDetailManRole"  class="inpurCommon"  colspan="5"></td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tsfLCss">地址</td>
+	  					<td id="temDetailManAddress"  class="inpurCommon"  colspan="11"></td>
+	  				</tr>
+	  				
+	  			</table>
+	  			
+	  			<!-- 商品二维码 -->
+	  			<img alt="" src="" id="detailPageqcodeImg" class="detailPageqcodeImg">
+	  	</div>	
+  	</div>
+
+	<!-- 显示出库信息 -->
+	<table id="TexGoodsTable" ></table>
+
+ 	<!-- 鼠标移动到图片栏显相应的图片 -->
+	<div id="TEXImgBox" class="moveImgDisImg">
+  		<img alt="" src="" id="TexRowImg" class="theTrueDisImg">
+	</div>
+	
+	
+	<!-- 右键弹出界面 -->
+  	<div id=texgMenu  class="easyui-menu">
+    	<div id="texgUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="texgDeletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+    	<div id="texgSeeMenu" data-options="iconCls:'icon-search'">查看</div>
+    </div>  
+
+	<!-- 打印信息界面 -->
+	<div id="printExportGoodBox" class="printExportGoodBox">
+	<div id="headDivBox">
+			<!-- 出货的信息 -->
+			<div class="headTitle">
+				<strong><font>商品发货单</font></strong>
+			</div>
+			<!-- 标题 发货的相关信息 -->
+			<table class="headTable">
+				<tbody>
+					<tr>
+						<td class="firstColumn"><font>所在店铺：<span>钦州坭兴陶</span></font></td>
+					</tr>
+					<tr>
+						<td><font >发  &nbsp;件  &nbsp;人：王斌</font></td>
+					</tr>
+					<tr>
+						<td><font >联系电话：<span>123456</span></font></td>
+					</tr>
+				</tbody>
+			</table>
+			<span class="headLine"></span>
+		</div>
+		
+		<!-- 出货的商品的信息 -->
+		<div id="printOutPutNews" class="goodsBodyCss">
+				<div class="printGoodsLineCss">
+			  			<label class="tsoreTextCss">出库商品信息:</label>
+		  		</div>
+				<!-- 出库商品信息 -->
+				<table id="aa">
+				<thead>
+				<tr>
+				<th>姓名</th><th>年龄</th><th>住址</th>
+				</tr>
+				</thead>
+				<tbody>
+				
+				</tbody>
+				</table>
+				<!-- <table><thead><tr><th>姓名</th>
+				<th>年龄</th>
+				<th>住址</th>
+				<th>住址</th></tr>
+				</thead>
+				<tbody>
+				</tbody>
+				</table> -->
+				</div>
+				<!-- <table id="exportDisTable" class="printGoodTable">
+		  				<tr>
+		  					<td class="printLabelsCss">商品名称</td>
+		  					<td id="disGoodName"  class="inputCommon  limitDtCss "  colspan="5">sdsadasjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkassdsadasjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</td>
+		  					<td class="printLabelsCss">出库数量</td>
+		  					<td id="disGoodAmount"  class="inputCommon limitDtCss"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="printLabelsCss">出售价格</td>
+		  					<td id="disGoodPrice"  class="inputCommon limitDtCss"  colspan="5"></td>
+		  					<td class="printLabelsCss">商品型号</td>
+		  					<td id="disGoodModel"  class="inputCommon limitDtCss"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					
+		  					<td class="printLabelsCss">商品类别</td>
+		  					<td id=disGoodType  class="inputCommon limitDtCss"  colspan="11"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="printLabelsCss">商品器型</td>
+		  					<td id="disGoodShape"  class="inputCommon limitDtCss"  colspan="5"></td>
+		  					<td class="printLabelsCss">是否手工</td>
+		  					<td id="disGoodIsManual"  class="inputCommon limitDtCss"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="printLabelsCss">加工内容</td>
+		  					<td id="disGoodProccess"  class="inputCommon limitDtCss"  colspan="5"></td>
+		  					<td class="printLabelsCss">技术人员</td>
+		  					<td id="disGoodGraftsMan"  class="inputCommon limitDtCss"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="printLabelsCss">供货商</td>
+		  					<td id="disGoodCompanyName"  class="inputCommon limitDtCss"  colspan="11"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="printLabelsCss">所出仓库</td>
+		  					<td id="disGoodWarehouse"   class="inputCommon limitDtCss"  colspan="11"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="printLabelsCss">监制人</td>
+		  					<td id="disGoodMonitor"  class="inputCommon limitDtCss"  colspan="11">asdasdsa</td>
+		  				</tr>
+		  				<tr>
+		  					<td class="printLabelsCss">出库时间</td>
+		  					<td id="disGoodTime"  class="inputCommon limitDtCss"  colspan="11"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="printLabelsCss">商品备注</td>
+		  					<td id="disGoodProductMeno"  class="inputCommon limitDtCss"  colspan="11"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="printLabelsCss" style="width:60px">商品规格</td>
+		  					<td id="disGoodSpecification"  class="inputCommon limitDtCss"  colspan="11"></td>
+		  				</tr>
+		  				
+		  				<tr>
+		  					<td class="printLabelsCss">出库备注</td>
+		  					<td id="disGoodExportMeno"  class="inputCommon limitDtCss"  colspan="11">
+		  						<div id="exportGoodMeno">
+		  						aasdsadsadasdasdsadsd
+		  						</div>
+		  					</td>
+		  				</tr>
+		  				
+		  			</table>
+			
+			
+				经办人的详细信息
+		  		<div class="printGoodsLineCss">
+			  			<label>经办人信息:</label>
+		  		</div>
+				经办人信息
+				<table id="disPersonNewsTable" class="printGoodTable">
+		  				<tr>
+		  					<td class="printLabelsCss">姓名</td>
+		  					<td id="printPersonName"  class="inputCommon limitDtCss"  colspan="5">sdsadasjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkassdsadasjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</td>
+		  					<td class="printLabelsCss">部门</td>
+		  					<td id="printDepartment"  class="inputCommon limitDtCss"  colspan="5">sdsadasjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkassdsadasjkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</td>
+		  				</tr>
+		  				<tr>
+		  					<td class="printLabelsCss">电话</td>
+		  					<td id="printPhone"  class="inputCommon limitDtCss"  colspan="5"></td>
+		  					<td class="printLabelsCss">邮箱</td>
+		  					<td id="printEmail"  class="inputCommon limitDtCss"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="printLabelsCss">邮政编码</td>
+		  					<td id="printCode"  class="inputCommon limitDtCss"  colspan="5"></td>
+		  					<td class="printLabelsCss" style="width:60px">角色</td>
+		  					<td id="printRole"  class="inputCommon  limitDtCss"  colspan="5"></td>
+		  				</tr>
+		  				<tr>
+		  					<td class="printLabelsCss">地址</td>
+		  					<td id="texPrintgOperatorAddress"  class="inputCommon limitDtCss"  colspan="11"></td>
+		  				</tr>
+		  				
+		  			</table> -->
+		</div>
+	</div>
+
+</body>
+</html>

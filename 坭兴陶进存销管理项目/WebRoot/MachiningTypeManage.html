@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>加工类型管理</title>
+</head>
+<body>
+<script type="text/javascript" src="js/MachiningTypeManagePage.js"></script>
+
+<!-- 加工类型 -->
+<form method="get" action="#" id="TProcessTypeForm">
+		<div id="TProcessTypeBox" class="processBox">
+		<label class="TMPlabelCss dpStarInput">加工类型名称:</label><input name="TProcessTypeName" id="TProcessTypeName" class="tmpInputCss" autocomplete="off" disableautocomplete>
+		<input type="button" value="添加" class="TMInputBtCss TMPbtCss" id="TMPaddType">
+		</div>
+</form>
+
+<!-- 加工类型的导航栏 -->
+<div id="TMPTypeNav">
+	<a class="easyui-linkbutton" id="TMPDeleteBT">批量删除</a><span class="column"></span>
+	<a class="easyui-linkbutton" id="TMPSearchBT">查找</a><span class="column"></span>
+	<a class="easyui-linkbutton" id="TMPCallbackBt">返回</a>
+</div>
+
+<!-- 加工类型查询界面 -->
+	<form id="TMPtypeSearchPgae" method="get" action="#">
+		<div class="suCssInTmp">
+				<label class="dmLableCss">加工类型名称:</label><input name="TMPSprocessTypeName" id="TMPSprocessTypeName" class="dmInputCss" autocomplete="off" disableautocomplete>
+  		</div>
+	</form>
+	
+	<!-- 加工类型更新界面 -->
+	<form id="TMPtypeUpdatePgae" method="get" action="#">
+		<div class="suCssInTmp">
+				<label class="dmLableCss">加工类型名称:</label><input name="TMPUprocessTypeName" id="TMPUprocessTypeName" class="dmInputCss" autocomplete="off" disableautocomplete>
+  		</div>
+	</form>
+	
+	<!-- 加工类型右键弹出界面 -->
+<div id=TMPtypeMenuBox  class="easyui-menu">
+    	<div id="TMPtypeUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="TMPtypeDeletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+</div>    
+
+
+
+<!-- 加工风格类型 -->
+<form method="get" action="#" id="TProcessStyleForm">
+		<div id="TProcessStyleBox" class="typeBox">
+		<label class="TMPlabelCss dpStarInput">加工风格名称:</label><input name="TProcessStyleName" id="TProcessStyleName" class="tmpInputCss" autocomplete="off" disableautocomplete>
+		<label><input type="button" value="添加" class="TMInputBtCss TMPbtCss" id="TMPaddProcess"></label>
+		</div>
+</form>
+
+<!-- 加工风格类型批量删除 -->
+<div id="TMPprocessNav">
+	<a class="easyui-linkbutton" id="TMPpDeleteBT">批量删除</a><span class="column"></span>
+	<a class="easyui-linkbutton" id="TMPpearchBT">查找</a><span class="column"></span>
+	<a class="easyui-linkbutton" id="TMPpCallbackBt">返回</a>
+</div>
+
+<!-- 加工类型查询界面 -->
+	<form id="TMPprocessSearchPgae" method="get" action="#">
+		<div class="suCssInTmp">
+				<label class="dmLableCss">加工风格名称:</label><input name="TProcessStyleSearchName" id="TProcessStyleSearchName" class="dmInputCss" autocomplete="off" disableautocomplete>
+  		</div>
+	</form>
+	
+	<!-- 加工类型更新界面 -->
+	<form id="TMPprocessUpdatePgae" method="get" action="#">
+		<div class="suCssInTmp">
+				<label class="dmLableCss">加工风格名称:</label><input name="TProcessStyleUpdateName" id="TProcessStyleUpdateName" class="dmInputCss" autocomplete="off" disableautocomplete>
+  		</div>
+	</form>
+	
+	<!-- 加工类型右键弹出界面 -->
+<div id=TMPprocessMenuBox  class="easyui-menu">
+    	<div id="TMPprocessUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="TMPprocessDeletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+</div>    
+
+
+
+<!-- 显示信息的盒子 -->
+<table id="MTPoutbox">
+        <tr id="box1"><td><table 	id="TProcessType" ></table></td>
+        	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><table  id="TProcessStyle"></table></td>
+        </tr>
+</table>
+
+</body>
+</html>

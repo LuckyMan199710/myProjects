@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>价格系统管理</title>
+</head>
+<body>
+	<!-- 引入js文件 -->
+	<script type="text/javascript" src="js/dictionary.js"></script>
+	<!-- 添加界面 -->
+	<form id="quoForm" method="get" action="#">
+	  			<div id="quonavbox">
+				<a class="easyui-linkbutton" id="quoAddBT">新增</a><span class="column"></span>
+				<a class="easyui-linkbutton" id="quoDeleteBT">删除</a><span class="column"></span>
+				<a class="easyui-linkbutton" id="quoUpdateBT">修改</a><span class="column"></span>
+				<a class="easyui-linkbutton" id="quoSearchBT">查询</a><span class="column"></span>
+				<a class="easyui-linkbutton" id="quoClearBT">清空</a><span class="column"></span>
+				<a class="easyui-linkbutton" id="quoOutput">导出</a><span class="column"></span> 
+				<a class="easyui-linkbutton" id="quoCallbackBt">返回</a>
+				</div>
+				
+				<div id="quoInputPage">
+					<div class="whpDivCss">
+						<label class="tpdpLableCss   InVoAddDisCss">原&nbsp;&nbsp;料:</label><input name="dicMtlValue" id="dicMtlValue" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+						<label class="tpdpLableCss  InVoAddDisCss">制&nbsp;&nbsp;胚:</label><input name="dicEmkValue" id="dicEmkValue" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+						<label class="tpdpLableCss  InVoAddDisCss">雕&nbsp;&nbsp;刻:</label><input name="dicCarvingValue" id="dicCarvingValue" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+						<label class="tpdpLableCss  InVoAddDisCss">烧&nbsp;&nbsp;制:</label><input name="dicBurningValue" id="dicBurningValue" autocomplete="off" disableautocomplete class="dmInputCss" onkeyup="value=value.replace(/[^\d.]/g,'')">
+					</div>
+					
+					<div class="whpDivCss">
+						<label class="tpdpLableCss   InVoAddDisCss">打&nbsp;&nbsp;磨:</label><input name="dicPolishValue" id="dicPolishValue" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+						<label class="tpdpLableCss  InVoAddDisCss">包&nbsp;&nbsp;装:</label><input name="dicPackingValue" id="dicPackingValue" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+						<label class="tpdpLableCss  InVoAddDisCss">物&nbsp;&nbsp;流:</label><input name="dicLogisticsValue" id="dicLogisticsValue" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+						<input type="hidden" name="dicTotalValue" id="dicTotalValue">
+					</div>
+				</div>
+	</form>
+	
+	<!-- 查询界面 -->
+	<form action="" method="get" id="quoSearchPage">
+			<div class="udmRowCss">
+						<label class="tpdpLableCss   quoSearchLabelCss">原&nbsp;&nbsp;料&nbsp;&nbsp;始:</label><input name="quoSdicMtlValueStart" id="quoSdicMtlValueStart" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+						<label class="tpdpLableCss  quoSearchLabelCss">原&nbsp;&nbsp;料&nbsp;&nbsp;末:</label><input name="quoSdicMtlValueEnd" id="quoSdicMtlValueEnd" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+						<label class="tpdpLableCss  quoSearchLabelCss">制&nbsp;&nbsp;胚&nbsp;&nbsp;始:</label><input name="quoSdicEmkValueStart" id="quoSdicEmkValueStart" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+						<label class="tpdpLableCss  quoSearchLabelCss">制&nbsp;&nbsp;胚&nbsp;&nbsp;末:</label><input name="quoSdicEmkValueEnd" id="quoSdicEmkValueEnd" autocomplete="off" disableautocomplete class="dmInputCss" onkeyup="value=value.replace(/[^\d.]/g,'')">
+  			</div>
+  			
+  			<div class="udmRowCss">
+						<label class="tpdpLableCss   quoSearchLabelCss">雕&nbsp;&nbsp;刻&nbsp;&nbsp;始:</label><input name="quoSdicCarvingValueStart" id="quoSdicCarvingValueStart" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+						<label class="tpdpLableCss  quoSearchLabelCss">雕&nbsp;&nbsp;刻&nbsp;&nbsp;末:</label><input name="quoSdicCarvingValueEnd" id="quoSdicCarvingValueEnd" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+						<label class="tpdpLableCss  quoSearchLabelCss">烧&nbsp;&nbsp;制&nbsp;&nbsp;始:</label><input name="quoSdicBurningValueStart" id="quoSdicBurningValueStart" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+						<label class="tpdpLableCss  quoSearchLabelCss">烧&nbsp;&nbsp;制&nbsp;&nbsp;末:</label><input name="quoSdicBurningValueEnd" id="quoSdicBurningValueEnd" autocomplete="off" disableautocomplete class="dmInputCss" onkeyup="value=value.replace(/[^\d.]/g,'')">
+  			</div>
+  			
+  			<div class="udmRowCss">
+					<label class="tpdpLableCss   quoSearchLabelCss">打&nbsp;&nbsp;磨&nbsp;&nbsp;始:</label><input name="quoSdicPolishValueStart" id="quoSdicPolishValueStart" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+						<label class="tpdpLableCss  quoSearchLabelCss">打&nbsp;&nbsp;磨&nbsp;&nbsp;末:</label><input name="quoSdicPolishValueEnd" id="quoSdicPolishValueEnd" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+						<label class="tpdpLableCss  quoSearchLabelCss">包&nbsp;&nbsp;装&nbsp;&nbsp;始:</label><input name="quoSdicPackingValueStart" id="quoSdicPackingValueStart" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+						<label class="tpdpLableCss  quoSearchLabelCss">包&nbsp;&nbsp;装&nbsp;&nbsp;末:</label><input name="quoSdicPackingValueEnd" id="quoSdicPackingValueEnd" autocomplete="off" disableautocomplete class="dmInputCss" onkeyup="value=value.replace(/[^\d.]/g,'')">
+  			</div>
+  			
+  			<div class="udmRowCss">
+					<label class="tpdpLableCss   quoSearchLabelCss">物&nbsp;&nbsp;流&nbsp;&nbsp;始:</label><input name="quoSdicLogisticsValueStart" id="quoSdicLogisticsValueStart" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+						<label class="tpdpLableCss  quoSearchLabelCss">物&nbsp;&nbsp;流&nbsp;&nbsp;末:</label><input name="quoSdicLogisticsValueEnd" id="quoSdicLogisticsValueEnd" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+						<label class="tpdpLableCss  quoSearchLabelCss">总&nbsp;&nbsp;价&nbsp;&nbsp;始:</label><input name="quoSdicTotalValueStart" id="quoSdicTotalValueStart" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+						<label class="tpdpLableCss  quoSearchLabelCss">总&nbsp;&nbsp;价&nbsp;&nbsp;末:</label><input name="quoSdicTotalValueEnd" id="quoSdicTotalValueEnd" autocomplete="off" disableautocomplete class="dmInputCss" onkeyup="value=value.replace(/[^\d.]/g,'')">
+  			</div>
+	
+	</form>
+	
+	<!-- 更新信息界面 -->
+	<form method="get" action="#" id="quoUpdatePage">
+		<div class="udmRowCss tpdpSearchDivCss">
+				<label class="tpdpLableCss  InVoAddDisCss">原&nbsp;&nbsp;料:</label><input name="quoUdicMtlValue" id="quoUdicMtlValue" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+				<label class="tpdpLableCss  InVoAddDisCss">制&nbsp;&nbsp;胚:</label><input name="quoUdicEmkValue" id="quoUdicEmkValue" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+				<label class="tpdpLableCss  InVoAddDisCss">雕&nbsp;&nbsp;刻:</label><input name="quoUdicCarvingValue" id="quoUdicCarvingValue" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+  		</div>
+  		
+  		<div class="udmRowCss tpdpSearchDivCss">
+  				<label class="tpdpLableCss  InVoAddDisCss">烧&nbsp;&nbsp;制:</label><input name="quoUdicBurningValue" id="quoUdicBurningValue" autocomplete="off" disableautocomplete class="dmInputCss" onkeyup="value=value.replace(/[^\d.]/g,'')">
+				<label class="tpdpLableCss  InVoAddDisCss">打&nbsp;&nbsp;磨:</label><input name="quoUdicPolishValue" id="quoUdicPolishValue" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+				<label class="tpdpLableCss  InVoAddDisCss">包&nbsp;&nbsp;装:</label><input name="quoUdicPackingValue" id="quoUdicPackingValue" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+		</div>
+		
+		<div class="udmRowCss tpdpSearchDivCss">
+				<label class="tpdpLableCss  InVoAddDisCss">物&nbsp;&nbsp;流:</label><input name="quoUdicLogisticsValue" id="quoUdicLogisticsValue" class="dmInputCss" autocomplete="off" disableautocomplete onkeyup="value=value.replace(/[^\d.]/g,'')">
+				<input type="hidden" name="quoUdicTotalValue" id="quoUdicTotalValue">
+		</div>
+	</form>
+	
+	<!--点击界面右键出现的菜单 -->
+    <div id="quoRigthClickMenu"  class="easyui-menu">
+    	<div id="quoUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="quoDeleteMenu" data-options="iconCls:'icon-cancel'">删除</div>
+    </div>    
+	
+	<!-- 显示盘点记录的列表 -->
+	<table id="quoTable"></table>
+</body>
+</html>

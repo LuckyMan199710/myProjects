@@ -1,0 +1,36 @@
+[
+	{
+		"sgId" : "1",
+		"sgName" : "坭兴陶培土",
+		"storeSum":"60",
+		"countSum":"50",
+		"profitAndLoss":"0",
+		"sgModel" : "配品",
+		"sgSpecification" : "10:30:20:5",
+		"sgUnit" : "钦州坭兴陶培土有限公司",
+		"sgAttribute" : "该培土大地天然生成,经过九九八十一独家秘方烘焙,由沙子,石灰石,泥土成分组成1"
+	},
+	{
+		"sgId" : "2",
+		"sgName" : "坭兴陶培土2",
+		"storeSum":"60",
+		"countSum":"50",
+		"profitAndLoss":"0",
+		"sgModel" : "配品2",
+		"sgSpecification" : "10:30:20:5",
+		"sgUnit" : "钦州坭兴陶培土有限公司5",
+		"sgAttribute" : "该培土大地天然生成,经过九九八十一独家秘方烘焙,由沙子,石灰石,泥土成分组成2"
+	},
+	{
+		"sgId" : "3",
+		"sgName" : "坭兴陶培土3",
+		"storeSum":"60",
+		"countSum":"",
+		"profitAndLoss":"0",
+		"sgModel" : "配品3",
+		"sgSpecification" : "10:30:20:5",
+		"sgUnit" : "钦州坭兴陶培土有限公司3",
+		"sgAttribute" : "该培土大地天然生成,经过九九八十一独家秘方烘焙,由沙子,石灰石,泥土成分组成3"
+	}
+
+]

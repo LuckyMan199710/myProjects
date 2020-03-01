@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>加工内容管理</title>
+</head>
+<body>
+<script type="text/javascript" src="js/TProcessContentPage.js"></script>
+<!-- 添加加工内容界面 -->
+<form id="tppNavForm" method="get" action="#">
+  			<div id="dmnavbox">
+			<a class="easyui-linkbutton" id="tppAddBT">新增</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="tppDeleteBT">删除</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="tppUpdateBT">修改</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="tppSearchBT">查询</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="tppClearBT">清空</a><span class="column"></span>
+<!-- 		<a class="easyui-linkbutton" id="whpOutput">导出</a><span class="column"></span> -->
+			<a class="easyui-linkbutton" id="tppCallbackBt">返回</a>
+			</div>
+			
+			<div id="tppInputPage">
+				<div class="whpDivCss">
+					<label class="whpLableCss whpStarCss">内容名称:</label><input name="processTypeName" id="processTypeName" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss ">加工风格:</label><input name="processStyle" id="processStyle" class="dmInputCss" autocomplete="off" disableautocomplete>
+					<label class="whpLableCss ">加工类型:</label><input name="processType" id="processType" class="dmInputCss">
+					<label class="whpLableCss ">加工图片:</label><input type="button" value="上传图片" id="processTypePicBT" class="tsppUploadBtCss"><input type="hidden" id="processTypePicImgPath" value="" ><img alt="" src="" id="processTypePic" name="processTypePic">
+				</div>
+			</div>
+			
+	</form>	
+	
+	<!-- 更新加工内容信息界面 -->
+	<form method="get" action="#" id="tppUpdateBox">
+	
+		<div class="udmRowCss tppUpdateDivCss">
+				<label class="dmLableCss uwhpStarCss">内容名称:</label><input name="updateProcessTypeName" id="updateProcessTypeName" class="dmInputCss" autocomplete="off" disableautocomplete>
+  				<label class="dmLableCss ">加工风格:</label><input name="updateProcessStyle" id="updateProcessStyle" class="dmInputCss" autocomplete="off" disableautocomplete>
+  		</div>
+  			
+  		<div class="udmRowCss">
+				<label class="dmLableCss ">加工类型:</label><input name="updateProcessType" id="updateProcessType" class="dmInputCss">
+				<input type="button" value="更新图片" id="tppUpdateImgBt" class="uploadUpdateImgBtCss"><img alt="暂无加工内容图片" src="" id="updateProcessTypePic" name="updateProcessTypePic" class="tppUpdateImgCss">
+		</div>
+		
+	</form>
+	
+	<!--查询加工内容信息界面 -->
+	<form method="get" action="#" id="tppSearchBox">
+		<div class="sdmRowCss">
+				<label class="dmLableCss">内容名称:</label><input name="searchProcessTypeName" id="searchProcessTypeName" class="dmInputCss" autocomplete="off" disableautocomplete>
+  				<label class="dmLableCss">加工风格:</label><input name="searchProcessStyle" id="searchProcessStyle" class="dmInputCss" autocomplete="off" disableautocomplete>
+				<label class="dmLableCss">加工类型:</label><input name="searchProcessType" id="searchProcessType" class="dmInputCss" autocomplete="off" disableautocomplete>
+  		</div>
+	</form>
+	
+	<!-- 右键弹出界面 -->
+  	<div id=tppMenu  class="easyui-menu">
+    	<div id="tppMUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="tppMDeletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+    </div>  
+	
+	 <!-- 鼠标移动到图片栏显相应的图片 -->
+  	<div id="tppImgOutBox">
+  			<img alt="" src="" id="tppRowImg">
+  	</div>
+  	
+	<!-- 显示加工内容信息 -->
+	<table id="tppDisTable"></table>
+	
+
+</body>
+</html>

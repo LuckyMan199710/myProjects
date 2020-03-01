@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>仓库管理</title>
+</head>
+<body>
+	<script type="text/javascript" src="js/mWarehousePage.js"></script>
+	<!--导航栏 -->
+	<div id="mWhpNavsBox">
+  			<div id="mWhpNavbox">
+			<a class="easyui-linkbutton" id="mWhpAddBT">新增</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="mWhpDeleteBT">删除</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="mWhpUpdateBT">修改</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="mWhpSearchBT">查询</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="mWhpClearBT">清空</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="mWhpOutput">导出</a><span class="column"></span>
+			<a class="easyui-linkbutton" id="mWhpCallbackBt">返回</a>
+			</div>
+			
+			<!-- 显示的是员工的名称和仓库的名称但实际上的值是员工编号和仓库编号 -->
+			<form id="mWhpInputBox" action="#" method="get">
+				<label class="dmLableCss mWhpDistance mwhpStar">员工名称:</label><input name="mWhpEmployeeId" id="mWhpEmployeeId" class="dmInputCss">
+				<label class="dmLableCss mwhpStar">仓库名称:</label><input name="mWhpwareHouseId" id="mWhpwareHouseId" class="dmInputCss">
+				<label class="dmLableCss mwhpStarStatus">状态:</label><input name="mWhpMwhStatus" id="mWhpMwhStatus" class="dmInputCss">
+			</form>
+			
+			
+	</div>
+	
+	<!-- 仓库管理信息展示 -->
+	<table id="disMWhpGrid"></table>
+	
+	<!-- 更新信息窗体 -->
+	<form action="#" method="get" id="mWhpUpdateBox">
+				<label class="dmLableCss uMhpLabelCss mwhpStar">员工名称:</label><input name="updatemWhpEmployeeId" id="updatemWhpEmployeeId" class="dmInputCss">
+				<label class="dmLableCss mwhpStar">仓库名称:</label><input name="updatemWhpwareHouseId" id="updatemWhpwareHouseId" class="dmInputCss">
+				<label class="dmLableCss mwhpStarStatus">状态:</label><input name="updatemWhpMwhStatus" id="updatemWhpMwhStatus" class="dmInputCss">
+	</form>
+	
+	
+	<!-- 查询信息窗体 -->
+	<form action="#" method="get" id="mWhpSearchBox">
+				<label class="dmLableCss uMhpLabelCss">员工名称:</label><input name="searchmWhpEmployeeId" id="searchmWhpEmployeeId" class="dmInputCss">
+				<label class="dmLableCss">仓库名称:</label><input name="searchmWhpwareHouseId" id="searchmWhpwareHouseId" class="dmInputCss">
+				<label class="dmLableCss">状态:</label><input name="searchemWhpMwhStatus" id="searchemWhpMwhStatus" class="dmInputCss">
+	</form>
+	
+	<!-- 右键弹出界面 -->
+  	<div id=mwhpMenu  class="easyui-menu">
+    	<div id="mwhpUpdateMenu" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="mwhpDeletMenu" data-options="iconCls:'icon-cancel'">删除</div>
+    	<div id="mwhpSeeMenu" data-options="iconCls:'icon-search'">查看</div>
+    </div>  
+	
+	<!-- 查看详情界面 -->
+	<div id="warehouseAndManagerNews">
+  			<div id="newsTable">
+	  			<div id="headLineBox">
+		  			<label class="labelNewsCss">员工信息</label>
+		  			<div id="line"><span class="lightColorLine"></span><span class="grayColorLine"></span></div>
+	  			</div>
+	  			
+	  			<!-- 员工信息表格 -->
+	  			<table id="registerNewsBox">
+	  				<tr>
+	  					<td class="tipNameCss" >员工编号</td>
+	  					<td id="wmDisEmployeeId" class="inpurCommon">奥术大师多撒</td>
+	  					<td class="tipNameCss">员工名称</td>
+	  					<td id="wmDisEmpName" class="inpurCommon">阿萨德撒多</td>
+	  					<td class="tipNameCss">所属部门</td>
+	  					<td id="wmDisDepartment" class="inpurCommon">秘书部</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">员工电话</td>
+	  					<td id="wmDisEmpTelphone"  class="inpurCommon"  colspan="1">124545</td>
+	  					<td class="tipNameCss" style="width:60px">员工邮箱</td>
+	  					<td id="wmDisEmpEmail"  class="inpurCommon"  colspan="3">电子优先</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">邮政编码</td>
+	  					<td id="wmDisEmpPostCode"  class="inpurCommon" colspan="1" >124545</td>
+	  					<td class="tipNameCss">角色</td>
+	  					<td id="wmDisRole"  class="inpurCommon"  colspan="3">电子优先</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss">地址</td>
+	  					<td id="wmDisEmpAddress"  class="inpurCommon" colspan="5">124545</td>
+	  				</tr>
+	  			</table>
+	  			
+	  			<!-- 仓库信息 -->
+	  			<div id="headLineBox">
+		  			<label class="labelNewsCss">仓库信息</label>
+		  			<div id="line"><span class="lightColorLine"></span><span class="grayColorLine"></span></div>
+	  			</div>
+	  			
+	  			<table id="contactNews">
+	  				<tr>
+	  					<td class="tipNameCss">仓库名称</td>
+	  					<td id="wmDisWarehouseName" class="inpurCommon" >阿萨德撒多</td>
+	  					<td class="tipNameCss" >仓库编号</td>
+	  					<td id="wmDisWarehouseId" class="inpurCommon">奥术大师多撒</td>
+	  					<td class="tipNameCss" >状态</td>
+	  					<td id="wmDismwhStatus" class="inpurCommon spelabel2">秘书部</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss" >仓库管理者</td>
+	  					<td id=wmDisManageName class="inpurCommon sepLabels">124545</td>
+	  					<td class="tipNameCss" >仓库类型</td>
+	  					<td id="wmDisWarehouseType" class="inpurCommon" colspan="8">124545</td>
+	  				</tr>
+	  				<tr>
+	  					<td class="tipNameCss" >仓库地址</td>
+	  					<td id="wmDisWarehouseAddress" class="inpurCommon" colspan="12"  >124545</td>
+	  				</tr>
+	  			</table>
+	  			
+  			</div>
+  		</div>
+	
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>管理界面</title>
+	<meta charset="utf-8">
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+	<script type="text/javascript" src="js/jquery-easyui-1.5.5.2/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery-easyui-1.5.5.2/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="js/jquery-easyui-1.5.5.2/locale/easyui-lang-zh_CN.js" charset="UTF-8"></script>
+	<link rel="stylesheet" href="css/example.css" type="text/css">
+	<link rel="stylesheet" href="css/turn.css" type="text/css">
+	<link rel="stylesheet" href="js/jquery-easyui-1.5.5.2/themes/default/easyui.css" type="text/css"/>
+	<link rel="stylesheet" href="js/jquery-easyui-1.5.5.2/themes/icon.css" type="text/css"/>
+	<script type="text/javascript" src="js/managePage.js"></script>
+	<script type="text/javascript" src="js/jquery.slides.min.js"></script>
+	<link rel="stylesheet" href="css/indexPage.css" type="text/css" >					<!-- 首页样式  -->
+	<link rel="stylesheet" href="css/managePage.css" type="text/css" >					<!-- 总体网页样式 -->
+	<link rel="stylesheet" type="text/css" href="css/employeePageCss.css">				<!-- 员工的页面 -->
+	<link rel="stylesheet" type="text/css" href="css/searchEnterprise.css">				<!-- 查询公司的页面 -->
+	<link rel="stylesheet" type="text/css" href="css/enterprisePage.css">				<!-- 管理企业界面-->
+	<link rel="stylesheet" type="text/css" href="css/searchEnterprise.css">				<!-- 查询公司界面 -->
+	<link rel="stylesheet" href="css/enterpriseDetailNews.css" type="text/css"/>		<!-- 公司详情窗体 -->
+	<link rel="stylesheet" type="text/css" href="css/departmentPage.css" >				<!-- 部门管理界面 -->
+	<link rel="stylesheet" type="text/css" href="css/warehousePageCss.css" >			<!-- 仓库信息界面 -->
+	<link rel="stylesheet" type="text/css" href="css/mWarehousePage.css" >				<!-- 仓库管理界面 -->
+	<link rel="stylesheet" type="text/css" href="css/MaterialPage.css" >				<!-- 材料管理界面 -->
+	<link rel="stylesheet" type="text/css" href="css/TSemifinishedGoods.css" >			<!-- 半成品管理界面 -->
+	<link rel="stylesheet" type="text/css" href="css/TypeManage.css" >					<!-- 类型管理界面 -->
+	<link rel="stylesheet" type="text/css" href="css/TGoodsPage.css" >					<!-- 商品管理界面 -->
+	<link rel="stylesheet" type="text/css" href="css/TImportStuffPage.css" >			<!-- 商品入库界面 -->
+	<link rel="stylesheet" type="text/css" href="css/TStorePage.css" >					<!-- 库存管理界面 -->
+	<link rel="stylesheet" type="text/css" href="css/TExportMaterialPage.css" >			<!-- 材料出库界面 -->
+	<link rel="stylesheet" type="text/css" href="css/TCraftsmanPage.css" >				<!-- 材料出库界面 -->
+	<link rel="stylesheet" type="text/css" href="css/MachiningTypeManage.css" >			<!-- 加工类型界面 -->
+	<link rel="stylesheet" type="text/css" href="css/TProcessContentPage.css" >			<!-- 加工内容界面 -->
+	<link rel="stylesheet" type="text/css" href="css/TexportSemiGoodsforProcess.css" >	<!-- 半成品委托加工 -->
+	<link rel="stylesheet" type="text/css" href="css/TProcessDetailPage.css" >			<!-- 半成品加工明细 -->
+	<link rel="stylesheet" type="text/css" href="css/InventoryPage.css" >				<!-- 盘点仓库管理 -->
+	<link rel="stylesheet" type="text/css" href="css/TImportMeaterial.css" >			<!-- 材料入库 -->
+	<link rel="stylesheet" type="text/css" href="css/TImportSemiGoods.css" >			<!-- 半成品入库 -->
+	<link rel="stylesheet" type="text/css" href="css/TEXportGoods.css" >				<!-- 商品出库管理 -->
+	<link rel="stylesheet" type="text/css" href="css/dictionary.css" >					<!-- 价格系数管理 -->
+	<link rel="stylesheet" type="text/css" href="css/quotiety.css" >					<!-- 相关系数管理 -->
+	<link rel="stylesheet" type="text/css" href="css/PersonNews.css" >					<!-- 个人首页 -->
+	<link rel="stylesheet" type="text/css" href="css/TLogin.css" >						<!-- 登录记录 -->
+	<link rel="stylesheet" href="css/printGoods.css" type="text/css">					<!-- 打印界面 -->
+  </head>
+  
+ <body id="mainPage" class="easyui-layout" style="overflow:hidden;" onload="showTime();">  
+ 
+	<!--  	网页头部  -->
+    <div data-options="region:'north',split:false,collapsed:false,title:''" style="height:100px;" class="headbc" id="headbc">
+    	<img alt="" src="img/logo.png" id="logo" >
+    	<img alt="" src="img/text.png" id="text" >
+    	<span id="time"></span>
+    	<div  class="loginBox" id="loginBox">
+    		<img alt="" src="img/a5.jpg" id="loginUserImgBox" class="loginUserImgBox">
+    		<span class="loginUserName" id="loginUserName">Admin</span>
+    		<div id="hidderBox" class="hidderBox">
+    			<img alt="" src="img/personArr.png" class="connectImg" id="connectImg">
+    			<div id="personNews" class="personNews">个人信息</div>
+    			<div id="safeQuit" class="safeQuit">安全退出</div>
+    		</div>
+    	</div>
+    </div>   
+    
+	<!--     导航条 -->
+    <div data-options="region:'west',title:'导航目录',split:false,collapsible:true,iconCls:'icon-mulu',collapsible:false" style="width:170px;text-align: center;">
+		<div id="accoudoionBox">
+			<div title="企业模块"  data-options="iconCls:'icon-qiye'">
+				<ul id="navs"></ul>
+			</div>
+			
+			<div title="仓库模块"  data-options="iconCls:'icon-changku'">
+				<ul id="navs2"></ul>
+			</div>
+			
+			<div title="商品模块"  data-options="iconCls:'icon-shangping'">
+				<ul id="navs3"></ul>
+			</div>
+		</div>
+		
+    </div>  
+    
+	<!--     显示数据区域 -->
+    <div data-options="region:'center',fit:false,split:false" id="center" style="overflow:hidden" >
+    </div>	
+	<!--     网页底部 -->
+     <div data-options="region:'south'" id="centera" class="webBottomCss">@版权所有 2018 北部湾大学电子与信息工程学院电信学院软件开发工作室</div>
+    
+    
+    <!--员工右键出现的菜单 -->
+    <div id="menu" class="easyui-menu">
+    	<div id="updateEmpoyee" data-options="iconCls:'icon-edit'" style="text-align: center;">更新</div>
+    	<div id="deleteEmployee" data-options="iconCls:'icon-cancel'">删除</div>
+    </div>
+    
+    <!--企业管理右键出现的菜单 -->
+    <div id="enterprisemenu"  class="easyui-menu">
+    	<div id="updateEnterprise" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="deleteEnterprise" data-options="iconCls:'icon-cancel'">删除</div>
+    	<div id="detailEnterprise" data-options="iconCls:'icon-search'">查看</div>
+    </div> 
+    
+    <!--企业查询界面右键出现的菜单 -->
+    <div id="eqSearcheMenu"  class="easyui-menu">
+    	<div id="eqSupdateEnterprise" data-options="iconCls:'icon-edit'">更新</div>
+    	<div id="eqSdeleteEnterprise" data-options="iconCls:'icon-cancel'">删除</div>
+    	<div id="eqSdetailEnterprise" data-options="iconCls:'icon-search'">查看</div>
+    </div>    
+    
+    <div id="tab-tools">
+		<a href="#"  id="refresh" title="刷新当前页面"></a>
+		<a href="#"  id="autoLoadMenu" class="autoLoadMenu" title="自动同步网上订单">自动下载订单</a>
+		<a href="#"  id="autoLoadSetting" title="选择操作"></a>
+	</div>
+    
+    <!-- 操作界面 -->
+    <div id="handlerBox" class="handlerBox">
+    	<span id="closeOtherTabs" class="closeAllTabs">关闭其他页面</span>
+		<span id="closeAllTabs" class="closeAllTabs closeCss">关闭所有页面</span>
+		<span id="autoLoadMenuSetting" class="autoLoadMenuSetting">自动下载订单配置</span>
+	</div>
+	
+	<!-- 自动下载订单界面 -->
+	<div id="manageAutoLoadMenu">
+		<div id="menuHeadBox" class="menuHeadBox">
+			<p class="hearTitle">获取条件</p>
+			<p>
+			<span class="currentShop">当前网店 : 所有自动下单的网店</span>
+			<span class="munuStatus">订单状态 : 所有订单</span>
+			</p>
+		</div>
+		<p class="loadStatusText">订单获取情况:</p>
+		<div id="menuTipBox" class="menuTipBox">
+			
+		</div>
+	</div>
+   
+</body>  
+</html>

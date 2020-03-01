@@ -1,0 +1,49 @@
+
+/* 添加界面的样式 */
+#TProcessTypeForm,#TProcessStyleForm{
+	display: inline-block;
+}
+
+#TProcessStyleBox{
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+
+/* label样式 */
+.TMPlabelCss{
+	display: inline-block;
+	width: 100px;
+	margin-left: 10px;
+	font-size: 12px !important;
+	text-align: center;
+}
+.TMPbtCss{
+	margin-left: 15px;
+}
+
+/* 加工类型的样式 */
+.processBox{
+	margin-left: 130px
+}
+
+/* 加工风格的样式 */
+.typeBox{
+	margin-left:185px; 	
+}
+
+/* 显示信息的盒子的左边距 */
+#box1{
+	margin-left: 100px;
+	display: block;
+}
+
+/* 批量删除和查询和返回按钮 */
+#TMPTypeNav,#TMPprocessNav{
+	margin-top: -8px;
+}
+
+/* 查询和更新中文本框的样式 */
+.suCssInTmp{
+	margin-top: 33px;
+	margin-left: 25px;
+}

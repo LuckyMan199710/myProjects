@@ -1,0 +1,142 @@
+/* 从业人员添加界面样式 */
+html,body{
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+}
+
+/* 添加中地址的输入框样式 */
+.TcmAdressCss{
+	width: 555px;
+}
+
+/* 特长输入框样式*/
+.TcmStrongPointCss{
+	width: 555px;
+}
+
+/* 专业输入框的样式 */
+.TcmProfessionalCss{
+	max-width: 1211px  !important;
+	min-width:1211px  !important;
+	margin-left: 127px !important;
+	font-size: 14px !important;
+}
+
+.TcmProCss{
+	position: absolute;
+	left: 10px;
+	margin-left: 25px;
+}
+
+/* 图片样式 */
+#TcmUploadImg,#TcmUploadImgInUpdatePage{
+	display: inline-block;
+	width: 90px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 20px;
+	padding-left: 13px;
+	word-spacing:1px;
+}
+#TcmFormBox{
+	padding-bottom:13px;
+}
+
+/* 上传图片和更新图片按钮样式 */
+.tcmImgBtCSS{
+	width: 90px !important;
+	background: #d7dee4;
+	border: 1px solid #add0fc;
+	white-space: 2px !important;
+	padding-left: 20px !important;
+	height: 22px !important;
+	line-height: 20px !important;
+	vertical-align: middle;
+	padding-top: -2px !important;
+	border-radius:2px; 
+}
+
+/* 添加界面的图片样式 */
+#cfmPic{
+	position: absolute;
+	width: 115px;
+	height: 60px;
+	border: 1px solid #95b8e7;
+	margin-left: 5px;
+}
+
+/* 更新界面的图片样式 */
+#tcmCfmPic{
+	position: absolute;
+	width: 140px;
+	height: 166px;
+	border: 1px solid #95b8e7;
+	margin-left: 45px;
+}
+
+/* 鼠标移上去显示的图片 */
+#disImgBox{
+	width:150px;
+	height: 180px;
+	max-width:150px;
+	max-height:180px;
+	display: none;
+	position: absolute;
+	z-index: 99955558;
+	text-align: center;
+	margin: auto;
+	line-height: 180px;
+	background: #fff;
+	vertical-align: middle;
+}
+
+#disChooseImg{
+	display:inline-block;
+	vertical-align:middle;
+	max-width: 150px !important;
+	max-height: 180px !important;
+}
+
+/* 当搜索返回的数据为空的时候提示的样式 */
+.datagrid-empty{
+	margin-top: 60px;
+	font-size: 16px;
+}
+
+/* 更新界面的样式 */
+.tcmUpdateCSS{
+	width: 890px;
+}
+
+.tcmUpdateAareCSS{
+	max-height: 880px !important;
+	min-width: 880px;
+	width: 880px;
+	margin-left: 110px;
+}
+
+/* 更新界面中专长的label样式 */
+.tcmUprocss{
+	left: 15px;
+}
+
+
+.tcmTipsAdd{
+	top: 30px;
+	left: 1155px;
+}
+
+/* 查看详情界面的样式 */
+.tcmManImg{
+	width: 130px;
+	height: 147px;
+	position: absolute;
+	border: 1px solid #e8e8e8;
+	border-left-color: rgb(232, 232, 232);
+	top: 83px;
+	right: 21px;
+	display: inline-block;
+	background: #f9fafb;
+	border-left-color: #ccc;
+	}

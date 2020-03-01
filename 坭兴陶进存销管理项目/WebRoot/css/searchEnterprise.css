@@ -1,0 +1,53 @@
+	html,body{
+		margin: 0px;
+		padding: 0px;
+		font-size: 12px;
+	}
+
+	/* 每行输入框间的样式 */
+	.srow{
+		margin-top: 10px;
+		margin-left: 30px;
+	}
+	
+	.sprow{
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	
+	/* 地址文本框的样式 */
+	.spInputCss{
+		width: 556px !important ;
+	}
+	
+	/* 隐藏文本框的样式 */	
+	.ba{
+		background: #f4f4f4 !important;
+		overflow: hidden;
+		height: 108px;
+		margin-top: -10px;
+	}
+	
+	/* 按钮的样式 */
+	.spBT{
+		margin-left: 10px;
+		height: 25px;
+	}
+	.moveRightCss{
+		display:inline-block;
+		margin-left: 7px;
+	}
+	
+	.searchInputCss{
+			width: 220px;
+			height: 25px;
+			line-height: 25px;
+			box-sizing: border-box;
+			padding-left: 5px;
+			border:1px solid #95b8e7 !important;
+			border-radius: 5px; 
+			background-color: #fff3f3;
+			box-sizing: border-box;
+	}
+	
+	
