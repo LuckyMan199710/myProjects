@@ -108,6 +108,13 @@ const routes = [
 	meta:{
 		title:'我的收藏'
 	}
+  },
+  {
+	name:'whichISelled',
+	component:() => import('./view/whichISelled'),
+	meta:{
+		title:'我卖出的'
+	}
   }
 ];
 

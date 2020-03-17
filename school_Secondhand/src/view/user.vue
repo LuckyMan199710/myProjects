@@ -1,6 +1,21 @@
 <template>
-  <div>
-    <img class="user-poster" src="https://img.yzcdn.cn/public_files/2017/10/23/8690bb321356070e0b8c4404d087f8fd.png">
+  <div class="user">
+	<div class="head">
+		<van-image
+			round
+			width="90px"
+			height="90px"
+			fit="cover"
+			src="https://img.yzcdn.cn/vant/cat.jpeg"
+			@click="imgPreview"
+		>
+			<template v-slot:error>加载失败</template>
+		</van-image>
+		<div class="userInfo">
+			<span>皮卡兵</span>
+			
+		</div>
+	</div>
     <van-row class="user-links" >
       <van-col span="12" @click = "runToOrderPlaced">
         <van-icon name="pending-payment" />
@@ -18,21 +33,23 @@
 
     <van-cell-group>
       <van-cell icon="manager-o" title="个人信息" to="/usermsg" is-link />
-      <van-cell icon="balance-o" title="我卖出的" is-link />
+      <van-cell icon="balance-o" title="我卖出的" to="/whichISelled" is-link />
       <van-cell icon="star-o" title="我的收藏" to="/myCollection" is-link />
     </van-cell-group>
   </div>
 </template>
 
 <script>
-import { Row, Col, Icon, Cell, CellGroup } from 'vant';
+import { Row, Col, Icon, Cell, CellGroup,Image,ImagePreview } from 'vant';
 export default {
   components: {
     [Row.name]: Row,
     [Col.name]: Col,
     [Icon.name]: Icon,
     [Cell.name]: Cell,
-    [CellGroup.name]: CellGroup
+    [CellGroup.name]: CellGroup,
+	[Image.name]:Image,
+	[ImagePreview.name]:ImagePreview 
   },
   mounted() {
     this.$store.commit('changeTabbarStatusTrue');
@@ -44,6 +61,11 @@ export default {
 	},
 	runToDeliver(){
 		this.$router.push('./deliver')
+	},
+	imgPreview(){
+		ImagePreview([
+			'https://img.yzcdn.cn/vant/cat.jpeg',
+		]);
 	}
   }
 };
@@ -51,6 +73,19 @@ export default {
 
 <style lang="less">
 .user {
+  .head{
+	height: 300px;
+	width: 100%;
+	background: url(../assets/背景.jpg);
+	display: flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	.userInfo{
+		color: black;
+		margin-top: 1.25rem;
+	}
+  }
   &-poster {
     width: 100%;
     height: 53vw;
