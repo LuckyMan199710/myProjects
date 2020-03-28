@@ -33,6 +33,9 @@
 		created() {
 			this.goods = this.$route.params;
 		},
+		mounted() {
+			this.$store.commit('changeTitleName',this.$route.meta.title);
+		},
 		data(){
 			return {
 				chosenAddressId: '1',

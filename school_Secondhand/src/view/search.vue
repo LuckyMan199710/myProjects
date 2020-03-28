@@ -16,6 +16,11 @@
 		components:{
 			[Search.name]:Search
 		},
+		mounted() {
+			this.$store.commit('changeTabbarStatusTrue');
+			this.$store.commit('changeNavBarStatusFalse');
+			this.$store.commit('changeTabbarStatusIndex',1);
+		},
 		data(){
 			return{
 				value:""

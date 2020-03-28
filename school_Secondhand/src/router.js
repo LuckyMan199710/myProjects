@@ -9,7 +9,28 @@ Router.prototype.goBack = function () {
 }
 const routes = [
   {
-	redirect:'/home'
+	redirect:'/login'
+  },
+  {
+	name:'login',
+	component:() => import('./view/login'),
+	meta:{
+		title:'登录'
+	}
+  },
+  {
+	name:'register',
+	component:() => import('./view/register'),
+	meta:{
+		title:'注册账号'
+	}
+  },
+  {
+	name:'changePwd',
+	component:() => import('./view/changePwd'),
+	meta:{
+		title:'修改密码'
+	}
   },
   {
 	name:'home',
@@ -29,7 +50,7 @@ const routes = [
     name: 'goods',
     component: () => import('./view/goods'),
     meta: {
-      title: '商品详情'
+      title: '商品信息'
     }
   },
   {
@@ -99,7 +120,7 @@ const routes = [
 	name:'deliver',
 	component:() => import('./view/deliver'),
 	meta:{
-		titie:'已发货'
+		title:'已发货'
 	}
   },
   {
@@ -114,6 +135,13 @@ const routes = [
 	component:() => import('./view/whichISelled'),
 	meta:{
 		title:'我卖出的'
+	}
+  },
+  {
+	name:'publish',
+	component:() => import('./view/publish'),
+	meta:{
+		title:'发布闲置'
 	}
   }
 ];

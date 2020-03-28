@@ -3,7 +3,8 @@ export default{
 	namespace:true,
 	state:{
 		tabbarStatus:true,
-		navBarStatus:false
+		navBarStatus:false,
+		tabbarInedx:0
 	},
 	mutations:{
 		changeTabbarStatusTrue(state){
@@ -25,6 +26,9 @@ export default{
 			if(state.navBarStatus === true){
 				state.navBarStatus = false;
 			}
+		},
+		changeTabbarStatusIndex(state,index){
+			state.tabbarInedx = index;
 		}
 	}
 }

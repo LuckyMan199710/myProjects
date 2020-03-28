@@ -1,28 +1,57 @@
 <template>
 	<div class="index">
+		<!-- 用户栏 -->
 		<div class="user">
-			<img class="logo" src="../assets/logo.png" alt="logo" title="logo">
+			<img class="logo" src="../assets/logo/logo.png" alt="logo" title="logo">
 			<div class="username">
 				<span>欢迎登录！</span>
 				<van-icon name="manager-o" />
 				<span class="name" @click="runToUser">皮卡兵</span>
 			</div>
 		</div>
-		<van-notice-bar text="通知内容" left-icon="volume-o" />
-		<van-grid :column-num="3">
-			<van-grid-item
-				v-for="value in 6"
-				:key="value"
-				:icon="require('../assets/图4.jpg')"
-				text="文字"
-			/>
-		</van-grid>
+		<!-- 公告栏 -->
+		<van-notice-bar text="通知内容" left-icon="volume-o" style="margin-top: 10px;"/>
+		
+		<div class="goodsTitle">
+			<van-icon :name="require('../assets/icon/推荐.png')" size="16"/>
+			<span>为您推荐</span>
+		</div>
+		<div class="goods">
+			<van-grid :column-num="3">
+				<van-grid-item
+					v-for="value in 6"
+					:key="value"
+					:icon="require('../assets/图4.jpg')"
+					text="文字"
+				/>
+			</van-grid>
+		</div>
+		<!-- 选项栏 -->
+		<div class="selectedList">
+			<van-grid :column-num="3">
+				<van-grid-item
+					@click="runToList"
+					:icon="require('../assets/icon/cg-随便看看.png')"
+					text="随便看看"
+				/>
+				<van-grid-item
+					@click="runToPublish"
+					:icon="require('../assets/icon/添加.png')"
+					text="发布闲置"
+				/>
+				<van-grid-item
+					:icon="require('../assets/icon/刷新.png')"
+					text="换一批"
+				/>
+			</van-grid>
+		</div>
 	</div>
 </template>
 
 <script>
-	import {Grid,GridItem,NoticeBar,Icon } from 'vant'
+	import {Grid,GridItem,NoticeBar,Icon} from 'vant'
 	export default{
+		
 		components:{
 			[Grid.name]:Grid,
 			[GridItem.name]:GridItem,
@@ -32,10 +61,17 @@
 		mounted() {
 			this.$store.commit('changeTabbarStatusTrue');
 			this.$store.commit('changeNavBarStatusFalse');
+			this.$store.commit('changeTabbarStatusIndex',0);
 		},
 		methods:{
 			runToUser(){
-				this.$router.push('/user')
+				this.$router.push('/user');
+			},
+			runToList(){
+				this.$router.push('/list')
+			},
+			runToPublish(){
+				this.$router.push('/publish')
 			}
 		},
 		data(){
@@ -49,16 +85,16 @@
 <style lang="less">
 	.index{
 		.user{
-			background-color: rgba(135,206,250,0.2);
+			background-color: rgba(135,206,250,0.7); 
 			display: flex;
 			justify-content:space-between;
 			flex-direction: row;
 			.logo{
-				width: 60px;
-				height: 40px;
+				width: 200px;
+				height: 50px;
 			}
 			.username{
-				padding: 10px 5px 0px 0px;
+				padding: 15px 5px 0px 0px;
 				span{
 					font-size: 0.75rem;
 					letter-spacing:1px;
@@ -71,18 +107,37 @@
 				}
 			}
 		}
-		.van-grid-item__content{
-		&:hover{
-				background-color: rgba(	220,220,220,0.2);
-		}
-			.van-grid-item__icon{
-				.van-icon__image{
-					width: 3em;
-					height: 4em;
-					object-fit: contain;
-				
+		.selectedList{
+			margin-top: 20px;
+			.van-grid-item__content{
+			&:hover{
+					background-color: rgba(	220,220,220,0.2);
 				}
 			}
+		}
+		.goodsTitle{
+			margin:10px 0 5px 0;
+			padding-left: 0.625rem;
+			background-color: rgba();
+			span{
+				color: red;
+				font-weight: bold;
+				
 			}
 		}
+		.goods{
+			.van-grid-item__content{
+			&:hover{
+					background-color: rgba(	220,220,220,0.2);
+			}
+				.van-grid-item__icon{
+					.van-icon__image{
+						width: 3em;
+						height: 4em;
+						object-fit: contain;
+					}
+				}
+			}
+		}
+	}
 </style>

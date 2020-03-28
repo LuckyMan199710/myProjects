@@ -35,12 +35,13 @@
       <van-cell icon="manager-o" title="个人信息" to="/usermsg" is-link />
       <van-cell icon="balance-o" title="我卖出的" to="/whichISelled" is-link />
       <van-cell icon="star-o" title="我的收藏" to="/myCollection" is-link />
+      <van-cell icon="close" title="退出登录" @click="out" is-link />
     </van-cell-group>
   </div>
 </template>
 
 <script>
-import { Row, Col, Icon, Cell, CellGroup,Image,ImagePreview } from 'vant';
+import { Row, Col, Icon, Cell, CellGroup,Image,ImagePreview,Dialog} from 'vant';
 export default {
   components: {
     [Row.name]: Row,
@@ -54,6 +55,7 @@ export default {
   mounted() {
     this.$store.commit('changeTabbarStatusTrue');
     this.$store.commit('changeNavBarStatusFalse');
+	this.$store.commit('changeTabbarStatusIndex',2);
   },
   methods:{
 	runToOrderPlaced(){
@@ -66,6 +68,16 @@ export default {
 		ImagePreview([
 			'https://img.yzcdn.cn/vant/cat.jpeg',
 		]);
+	},
+	//退出登录
+	out(){
+		Dialog.confirm({
+			message: '您确定退出登录吗'
+		}).then(() => {
+			this.$router.push('./login')
+		}).catch(() => {
+
+		});
 	}
   }
 };
@@ -76,7 +88,7 @@ export default {
   .head{
 	height: 300px;
 	width: 100%;
-	background: url(../assets/背景.jpg);
+	background: url(../assets/background/背景.jpg);
 	display: flex;
 	flex-direction:column;
 	justify-content:center;

@@ -5,6 +5,7 @@
 		left-arrow
 		@click-left="onClickLeft"
 		v-if="getNavbarStatus"
+		:title="this.$store.state.Title.titleName"
 	/>
     <transition :name="transitionName"> 
 		<router-view class="Router"></router-view>
@@ -20,6 +21,9 @@
 <script>
 	import {NavBar,Tabbar,TabbarItem} from 'vant';
 	export default {
+		updated() {
+			this.active = this.$store.state.Status.tabbarInedx //在该生命周期改变v-model的值
+		},
 		components:{
 			[NavBar.name]: NavBar,
 			[Tabbar.name]: Tabbar,
@@ -28,7 +32,7 @@
 		data() {
           return {
 			transitionName: 'slide-right',// 默认动态路由变化为slide-right
-			active: 0,
+			active: this.$store.state.Status.tabbarInedx
         }
 	},
 		computed:{

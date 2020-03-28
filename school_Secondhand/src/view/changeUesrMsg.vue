@@ -8,7 +8,7 @@
 					:after-read="getImgVal"
 					v-model="fileList" 
 					:before-read="beforeRead"
-					multiple 
+					multiple
 					:max-count="1"/>
 			</van-cell>
 			<!-- 用户名 -->
@@ -168,6 +168,7 @@
 			this.$store.commit('changeTabbarStatusFalse');
 			this.$store.commit('changeNavBarStatusTrue');
 			this.fileList.push({url:this.Person.img});
+			this.$store.commit('changeTitleName',this.$route.meta.title);
 		},
 		data(){
 			return{

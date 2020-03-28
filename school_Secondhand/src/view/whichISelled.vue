@@ -25,6 +25,7 @@
 		mounted() {
 			this.$store.commit('changeTabbarStatusFalse'); //使导航栏消失避免占用空间
 			this.$store.commit('changeNavBarStatusTrue'); 
+			this.$store.commit('changeTitleName',this.$route.meta.title);
 		}
 	}
 </script>

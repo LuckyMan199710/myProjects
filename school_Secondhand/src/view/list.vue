@@ -34,11 +34,12 @@
 	export default{
 		name:"list",
 		created() {
-			console.log(this.$route.params.key);
+			
 		},
 		mounted() {
 			this.$store.commit('changeTabbarStatusFalse');
-			this.$store.commit('changeNavBarStatusTrue');		
+			this.$store.commit('changeNavBarStatusTrue');	
+			this.$store.commit('changeTitleName',this.$route.meta.title);
 		},
 		components:{
 			[List.name]: List,

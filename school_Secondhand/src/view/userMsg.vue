@@ -53,6 +53,7 @@
 		mounted() {
 			this.$store.commit('changeTabbarStatusFalse');
 			this.$store.commit('changeNavBarStatusTrue');
+			this.$store.commit('changeTitleName',this.$route.meta.title);
 		},
 		data(){
 			return{
