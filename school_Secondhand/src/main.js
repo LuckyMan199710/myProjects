@@ -5,6 +5,7 @@ import store from './store'
 import {Lazyload} from 'vant'
 import axios from 'axios'
 
+axios.defaults.withCredentials = true;
 Vue.prototype.$http = axios;
 Vue.use(Lazyload);
 

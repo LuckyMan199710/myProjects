@@ -33,6 +33,13 @@ const routes = [
 	}
   },
   {
+	name:'addUserMsg',
+	component:() => import('./view/addUserMsg'),
+	meta:{
+		title:'填写用户信息'
+	}
+  },
+  {
 	name:'home',
 	component:() => import('./view/index'),
 	meta:{

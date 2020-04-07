@@ -49,19 +49,59 @@
 </template>
 
 <script>
-	import {Grid,GridItem,NoticeBar,Icon} from 'vant'
+	import {Grid,GridItem,NoticeBar,Icon,Toast,Dialog } from 'vant'
 	export default{
-		
+		beforeRouteEnter (to, from, next){
+			if(from.path === '/login'){
+				next((vm)=>{
+					vm.$http.get('http://localhost:3000/user/search')
+					.then((response) => {
+						if(response.data.code === 0){
+							Dialog.alert({
+								title: '提示',
+								message: '你没有填写个人信息，请先填写哦'
+							}).then(() => {
+								vm.$router.replace('/addUserMsg')
+							});
+						}
+					})
+					.catch((err) =>{
+						Toast('出错误了，请稍后再试')
+						console.log(err)
+					})				
+				});
+			}
+		},
 		components:{
 			[Grid.name]:Grid,
 			[GridItem.name]:GridItem,
 			[NoticeBar.name]:NoticeBar,
-			[Icon.name]:Icon 
+			[Icon.name]:Icon,
+			[Toast.name]:Toast,
+			[Dialog.name]:Dialog 
 		},
 		mounted() {
 			this.$store.commit('changeTabbarStatusTrue');
 			this.$store.commit('changeNavBarStatusFalse');
 			this.$store.commit('changeTabbarStatusIndex',0);
+			//请求数据 对页面进行渲染
+			this.$http.get('http://localhost:3000/index/test',{
+				params: {
+					userName: 12
+				}
+			})
+			.then((response) =>{
+				if(response.data.code === -1){
+					Toast('请先登录！')
+					this.$router.push('/login')
+				}
+				else{
+					Toast(response.data.msg)
+				}
+			})
+			.catch((error) => {
+				console.log(error)
+			})
 		},
 		methods:{
 			runToUser(){

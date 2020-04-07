@@ -5,10 +5,10 @@
 			<van-field
 				v-model="username"
 				name="username"
-				label="用户名"
-				placeholder="用户名"
+				label="账号"
+				placeholder="账号"
 				left-icon="manager-o"
-				:rules="[{ required: true, message: '请填写用户名' }]"
+				:rules="[{ required: true, message: '请填写账号' }]"
 			/>
 			<van-field
 				v-model="password"
@@ -62,7 +62,7 @@
 					userPwd:values.password
 				})
 				.then(function (response) {
-					if(response.data.status === 200){ //200表示操作成功
+					if(response.data.msg === 'success' ){ //success表示操作成功
 						Toast('登陆成功!')
 						that.push('/home')
 					}
