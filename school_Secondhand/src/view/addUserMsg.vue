@@ -14,6 +14,15 @@
 				input-align="right"
 				left-icon="manager-o"
 				:rules="[{ required: true, message: '请填写用户名' }]"
+				error-message-align="right"
+			/>
+			<!-- 年龄 -->
+			<van-field
+				v-model="user.age"
+				label="年龄"
+				input-align="right"
+				left-icon="comment-o"
+				readonly
 			/>
 			<!-- 选地区 -->
 			<van-field
@@ -25,7 +34,8 @@
 				placeholder="点击选择省市"
 				left-icon="location-o"
 				@click="showArea = true"
-				:rules="[{ required: true, message: '请填写用户名' }]"
+				:rules="[{ required: true, message: '请选择地区' }]"
+				error-message-align="right"
 			/>
 			<van-popup v-model="showArea" position="bottom">
 				<van-area
@@ -41,9 +51,9 @@
 				clickable
 				name="picker"
 				:value="getSex"
-				input-align="right"
-				left-icon="contact"
 				label="性别"
+				input-align="right"
+				left-icon="contact"		
 				placeholder="点击选择性别"
 				@click="showSexPicker = true"
 			/>
@@ -55,6 +65,31 @@
 					@cancel="showSexPicker = false"
 				/>
 			</van-popup>
+			<!-- 选择生日 -->
+			<van-field
+				readonly
+				clickable		
+				:value="user.birthday"
+				label="生日"
+				input-align="right"
+				left-icon="birthday-cake-o"
+				placeholder="点击选择时间"
+				@click="showDatePicker = true"
+				:rules="[{ required: true, message: '请选择时间' }]"
+				error-message-align="right"
+			/>
+			<van-popup v-model="showDatePicker" position="bottom">
+				<van-datetime-picker
+					v-model="currentDate"
+					type="year-month"
+					@confirm="onSelectDate"
+					@cancel="showDatePicker = false"
+					:min-date = "minDate"
+					:max-date = "maxDate"
+				/>
+			</van-popup>
+			
+			
 			<!-- 保存按钮 -->
 			<div style="margin: 16px;">
 				<van-button round block type="info" native-type="submit">
@@ -67,7 +102,7 @@
 
 <script>
 	import AeraInfo from "../../common/area.js"
-	import {Form,Field,Icon,Button,Uploader,Picker,Popup,Area} from 'vant'
+	import {Form,Field,Icon,Button,Uploader,Picker,Popup,Area,DatetimePicker} from 'vant'
 	export default{
 		components:{
 			[Form.name]:Form,
@@ -77,7 +112,8 @@
 			[Uploader.name]:Uploader,
 			[Picker.name]:Picker,
 			[Popup.name]:Popup,
-			[Area.name]:Area
+			[Area.name]:Area,
+			[DatetimePicker.name]:DatetimePicker
 		},
 		created() {
 			this.areaList = AeraInfo
@@ -92,13 +128,19 @@
 				user:{
 					username:'',
 					headImg:[],
+					age:'',
 					area:'',
-					sex:0
+					sex:0,
+					birthday:''
 				},
 				areaList: {},
 				showArea: false ,//控制选择省市的弹出框
 				columns: ['男','女'],
-				showSexPicker: false
+				showSexPicker: false,
+				showDatePicker:false,
+				minDate: new Date(1900, 0, 1),
+				maxDate: new Date(2020, 1, 1),
+				currentDate:new Date()
 			}
 		},
 		methods:{
@@ -114,6 +156,23 @@
 			onSelectSex(value,index) {
 				this.user.sex = index;
 				this.showSexPicker = false;
+			},
+			onSelectDate(value){
+				this.user.birthday = (value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate());
+				this.showDatePicker = false;
+				this.computedAge(value);
+			},
+			//根据选择的出生日期来计算出年龄
+			computedAge(birthday){
+				let nowaday = new Date();
+				let age = nowaday.getFullYear()-birthday.getFullYear();
+				if(birthday.getMonth()>nowaday.getMonth()){
+					age-=1;
+				}
+				else if(birthday.getMonth() === nowaday.getMonth() && birthday.getDate()>nowaday.getDate()){
+					age-=1;
+				}
+				this.user.age = age;
 			}
 		},
 		computed:{
