@@ -1,6 +1,6 @@
 <template>
 	<div class="addUserMsg">
-		<van-form>
+		<van-form @submit="onSubmit">
 			<van-field name="uploader" label="头像" input-align="right">
 				<template #input>
 					<van-uploader v-model="user.headImg" multiple max-count=1 />
@@ -8,7 +8,6 @@
 			</van-field>
 			<van-field
 				v-model="user.username"
-				name="username"
 				label="用户名"
 				placeholder="用户名"
 				input-align="right"
@@ -88,8 +87,76 @@
 					:max-date = "maxDate"
 				/>
 			</van-popup>
-			
-			
+			<!-- 联系方式 -->
+			<van-field
+				v-model="user.phoneNum"
+				label="联系方式"
+				placeholder="联系方式"
+				input-align="right"
+				left-icon="phone-o"
+				:rules="[{ required: true, message: '请填写联系方式' }]"
+				error-message-align="right"
+			/>
+			<!-- 邮箱 -->
+			<van-field
+				v-model="user.email"
+				label="邮箱"
+				placeholder="邮箱"
+				input-align="right"
+				left-icon="envelop-o"
+				:rules="[{ required: true, message: '请填写联系邮箱' }]"
+				error-message-align="right"
+			/>
+			<!-- 学院 -->
+			<van-field
+				v-model="user.collage"
+				label="学院"
+				placeholder="所在学院"
+				input-align="right"
+				left-icon="description"
+				:rules="[{ required: true, message: '请填写所在学院' }]"
+				error-message-align="right"
+			/>
+			<!-- 班级 -->
+			<van-field
+				v-model="user.grade"
+				label="班级"
+				placeholder="所在班级"
+				input-align="right"
+				left-icon="hotel-o"
+				:rules="[{ required: true, message: '请填写所在班级' }]"
+				error-message-align="right"
+			/>
+			<!-- 所在住址 -->
+			<van-field
+				v-model="user.address"
+				label="住址"
+				placeholder="住址"
+				input-align="right"
+				left-icon="wap-home-o"
+				:rules="[{ required: true, message: '请填写住址' }]"
+				error-message-align="right"
+			/>
+			<!-- QQ -->
+			<van-field
+				v-model="user.QQnum"
+				label="QQ号"
+				placeholder="QQ号"
+				input-align="right"
+				left-icon="http://pic.51yuansu.com/pic3/cover/00/69/37/58ab18e477752_610.jpg"
+				:rules="[{ required: true, message: '请填写QQ号' }]"
+				error-message-align="right"
+			/>
+			<!-- 微信号 -->
+			<van-field
+				v-model="user.wechatnum"
+				label="微信号"
+				placeholder="微信号"
+				input-align="right"
+				left-icon="http://img2.imgtn.bdimg.com/it/u=3838248306,1853307012&fm=26&gp=0.jpg"
+				:rules="[{ required: true, message: '请填写微信号' }]"
+				error-message-align="right"
+			/>
 			<!-- 保存按钮 -->
 			<div style="margin: 16px;">
 				<van-button round block type="info" native-type="submit">
@@ -131,7 +198,14 @@
 					age:'',
 					area:'',
 					sex:0,
-					birthday:''
+					birthday:'',
+					phoneNum:'',
+					email:'',
+					address:'',
+					collage:'',
+					grade:'',
+					QQnum:'',
+					wechatnum:''
 				},
 				areaList: {},
 				showArea: false ,//控制选择省市的弹出框
@@ -173,6 +247,9 @@
 					age-=1;
 				}
 				this.user.age = age;
+			},
+			onSubmit(){
+				console.log(this.user)
 			}
 		},
 		computed:{
