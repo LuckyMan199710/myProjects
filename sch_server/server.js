@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const path = require('path')
 //express不能直接解析post请求的请求体，要通过body-parser这个插件才能进行解析
 const bodyparser = require('body-parser')
 const cookieparser = require('cookie-parser')
@@ -7,6 +8,7 @@ const session = require('express-session')
 var cors = require('cors');
 let userRouter = require('./router/userRouter.js')
 let indexRouter = require('./router/indexRouter.js')
+let fileRouter = require('./router/fileRouter.js')
 
 //cros处理跨域问题
 app.all('*', function(req, res, next) {
@@ -18,7 +20,8 @@ app.all('*', function(req, res, next) {
     res.header("Content-Type", "application/json;charset=utf-8");
     next();
 });
-
+/* app.use('/public',express.static(path.join(__dirname,'./static'))) */
+app.use('/public',express.static('static'));
 //session配置
 app.use(session({
 	secret:'keyboard',
@@ -41,7 +44,7 @@ app.use('/index',(req,res,next)=>{
 		})
 	}
 },indexRouter)
-
+app.use('/file',fileRouter)
 
 app.listen(3000,() =>{
 	console.log('server start')
