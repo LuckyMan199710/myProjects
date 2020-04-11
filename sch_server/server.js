@@ -8,7 +8,7 @@ const session = require('express-session')
 var cors = require('cors');
 let userRouter = require('./router/userRouter.js')
 let indexRouter = require('./router/indexRouter.js')
-let fileRouter = require('./router/fileRouter.js')
+let userInfoRouter = require('./router/userInfoRouter.js')
 
 //cros处理跨域问题
 app.all('*', function(req, res, next) {
@@ -44,7 +44,7 @@ app.use('/index',(req,res,next)=>{
 		})
 	}
 },indexRouter)
-app.use('/file',fileRouter)
+app.use('/userInfo',userInfoRouter)
 
 app.listen(3000,() =>{
 	console.log('server start')

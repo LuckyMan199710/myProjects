@@ -18,7 +18,7 @@
 				console.log(file);
 				let formdata = new FormData();
 				formdata.append('user',file.file);
-				this.$http.post('http://localhost:3000/file/upload',formdata)
+				this.$http.post('http://localhost:3000/userInfo/upload',formdata)
 				.then((res)=>{
 					console.log(res)
 				})

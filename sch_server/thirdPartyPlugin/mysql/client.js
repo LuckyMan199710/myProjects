@@ -5,7 +5,8 @@ const client = (sql, arg, callback) => {
   let config = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'qwer1234',
+	password: 'root',
+    /* password: 'qwer1234', */
     database: 'school_secondhand'
   })
   //2.开始连接

@@ -3,7 +3,7 @@
 		<van-form @submit="onSubmit">
 			<van-field name="uploader" label="头像" input-align="right">
 				<template #input>
-					<van-uploader v-model="user.headImg" multiple max-count=1 />
+					<van-uploader v-model="headImg" multiple max-count=1 />
 				</template>
 			</van-field>
 			<van-field
@@ -194,9 +194,9 @@
 			return{
 				user:{
 					username:'',
-					headImg:[],
 					age:'',
 					area:'',
+					headImg:'', //用来存放头像的路径
 					sex:0,
 					birthday:'',
 					phoneNum:'',
@@ -214,7 +214,8 @@
 				showDatePicker:false,
 				minDate: new Date(1900, 0, 1),
 				maxDate: new Date(2020, 1, 1),
-				currentDate:new Date()
+				currentDate:new Date(),
+				headImg:[]  //存放图片对象，用DataForm对象进行接收
 			}
 		},
 		methods:{
@@ -249,7 +250,21 @@
 				this.user.age = age;
 			},
 			onSubmit(){
-				console.log(this.user)
+				let a ={};
+				a.img = formdata;
+				a.data = this.user;
+				let formdata = new FormData();
+				for(let i = 0 ; i<this.headImg.length;i++){
+					formdata.append('user',this.headImg[0].file);
+				}
+				formdata.append('userInfo',JSON.stringify(this.user));
+				this.$http.post('http://localhost:3000/userInfo/savaUserInfo',formdata)
+				.then((res)=>{
+					console.log(res)
+				})
+				.catch(()=>{
+					console.log('保存失败，请重试！')
+				})
 			}
 		},
 		computed:{
