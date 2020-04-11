@@ -169,7 +169,7 @@
 
 <script>
 	import AeraInfo from "../../common/area.js"
-	import {Form,Field,Icon,Button,Uploader,Picker,Popup,Area,DatetimePicker} from 'vant'
+	import {Form,Field,Icon,Button,Uploader,Picker,Popup,Area,DatetimePicker,Dialog} from 'vant'
 	export default{
 		components:{
 			[Form.name]:Form,
@@ -180,7 +180,8 @@
 			[Picker.name]:Picker,
 			[Popup.name]:Popup,
 			[Area.name]:Area,
-			[DatetimePicker.name]:DatetimePicker
+			[DatetimePicker.name]:DatetimePicker,
+			[Dialog.name]:Dialog
 		},
 		created() {
 			this.areaList = AeraInfo
@@ -194,7 +195,7 @@
 			return{
 				user:{
 					username:'',
-					age:'',
+					age:0,
 					area:'',
 					headImg:'', //用来存放头像的路径
 					sex:0,
@@ -250,20 +251,32 @@
 				this.user.age = age;
 			},
 			onSubmit(){
-				let a ={};
-				a.img = formdata;
-				a.data = this.user;
 				let formdata = new FormData();
 				for(let i = 0 ; i<this.headImg.length;i++){
 					formdata.append('user',this.headImg[0].file);
 				}
 				formdata.append('userInfo',JSON.stringify(this.user));
+				let that = this.$router; 
 				this.$http.post('http://localhost:3000/userInfo/savaUserInfo',formdata)
 				.then((res)=>{
-					console.log(res)
+					if(res.data.success === 1){
+						Dialog.alert({
+							message: '保存成功'
+						})
+						.then(() => {
+							that.push('/home')
+						})
+					}
+					else{
+						Dialog.alert({
+							message: '保存失败！请重试！'
+						})
+					}
 				})
 				.catch(()=>{
-					console.log('保存失败，请重试！')
+					Dialog.alert({
+						message: '保存失败！请重试！'
+					})
 				})
 			}
 		},

@@ -50,21 +50,22 @@
 		data(){
 			return{
 				username: '',
-				password: '',
+				password: ''
 			}
 		},
 		methods:{
 			onSubmit(values) {
 				//请求后返回的是一个promise对象 this已经被改变了 所以在外层先把vue对象(this)赋值给一个变量
-				let that = this.$router; 
+				let that = this; 
 				this.$http.post('http://localhost:3000/user/login',{
 					userName:values.username,
 					userPwd:values.password
 				})
 				.then(function (response) {
 					if(response.data.msg === 'success' ){ //success表示操作成功
-						Toast('登陆成功!')
-						that.push('/home')
+						Toast('登陆成功!');
+						let userId = response.data.userId;
+						that.$router.push({name:'home',params:{userId:userId}})
 					}
 					else{
 						Toast('请检查您的账号和密码是否有误！')

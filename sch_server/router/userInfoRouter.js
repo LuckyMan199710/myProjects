@@ -30,8 +30,25 @@ router.post('/savaUserInfo',upload.single('user'),(req,res)=>{
 	else{
 		let imgPath = req.file.path;
 		let userInfo = JSON.parse(req.body.userInfo);
+		console.log(userInfo.age)
 		db(`insert into user_info(u_id,u_name,u_area,u_headimg,u_sex,u_age,u_birthday,u_phonenum,u_mail,u_collage,u_grade,u_address,u_qq,u_wechat) 
-		values(?, ?, ?)`)
+		values(?, ?, ?,?,?,?,?,?,?,?,?,?,?,?)`,[req.session.userId,userInfo.username,userInfo.area,imgPath,userInfo.sex,userInfo.age,userInfo.birthday,userInfo.phoneNum,userInfo.email,userInfo.collage,userInfo.grade,userInfo.address,userInfo.QQnum,userInfo.wechatnum],(err,data)=>{
+			if(err){
+				console.log(err)
+				console.log(req.session.userId)
+				res.json({
+					err:-1,
+					msg:'存储失败'
+				})
+			}
+			else{
+				console.log(data)
+				res.send({
+					success:1,
+					msg:'存储成功'
+				})
+			}
+		})
 	}
 })
 module.exports = router

@@ -3,18 +3,9 @@ const express = require('express');
 let router = express.Router();
 
 router.get('/test',(req,res) => {
-	/* if(req.session.isLogin){
-		res.json({
-			code:1
-		})
-	}
-	else{
-		res.json({
-			code:-1
-		})
-	} */
+	console.log(req.query.userId)
 	res.json({
-		msg:'老八小汉堡'
+		msg:'123'
 	})
 }) 
 

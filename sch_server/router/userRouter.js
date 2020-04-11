@@ -72,7 +72,8 @@ router.post('/login',(req,res) =>{
 			req.session.userId = data[0].id;
 			req.session.isLogin = true;
 			res.json({
-				msg:'success'
+				msg:'success',
+				userId:req.session.userId
 			})
 		}
 		else{

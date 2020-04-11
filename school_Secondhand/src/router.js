@@ -12,13 +12,6 @@ const routes = [
 	redirect:'/login'
   },
   {
-	name:'test',
-	component:() => import('./view/test'),
-	meta:{
-		name:'测试'
-	}
-  },
-  {
 	name:'login',
 	component:() => import('./view/login'),
 	meta:{

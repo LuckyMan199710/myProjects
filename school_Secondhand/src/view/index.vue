@@ -71,7 +71,10 @@
 					})				
 				});
 			}
-		},
+			else{
+				next();
+			}
+		}, 
 		components:{
 			[Grid.name]:Grid,
 			[GridItem.name]:GridItem,
@@ -84,16 +87,17 @@
 			this.$store.commit('changeTabbarStatusTrue');
 			this.$store.commit('changeNavBarStatusFalse');
 			this.$store.commit('changeTabbarStatusIndex',0);
+			this.$store.dispatch('getUserInfo',this.$route.params.userId);
 			//请求数据 对页面进行渲染
-			this.$http.get('http://localhost:3000/index/test',{
-				params: {
-					userName: 12
-				}
-			})
+			this.$http.get('http://localhost:3000/index/test')
 			.then((response) =>{
 				if(response.data.code === -1){
-					Toast('请先登录！')
-					this.$router.push('/login')
+					Dialog.alert({
+						title: '提示',
+						message: '您还没有登录，请先登录哦'
+					}).then(() => {
+						this.$router.push('/login')
+					});
 				}
 				else{
 					Toast(response.data.msg)

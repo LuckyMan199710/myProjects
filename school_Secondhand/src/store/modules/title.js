@@ -8,5 +8,5 @@ export default{
 		changeTitleName(state,title){
 			state.titleName = title;
 		}
-	}
+	},
 }
