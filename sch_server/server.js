@@ -9,6 +9,7 @@ var cors = require('cors');
 let userRouter = require('./router/userRouter.js')
 let indexRouter = require('./router/indexRouter.js')
 let userInfoRouter = require('./router/userInfoRouter.js')
+let goodsRouter = require('./router/goodsRouter.js')
 
 //cros处理跨域问题
 app.all('*', function(req, res, next) {
@@ -21,7 +22,7 @@ app.all('*', function(req, res, next) {
     next();
 });
 /* app.use('/public',express.static(path.join(__dirname,'./static'))) */
-app.use('/public',express.static('static'));
+app.use('/static',express.static('static'));
 //session配置
 app.use(session({
 	secret:'keyboard',
@@ -45,6 +46,7 @@ app.use('/index',(req,res,next)=>{
 	}
 },indexRouter)
 app.use('/userInfo',userInfoRouter)
+app.use('/goodsInfo',goodsRouter)
 
 app.listen(3000,() =>{
 	console.log('server start')

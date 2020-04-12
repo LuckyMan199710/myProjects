@@ -12,18 +12,45 @@ export default{
 		}
 	},
 	actions:{
-		getUserInfo(context,param){
-			axios.get('http://localhost:3000/index/test', {
-			params: {
-				userId: param
-				}
+		getUserInfo(context){
+			return new Promise((resolve,reject)=>{
+				axios.post('http://localhost:3000/index/getUserInfo')
+				.then((response) =>{
+					if(response.data.code === -1){
+						resolve('isNotLogin')
+					}			
+					else if(response.data.success === 1){
+						context.commit('saveUserInfo',response.data.data)
+						resolve('success')
+					}
+					else if(response.data.success === 0){
+						resolve('noMessage')
+					}
+					else{
+						reject()
+					}
+				})
+				.catch(() => {
+					reject()
+				})
 			})
-			.then((response) =>{
-				context.commit('saveUserInfo',response.data)
+		},
+		updateUserInfo(context,param){
+			return new Promise((resolve,reject)=>{
+				axios.post('http://localhost:3000/userInfo/updateUserInfo',param)
+				.then((res)=>{
+					if(res.data.success === 1){
+						resolve('success');
+					}
+					else{
+						reject();
+					}
+				})
+				.catch(()=>{
+					reject();
+				})
 			})
-			.catch((error) => {
-				console.log(error)
-			})
+			
 		}
 	}
 }

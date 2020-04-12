@@ -73,7 +73,6 @@ router.post('/login',(req,res) =>{
 			req.session.isLogin = true;
 			res.json({
 				msg:'success',
-				userId:req.session.userId
 			})
 		}
 		else{
@@ -121,7 +120,7 @@ router.post('/changePwd',(req,res) => {
 
 //查询用户信息
 router.get('/search',(req,res)=>{
-	db('SELECT * FROM user_info WHERE u_id =+"'+ req.session.userId +'"',(err,data)=>{
+	db('SELECT * FROM user_info WHERE u_id ="'+ req.session.userId +'"',(err,data)=>{
 		if(data.length!= 0){
 			res.json({
 				code:1,
@@ -142,6 +141,8 @@ router.get('/search',(req,res)=>{
 		}
 	})
 })
+
+
 /* app.listen(3000,() =>{
 	console.log('server start')
 }) */

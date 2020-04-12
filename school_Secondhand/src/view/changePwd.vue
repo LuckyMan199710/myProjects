@@ -74,7 +74,7 @@
 					Toast('请输入正确的账号！')
 				}
 				else{
-					this.$http.get('http://localhost:3000/user/sendCode',{
+					this.$http.get('user/sendCode',{
 						params: {
 							userName: this.emailNum
 						}

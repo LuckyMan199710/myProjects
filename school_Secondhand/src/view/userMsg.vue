@@ -6,24 +6,24 @@
             round
             fit="cover"
             width="50"
-            height="50"
-            :src="Person.img"
+			:src="getimg"
+            height="50"       
           />
            <div style="display: inline-block; margin-left: 0.625rem;">
-             <p class="name">{{Person.name}}</p>
-             <p class="address">{{getAddress}}</p>
+             <p class="name">{{user.u_name}}</p>
+             <p class="address">{{user.u_area}}</p>
            </div>
           <van-cell-group>
 			<van-cell title="性别"  icon="friends-o"  :value="getSex" />
-			<van-cell title="年龄"  icon="comment-o"  :value="Person.age" /> 
-			<van-cell title="生日"  icon="birthday-cake-o"  :value="Person.birthday" />
-            <van-cell title="联系电话"  icon="phone-o"  :value="Person.phoneNum" />
-			<van-cell title="邮箱"  icon="envelop-o"  :value="Person.email" />
-			<van-cell title="学院"  icon="description"  :value="Person.college" />
-			<van-cell title="班级"  icon="hotel-o"  :value="Person.grade" />
-			<van-cell title="住址"  icon="wap-home-o"  :value="Person.address" />
-			<van-cell title="QQ"  icon="http://pic.51yuansu.com/pic3/cover/00/69/37/58ab18e477752_610.jpg"  :value="Person.QQnum" />
-			<van-cell title="微信"  icon="http://img2.imgtn.bdimg.com/it/u=3838248306,1853307012&fm=26&gp=0.jpg"  :value="Person.wechatnum" />
+			<van-cell title="年龄"  icon="comment-o"  :value="user.u_age" /> 
+			<van-cell title="生日"  icon="birthday-cake-o"  :value="user.u_birthday" />
+            <van-cell title="联系电话"  icon="phone-o"  :value="user.u_phonenum" />
+			<van-cell title="邮箱"  icon="envelop-o"  :value="user.u_mail" />
+			<van-cell title="学院"  icon="description"  :value="user.u_collage" />
+			<van-cell title="班级"  icon="hotel-o"  :value="user.u_grade" />
+			<van-cell title="住址"  icon="wap-home-o"  :value="user.u_address" />
+			<van-cell title="QQ"  icon="http://pic.51yuansu.com/pic3/cover/00/69/37/58ab18e477752_610.jpg"  :value="user.u_qq" />
+			<van-cell title="微信"  icon="http://img2.imgtn.bdimg.com/it/u=3838248306,1853307012&fm=26&gp=0.jpg"  :value="user.u_wechat" />
           </van-cell-group>
           <div slot="footer">
 			<van-button 
@@ -50,6 +50,9 @@
 			[Row.name]: Row,
 			[Button.name]: Button
 		},
+		created() {
+			this.user = this.$store.state.User.userInfo[0];
+		},
 		mounted() {
 			this.$store.commit('changeTabbarStatusFalse');
 			this.$store.commit('changeNavBarStatusTrue');
@@ -57,36 +60,22 @@
 		},
 		data(){
 			return{
-				Person:{
-					img:"https://img.yzcdn.cn/vant/cat.jpeg",
-					name:"皮卡兵",
-					province:"广东省",
-					city:"广州市",
-					sex:0,
-					age:22,
-					birthday:"1997/10/17",
-					phoneNum:"17878125482",
-					email:"1292082437@qq.com",
-					college:"电子与信息工程学院",
-					grade:"物联本163班",
-					address:"西4栋107",
-					QQnum:"1292082463",
-					wechatnum:"1292004645"
-				}
-				
+				user:null,
+				imgPath:''
 			}
 		},
 		computed:{
-			getAddress(){
-				return this.Person.province + " " + this.Person.city;
-			},
 			getSex(){
-                return this.Person.sex === 0 ?  "男" :  "女"
+                return this.user.u_sex === 0 ?  "男" :  "女"
+			},
+			getimg(){
+				return 'http://localhost:3000/'+this.$store.state.User.userInfo[0].u_headimg;
+				
 			}
 		},
 		methods:{
 			runtoChangeUserMsg (){
-				this.$router.push({name:'changeUmsg',params:this.Person});
+				this.$router.push('/changeUmsg');
 			}
 		}		
 	}

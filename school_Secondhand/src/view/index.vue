@@ -6,7 +6,7 @@
 			<div class="username">
 				<span>欢迎登录！</span>
 				<van-icon name="manager-o" />
-				<span class="name" @click="runToUser">皮卡兵</span>
+				<span class="name" @click="runToUser">{{user.u_name}}</span>
 			</div>
 		</div>
 		<!-- 公告栏 -->
@@ -51,7 +51,7 @@
 <script>
 	import {Grid,GridItem,NoticeBar,Icon,Toast,Dialog } from 'vant'
 	export default{
-		beforeRouteEnter (to, from, next){
+		/* beforeRouteEnter (to, from, next){
 			if(from.path === '/login'){
 				next((vm)=>{
 					vm.$http.get('http://localhost:3000/user/search')
@@ -74,7 +74,7 @@
 			else{
 				next();
 			}
-		}, 
+		}, */ 
 		components:{
 			[Grid.name]:Grid,
 			[GridItem.name]:GridItem,
@@ -87,24 +87,31 @@
 			this.$store.commit('changeTabbarStatusTrue');
 			this.$store.commit('changeNavBarStatusFalse');
 			this.$store.commit('changeTabbarStatusIndex',0);
-			this.$store.dispatch('getUserInfo',this.$route.params.userId);
-			//请求数据 对页面进行渲染
-			this.$http.get('http://localhost:3000/index/test')
-			.then((response) =>{
-				if(response.data.code === -1){
+			
+			this.status = this.$store.dispatch('getUserInfo');
+			this.status.then((values)=>{
+				if(values === 'isNotLogin'){
 					Dialog.alert({
 						title: '提示',
-						message: '您还没有登录，请先登录哦'
+						message: '您未登陆！请登陆'
+					})
+					this.$router.push('/login')
+				}
+				else if(values === 'noMessage'){
+					Dialog.alert({
+						title: '提示',
+						message: '你没有填写个人信息，请先填写哦'
 					}).then(() => {
-						this.$router.push('/login')
+						this.$router.replace('/addUserMsg')
 					});
 				}
 				else{
-					Toast(response.data.msg)
+					this.user = this.$store.state.User.userInfo[0];
 				}
 			})
-			.catch((error) => {
-				console.log(error)
+			.catch((err)=>{
+				console.log(err)
+				Toast('查询失败!,请重试！')
 			})
 		},
 		methods:{
@@ -120,7 +127,8 @@
 		},
 		data(){
 			return{
-				
+				status:true,
+				user:''
 			}
 		}
 	}

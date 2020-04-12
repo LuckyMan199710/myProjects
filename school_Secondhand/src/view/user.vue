@@ -6,14 +6,13 @@
 			width="90px"
 			height="90px"
 			fit="cover"
-			src="https://img.yzcdn.cn/vant/cat.jpeg"
+			:src=imgPath
 			@click="imgPreview"
 		>
 			<template v-slot:error>加载失败</template>
 		</van-image>
 		<div class="userInfo">
-			<span>皮卡兵</span>
-			
+			<span>{{user.u_name}}</span>
 		</div>
 	</div>
     <van-row class="user-links" >
@@ -52,10 +51,20 @@ export default {
 	[Image.name]:Image,
 	[ImagePreview.name]:ImagePreview 
   },
+  created() {
+	this.user = this.$store.state.User.userInfo[0];
+	this.imgPath = 'http://localhost:3000/'+this.user.u_headimg;
+  },
   mounted() {
     this.$store.commit('changeTabbarStatusTrue');
     this.$store.commit('changeNavBarStatusFalse');
 	this.$store.commit('changeTabbarStatusIndex',2);
+  },
+  data(){
+	return{
+		user:null,
+		imgPath:'' //图片地址
+	}
   },
   methods:{
 	runToOrderPlaced(){
@@ -66,7 +75,7 @@ export default {
 	},
 	imgPreview(){
 		ImagePreview([
-			'https://img.yzcdn.cn/vant/cat.jpeg',
+			'http://localhost:3000/'+this.user.u_headimg,
 		]);
 	},
 	//退出登录

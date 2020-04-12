@@ -5,22 +5,20 @@
 				title="我的头像" 
 			>
 				<van-uploader
-					:after-read="getImgVal"
 					v-model="fileList" 
 					:before-read="beforeRead"
-					multiple
 					:max-count="1"/>
 			</van-cell>
 			<!-- 用户名 -->
 			<van-field
-				v-model="Person.name"
+				v-model="user.u_name"
 				label="用户名"
 				placeholder="请输入用户名"
 				input-align="right"
 			></van-field>
 			<!-- 年龄 -->
 			<van-field
-				v-model="Person.age"
+				v-model="user.u_age"
 				label="年龄"
 				placeholder="请输入年龄"
 				input-align="right"
@@ -31,7 +29,7 @@
 			<van-cell 
 				title="地区" 
 				is-link 
-				:value="returnAddressRes"
+				:value="user.u_area"
 				@click = "popupShowBottom"
 			/>
 			<van-popup
@@ -43,8 +41,8 @@
 				<van-area 
 					:area-list="areaList" 
 					:columns-num="2"
+					@confirm="onSelectArea"
 					@cancel = "popupClose"
-					@confirm = "getAddressVal"
 				/>
 			</van-popup>
 			<!-- 性别 -->
@@ -59,6 +57,7 @@
 				position="bottom"
 				round
 				:style="{ height: '30%' }"
+				@confirm="getSexVal"
 			>
 				<van-picker show-toolbar :columns="columns" @cancel="pickerClose" @confirm="getSexVal"/>
 			</van-popup>
@@ -66,7 +65,7 @@
 			<van-cell
 				title="生日" 
 				is-link 
-				:value="Person.birthday"
+				:value="user.u_birthday"
 				@click="datePickShowBottom"
 			/>
 			<van-popup
@@ -86,49 +85,49 @@
 			</van-popup>
 			<!-- 手机号码 -->
 			<van-field
-				v-model="Person.phoneNum"
+				v-model="user.u_phonenum"
 				label="联系方式"
 				placeholder="请输入您的联系方式"
 				input-align="right"
 			/>
 			<!-- 邮箱 -->
 			<van-field
-				v-model="Person.email"
+				v-model="user.u_mail"
 				label="邮箱"
 				placeholder="请输入您的邮箱"
 				input-align="right"
 			/>
 			<!-- 学院 -->
 			<van-field
-				v-model="Person.college"
+				v-model="user.u_collage"
 				label="学院"
 				placeholder="请输入您所在学院"
 				input-align="right"
 			/>
 			<!-- 班级 -->
 			<van-field
-				v-model="Person.grade"
+				v-model="user.u_grade"
 				label="班级"
 				placeholder="请输入您的班级"
 				input-align="right"
 			/>
 			<!-- 住址 -->
 			<van-field
-				v-model="Person.address"
+				v-model="user.u_address"
 				label="住址"
 				placeholder="请输入您的住址"
 				input-align="right"
 			/>
 			<!-- QQ号 -->
 			<van-field
-				v-model="Person.QQnum"
+				v-model="user.u_qq"
 				label="QQ号"
 				placeholder="请输入您的QQ号"
 				input-align="right"
 			/>
 			<!-- 微信号 -->
 			<van-field
-				v-model="Person.wechatnum"
+				v-model="user.u_wechat"
 				label="微信号"
 				placeholder="请输入您微信号"
 				input-align="right"
@@ -137,8 +136,8 @@
 		<van-button
 			color="linear-gradient(to right, #4bb0ff, #6149f6)" 
 			@click="saveUserInfo"
-			block>保存信息
-		</van-button>
+			block
+		>保存信息</van-button>
 	</div>
 </template>
 
@@ -160,19 +159,21 @@
 			[Toast.name]:Toast
 		},
 		created() {
-			this.Person = this.$route.params
 			this.areaList = AeraInfo
-			console.log(this.$route.params)
+			this.user = this.$store.state.User.userInfo[0];
+			//反斜杠会被定成转义 全部转成斜杠
+			this.imgPath = ('http://localhost:3000/'+this.user.u_headimg).replace(/\\/g,"/");		
+			this.fileList.push({ url: this.imgPath})
 		},
 		mounted() {
 			this.$store.commit('changeTabbarStatusFalse');
 			this.$store.commit('changeNavBarStatusTrue');
-			this.fileList.push({url:this.Person.img});
-			this.$store.commit('changeTitleName',this.$route.meta.title);
+			this.$store.commit('changeTitleName',this.$route.meta.title)
 		},
 		data(){
 			return{
-				Person : null,
+				user : null,
+				imgPath:'',
 				areaList:[],
 				popupShow:false,
 				pickerShow:false,
@@ -182,6 +183,7 @@
 				maxDate: new Date(2020, 1, 1),
 				currentDate: new Date(),
 				fileList: [
+					
 					// Uploader 根据文件后缀来判断是否为图片文件
 					// 如果图片 URL 中不包含类型信息，可以添加 isImage 标记来声明
 				]
@@ -195,12 +197,6 @@
 			popupClose(){
 				this.popupShow = false;
 			},
-			//获得选中的省和市，如果是直辖市(省和市相同)则只输出一个名称
-			getAddressVal(e){
-				this.popupShow = false;
-				this.Person.province = e[0].name;
-				this.Person.city = e[1].name;
-			},
 			//选择性别
 			pickerShowBottom(){
 				this.pickerShow = true;
@@ -208,8 +204,17 @@
 			pickerClose(){
 				this.pickerShow = false;
 			},
+			onSelectArea(values) {
+				if(values[0].name === values[1].name){
+					this.user.u_area = values[0].name
+				}
+				else{
+					this.user.u_area = values.map(item => item.name).join(' ');
+				}		
+				this.popupShow = false;
+			},
 			getSexVal(value, index){
-				this.Person.sex = index;
+				this.user.u_sex = index;
 				this.pickerShow = false;
 			},
 			//选择生日
@@ -221,7 +226,7 @@
 			},
 			//获取到的值进行格式化成1990/1/1这种类型。
 			getDateVal(value){
-				this.Person.birthday = (value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate());
+				this.user.u_birthday = (value.getFullYear()+"/"+(value.getMonth()+1)+"/"+value.getDate());
 				this.datePicker = false;
 				this.computedAge(value);
 			},
@@ -235,11 +240,11 @@
 				else if(birthday.getMonth() === nowaday.getMonth() && birthday.getDate()>nowaday.getDate()){
 					age-=1;
 				}
-				this.Person.age = age;
+				this.user.u_age = age;
 			},
 			saveUserInfo(){
 				let status = 0; //定义一个状态码 当检测结束之后 根据状态码来决定是否进行请求存数据
-				for (let val of Object.values(this.Person) ) {
+				for (let val of Object.values(this.user) ) {
 					if(val === undefined || val === ''){
 						Toast("请填写好所有信息！");
 						break;
@@ -248,21 +253,36 @@
 						status += 1;
 					}
 				}			
-				if(status === Object.values(this.Person).length){
-					//异步操作
-					setTimeout(()=>{
+				if(status === Object.values(this.user).length){
+					/* 把所有数据利用formdata的形式进行转化 */
+					let formdata = new FormData();
+					for(let i = 0 ; i<this.fileList.length;i++){
+						formdata.append('user',this.fileList[0].file);
+					}
+					formdata.append('userInfo',JSON.stringify(this.user));
+					/* 分发action 更新state */
+					let status = this.$store.dispatch('updateUserInfo',formdata);
+					status.then(()=>{
 						Dialog.alert({
-							title: '信息',
 							message: '保存成功'
-						}).then(() => {
-							history.go(-1);
-						});
-					}, 1000);
+						})
+						.then(() => {
+							this.$store.dispatch('getUserInfo')
+							.then(()=>{
+								this.$router.replace('/usermsg')
+							})
+							.catch(()=>{
+								Toast('更新数据失败!')
+							})
+						})
+					})
+					.catch(()=>{
+						Dialog.alert({
+							message: '更新失败！请重试！'
+						})
+					})
 				}
 			},
-			getImgVal(file){
-				console.log(file)
-			},//校验文件是否为图片格式
 			beforeRead(file){
 				if (file.type !== 'image/jpeg' && file.type !== 'image/png'){
 					Toast('只允许上传jpg/png格式的图片！');
@@ -272,11 +292,8 @@
 			}
 		},
 		computed:{
-			returnAddressRes(){
-				return this.Person.province === this.Person.city ? this.Person.province:this.Person.province +' '+ this.Person.city
-			},
 			getSex(){
-				return this.Person.sex === 0 ?  "男" :  "女"
+				return this.user.u_sex === 0 ?  "男" :  "女"
 			}
 		}
 	}

@@ -250,6 +250,7 @@
 				}
 				this.user.age = age;
 			},
+			//保存数据
 			onSubmit(){
 				let formdata = new FormData();
 				for(let i = 0 ; i<this.headImg.length;i++){
@@ -257,7 +258,7 @@
 				}
 				formdata.append('userInfo',JSON.stringify(this.user));
 				let that = this.$router; 
-				this.$http.post('http://localhost:3000/userInfo/savaUserInfo',formdata)
+				this.$http.post('userInfo/savaUserInfo',formdata)
 				.then((res)=>{
 					if(res.data.success === 1){
 						Dialog.alert({

@@ -1,8 +1,15 @@
 <template>
 	<div class="publish">
-		<van-form>
+		<van-form @submit="publishGoods">
 			<van-field
-				v-model="goodsInfo"
+				v-model="goods.goodsTitle"
+				type="textarea"
+				placeholder="标题"
+				:rules="[{ required: true, message: '这里不能为空' }]"
+				:autosize="{minHeight: 50}"
+			/>
+			<van-field
+				v-model="goods.goodsInfo"
 				type="textarea"
 				placeholder="品牌型号,新旧程度,入手渠道,转手原因等"
 				:rules="[{ required: true, message: '这里不能为空' }]"
@@ -14,7 +21,7 @@
 						<van-uploader 
 							v-model="fileList"
 							:preview-size = '105'
-							:max-count="6"
+							:max-count="3"
 						/>
 				</template>
 			</van-field>
@@ -31,7 +38,7 @@
 			/>
 			
 			<van-number-keyboard
-				v-model="value"
+				v-model="goods.value"
 				:show="show"
 				:maxlength="10"
 				close-button-text="完成"
@@ -64,21 +71,36 @@
 		},
 		data(){
 			return{
-				fileList:[],
-				goodsInfo:'',
-				value:'',
+				goods:{
+					goodsTitle:'',
+					goodsInfo:'',
+					value:''
+				},
+				fileList:[],		
 				show: false,
 				showKeyboard:false
 			}
 		},
 		computed:{
 			formatPrice() {
-				return '¥' + (this.value);
+				return '¥' + (this.goods.value);
 			}
 		},
 		methods:{
-			afterRead(){
-				console.log(this.fileList);
+			//发布商品
+			publishGoods(){
+				let formdata = new FormData();
+				for(let i = 0 ; i<this.fileList.length;i++){
+					formdata.append('goods',this.fileList[i].file);
+				}
+				formdata.append('goodsInfo',JSON.stringify(this.goods));
+				this.$http.post('/goodsInfo/saveGoodsInfo',formdata)
+				.then(()=>{
+					
+				})
+				.catch(()=>{
+					
+				})
 			}
 		}
 	}
