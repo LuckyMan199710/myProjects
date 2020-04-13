@@ -54,7 +54,7 @@
 </template>
 
 <script>
-	import {Uploader,Form,Field,Popup,NumberKeyboard,Button } from 'vant' 
+	import {Uploader,Form,Field,Popup,NumberKeyboard,Button,Dialog} from 'vant' 
 	export default{
 		components:{
 			[Uploader.name] : Uploader,
@@ -62,7 +62,8 @@
 			[Field.name] : Field,
 			[Popup.name] : Popup,
 			[NumberKeyboard.name]:NumberKeyboard,
-			[Button.name] :Button
+			[Button.name] :Button,
+			[Dialog.name]:Dialog
 		},
 		mounted() {
 			this.$store.commit('changeTabbarStatusFalse');
@@ -95,11 +96,31 @@
 				}
 				formdata.append('goodsInfo',JSON.stringify(this.goods));
 				this.$http.post('/goodsInfo/saveGoodsInfo',formdata)
-				.then(()=>{
-					
+				.then((response)=>{
+					if(response.data.success === 1){
+						Dialog.alert({
+							message: '发布成功'
+						})
+						.then(() => {
+							this.$router.push('/home')
+						})
+					}
+					else{
+						Dialog.alert({
+							message: '发布失败！请重试！'
+						})
+						.then(()=>{
+							close()
+						})
+					}
 				})
 				.catch(()=>{
-					
+					Dialog.alert({
+						message: '发布失败！请重试！'
+					})
+					.then(()=>{
+						close()
+					})
 				})
 			}
 		}
