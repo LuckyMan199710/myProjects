@@ -76,10 +76,17 @@ router.post('/saveGoodsInfo',upload.any(),(req,res)=>{
 		})	
 	})
 	.then(()=>{
-		console.log('ok')
+		res.json({
+			success:1,
+			msg:'保存数据成功'
+		})
 	})
 	.catch((err)=>{
 		console.log(err)
+		res.json({
+			err:-1,
+			msg:'数据保存失败'
+		})
 	})
 })
 module.exports = router
