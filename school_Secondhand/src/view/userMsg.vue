@@ -19,9 +19,6 @@
 			<van-cell title="生日"  icon="birthday-cake-o"  :value="user.u_birthday" />
             <van-cell title="联系电话"  icon="phone-o"  :value="user.u_phonenum" />
 			<van-cell title="邮箱"  icon="envelop-o"  :value="user.u_mail" />
-			<van-cell title="学院"  icon="description"  :value="user.u_collage" />
-			<van-cell title="班级"  icon="hotel-o"  :value="user.u_grade" />
-			<van-cell title="住址"  icon="wap-home-o"  :value="user.u_address" />
 			<van-cell title="QQ"  icon="http://pic.51yuansu.com/pic3/cover/00/69/37/58ab18e477752_610.jpg"  :value="user.u_qq" />
 			<van-cell title="微信"  icon="http://img2.imgtn.bdimg.com/it/u=3838248306,1853307012&fm=26&gp=0.jpg"  :value="user.u_wechat" />
           </van-cell-group>

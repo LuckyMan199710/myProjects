@@ -32,7 +32,6 @@
 
     <van-cell-group>
       <van-cell icon="manager-o" title="个人信息" to="/usermsg" is-link />
-      <van-cell icon="balance-o" title="我卖出的" to="/whichISelled" is-link />
       <van-cell icon="star-o" title="我的收藏" to="/myCollection" is-link />
       <van-cell icon="close" title="退出登录" @click="out" is-link />
     </van-cell-group>

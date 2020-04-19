@@ -107,36 +107,6 @@
 				:rules="[{ required: true, message: '请填写联系邮箱' }]"
 				error-message-align="right"
 			/>
-			<!-- 学院 -->
-			<van-field
-				v-model="user.collage"
-				label="学院"
-				placeholder="所在学院"
-				input-align="right"
-				left-icon="description"
-				:rules="[{ required: true, message: '请填写所在学院' }]"
-				error-message-align="right"
-			/>
-			<!-- 班级 -->
-			<van-field
-				v-model="user.grade"
-				label="班级"
-				placeholder="所在班级"
-				input-align="right"
-				left-icon="hotel-o"
-				:rules="[{ required: true, message: '请填写所在班级' }]"
-				error-message-align="right"
-			/>
-			<!-- 所在住址 -->
-			<van-field
-				v-model="user.address"
-				label="住址"
-				placeholder="住址"
-				input-align="right"
-				left-icon="wap-home-o"
-				:rules="[{ required: true, message: '请填写住址' }]"
-				error-message-align="right"
-			/>
 			<!-- QQ -->
 			<van-field
 				v-model="user.QQnum"
@@ -202,9 +172,6 @@
 					birthday:'',
 					phoneNum:'',
 					email:'',
-					address:'',
-					collage:'',
-					grade:'',
 					QQnum:'',
 					wechatnum:''
 				},

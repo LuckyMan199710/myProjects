@@ -89,4 +89,23 @@ router.post('/saveGoodsInfo',upload.any(),(req,res)=>{
 		})
 	})
 })
+//查询发布的商品信息
+router.post('/getGoodsInfo',(req,res)=>{
+	let select_sql = 'and gi.seller_Id ="'+ req.session.userId+'" ' || '';
+	db('select *,GROUP_CONCAT(gis.good_img_url) from goods_info gi INNER JOIN goods_img gis where gi.good_id = gis.good_id '+select_sql+' group by gis.good_id',(err,data) => {
+		if(err){
+			console.log(err)
+			res.json({
+				err:-1,
+				msg:'falid'
+			})
+		}
+		else{
+			res.json({
+				success:1,
+				goodsList:data
+			})
+		}
+	})
+})
 module.exports = router

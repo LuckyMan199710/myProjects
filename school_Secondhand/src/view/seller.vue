@@ -18,9 +18,6 @@
 			<van-cell title="生日" :value="seller.name"/>
 			<van-cell title="联系方式" :value="seller.phoneNum"/>
 			<van-cell title="邮箱" :value="seller.email"/>
-			<van-cell title="所在学院" :value="seller.college"/>
-			<van-cell title="所在班级" :value="seller.grade"/>
-			<van-cell title="住址" :value="seller.address"/>
 			<van-cell title="QQ号" :value="seller.QQnum"/>
 			<van-cell title="微信号" :value="seller.wechatnum"/>
 		</van-cell-group>
@@ -51,9 +48,6 @@
 					birthday:"1990/01/25",
 					phoneNum:"13643015361",
 					email:"6256325410@qq.com",
-					college:"食品学院",
-					grade:"食安本153班",
-					address:"东1栋205",
 					QQnum:"1292082463",
 					wechatnum:"1292004645"
 				}

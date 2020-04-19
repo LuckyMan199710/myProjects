@@ -28,7 +28,7 @@
 		</div>
 		<!-- 选项栏 -->
 		<div class="selectedList">
-			<van-grid :column-num="3">
+			<van-grid :column-num="2">
 				<van-grid-item
 					@click="runToList"
 					:icon="require('../assets/icon/cg-随便看看.png')"
@@ -38,10 +38,6 @@
 					@click="runToPublish"
 					:icon="require('../assets/icon/添加.png')"
 					text="发布闲置"
-				/>
-				<van-grid-item
-					:icon="require('../assets/icon/刷新.png')"
-					text="换一批"
 				/>
 			</van-grid>
 		</div>

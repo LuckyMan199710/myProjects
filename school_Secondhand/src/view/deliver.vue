@@ -26,6 +26,16 @@
 			this.$store.commit('changeTabbarStatusFalse');
 			this.$store.commit('changeNavBarStatusTrue');
 			this.$store.commit('changeTitleName',this.$route.meta.title);
+			this.$http.post('/goodsInfo/getGoodsInfo')
+			.then((res)=>{
+				if(res.data.success === 1){
+					this.goodsList = res.data.goodsList
+					console.log(this.goodsList)
+				}
+			})
+			.catch(()=>{
+				
+			})
 		}
 	}
 </script>

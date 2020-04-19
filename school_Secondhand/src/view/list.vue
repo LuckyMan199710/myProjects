@@ -20,10 +20,6 @@
 				origin-price="10.00"
 				@click = "runTo()"
 			>
-				<div slot="tags">
-					<van-tag plain type="danger">标签</van-tag>
-					<van-tag plain type="danger">标签</van-tag>
-				</div>
 			</van-card>	
 		</van-list>
 	</div>

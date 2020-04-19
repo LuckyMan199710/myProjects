@@ -26,7 +26,7 @@ router.get('/sendCode',(req,res)=>{
 			res.json({
 				msg:'failed'
 			})
-		})	 */	
+		})		 */
 })
 //注册接口
 router.post('/register',(req,res) =>{

@@ -31,8 +31,8 @@ router.post('/savaUserInfo',upload.single('user'),(req,res)=>{
 	else{
 		let imgPath = req.file.path;
 		let userInfo = JSON.parse(req.body.userInfo);
-		db(`insert into user_info(u_id,u_name,u_area,u_headimg,u_sex,u_age,u_birthday,u_phonenum,u_mail,u_collage,u_grade,u_address,u_qq,u_wechat) 
-		values(?, ?, ?,?,?,?,?,?,?,?,?,?,?,?)`,[req.session.userId,userInfo.username,userInfo.area,imgPath,userInfo.sex,userInfo.age,userInfo.birthday,userInfo.phoneNum,userInfo.email,userInfo.collage,userInfo.grade,userInfo.address,userInfo.QQnum,userInfo.wechatnum],(err,data)=>{
+		db(`insert into user_info(u_id,u_name,u_area,u_headimg,u_sex,u_age,u_birthday,u_phonenum,u_mail,u_qq,u_wechat) 
+		values(?, ?,?,?,?,?,?,?,?,?,?)`,[req.session.userId,userInfo.username,userInfo.area,imgPath,userInfo.sex,userInfo.age,userInfo.birthday,userInfo.phoneNum,userInfo.email,userInfo.QQnum,userInfo.wechatnum],(err,data)=>{
 			if(err){
 				console.log(err)
 				console.log(req.session.userId)
@@ -55,20 +55,15 @@ router.post('/updateUserInfo',upload.single('user'),(req,res)=>{
 	//判断头像是否有上传
 	if(!req.file){
 		//直接更新数据
+		console.log(req.file)
 		let userInfo = JSON.parse(req.body.userInfo);
-		db('update user_info set u_name= ?,u_area=?,u_headimg= ?,u_sex= ?,u_age= ?,u_birthday= ?,u_phonenum=?,u_mail= ?,u_collage=?,u_grade=?,u_address=?,u_qq=?,u_wechat=? where u_id= "'+userInfo.u_Id+'"',
-		[userInfo.u_name,userInfo.u_area,userInfo.u_headimg,userInfo.u_sex,userInfo.u_age,userInfo.u_birthday,userInfo.u_phonenum,userInfo.u_mail,userInfo.u_collage,userInfo.u_grade,userInfo.u_address,userInfo.u_qq,userInfo.u_wechat],(err,data)=>{
+		db('update user_info set u_name= ?,u_area=?,u_headimg= ?,u_sex= ?,u_age= ?,u_birthday= ?,u_phonenum=?,u_mail= ?,u_qq=?,u_wechat=? where u_id= "'+userInfo.u_Id+'"',
+		[userInfo.u_name,userInfo.u_area,userInfo.u_headimg,userInfo.u_sex,userInfo.u_age,userInfo.u_birthday,userInfo.u_phonenum,userInfo.u_mail,userInfo.u_qq,userInfo.u_wechat],(err,data)=>{
 			if(data){
 				res.json({
 					success:1,
 					msg:'更新成功'
 				})
-				fs.unlink(userInfo.u_headimg,function(error){
-					if(error){
-						console.log(error);
-						return false;
-					}
-				})	
 			}
 			else{
 				res.json({
@@ -92,8 +87,8 @@ router.post('/updateUserInfo',upload.single('user'),(req,res)=>{
 			let imgPath = req.file.path;
 			let userInfo = JSON.parse(req.body.userInfo);
 			/* console.log(userInfo) */
-			db('update user_info set u_name= ?,u_area=?,u_headimg= ?,u_sex= ?,u_age= ?,u_birthday= ?,u_phonenum=?,u_mail= ?,u_collage=?,u_grade=?,u_address=?,u_qq=?,u_wechat=? where u_id= "'+userInfo.u_Id+'"',
-			[userInfo.u_name,userInfo.u_area,imgPath,userInfo.u_sex,userInfo.u_age,userInfo.u_birthday,userInfo.u_phonenum,userInfo.u_mail,userInfo.u_collage,userInfo.u_grade,userInfo.u_address,userInfo.u_qq,userInfo.u_wechat],(err,data)=>{
+			db('update user_info set u_name= ?,u_area=?,u_headimg= ?,u_sex= ?,u_age= ?,u_birthday= ?,u_phonenum=?,u_mail= ?,u_qq=?,u_wechat=? where u_id= "'+userInfo.u_Id+'"',
+			[userInfo.u_name,userInfo.u_area,imgPath,userInfo.u_sex,userInfo.u_age,userInfo.u_birthday,userInfo.u_phonenum,userInfo.u_mail,userInfo.u_qq,userInfo.u_wechat],(err,data)=>{
 				if(data){
 					res.json({
 						success:1,
@@ -115,6 +110,6 @@ router.post('/updateUserInfo',upload.single('user'),(req,res)=>{
 			})
 		}
 	}
-	
 })
+
 module.exports = router

@@ -11,25 +11,12 @@
 		>
 			<div slot="footer">
 				
-				<van-tag type="danger" plain v-show="tagStatus(goods.status)">退货中</van-tag>
+				<van-tag type="danger" plain v-show="tagStatus(goods.status)">交易关闭</van-tag>
 				<van-button size="small" type="info" round @click="confirmReceipt(this,goods)" v-show="cancelButtonStatus(goods.status)">收货</van-button>
-				<van-button size="small" type="info" round @click="cancelOrder(this,goods)" v-show="cancelButtonStatus(goods.status)">退货</van-button>
-				<van-button size="small" type="info" round @click="ratePopupShow(goods)" v-show="okButtonStatus(goods.status)">评价</van-button>
+				<van-button size="small" type="info" round @click="cancelOrder(this,goods)" v-show="cancelButtonStatus(goods.status)">取消</van-button>
+				<van-tag type="danger" plain v-show="tagStatus(goods.status)">交易成功</van-tag>
 			</div>
-			
 		</van-card>
-		<van-popup  
-			class = "popup"
-			v-model="show"
-			position="bottom"
-			:style="{ height: '20%' }"
-			>
-			<div class="rate">
-				<span>请发表一下对此次交易的评价吧：</span>
-				<van-rate v-model="value" />
-			</div>
-			<van-button type="info" block @click='submitRate()'>确定</van-button>
-		</van-popup>
 				
 	</div>
 </template>

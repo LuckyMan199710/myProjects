@@ -97,27 +97,6 @@
 				placeholder="请输入您的邮箱"
 				input-align="right"
 			/>
-			<!-- 学院 -->
-			<van-field
-				v-model="user.u_collage"
-				label="学院"
-				placeholder="请输入您所在学院"
-				input-align="right"
-			/>
-			<!-- 班级 -->
-			<van-field
-				v-model="user.u_grade"
-				label="班级"
-				placeholder="请输入您的班级"
-				input-align="right"
-			/>
-			<!-- 住址 -->
-			<van-field
-				v-model="user.u_address"
-				label="住址"
-				placeholder="请输入您的住址"
-				input-align="right"
-			/>
 			<!-- QQ号 -->
 			<van-field
 				v-model="user.u_qq"
