@@ -1,0 +1,90 @@
+<import src="../common/nav"/>
+
+<view>
+  <view class="vipcard">
+    <view class="vipcard__right">
+      <view class="vipcard__logo">
+        <image src="{{headimgurl}}"></image>
+      </view>
+    </view>
+    <view class="vipcard__left">
+      <view class="vipcard__num j-vipnum" id="vipnum">{{vip['vip_num']}}</view>
+    </view>
+
+  </view>
+
+  <view class="flexcell vipaccount">
+    <view class="flexcell__left">
+      <view>
+        当前余额：
+        <span class="j-vipamt">{{vip['amount']}}</span> 元
+      </view>
+    </view>
+    <view class="flexcell__right">
+      <navigator style="font-size:15px;" url='/pages/vip/account'>帐务明细
+        <span class="weui_cell_ft"></span>
+      </navigator>
+    </view>
+  </view>
+
+  <view class="flexcell recharge__title">
+    <view class="flexcell__left">
+      <view>
+        充值 -- {{shop['shop_name']}}
+      </view>
+    </view>
+    <view class="flexcell__right" wx:if="{{vip_use_recharge =='Y'}}">
+      <view style="padding:10px;border-radius:5px;color:#fff;background-color:{{base_conf['color_primary']}};" id="bind_card" bindtap="rechargeCard">绑定充值卡</view>
+    </view>
+  </view>
+
+
+</view>
+
+<!--绑定充值卡-->
+<view class="dialog" catchtouchmove="preventTouchMove" hidden='{{!showrecharge}}'>
+  <view class="dialogWrap" style='position:relative' catchtouchmove="preventTouchMove">
+    <form bindsubmit="formSubmit" bindreset="formReset" style="background-color:#fff;position:fixed;top:50%;left:0;width:100%;height:50%;">
+      <view class="formPanel" style="border-bottom:0;padding:0px;padding-top:30px;">
+        <view class='cell'>
+          <view class="cell_hd">卡号</view>
+          <view class="cell_bd">
+            <input type="text" name="card_num" class="input_field" value="{{inputData['card_num']}}" bindinput="bindTargetInput" bindfocus="bindFocusInput" data-fieldname="card_num" focus="{{card_num_focus}}" cursor-spacing="20" placeholder="请输入卡号" />
+          </view>
+          <view class="cell_ft"></view>
+        </view>
+        <view class='cell'>
+          <view class="cell_hd">密码</view>
+          <view class="cell_bd">
+            <input type="text" name="card_pwd" class="input_field" value="{{inputData['card_pwd']}}" bindinput="bindTargetInput" bindfocus="bindFocusInput" maxlength="{{card_pwd_maxlen}}" data-fieldname="card_pwd" focus="{{card_pwd_focus}}" cursor-spacing="20" placeholder="请输入{{recharge_pwd_len}}位密码"
+            />
+          </view>
+          <view class="cell_ft"></view>
+        </view>
+        <view class='cell' wx:if="{{msgtip}}" style="padding:10px 0px 10px 90px;color:red;font-size:12px;">{{msgtip}}</view>
+      </view>
+      <view style='position:absolute;top:5px;right:5px;width:40px;height:40px;'>
+        <image bindtap="dialog_recharge_close" class="dialogClose" style="margin:5px;height:30px;width:30px;/*background-color:#fe5333;border-radius:50%;*/" src="{{base_conf['STATIC_URL']}}wap/images/dialog_close.png"></image>
+      </view>
+      <view class='submitbtn-wrap' style="display:flex;justify-content:space-around;">
+        <button formType="reset" class="submitbtn-a mini-btn" style="color:#333;background-color:#fff;border:1px solid #ccc;" type="primary_sk1">取消</button>
+        <button formType="submit" class="submitbtn-a mini-btn" type="primary_sk1" style="background-color:{{base_conf['color_primary']}};">绑定</button>
+      </view>
+    </form>
+  </view>
+</view>
+
+<!-- 右侧导航栏 -->
+<template is="control_nav"  data="{{navhidden:navhidden,base_conf}}"/>
+
+<view id="valsetList">
+  <view class="taocanitem" wx:for="{{valset}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+    <view class="m-taocanset">
+      <view class="j-valset-item" bindtap='bindRecharge' id="{{item.set_num}}">
+        <text class="f-elips1 f-tac hd">{{item.ttl_amt}}元</text>
+        <text class="f-tac bd">售价：{{item.pay_amt}}元</text>
+      </view>
+    </view>
+  </view>
+
+</view>

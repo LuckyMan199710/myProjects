@@ -1,0 +1,15 @@
+<view class="container">
+  <view class="top">
+    <view class='top-list'>订单编号：{{billno}}</view>
+    <view class='top-list'>快递公司：{{stdlogis_name}}</view>
+    <view class='top-list'>物流单号：{{nu}}</view>
+  </view>
+  
+  <block wx:key="unique" wx:for="{{list}}"  wx:for-index="idx" wx:for-item="item">
+  <view class='list'>
+    <view class='context context{{idx}}'>{{item.context}}</view>
+    <view class='time time{{idx}}'>{{item.time}}</view>
+  </view>
+  </block>
+</view>
+

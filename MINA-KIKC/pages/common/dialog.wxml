@@ -1,0 +1,102 @@
+<!-- 弹窗 -->
+<template name="wid_dialog">
+<view class="widget_wrap" bindtap='wig_dialog_close' style="z-index:2" catchtouchmove='wid_dialog_catchTouch' wx:if="{{wid_dialog_conf['is_show']}}">
+	<view style="position:absolute;background:#fff;height:{{wid_dialog_conf.dialog_H}}px;top:50%;margin-top:{{-(wid_dialog_conf.dialog_H/2)-10}}px;width: 250px;left:50%;margin-left:-125px;-webkit-animation:wid_dialog 0.3s;"  catchtouchmove='wid_dialog_catchTouch'>
+		<view style="height:100%; width:100%;" class="dialog_box">
+				<template  wx:if="{{wid_dialog_conf['type']}}" is="{{wid_dialog_conf['type']}}" data="{{wid_dialog_conf}}" />
+		</view>
+		<view style="padding-top:10px;color:#fff;text-align:center;" bindtap='wig_dialog_close'>关闭</view>
+	</view>
+</view> 
+</template>
+
+
+<!-- game -->
+<template name="game1">
+	<view class="dialog_lottery_result dialog_ctn_wrap" style='text-align:center;'>
+		<view wx:if="{{wid_dialog_conf.headImg}}" style="max-height:244px;overflow:hidden;"><image style="width:100%" src='{{wid_dialog_conf.headImg}}'></image></view>
+		<view style="padding:10px 10px;{{wid_dialog_conf.bodybg?'background-image:url('+wid_dialog_conf.bodybg+')':''}};background-size:100% 100%">
+			<view style="font-weight:bold;padding-bottom:10px">{{wid_dialog_conf.title}}</view>
+			<view style="font-size:11px;padding-bottom:10px;color:#999;max-height:70px;overflow:hidden;">{{wid_dialog_conf.content}}</view>
+
+			<button wx:if="{{wid_dialog_conf.showConfirm}}" style="display:inline-block;font-size:12px;padding:0px 15px;margin-right:3px" class="submit_btn on">{{wid_dialog_conf.confirm_txt || '确定'}}</button>
+			<button wx:if="{{wid_dialog_conf.showCancel}}" style="display:inline-block;font-size:12px;padding:0px 15px;" class="submit_btn">{{wid_dialog_conf.cancel_txt || '取消'}}</button>
+		</view>
+	</view>
+</template>
+
+<template name="game2">
+	<view class="dialog_lottery_result dialog_ctn_wrap dialogCtn" style='text-align:center;' hidden="{{!wid_dialog_conf.gameresult_show}}">
+		<!--<view wx:if="{{wid_dialog_conf.headImg}}" style="max-height:244px;overflow:hidden;"><image style="width:100%" src='{{wid_dialog_conf.headImg}}'></image></view>-->
+		<view style="margin:10px 10px;background:#fff;overflow:hidden;text-align:center;">
+			<view style="font-weight:bold;padding-bottom:10px;text-align:center;">{{wid_dialog_conf.title||'提示'}}</view>
+			<view style="font-size:14px;color:#999;line-height:25px;width:80%;padding:0px 15px;text-align:center;" wx:if="{{wid_dialog_conf.content}}">{{wid_dialog_conf.content||''}}</view>
+			<image style="height:100px;width:100px;text-align:center;" wx:if="{{wid_dialog_conf.imageurl}}" mode="aspectFill" src="{{wid_dialog_conf.imgbase}}{{wid_dialog_conf.imageurl}}" ></image>
+			<!--<view style="overflow:hidden;width:100%;position:relative;height:80px;" wx:if="wid_dialog_conf.imageurl || wid_dialog_conf.content" >
+				<view style="position:absolute;top:10%;left:0;font-size:11px;color:#999;line-height:25px;width:40%;padding:0px 15px;text-align:center;" wx:if="{{wid_dialog_conf.content}}">{{wid_dialog_conf.content||''}}</view>
+				<view style="position:absolute;top:5%;left:50%;width:50%;text-align:center;display:inline-block;{{wid_dialog_conf.content?'':'transform:translate(-50%,0)'}}" wx:if="{{wid_dialog_conf.imageurl}}">
+					<image style="height:80px;width:70%;"  src="{{wid_dialog_conf.imgbase+wid_dialog_conf.imageurl}}" ></image>
+				</view>
+			
+			</view>-->
+		</view>
+		<view style="width:100%;border-top:1rpx solid #ccc;margin:0px 0px 5px 0px;background:#fff;position:relative;">
+			<!--<button bindtap="gameConfirm"  style="display:inline-block;font-size:12px;padding:0px 15px;margin-right:3px;width:50%;float:left;" class="submit_btn">{{wid_dialog_conf.confirm_txt || '确定'}}</button>
+			<button bindtap="gameCancel"  style="display:inline-block;font-size:12px;padding:0px 15px;width:50%;float:right;" class="submit_btn">{{wid_dialog_conf.cancel_txt || '取消'}}</button>-->
+			<view bindtap="gameCancel"  style="display:inline-block;font-size:12px;padding:15px 0px;width:49%;float:left;border-right:1rpx solid #ccc;" class="submit_btn">{{wid_dialog_conf.cancel_txt || '取消'}}</view>
+			<view bindtap="gameConfirm"  style="display:inline-block;font-size:12px;padding:15px 0px;margin-right:3px;width:49%;float:right;" class="submit_btn">{{wid_dialog_conf.confirm_txt || '确定'}}</view>
+			<view style="clear:both;"></view>
+		</view>
+	</view>
+</template>
+
+
+
+<!-- 排列 -->
+<template name="control_pailie">
+  <view class="tupiao" bindtap="pailiehidden">
+    <image src="{{tianimgs}}" class='img'></image>
+    <view class="jiantou {{hidden?'jiantou_bottom':'jiantou_top'}}"></view>
+  </view>
+  <view class='pailie' hidden='{{hidden}}'>
+    <view class="top-out {{(image_size=='S')?'curt':''}}" data-type='S' bindtap="pailie">
+      <image src="{{tianimg}}" class='imgs'></image>田字
+    </view>
+    <view class="top-out {{(image_size=='L')?'curt':''}}" data-type='L' bindtap="pailie">
+      <image src="{{hengimg}}" class='imgs'></image>横向
+    </view>
+  </view>
+  
+  <view class='clear'></view>
+</template>
+
+<!-- 会员中心优惠券提醒 -->
+<template name="coupon_notice">
+			
+			<view>
+				<view style="text-align:center;">
+					<image style='width:275px;height:90px;' src="{{base_conf['STATIC_URL']}}wap/images/border.png"></image>
+					<image style='width:275px;height:320px;margin-top:-40px;' src="{{base_conf['STATIC_URL']}}wap/images/coupon-notice.png"></image>
+					
+				</view>
+				
+				<view style='padding:20rpx;padding-top:0;text-align:center;'>
+				
+					<!-- <view style="border-top:2px solid #000;width:120px;margin:30px auto;position:relative;">
+						<p style="display:inline-block;width:80px;position:absolute;top:-10px;height:20px;line-height:20px;text-align:center;background:#fff;left:50%;margin-left:-40px;font-weight:bold;color:#000;font-size:16px;">接龙消息</p>
+					</view> -->
+	
+					<view style="width:200px;padding:8px 0;color:#CE3026;font-size:16px;position:absolute;top:120px;left:50%;transform: translate(-50%, 0%);">您有{{_dialog.coupon_cnt || 0}}张新优惠券可用</view>
+				</view>
+				<view class="submitbtn-wrap" style="position:absolute;bottom:-70px;left:50%;transform: translate(-50%, 0%);">
+					<view bindtap="_dialog_coupon_open" class="submitbtn-a mini-btn" style='line-height:44px;height:44px;border-radius:22px;width:175px;font-size:16px;color:#E94A3B;background:#FFDA50;'>立即查看</view>
+				</view>
+				
+				<view style='position:absolute;top:-40px;right:0px;width:40px;height:40px;'>
+					<!-- <botton class="dialogClose" style="padding:10px;font-size:16px;color:#666;padding:10px;" ></botton> -->
+					<image bindtap="_dialog_coupon_close" class="dialogClose" style="padding:10px;"  src="{{base_conf['STATIC_URL']}}wap/images/close.png"></image>
+				</view>
+			</view>
+		
+			
+</template>

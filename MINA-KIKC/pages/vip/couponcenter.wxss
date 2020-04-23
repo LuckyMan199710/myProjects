@@ -1,0 +1,70 @@
+/**vip_point.wxss**/
+page{
+	min-height: 100%;
+	background-color: #f7f7f7;
+}
+
+
+.my__coupon{
+	padding: 20rpx;
+}
+.my__coupon .coupon{
+	margin-bottom: 20rpx;
+}
+
+
+.coupon{
+	height: 90px;
+	display: -webkit-box;
+	background-size: cover;
+	/* background-size: auto 90px; */
+	background-repeat: no-repeat;
+	background-position:center right;
+}
+
+.coupon_outdate .coupon__r{
+	background-color: #bbb;
+}
+.coupon.hasbg .coupon__l{
+	background-color: rgba(255, 255, 255,0.5);
+	color: #fff;
+}
+.coupon.hasbg .coupon__r{
+	background-color: transparent;
+	color: #fff;
+}
+.coupon__l{
+	width: 90px;
+	line-height: 90px;
+	text-align: center;
+	/*background-color: #8f5e24;*/
+	border-radius: 5px;
+	color: #fff;
+}
+.coupon__r{
+	padding-top: 10rpx;
+	padding-left: 10rpx;
+	-webkit-box-flex: 1;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: #fff
+}
+.coupon__r view{
+	 margin-bottom: 10rpx; 
+	 font-size: 12px;
+}
+.coupon__r .coupon__tit{
+	font-size: 16px;
+	line-height: 40px;
+}
+.coupon__tit,
+.coupon__notice{
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:1;
+	overflow:hidden;
+}
+
+.coupon__r text{
+	font-size: 24rpx;
+}

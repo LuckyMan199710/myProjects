@@ -1,0 +1,311 @@
+<!-- 在线商城购买页 -->
+<import src="../common/counter"/>
+<import src="../common/mall"/>
+<import src="../common/nav"/>
+<import src="../common/addcart"/>
+
+<!--<view style="height:{{winWidth}}px;overflow:hidden;" wx:if="{{imgs.length}}">
+	<swiper style="height:{{winWidth}}px;width:100%;" indicator-dots="{{indicatorDots}}"  autoplay="{{swiper_play}}" interval="{{interval}}" duration="{{duration}}">
+		<swiper-item  wx:key="unique" wx:for="{{videos}}"  wx:for-index="idx" wx:for-item="item" wx:if="{{item.src}}">
+			<video id="{{item.mk}}" hidden="{{item.show}}" data-mk="{{item.mk}}" bindpause="bindpause" bindended="bindended" src="{{imgbase}}{{item.src}}"  class="slide-image" autoplay="{{true}}" poster="{{poster_image}}" style="height:320px;width:70%;margin:0 auto;margin-left:15%;" enable-danmu danmu-btn controls></video>
+  			<view style="position:relative;width:100%;height:100%;" data-mk="{{item.mk}}" bindtap="bindposter" hidden="{{!item.show}}">
+  			<image style="width:100%;height:90%;" data-mk="{{item.mk}}" src="{{poster_image}}"     class="slide-image"/>
+  			<image style="width:35px;height:35px;position:absolute;top:45%;left:45%;z-index:10;transform:translate(50%,50%);" data-mk="{{item.mk}}" src="{{base_conf.STATIC_URL+'images/play.png'}}"    hidden="{{!item.show}}" />
+  			</view>
+		</swiper-item>
+		
+		<swiper-item  wx:key="unique" wx:for="{{imgs}}"  wx:for-index="idx" wx:for-item="item" wx:if="{{item}}">
+			<image style="width:100%;" src="{{imgbase}}{{item}}" mode='widthFix' class="slide-image"/>
+		</swiper-item>
+	</swiper>
+</view>-->
+
+<view class="groupprod" style="padding:0px;background:#fff;position:relative;margin-bottom:15px;overflow:hidden;">
+	<view class="groupprod_image" style="/*position:absolute;top:10px;left:10px;*/margin:10px 0px 0px 10px;display:inline-block;float:left;">
+		<image src="{{imgbase}}{{prod.pic_main}}" style="width:100px;height:100px;"></image>
+	</view>
+	<view class="groupprod_detail" style='margin-left:0px;display:inline-block;width:65%;'>
+		<view class="section_inner" style='position:relative;'>
+	    
+			<view class="prod_tit">{{prod.plat_num_name}}</view>
+			<view>
+	      <text class="prod_price" wx:if="{{curskuid['promo_z'] && curskuid['promo_z']['isstart']}}">￥{{curskuid['promo_z']['saleprice']}}</text>
+	      <text class="prod_price" wx:elif="{{curskuid['promo_p'] && curskuid['promo_p']['isstart']}}"><text style="color:#333;font-size:12px;margin-right:10px;">拼团价</text>￥{{curskuid['promo_p']['saleprice']}}</text>
+	      <text class="prod_price" wx:else>￥{{curskuid.price}}</text>
+	    </view>
+	    <view class="prod_num" style='text-decoration: line-through;'>市场价：￥{{prod.mkt_price}}</view>
+	    <view class="prod_num">货号：{{curskuid.prod_num}}</view>
+		</view>
+  </view>
+</view>
+
+
+
+ <view wx:if="{{groupdetail_data.group_status=='S'}}" class="groupstatus_tip" style="color:#ee721a;">团长人气太高，已经拼团成功啦</view>
+ <view wx:if="{{groupdetail_data.group_status=='F'}}" class="groupstatus_tip" style="color:red;">拼团失败</view>
+ <view wx:if="{{groupdetail_data.group_status=='A' && groupdetail_data.isend}}" class="groupstatus_tip" style="color:orange;">拼团超时</view>
+ <view wx:if="{{groupdetail_data.group_status=='B'}}" class="groupstatus_tip" style="color:orange;">团长开团未付款,不能参团</view>
+ <!--成团详情   start-->
+ <view class="group_detail {{(groupone.group_member.length==1)?'group_row':''}}" style="{{groupdetail_data.group_status=='A'?'padding-bottom:30px;':''}}" wx:if="{{groupdetail && groupone}}">
+ 
+ 	<block wx:key="unique" wx:for="{{groupone['group_member']}}"  wx:for-index="index" wx:for-item="items">
+ 	<!--3人以上一行-->
+ 	<view class="group_detail_top" style="width:80%;margin:0px auto;border-top:1px solid #bbb;{{groupone.group_member.length==1?'margin-bottom:40px;':''}}"  wx:if="{{items.length>=3}}">
+ 	 <view class="group_member" >
+ 	 	<view class="group_detail_member"  style="position:relative;text-align:center;width:60px;height:60px;border-radius:50%;background-color:#bbb;" wx:key="unique" wx:for="{{items}}"  wx:for-index="idx" wx:for-item="item" >
+ 	 		<image class="head_image"  wx:if="{{item.vip_id>0}}" src="{{base_conf.STATIC_URL+'wap/default/cssimg/default_user.png'}}"></image>
+ 	 		<image class="head_image"  wx:else src="{{base_conf.STATIC_URL+'wap/default/cssimg/userpic.png'}}"></image>
+ 	 		<text class="member_nicker_txt" >{{item.relname||item.nicker||''}}</text>
+ 	 		<text class="group_member_nicker" style="background-color:#ee721a;" wx:if="{{item.vip_id>0 && item.vip_id==item.first_vipid}}">团长</text>
+ 	 		<text class="group_member_nicker" style="background-color:#fbdd0d;" wx:if="{{item.vip_id>0 && item.vip_id!=item.first_vipid}}">沙发</text>
+ 	 	</view>
+ 	 	
+ 	 </view>
+ 	</view>
+ 	<!--2人一行-->
+ 	<view style="width:80%;margin:0px auto;{{groupone.group_member.length==1?'margin-bottom:40px;':''}}" wx:elif="{{items.length==2}}">
+ 	<view class="group_detail_top" style="width:50%;border-top:1px solid #bbb;{{groupone.group_member.length==1?'margin:0px auto;':''}}"  >
+ 	 <view class="group_member" >
+ 	 <block wx:key="unique" wx:for="{{items}}"  wx:for-index="idx" wx:for-item="item" >
+ 	 	<view class="group_detail_member"  style="position:relative;text-align:center;width:60px;height:60px;border-radius:50%;background-color:#bbb;margin-right:-30px;" wx:if="{{idx==1}}">
+ 	 		<image class="head_image"  wx:if="{{item.vip_id>0}}" src="{{base_conf.STATIC_URL+'wap/default/cssimg/default_user.png'}}"></image>
+ 	 		<image class="head_image"  wx:else src="{{base_conf.STATIC_URL+'wap/default/cssimg/userpic.png'}}"></image>
+ 	 		<text class="member_nicker_txt" >{{item.relname||item.nicker||''}}</text>
+ 	 		<text class="group_member_nicker" style="background-color:#ee721a;" wx:if="{{item.vip_id>0 && item.vip_id==item.first_vipid}}">团长</text>
+ 	 		<text class="group_member_nicker" style="background-color:#fbdd0d;" wx:if="{{item.vip_id>0 && item.vip_id!=item.first_vipid}}">沙发</text>
+ 	 	</view>
+ 	 	<view class="group_detail_member"  style="position:relative;text-align:center;width:60px;height:60px;border-radius:50%;background-color:#bbb;{{groupone.group_member.length==1?'transform:translate(-30px,0);':''}}" wx:else>
+ 	 		<image class="head_image"  wx:if="{{item.vip_id>0}}" src="{{base_conf.STATIC_URL+'wap/default/cssimg/default_user.png'}}"></image>
+ 	 		<image class="head_image"  wx:else src="{{item.headimgurl || base_conf.STATIC_URL+'wap/default/cssimg/userpic.png'}}"></image>
+ 	 		<text class="member_nicker_txt" >{{item.relname||item.nicker||''}}</text>
+ 	 		<text class="group_member_nicker" style="background-color:#ee721a;" wx:if="{{item.vip_id>0 && item.vip_id==item.first_vipid}}">团长</text>
+ 	 		<text class="group_member_nicker" style="background-color:#fbdd0d;" wx:if="{{item.vip_id>0 && item.vip_id!=item.first_vipid}}">沙发</text>
+ 	 	</view>
+ 	 </block>	
+ 	 </view>
+ 	</view>
+ 	</view>
+
+ 	<!--1人一行-->
+ 	<view class="group_detail_top" style="height:100px;width:80%;margin:0px auto;{{groupone.group_member.length==1?'margin-bottom:30px;':''}}{{groupone.group_member.length>1 && groupone.group_member.length==(index+1)?'padding-bottom:40px;':''}}"  wx:else>
+ 	 <view class="group_member" >
+ 	 	<view class="group_detail_member"  style="position:relative;text-align:center;width:60px;height:60px;border-radius:50%;background-color:#bbb;{{groupone.group_member.length==1?'margin:0px auto;':''}}" wx:key="unique" wx:for="{{items}}"  wx:for-index="idx" wx:for-item="item" >
+ 	 		<image class="head_image"  wx:if="{{item.vip_id>0}}" src="{{base_conf.STATIC_URL+'wap/default/cssimg/default_user.png'}}"></image>
+ 	 		<image class="head_image"  wx:else src="{{base_conf.STATIC_URL+'wap/default/cssimg/userpic.png'}}"></image>
+ 	 		<text class="member_nicker_txt" >{{item.relname||item.nicker||''}}</text>
+ 	 		<text class="group_member_nicker" style="background-color:#ee721a;" wx:if="{{item.vip_id>0 && item.vip_id==item.first_vipid}}">团长</text>
+ 	 		<text class="group_member_nicker" style="background-color:#fbdd0d;" wx:if="{{item.vip_id>0 && item.vip_id!=item.first_vipid}}">沙发</text>
+ 	 	</view>
+ 	 	
+ 	 </view>
+ 	</view>
+ 	</block>
+ 	
+ 	<view class="group_detail_middle"  wx:if="{{groupone['left_member']>0 && groupdetail_data.group_status == 'A'}}">
+ 	 	还差<text style="text-align:center;margin:0px 5px;color:#ad2a26;">{{groupone['left_member']}}</text>人，{{groupone['group_tips']||'盼你如冬日盼暖阳！'}}
+ 	 </view>
+ 	 <view class="group_detail_bottom" wx:if="{{groupdetail_data.group_status == 'A' && dist_time>=0}}" >
+ 	 	<view class="group_detail_time" >
+ 	 		<view style="padding:0px 5px 0px 10px;width:50px;">剩余</view>
+ 	 		<view style="padding:0px 5px;">
+ 	 			<text class="group_time_cell" >{{left_hours||groupone['left_hours']}}</text>
+ 	 			<text style="padding:0px;color:#999;">:</text>
+ 	 			<text class="group_time_cell" >{{left_minutes||groupone['left_minutes']}}</text>
+ 	 			<text style="padding:0px;color:#999;">:</text>
+ 	 			<text class="group_time_cell" >{{left_seconds||groupone['left_seconds']}}</text>
+ 	 		</view>
+ 	 		<view style="padding:0px 10px 0px 5px;width:50px;">结束</view>
+ 	 	</view>
+ 	 		
+ 	 </view> 	
+ </view>
+  <!--成团详情   end-->
+ 
+ <view class="section">
+	<view class="section_inner">
+		<view>规格</view>
+		<view class="sku_wrap">
+			<block wx:if="{{skulvl==2}}">
+				<view class="sku_item" wx:key="unique" wx:for="{{sku1}}"  wx:for-index="idx" wx:for-item="item" id="{{item.color_num}}" bindtap='bindSku1'>
+					<text wx:if="{{item['color_num']==curskuid['color_num']}}" class="on">{{item.color || item.color_num}}</text>
+					<text wx:else>{{item.color || item.color_num}}</text>
+				</view>
+				<view style="height:15px;"></view>
+				<view class="sku_item" wx:key="unique" wx:for="{{sku2}}"  wx:for-index="idx" wx:for-item="item" id="{{item.spec_num}}" bindtap="{{item['stockqty']<1?'':'bindSku2'}}">
+          <block wx:if="{{item['stockqty']<1}}">
+            <text class="disabled">{{item.spec || item.spec_num}}</text>
+          </block>
+          <block wx:else>
+            <text wx:if="{{item['spec_num']==curskuid['spec_num']}}" class="on">{{item.spec || item.spec_num}}</text>
+            <text wx:else>{{item.spec || item.spec_num}}</text>
+          </block>
+				</view>
+			</block>
+			<block wx:else>
+				<view class="sku_item" wx:key="unique" wx:for="{{sku1}}"  wx:for-index="idx" wx:for-item="item" id="{{item.sku_id}}" bindtap="{{item['stockqty']<1?'':'bindSkuid'}}">
+          <block wx:if="{{item['stockqty']<1}}">
+            <text class="disabled">{{item.plat_sku_name}}</text>
+          </block>
+          <block wx:else>
+            <text wx:if="{{item['sku_id']==curskuid['sku_id']}}" class="on">{{item.plat_sku_name}}</text>
+            <text wx:else>{{item.plat_sku_name}}</text>
+          </block>
+				</view>
+			</block>
+		</view>
+		<!-- 规格 end -->
+	</view>
+</view>
+
+
+<view class="section">
+	<view class="section_inner">
+		<view>选择购买数量:</view>
+		<view class="">
+			<template is="counter" data="{{wig_counter_data}}" />
+		</view>
+		<view wx:if="{{curskuid['promo_z'] && curskuid['promo_z']['isstart'] && curskuid['promo_z']['limit_stock']== 'Y'}}">剩余库存：{{curskuid['promo_z']['promo_leftqty']}}件</view>
+		<view wx:elif="{{curskuid['promo_p'] && curskuid['promo_p']['isstart'] && curskuid['promo_p']['limit_stock']== 'Y'}}">剩余库存：{{curskuid['promo_p']['promo_leftqty']}}件</view>
+		<view wx:else>剩余库存：{{curskuid.stockqty}}件</view>
+	</view>
+</view>
+
+<view class="section">
+	<view class="section_inner" bindtap='bindSetCoupon'>
+		<navigator url='/pages/mall/brand?shopid={{shop_info["shop_id"]}}' open-type="reLaunch">店铺：<text>{{shop_info['shop_name']}}</text><text class="cell_ft under_txt">进入店铺></text></navigator>
+  </view>
+</view>
+
+<view style="background-color:#fff;padding:5px 0;width:100%;font-size:12px;" wx:if="{{gradedata.length>0}}">
+    <view class="table">
+        
+        <view  wx:for="{{gradedata}}" wx:key="unique" wx:for-index="idx" wx:for-item="item" class="tr grade_row{{idx}}" >
+            <view class="td grade_cell_11">{{item.prop_name}}</view>
+            <view class="td grade_cell_22">{{item.prop_value}}</view>
+
+        </view>
+    </view>
+</view>
+
+<image src='{{imgbase}}{{prod.pic_detail}}' class='pic_detail' mode='widthFix'></image>
+<!-- <view class="section">
+	<view class="section_inner">
+		<view>选择兑换数量:</view>
+		<view class="">
+			<slider bindchange="bindSlider4change" min="1" max="{{prod.stockqty}}" show-value value="{{curbuyqty}}"/>
+		</view>
+		<view>剩余库存：{{curskuid.stockqty}}件</view>
+	</view>
+</view> -->
+
+
+<view class="control_prodtype clearfix">
+	<template is="control_prodlist" data="{{imgbase:imgbase,image_size:'S',prodlist:relativeprods,base_conf,empty_tip:'1' }}" />
+</view>
+
+
+
+<view style="height:70px;"></view>	
+
+
+<view class="foot__fix" style="z-index:2" hidden="{{!(groupdetail_data.billstatus=='CK')}}">
+		<view class="section_inner " wx:if="{{!is_group && groupdetail_data.group_status =='A' && groupone.left_member>0 && groupone.dist_time>0}}"  style="background:{{color_primary}};color:#fff;width:100%;padding:0px;display:flex;align-items:center;justify-content:center;">
+				<view style="font-size:14px;height:25px;line-height:25px;text-align:center;background:#fff;color:#666;width:50%;padding:10px 0px;border-top:1px solid #ddd;" bindtap="bindActiveGroup" data-vid="{{share_vipid}}" data-type="start">
+				{{curskuid['promo_p']['min_member']}}人团  | 去开团
+				</view> 
+				<view style="font-size:14px;height:25px;line-height:25px;text-align:center;width:50%;padding:10px 0px;border-top:1px solid {{color_primary}};" bindtap="bindActiveGroup" data-vid="{{share_vipid}}" data-type="form" data-groupid="{{group_id}}">
+					￥{{curskuid['promo_p']['saleprice']}} | 我也要参团
+				</view>
+		</view>
+		<!--团成员发拼团邀请-->
+		<view class="section_inner " wx:elif="{{is_group && groupdetail_data.group_status =='A' && groupone.left_member>0 && groupone.dist_time>0}}" data-groupid="{{group_id}}" style="background:{{color_primary}};color:#fff;text-align:center;padding: 5px 0px;">
+			
+			<view style="font-size:16px;height:35px;line-height:35px;display:inline-block;margin-right:5px;"><text>￥{{curskuid['promo_p']['saleprice']}} |</text></view> 
+			<view style="font-size:18px;height:35px;line-height:35px;display:inline-block;text-align:center;" bindtap="bindGroupVisit" data-groupid="{{group_id}}">
+				<text style="padding:0px 10px;">邀请拼团</text>
+			</view>
+		</view>
+		<view class="section_inner " wx:elif="{{groupone.left_member<=0 || groupone.dist_time<=0}}" bindtap="bindActiveGroup" data-vid="{{share_vipid}}" data-type="start" data-groupid="{{group_id}}" style="background:{{color_primary}};color:#fff;text-align:center;">
+				<view style="font-size:10px;height:20px;line-height:20px;"><text>￥{{curskuid['promo_p']['saleprice']}}</text></view>
+				<view style="font-size:12px;height:20px;line-height:20px;" >
+					<text>{{curskuid['promo_p']['min_member']}}人团</text> |
+					<text >去开团</text>
+				</view>
+		</view>
+		<view class="section_inner " wx:elif="{{is_group && groupdetail_data.group_status =='B'}}" bindtap="bindPayMent"  data-groupid="{{group_id}}" style="background:{{color_primary}};color:#fff;text-align:center;">
+				<view style="font-size:14px;height:40px;line-height:40px;"><text>去付款</text></view>
+		</view>
+		<view class="section_inner " wx:elif="{{!is_group && groupdetail_data.group_status =='B'}}" bindtap="bindActiveGroup" data-vid="{{share_vipid}}" data-type="start" data-groupid="{{group_id}}" style="background:{{color_primary}};color:#fff;text-align:center;">
+				<view style="font-size:10px;height:20px;line-height:20px;"><text>￥{{curskuid['promo_p']['saleprice']}}</text></view>
+				<view style="font-size:12px;height:20px;line-height:20px;" >
+					<text>{{curskuid['promo_p']['min_member']}}人团</text> |
+					<text >去开团</text>
+				</view>
+		</view>
+</view>
+<view class="foot__fix" style="z-index:2" wx:if="{{groupdetail_data.billstatus!='CK' && !is_group && groupdetail_data.group_status =='A' && groupone.left_member>0 && groupone.dist_time>0}}">
+		<view class="section_inner "  bindtap="bindActiveGroup" data-vid="{{share_vipid}}" data-type="form" data-groupid="{{group_id}}" style="background:{{color_primary}};color:#fff;text-align:center;">
+				<view style="font-size:16px;height:25px;line-height:25px;display:inline-block;margin-right:5px;"><text style="height:25px;line-height:25px;">￥{{curskuid['promo_p']['saleprice']}} |</text></view> 
+				<view style="font-size:14px;height:25px;line-height:25px;display:inline-block;text-align:center;" >
+					<text style="height:25px;line-height:25px;">我也要参团</text>
+					
+				</view>
+		</view>
+</view>
+
+
+<!--邀请拼团遮幕-->
+<view class="groupvisit-main"  catchtouchmove="preventTouchMove"  wx:if="{{groupvisit}}">
+   
+     <view class="groupvisit-wrap" catchtouchmove="preventTouchMove" style="background-color:#fff;position:fixed;top:0;left:0;width:100%;">
+     	<!--关闭遮幕-->
+     	<view style="position:fixed;top:2%;right:20px;">
+			<image bindtap="closeMarkShare"  style="padding:5px;width:25px;height:25px;"  src="{{base_conf['STATIC_URL']}}wap/images/close.png"></image>
+		</view>
+       <!--canvas 绘制-->
+	    <view class="groupvisit-content" >
+	      <canvas canvas-id="shareCanvas" style="width:275px;height:400px;" />
+	    </view>
+     	<view class="groupvisit-action" hidden="{{false}}">
+     		<view class="groupvisit-cell" >
+     			<image src="{{imgbase+'/wx_f.png'}}" style="width:45px;height:45px;margin:0px auto;"></image>
+     			<text class="shareFriend_txt" style="display:block;text-align:center;margin-top:5px;">发送给朋友</text>
+     			<button open-type='share' bindtap="shareFriend" class="shareFriend_btn" style='width:100%;height:100%;position:absolute;top:0;opacity:0;'>发送给朋友</button>
+     		</view>
+     		<view class="groupvisit-cell" >
+     			<image src="{{imgbase+'/wx_p.png'}}" style="width:45px;height:45px;margin:0px auto;"></image>
+     			<text class="savePhoto_txt" style="display:block;text-align:center;margin-top:5px;">分享朋友圈</text>
+     			<button bindtap="savePhoto" class="savePhoto_btn" style='width:100%;height:100%;position:absolute;top:0;opacity:0;'>分享朋友圈</button>
+     		</view>
+     	</view>
+     </view>
+  </view>
+  
+  <!--参团成功-->
+ <view class="formgroup_mark"  bindtap="closeMarkTip" catchtouchmove="preventTouchMove"  hidden="{{!(group_success && groupone && groupdetail_data.group_status!='S')}}">
+   
+     <view class="formgroup_wrap" catchtouchmove="preventTouchMove" >
+       <view class="formgroup_txt" > 参团成功！</view> 
+       <view class="formgroup_main" > 
+       		<view style="padding:0px 5px 0px 10px;width:auto;">拼团剩余时间</view>
+ 	 		<view style="padding:0px 5px;">
+ 	 			<text class="tip_time_cell" >{{left_hours || groupone['left_hours']}}</text>
+ 	 			<text style="padding:0px;">:</text>
+ 	 			<text class="tip_time_cell" >{{left_minutes || groupone['left_minutes']}}</text>
+ 	 			<text style="padding:0px;">:</text>
+ 	 			<text class="tip_time_cell" >{{left_seconds || groupone['left_seconds']}}</text>
+ 	 		</view>
+ 	 		
+       </view> 
+       <view style="text-align:center;font-size:12px;color:#fff;margin:10px auto;height:25px;line-height:25px;">
+       		还差<text style="color:#fbdd0d;margin:0px 5px;">{{groupone['left_member']}}</text>人，快去告诉好友来参团吧！
+        </view> 
+
+     </view>
+  </view> 
+
+<!-- 右侧导航栏 -->
+<template is="control_nav"  data="{{navhidden:navhidden,base_conf}}"/>
+
+<!-- 购买 -->
+<template is="comp_addcart" data="{{imgbase,addcart_good_cover,is_addcart_show,skulvl,curskuid,sku1,sku2,curbuyqty,actiontype}}"/>

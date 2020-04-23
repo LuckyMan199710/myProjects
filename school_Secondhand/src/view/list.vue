@@ -10,15 +10,12 @@
 		>
 			<van-card
 				v-for="(item) in list"
-				tag="秒杀"
-				:key="item"
-				num="2"
-				price="2.00"
-				desc="描述信息"
-				title="衣服"
-				thumb="https://img.yzcdn.cn/vant/t-thirt.jpg"
-				origin-price="10.00"
-				@click = "runTo()"
+				:key="item.good_id"
+				:price="item.good_price"
+				:desc="item.good_info"
+				:title="item.good_title"
+				:thumb="item.good_img_url"
+				@click = "runTo($event,item)"
 			>
 			</van-card>	
 		</van-list>
@@ -26,7 +23,7 @@
 </template>
 
 <script>
-	import { List,Card,Tag,Toast} from 'vant';
+	import { List,Card,Tag} from 'vant';
 	export default{
 		name:"list",
 		created() {
@@ -45,7 +42,6 @@
 		data() {
 			return {
 			list: [],
-			id:0,
 			loading: false,
 			finished: false,
 			error:false,
@@ -53,33 +49,29 @@
 		},
 		methods: {
 			onLoad() {
-			// 异步更新数据
-				setTimeout(() => {
-					for (let i = 0; i < 10; i++) {
-					this.list.push(this.list.length + 1);
+				this.$http.post('/goodsInfo/getGoodsInfo')
+				.then((res)=>{
+					if(res.data.success === 1){
+						for(let i = 0; i<res.data.goodsList.length;i++){
+							this.list.push(res.data.goodsList[i])
+							this.list[i].good_img_url = 'http://localhost:3000/'+res.data.goodsList[i].good_img_url;
+							this.list[i].good_price = (res.data.goodsList[i].good_price).toFixed(2);
+						}
+						this.loading = false;
+						// 数据全部加载完成
+						if (this.list.length >= res.data.goodsList.length ) {
+							this.finished = true;
+						}
+						/* this.list = res.data.goodsList*/
 					}
-					// 加载状态结束
-					this.loading = false;
-					
-					if(Math.random()>0.5){
-						this.error = true;
-					}
-					
-					// 数据全部加载完成
-					if (this.list.length >= 40) {
-						this.finished = true;
-					}
-				}, 500);
+				})
+				.catch(()=>{
+					this.error = true;
+				})
 			},
-			runTo(){
+			runTo(e,item){
+				console.log(item)
 				this.$router.push('/goods');
-			},
-			onClickLeft() {
-				window.history.go(-1);
-				
-			},
-			onClickRight() {
-				Toast('按钮');
 			}
 		}
 	}

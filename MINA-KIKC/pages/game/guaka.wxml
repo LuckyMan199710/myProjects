@@ -1,0 +1,44 @@
+<import src="../common/nav" />
+<import src="../common/dialog" />
+<view class="game_container" style="background: {{background}};">
+  <view class='bannerurl'>
+  	<image src='{{imgbase}}{{info.bannerurl}}' style="width:100%;height:100%;"></image>
+  </view>
+  <!--<view class='rule' bindtap="rule">活动规则<text></text></view>-->
+  <view class="game_main" style="{{info.background?'background-image:url('+imgbase+info.background+')':''}};background-size:100% 100%;padding-bottom:100px;/*position:relative;top:-5px;left:0px;*/">
+   <view class="section_inner" style="text-align:center;font-size:14px;color:{{info.background?'#fff':'#333'}};background:transparent;padding:20px 0px;" hidden="{{!(lefttimes>0)}}">
+  	<view>您还剩余{{lefttimes}}次抽奖机会</view>
+	</view>
+    <view class="index" style="padding:50px 0 50px;" catchtouchmove="preventTouchMove">
+      <view class="scratch_wp" style="position:relative;width: {{scratch.width}}px; height: {{scratch.height}}px;margin: 0 auto;">
+        <canvas wx:if="{{canvashidden==false}}" style="margin: 0 auto;width: {{scratch.width}}px; height: {{scratch.height}}px; background: transparent;z-index:100;" canvas-id="scratch" bindlongtap="" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd"
+          disable-scroll="{{true}}"></canvas>
+        <view wx:if="{{canvashidden==false}}" class="scratch_txt" style="position:absolute;top:0;left:0;width: 100%;height:100%;text-align: center;line-height: {{scratch.awardTxtLineHeight}}px;color: {{scratch.awardTxtColor}};font-size: {{scratch.awardTxtFontSize}};pointer-events:none;background-color:#fff;{{backimage}}{{txt_zindex}}">{{scratch.awardTxt}}</view>
+        <image wx:if="{{canvashidden==true}}" src='{{guakaimage}}' mode="scaleToFill" style="position:absolute;top:0;left:0;width:100%;height:100%;"></image>
+        <button wx:if="{{buttonhidden==false}}" bindtap="startGame" hidden="{{buttonhidden}}" style="background:{{buttonbackground}};position:absolute;top:27px;left:77px;margin:0;width:100px;z-index:200;">立即刮奖</button>
+      </view>
+
+
+      
+    </view>
+    <view class='cons_point'>每次消耗{{info.cons_point}}积分</view>
+  </view>
+</view>
+<!-- 右侧导航栏 -->
+<template is="control_nav" data="{{navhidden:navhidden,base_conf}}" />
+
+<!-- 中奖名单 -->
+<!--
+<view class="widget_wrap" hidden='{{hidden}}'>
+  <view class="rule_content">
+    <view bindtap="hidden" class='hidden'>x</view>
+    <view>活动说明:</view>
+    <view class="game_rule">
+      <rich-text nodes="{{info.remark}}"></rich-text>
+    </view>
+  </view>
+</view>
+ -->
+
+<!--  中奖结果-->
+<template is="game2" data="{{navhidden:navhidden,base_conf,wid_dialog_conf:wid_dialog_conf}}" />

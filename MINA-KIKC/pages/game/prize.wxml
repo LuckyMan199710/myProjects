@@ -1,0 +1,52 @@
+<import src="../common/address" />
+
+<view class="container">
+  <view class='title' style='background-color: {{base_conf.color_primary}}; '>温馨提示：实物奖品需先填写收货地址再发货!</view>
+  <view class="section_inner">
+
+    <view class="game_item" wx:for="{{prizes}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+      <view class='center' style='border-bottom: dashed 1rpx {{base_conf["color_primary"]}};'>
+        <view class='top' style='border-bottom: dashed 1rpx {{base_conf["color_primary"]}};'>
+          <view class='lottername'>{{item.lottername}}</view>
+          <view class='exchanged'>
+            <view class="color_sub" wx:if="{{item.exchanged=='N'}}" style='color: {{base_conf["color_primary"]}}'>兑换码{{item.exch_num}}
+            <view class="copy_btn" bindtap="copyTBL" data-exch="{{item.exch_num}}">复制</view>
+            </view>
+            <view class="color_sub" wx:else style='color: {{base_conf["color_primary"]}}'>已兑换</view>
+          </view>
+          <view class='clear'></view>
+        </view>
+        <view class='item'>来源：{{item.title}}</view>
+        <view class='item'>日期：{{item.lottdate}}</view>
+        <view class='item'>奖品类型：
+          <text class="color_sub" style='color: {{base_conf["color_primary"]}}' wx:if="{{item.prizetype=='A'}}">实物奖品</text>
+          <text class="color_sub" style='color: {{base_conf["color_primary"]}}' wx:else>非实物奖品</text>
+        </view>
+      </view>
+      <view classs="prize_addr" wx:if="{{item.prizetype=='A'}}" bindtap='bindEditRecAddr' id="{{item.id}}">
+        <view wx:if="{{item.phone==null}}" class='ress'>
+          <text class='ress_a' style='border: 1px solid {{base_conf["color_primary"]}}; '>设置奖品收货地址</text>
+          <view class='clear'></view>
+        </view>
+
+        <view wx:else style='padding-top:5px;'>收货信息：{{item.phone}}/{{item.state+item.city+item.district+item.address}}
+          <view style="text-decoration:underline;color:#666">修改</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty_msg" wx:if="{{prizes.length<=0 && load_end }}">
+      <view class="weui-msg__title">暂无记录</view>
+    </view>
+  </view>
+</view>
+
+
+<!-- widget_wrap -->
+<view class="widget_wrap" bindtap='wig_address_close' id="wig_address_close" hidden="{{!wig_address_status}}">
+  <view style="width:100%;position:absolute;background:#fff;bottom:0;min-height:10%;max-height:90%;overflow:auto;">
+    <scroll-view scroll-y style="min-height:10%; max-height:90%;width: 100%;">
+      <template is="addressList" data="{{wig_address_list,wig_address_curid,base_conf}}" />
+    </scroll-view>
+  </view>
+</view>

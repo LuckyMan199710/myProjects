@@ -1,0 +1,260 @@
+<import src="common/counter" />
+<import src="common/bottom" />
+<!--index.wxml-->
+<view class="container">
+  <!-- 底部菜单 -->
+  <view class="control_bottom clearfix">
+    <template is="control_bottom" data="{{ontabpage,page_path,base_conf}}" />
+  </view>
+
+  <view wx:if="{{num==0}}" style="text-align:center;padding:50px 10px;color:#999">购物车暂无商品~</view>
+
+  <!-- 活动商品分组 -->
+  <view class="control_prodtype clearfix">
+    <block wx:for="{{promo_prods}}" wx:for-index="idx" wx:for-item="item1" wx:key="unique">
+
+      <view class="section_tit" wx:if="{{item1.gifttype}}">
+        <block wx:if="{{item1.gifttype=='A'}}">
+          <text class="promo_type">搭配活动</text>{{item1.name}}
+          <navigator class="promo_link" url='/pages/mall/promproddetail?prom_id={{item1.promoid}}'>
+            <block wx:if="{{item1['require_pid_count'] > item1.user_prods.length }}">
+              还差 {{item1['require_pid_count'] - item1.user_prods.length}} 款，继续选购
+            </block>
+            <block wx:else>继续选购</block>
+          </navigator>
+        </block>
+        <block wx:if="{{item1.gifttype=='Z'}}">
+          <text class="promo_type">限时折扣</text>
+          <text class="ml10">{{item1.name}}</text>
+        </block>
+        <block wx:if="{{item1.gifttype=='X'}}">
+          <text class="promo_type">促销</text>
+          <text class="ml10">{{item1.name}}</text>
+        </block>
+      </view>
+
+      <view class="prodtype_inner prodtype_size_L clearfix">
+        <view class="prod_space" wx:for="{{item1.user_prods}}" wx:for-index="idx1" wx:for-item="item2" wx:key="unique">
+
+          <view class="prod_space_inner">
+            <!-- 状态 -->
+            <block wx:if="{{edit_status}}">
+              <label bindtap="bindSelDel" id="{{item2.id}}" class="radio">
+                <radio checked="{{sel_del_map[ item2.id ]}}" color="#f23030" />
+              </label>
+            </block>
+            <block wx:else>
+              <label class="radio" wx:if="{{item2.stock_invaid || item2.itemstatus == '1'}}">
+                <radio disabled />
+              </label>
+              <label bindtap="bindRadioTap" id="{{item2.id}}" class="radio" wx:else>
+                <radio checked="{{item2.settled=='Y'?true:false}}" color="#f23030" />
+              </label>
+            </block>
+
+            <navigator url="/pages/mall/proddetail?plat_num_iid={{item2.plat_num_iid}}">
+              <view class="prod_cover">
+                <view class="mask_txt" wx:if="{{item2.stock_invaid}}">缺货</view>
+                <view class="mask_txt" wx:if="{{item2.itemstatus == '1'}}">已下架</view>
+                <image src="{{imgbase}}{{item2.image_url}}" />
+              </view>
+            </navigator>
+            <view class="prod_ctn">
+              <view class="disp_prod_name">
+                <block wx:if="{{item1.gifttype=='Z'}}">
+                  <text class="promo_type" wx:if="{{item1.isDiscount}}">活动中</text>
+                  <text class="promo_type green" wx:else>预热</text>
+                </block>
+                {{item2.plat_num_name}}
+              </view>
+              <view class="disp_sku_name">{{item2.plat_sku_name || ''}}</view>
+              <!-- 限时折扣 -->
+
+              <block wx:if="{{item1.gifttype=='Z'}}">
+                <view class="discount" wx:if="{{item1.isDiscount}}">
+                  <!-- <view class="promo">
+                    <text class="promo_type">活动中</text>
+                  </view> -->
+                  <view class="info" wx:if="{{item2.discounts>0}}">
+                    <view class="tt">
+                      <!-- 限时折扣 {{item2.discounts}}折  -->
+                      {{item1.formatenddate}} 结束
+                    </view>
+                    <!-- <view class="price">
+                      售价：<text>{{item2.promo_price}}</text>元 节省<text>{{item2.save_price}}</text>元
+                    </view> -->
+                  </view>
+                </view>
+
+                <view class="discount" wx:else>
+                  <!-- <view class="promo">
+                    <text class="promo_type green">预热</text>
+                  </view> -->
+                  <view class="info" wx:if="{{item2.discounts>0}}">
+                    <view class="tt green_color" >
+                      <!-- 限时折扣 {{item2.discounts}}折 -->
+                      {{item1.formatstartdate}} 开抢
+                    </view>
+                    <view class="price green_color">
+                      预售价：<text>{{item2.promo_price}}</text>元 节省<text>{{item2.save_price}}</text>元
+                    </view>
+                  </view>
+                </view>
+                
+                
+
+                <!-- {{item1.name}} -->
+              </block>
+              <!-- 限时折扣活动进行中 -->
+              <view class="disp_price" wx:if="{{item1.gifttype=='Z' && item1.isDiscount}}">￥{{item2.promo_price || item2.price}}</view>
+              <view class="disp_price" wx:else>￥{{item2.price}}</view>
+              <!-- 计算 -->
+              <view class="counter">
+                <view class="counter_wrap">
+                  <view class="counter_down" bindtap='wig_counter_change' id="{{item2.id}}" data-type='l'>-</view>
+                  <view class="counter_num">
+                    <input type="number" class="counter_numinput" disabled value="{{item2.buyqty}}" />
+                  </view>
+                  <view class="counter_up" bindtap='wig_counter_change' id="{{item2.id}}" data-type='r'>+</view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <!-- 商品可选活动 -->
+
+          <view class="promos" wx:if="{{item2.promos.length>0}}">
+            <view class="promos_brief">
+              <picker bindchange="bindPickerChange" id="{{item2.id}}" value="{{item2.sel_promo_idx}}" range="{{item2.promos}}" range-key="promo_name">
+                <view class="picker">
+                  促销 : {{item2.promos[item2.sel_promo_idx]['promo_name']}}
+                  <text class="promos_select">{{item2.promos.length}}个可选></text>
+                </view>
+              </picker>
+            </view>
+          </view>
+
+        </view>
+
+        <!-- <view class="group_root" wx:if="{{item1.gifttype}}">
+          <text>活动减免{{item1.ttl_promo_disc || 0}}元;</text>
+          <text>会员折扣减免{{item1.ttl_vip_disc || 0}}元</text>
+        </view> -->
+      </view>
+
+    </block>
+  </view>
+
+  <!-- 店铺商品分组 -->
+  <view class="control_prodtype clearfix" style="margin-top:10px;">
+    <block wx:for="{{shop_prods}}" wx:for-index="idx" wx:for-item="item1" wx:key="unique">
+      <view class="prodtype_inner prodtype_size_L clearfix">
+        <view class="prod_space" wx:for="{{item1.user_prods}}" wx:for-index="idx1" wx:for-item="item2" wx:key="unique">
+
+          <view class="prod_space_inner">
+
+            <block wx:if="{{edit_status}}">
+              <label bindtap="bindSelDel" id="{{item2.id}}" class="radio">
+                <radio checked="{{sel_del_map[ item2.id ]}}" color="#f23030" />
+              </label>
+            </block>
+            <block wx:else>
+              <label class="radio" wx:if="{{item2.stock_invaid || item2.itemstatus == '1'}}">
+                <radio disabled />
+              </label>
+              <label bindtap="bindRadioTap" id="{{item2.id}}" class="radio" wx:else>
+                <radio checked="{{item2.settled=='Y'?true:false}}" color="#f23030" />
+              </label>
+            </block>
+
+            <navigator url="/pages/mall/proddetail?plat_num_iid={{item2.plat_num_iid}}">
+              <view class="prod_cover">
+                <view class="mask_txt" wx:if="{{item2.stock_invaid}}">缺货</view>
+                <view class="mask_txt" wx:if="{{item2.itemstatus == '1'}}">已下架</view>
+                <image src="{{imgbase}}{{item2.image_url}}" />
+              </view>
+            </navigator>
+
+            <view class="prod_ctn">
+              <view class="disp_prod_name">{{item2.plat_num_name}}</view>
+              <view class="disp_sku_name">{{item2.plat_sku_name}}</view>
+              <view class="disp_price">￥{{item2.price}}</view>
+              <!-- 计算 -->
+              <view class="counter">
+                <view class="counter_wrap">
+                  <view class="counter_down" bindtap='wig_counter_change' id="{{item2.id}}" data-type='l'>-</view>
+                  <view class="counter_num">
+                    <input type="number" bindinput='bindBalPayBlur' class="counter_numinput" id="{{item2.id}}" value="{{item2.buyqty}}" />
+                  </view>
+                  <view class="counter_up" bindtap='wig_counter_change' id="{{item2.id}}" data-type='r'>+</view>
+                </view>
+              </view>
+            </view>
+
+          </view>
+
+          <!-- 商品可选活动 -->
+          <view class="promos" wx:if="{{item2.promos.length>0}}">
+            <view class="promos_brief" id="{{item2.id}}">
+              <!-- 促销：不参与活动  -->
+              <picker bindchange="bindPickerChange" id="{{item2.id}}" value="{{item2.sel_promo_idx}}" range="{{item2.promos}}" range-key="promo_name">
+                <view class="picker">
+                  促销 : {{item2.promos[item2.sel_promo_idx]['promo_name']}}
+                  <text class="promos_select">{{item2.promos.length}}个可选></text>
+                </view>
+              </picker>
+            </view>
+          </view>
+
+        </view>
+        <!-- 优惠小计 -->
+        <view class="group_root">
+          <text>会员折扣减免{{item1.ttl_vip_disc || 0}}元</text>
+        </view>
+        <!-- 优惠小计end -->
+      </view>
+    </block>
+  </view>
+
+
+  <!-- 底部结算栏 -->
+  <view class="foot__fix" style="z-index:2;bottom:50px;" wx:if="{{num!=0 && has_load==true}}">
+
+    <view class="section_inner action_bar" wx:if="{{!edit_status}}">
+
+      <block wx:if="{{!buycar_err}}">
+        <view class="action_idx">
+          <view class="js_edit" bindtap='bindSwitchEditStatus'>编辑</view>
+          <view style='padding-right:10px;'>
+            <view class="cart" style="font-size:15px;padding-top:5px;">合计：
+              <text style="color:#c40">￥{{ttl_pay_fee}}</text>
+            </view>
+            <view class="cart" style='color:#999;font-size:11px;'>总额：￥{{ttl_prod_fee}} 立减：-￥{{ttl_disc_fee}}</view>
+          </view>
+        </view>
+        <view class="action_list" style='width:30%'>
+          <view class="buynow" bindtap='bindBuy'>去结算({{settled_num}})</view>
+        </view>
+      </block>
+
+
+      <block wx:else>
+        <view class="action_idx" style='width:100%;'>
+          <view style='color:#c40'>{{buycar_err}}</view>
+        </view>
+      </block>
+
+    </view>
+
+    <!-- 编辑状态 -->
+    <view class="section_inner action_bar" wx:else>
+      <view class="action_idx">
+        <view class="js_edit" bindtap='bindSwitchEditStatus'>完成</view>
+      </view>
+      <view class="action_list" style='width:30%'>
+        <view class="buynow" bindtap='bindDel'>删除</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- container -->
+</view>

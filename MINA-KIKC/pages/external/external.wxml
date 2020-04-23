@@ -1,0 +1,2 @@
+<!--pages/external/external.wxml-->
+<web-view src="{{myurl}}"></web-view>

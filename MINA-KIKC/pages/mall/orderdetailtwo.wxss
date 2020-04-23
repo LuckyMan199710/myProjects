@@ -1,0 +1,67 @@
+page{
+	background-color: #f7f7f7
+}
+.clear{
+  clear: both;
+}
+.section{
+	margin-bottom: 15px;
+}
+.section_inner{
+	background-color: #fff;
+	padding: 10px;
+}
+.gooddetail{
+  height: 30px;
+  line-height: 30px;
+  border-bottom: solid 1px darkgrey;
+  margin-bottom: 10px;
+  color:  darkgrey;
+}
+.good_item{
+  display: -webkit-box;
+}
+.goodpic{
+  width: 60px;
+  height:60px;
+  margin-right: 10px;
+}
+.goodlist{
+  -webkit-box-flex: 1;
+}
+.detail{
+  margin-bottom: 12px;
+}
+.plat_num_name{
+  font-weight: bold;
+}
+.logistics{
+  float: left;
+}
+.tics{
+  float: right;
+}
+.prict_txt{
+  color: #f23030
+}
+
+.orderfee view{line-height:28px;}
+.orderfee view text:last-child{
+  float: right;
+}
+
+
+.under_txt{
+  text-decoration: underline;
+  float: left;
+}
+.getlogis{
+  text-decoration: underline;
+  float: left;
+  margin-left: 10px;
+}
+.orderpay_bg {
+	margin-top:15px;
+	padding:10px;
+	background-color:#f6eceb;
+}

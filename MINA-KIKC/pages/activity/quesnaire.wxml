@@ -1,0 +1,15 @@
+<!--index.wxml-->
+<view class="container">
+<view class="section">
+	
+	<view class="section_inner" wx:for="{{list}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+ 	  <navigator class="addr_item" url='/pages/activity/ques_detail?billno={{item.billno}}&title={{item.title}}'>
+				<view class='title'>{{item.title}}</view>
+				<view class='enddate'>截止时间：{{item.enddate}}</view>
+        <view class='clear'></view>
+		</navigator>
+	</view>
+
+</view>
+
+</view>

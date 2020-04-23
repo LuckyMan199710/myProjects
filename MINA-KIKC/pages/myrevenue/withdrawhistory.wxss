@@ -1,0 +1,53 @@
+/**index.wxss**/
+page{
+ background:  #f7f7f7
+}
+.clear{
+  clear: both;
+}
+.container-out{
+  padding: 10px;
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+}
+.left{
+  width: 80%;
+  float: left;
+}
+.right{
+  width: 20%;
+  float: right;
+  height: 80px;
+  line-height: 80px;
+  text-align: right;
+  color: darkgrey;
+}
+.left .orderno{
+  font-size: 16px;
+  padding: 5px 0px;
+  margin-right: 5px;
+}
+.left .commom{
+  padding: 5px 0px;
+}
+.left .commom text{
+  margin-right: 5px;
+  color: darkgrey;
+}
+.left .commom lable{
+  /*color: #8f5e24;*/
+}
+.noorder{
+  margin-top: 50px;
+  text-align: center;
+}
+.noorder image{
+  width: 80px;
+  height: 100px;
+}
+.noorder-on{
+  width: 100%;
+  font-size: 16px;
+  margin-top: 20px;
+}
+

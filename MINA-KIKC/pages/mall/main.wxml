@@ -1,0 +1,188 @@
+<import src="../common/mall" />
+<import src="../common/bottom" />
+<import src="../common/counter" />
+<import src="../common/addcart" />
+<import src="../common/floor" />
+<!-- <scroll-view class="bigWrap" style="height: 1208rpx" scroll-y="true" scroll-top="{{scrollTop}}" style="height:100%;" upper-threshold="0">  -->
+
+
+<!-- start container -->
+<view class="container">
+
+  <view class="pagebg" style='background:#fff;padding-bottom:10px'>
+
+    <!-- bannar -->
+    <block class="control_content" wx:key="unique" wx:for="{{ques_list}}" wx:for-index="idx" wx:for-item="item">
+      <!-- bannar -->
+      <view wx:if="{{item.type_num==2}}">
+        <view class="control_bannar" style="overflow:hidden" wx:if="{{item.banner.length>0}}">
+          <template is="control_bannar" data="{{imgbase:imgbase,banner_display:item.banner_display,image_size:item.image_size,banners:item.banner}}" />
+        </view>
+      </view>
+
+      <!-- 搜索 -->
+      <view wx:elif="{{item.type_num==3}}">
+        <view class="control_search">
+          <template is="control_search" data="{{search_color:item.search_color,shop_id:vote.shop_id,base_conf,search_val}}" />
+        </view>
+      </view>
+      <!-- 商品列表 -->
+      <view wx:elif="{{item.type_num==4}}">
+        <view class="control_prodclass clearfix">
+          <template is="control_prodclass" data="{{imgbase:imgbase,image_size:item.image_size,prods:prodType['prod_type'+1],prodslist:item.prodslist,disp_buy_btn:item.disp_buy_btn,disp_collet_btn:item.disp_collet_btn,disp_saleqty:item.disp_saleqty,disp_price:item.disp_price,disp_prod_name:item.disp_prod_name,collection:collection,iscollection:iscollection,car:car,plat_num_iid:plat_num_iid,shop_id:vote.shop_id,disp_orig_price:item.disp_orig_price,prod_source:item.prod_source,base_conf}}"
+          />
+
+        </view>
+      </view>
+      <!-- 选择商品 -->
+      <view wx:elif="{{item.type_num==5}}">
+        <view class="control_prodtype clearfix">
+          <template is="control_prodtype" data="{{imgbase:imgbase,image_size:item.image_size,prodsource:item.prodsource,disp_buy_btn:item.disp_buy_btn,disp_collet_btn:item.disp_collet_btn,disp_saleqty:item.disp_saleqty,collection:collection,iscollection:iscollection,car:car,plat_num_iid:plat_num_iid,disp_orig_price:item.disp_orig_price,base_conf}}"
+          />
+        </view>
+      </view>
+      <!-- 商品分组 -->
+      <view wx:elif="{{item.type_num==6}}">
+        <view class="control_group clearfix">
+          <template is="control_group" data="{{imgbase:imgbase,image_size:item.image_size,tab:tab,prodgroup:prodgroup,classname:item.classname,group_position:item.group_position,disp_buy_btn:item.disp_buy_btn,disp_collet_btn:item.disp_collet_btn,disp_saleqty:item.disp_saleqty,collection:collection,iscollection:iscollection,car:car,plat_num_iid:plat_num_iid,shop_id:vote.shop_id,prodtype:prodtype,disp_orig_price:item.disp_orig_price,control_num:item.control_num,templ_num:item.templ_num,base_conf}}"
+          />
+        </view>
+      </view>
+      <!-- 优惠券 -->
+      <view wx:elif="{{item.type_num==7}}">
+        <view class="control_coupon">
+          <template is="control_coupon" data="{{imgbase:imgbase,coupon:item.coupon,shop_id:vote.shop_id}}" />
+        </view>
+      </view>
+      <!-- 营销活动 -->
+      <view wx:elif="{{item.type_num==8}}">
+        <view class="control_promotion">
+          <template is="control_promotion" data="{{imgbase:imgbase,promotion:item.promotion}}" />
+        </view>
+      </view>
+      <!-- 公告 -->
+      <view wx:elif="{{item.type_num==9}}">
+        <view class="control_notice">
+          <template is="control_notice" data="{{notice:item.notice}}" />
+        </view>
+      </view>
+      <!-- 标题文本 -->
+      <view wx:elif="{{item.type_num==10}}">
+        <view class="control_textTitle">
+          <template is="control_textTitle" data="{{text_align:item.text_align,text_bgcolor:item.text_bgcolor,text_title:item.text_title,text_subtitle:item.text_subtitle}}" />
+        </view>
+      </view>
+      <!-- 店铺 -->
+      <view wx:elif="{{item.type_num==11}}">
+        <view class="control_shop clearfix">
+          <template is="control_shop" data="{{imgbase:imgbase,shop_listqty:item.shop_listqty,shop:item.shop}}" />
+        </view>
+      </view>
+      <!-- 图片组件 -->
+      <view wx:elif="{{item.type_num==12}}">
+        <view class="control_image clearfix" style="width:100%;">
+          <template is="control_image" data="{{imgbase:imgbase,control_image_url:item.control_image_url}}" />
+        </view>
+      </view>
+      <!-- 图片导航组件 -->
+      <view wx:elif="{{item.type_num==13}}">
+        <view class="control_image_nav clearfix" style="width:100%;overflow:hidden;">
+          <template is="control_image_nav" data="{{imgbase:imgbase,image_nav:item.image_nav,shop_listqty:item.shop_listqty,shop_id:vote.shop_id}}" />
+        </view>
+      </view>
+    </block>
+
+    <view class="control_bottom clearfix">
+      <template is="control_bottom" data="{{ontabpage,page_path,base_conf}}" />
+    </view>
+
+  </view>
+  <!-- 底部技术支持标识 -->
+  <template is="floor" wx:if="{{ques_list && ques_list.length > 0}}"></template>
+</view>
+<!-- end container -->
+
+
+<!-- </scroll-view> -->
+
+<!-- 返回顶部 -->
+<image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/ding.png' class='img goToTop' bindtap="goTop"></image>
+<!-- 联系客服 -->
+<button class="customer" open-type="contact">
+  <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/kefu.png' class='img'></image>
+</button>
+
+<template is="comp_addcart" data="{{imgbase,addcart_good_cover,is_addcart_show,skulvl,curskuid,sku1,sku2,curbuyqty,actiontype}}" />
+
+
+<!-- 购买 
+<view class='widget_wrap' hidden="{{hidden}}" style='z-index: 1000'>
+<view class="control_buy" hidden="{{hidden}}">
+    <view class='hidden' bindtap='hidden'>x</view>
+    <view style="height:100px;overflow:hidden;" wx:if="{{imgs.length}}">
+      <swiper style="height:100px;width:100%;" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <swiper-item  wx:key="unique" wx:for="{{imgs}}"  wx:for-index="idx" wx:for-item="item">
+          <image style="width:30%;" src="{{imgbase}}{{item}}" mode='widthFix' class="slide-image"/>
+          <view class='prod_list'>
+              <view class="prod_tit">{{prod.plat_num_name}}</view>
+              <view><text class="prod_price">￥{{curskuid.price}}</text></view>
+          </view>
+          <view class='clear'></view>
+        </swiper-item>
+      </swiper>
+    </view>
+
+    <view class='prod_sku'>
+      <view class="section_inner">
+        <view style="height:1000px;">规格</view>
+        <view class="sku_wrap">
+          <block wx:if="{{skulvl==2}}">
+            <view class="sku_item" wx:key="unique" wx:for="{{sku1}}"  wx:for-index="idx" wx:for-item="item" id="{{item.color_num}}" bindtap='bindSku1'>
+              <text wx:if="{{item['color_num']==curskuid['color_num']}}" class="on">{{item.color || item.color_num}}</text>
+              <text wx:else>{{item.color || item.color_num}}</text>
+            </view>
+            <view style="height:15px;"></view>
+            <view class="sku_item" wx:key="unique" wx:for="{{sku2}}"  wx:for-index="idx" wx:for-item="item" id="{{item.spec_num}}" bindtap='bindSku2'>
+              <text wx:if="{{item['spec_num']==curskuid['spec_num']}}" class="on">{{item.spec || item.spec_num}}</text>
+              <text wx:else>{{item.spec || item.spec_num}}</text>
+            </view>
+          </block>
+          <block wx:else>
+            <view class="sku_item" wx:key="unique" wx:for="{{sku1}}"  wx:for-index="idx" wx:for-item="item" id="{{item.sku_id}}" bindtap='bindSkuid'>
+              <text wx:if="{{item['sku_id']==curskuid['sku_id']}}" class="on">{{item.plat_sku_name}}</text>
+              <text wx:else>{{item.plat_sku_name}}</text>
+            </view>
+          </block>
+        </view>
+        
+      </view>
+    </view>
+
+
+    <view class='action_num'>
+      <view class="section_inner">
+        <view class='prod_num'>选择购买数量:</view>
+        <view class="prod_nums">
+          <view class="counter">
+            <view class="counter_wrap">
+              <view class="counter_down" bindtap='down_num'>-</view>
+              <view class="counter_num">
+                <input type="number" name="num" class="counter_numinput" bindblur='blurnum' bindinput='valuesnum' value='{{num}}' />
+              </view>
+              <view class="counter_up" bindtap='add_num'>+</view>
+            </view>
+          </view>
+        </view>
+        <view class="stockqty">剩余库存：{{curskuid.stockqty}}件</view>
+        <view class='clear'></view>
+      </view>
+    </view>
+
+    <view class="section_inner action_bar">
+      <view class="action_list" style='width:100%'>
+        <view class="addcart" bindtap='bindAddcart'>加入购物车</view>
+        <view class="buynow" bindtap='bindBuy'>立即购买</view>
+      </view>
+    </view>
+</view>
+</view>-->

@@ -1,0 +1,189 @@
+/**index.wxss**/
+page{
+ background:  #f7f7f7
+}
+.container {
+  padding-bottom: 120rpx;
+}
+.user_income{
+	padding-top: 20rpx;
+}
+.user_income_top .top_item{
+	text-align: center;
+	font-size: 28rpx;
+}
+.user_income_top .income_button{
+	margin-top: 6rpx;
+	width:142rpx;
+	height:48rpx;
+	text-align: center;
+	line-height: 48rpx;
+	border-radius:30px;
+	border:1px solid rgba(251,212,162,1);
+}
+.income_button .buttom_img{
+	width: 32rpx; 
+	height: 32rpx; 
+	vertical-align: middle; 
+	/* margin-top:-16rpx ; */
+  margin-right: 10rpx;
+}
+.top_item .people_count{
+	font-size: 40rpx;
+	font-weight: 500;
+}
+.user_income_bottom{
+	margin-top: 10rpx;
+}
+.user_income_bottom .bottom_item{
+	text-align: center;
+	color: #fff;
+	font-size: 22rpx;
+	width: 50%;
+}
+.bottom_row{
+	position: relative;
+}
+.bottom_row .bordershow:after{
+	content: '';
+	width: 1rpx;
+	height: 50rpx;
+	background-color: #FFF;
+	position: absolute;
+  left: 350rpx;
+  top: 20rpx;
+
+}
+.bottom_item .money{
+	font-size: 36rpx;
+	color:#fff;
+	
+}
+/* .table-equal .tbequlitem{
+  border-right: 1px solid #ccc;
+  border-bottom:  1px solid #ccc;
+  width: 19.4%;
+  display:  inline-block;
+  text-align: center;
+  background: #fff;
+}
+.table-equal .tbequlitem:last-child{
+  border-right: 0px;
+}
+.table-equal .tbequlitem .public{
+  padding-top: 10px;
+}
+.table-equal .tbequlitem .public:last-child{
+  padding-top:0px;
+  height:30px;
+  line-height: 30px;
+  overflow: hidden;
+  font-size: 15px;
+  color:#c40;
+  font-weight: bold;
+} */
+.user_income{
+	height: 350rpx;
+	margin-top: 20rpx;
+  box-sizing: border-box;
+}
+.myteam{
+	background: #fff;
+	border-radius:12px;
+	margin: 20rpx 24rpx 20rpx 24rpx;
+}
+.myteam_tap{
+	height: 74rpx;
+	border-bottom: 1rpx solid #DDDDDD;
+}
+.myteam_tap .myteam_tap_item{
+	font-size: 28rpx;
+	color:#999999;
+}
+.myteam_tap_item{
+  position: relative;
+}
+.myteam_data{
+	height: 90rpx;
+}
+.myteam_data .myteam_data_item{
+	padding: 30rpx 0 20rpx 0;
+}
+.myteam_data .myteam_data_item .data{
+	width: 100%;
+	color: #999999;
+	text-align: center;
+	font-size: 26rpx;
+}
+.borders:before{
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 90rpx;
+	width: 60rpx;
+	height: 6rpx;
+	background: #333333;
+}
+.myteam_data .myteam_data_item .middle{
+	border-left: solid 1px #DDDDDD;
+	border-right: solid 1px #DDDDDD;
+}
+.weui_cells{
+  /* border-top:  1px solid #ccc;
+  border-bottom:  1px solid #ccc; */
+  margin: 0 24rpx 0 24rpx;
+  border-radius:12px;
+  background: #fff;
+}
+.weui_cell_primary{
+  height:45px;
+  line-height: 45px;
+  overflow: hidden;
+  font-size: 28rpx;
+  color: #333333;
+}
+.hand{
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 20rpx;
+  margin-top: -10rpx;
+}
+.on{
+  border-bottom: 1rpx solid #DDDDDD;
+  margin: 0px 20rpx;
+}
+.on:last-child{
+  border-bottom: 0px;
+}
+.facing {  
+    display: inline-block;  
+    margin: 40rpx 26rpx 4rpx 4rpx;  
+    border-right: 2px solid #ccc; 
+    border-bottom: 2px solid #ccc;  
+    width: 10rpx; 
+    height: 10rpx;  
+    transform: rotate(-45deg); 
+    float: right;
+}  
+.vip-item{
+  display: inline-block;
+  width: 33.33%;
+  position: relative;
+}
+.vip-item::after{
+  border-left:1px solid #ddd;
+  height:100%;
+  position: absolute;
+  content: '';
+  display: block;
+  top: 0%;
+  left:0;
+}
+.vip-item:first-child::after{
+  border:none;
+}
+.vip-item view{
+  padding: 2px 0px;
+  font-size: 12px;
+  text-align: center;
+}

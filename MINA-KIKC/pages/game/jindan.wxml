@@ -1,0 +1,30 @@
+<!--index.wxml-->
+<import src="../common/nav"/>
+<import src="../common/dialog" />
+<view class="container-out" style="background: {{info.color_name}};" style="padding:0px;">
+  <view class='bannerurl'>
+  	<image src='{{imgbase}}{{info.bannerurl}}' style="width:100%;height:100%;"></image>
+  </view>
+  
+  <view class="game_main" style="{{info.background?'background-image:url('+imgbase+info.background+')':''}};background-size:100% 100%;padding-bottom:80px;">
+  <view class="section_inner" style="text-align:center;font-size:14px;color:{{info.background?'#fff':'#333'}};background:transparent;padding:20px 0px;" hidden="{{!(lefttimes>0)}}">
+  <view>您还剩余{{lefttimes}}次抽奖机会</view>
+</view>
+  <view class="stage" style="margin:0px;">
+    <image bindtap="bindViewTap" class="userinfo-bgimg" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/stage.jpg' background-size="cover" mode='widthFix'></image>
+    
+    <image class="zhuizi" hidden="{{hidden}}" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/1.png' style="top:{{zhuizitop}}%;left:{{zhuizileft}}%;"></image>
+    <image class="liwu" hidden="{{hidden}}" animation="{{animationData}}" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/2.png' style="top:{{liwutop}}%;left:{{liwuleft}}%;"></image>
+    <image class="caili" hidden="{{hidden}}" style="top:{{cailitop}}%;left:{{cailileft}}%;" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/9.png'></image>
+    <image class="jindan" data-index="{{index}}"  mode="{{(index==indexSelect)?mode1:colorAwardDefault}}" bindtap="{{jindana?'jindan':'jindanstop'}}" src="{{src}}" background-size="cover" wx:for="{{awardList}}" wx:key="key" style="top:{{item.topAward}}%;left:{{item.leftAward}}%;"></image>
+  </view>
+  <view class='cons_point'>每次消耗{{info.cons_point}}积分</view>
+  </view>
+</view>
+
+<!-- 右侧导航栏 -->
+<template is="control_nav"  data="{{navhidden:navhidden,base_conf}}"/>
+
+<!--  中奖结果-->
+<template is="game2" data="{{navhidden:navhidden,base_conf,wid_dialog_conf:wid_dialog_conf}}" />
+

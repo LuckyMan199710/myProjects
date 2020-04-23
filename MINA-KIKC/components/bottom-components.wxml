@@ -1,0 +1,52 @@
+<!-- 底部导航组件 -->
+<custom-component>
+  <!-- <view>{{base_conf['mynavlist'][0]}}</view>
+  <button bindtap='onMyButtonTap'>Button</button>
+  <view>{{A[0].B}}</view>
+  <button bindtap='_myPrivateMethod'>_myPrivateMethod</button> -->
+  <view class="bottom" wx:if="{{!base_conf['kikcExclusive']}}">
+    <block wx:for="{{base_conf['mynavlist']}}" wx:for-item="item" wx:key="item.id">
+      <block wx:if="{{page_path == item.url}}">
+        <view class="bottom_content {{ontabpage==item.ontabpage?'on':''}}">
+          <image src='{{item.imgUrl}}' class='bottom_img'></image>
+          <view class='bottom_wenzi'>{{item.title}}</view>
+        </view>
+      </block>
+      <block wx:else>
+        <block wx:if="{{item.url == 'pages/trend/theme'}}">
+          <navigator url='/{{item.url}}' class="bottom_content {{ontabpage=='mall_main'?'on':''}}" open-type='navigate'>
+            <image src='{{item.imgUrlHd}}' class='bottom_img'></image>
+            <view class='bottom_wenzi' style="color:{{base_conf['color_primary']}}">{{item.title}}</view>
+          </navigator>
+        </block>
+        <navigator url='/{{item.url}}' class="bottom_content {{ontabpage=='mall_main'?'on':''}}" open-type='reLaunch' wx:else>
+          <image src='{{item.imgUrlHd}}' class='bottom_img'></image>
+          <view class='bottom_wenzi' style="color:{{base_conf['color_primary']}}">{{item.title}}</view>
+        </navigator>
+      </block>
+    </block>
+  </view>
+  <view class="bottom" wx:else>
+    <block wx:for="{{base_conf['mynavlist']}}" wx:for-item="item" wx:key="item.id">
+      <block wx:if="{{page_path == item.url}}">
+        <view class="bottom_content {{ontabpage==item.ontabpage?'on':''}}">
+          <image src='{{item.imgUrl}}' class='bottom_img'></image>
+          <view class='bottom_wenzi'>{{item.title}}</view>
+        </view>
+      </block>
+      <block wx:else>
+        <block wx:if="{{item.url == 'pages/trend/theme'}}">
+          <navigator url='/{{item.url}}' class="bottom_content {{ontabpage=='mall_main'?'on':''}}" open-type='navigate'>
+            <image src='{{item.imgUrlHd}}' class='bottom_img'></image>
+            <view class='bottom_wenzi' style="color:#ffffff">{{item.title}}</view>
+          </navigator>
+        </block>
+        <navigator url='/{{item.url}}' class="bottom_content {{ontabpage=='mall_main'?'on':''}}" open-type='reLaunch' wx:else>
+          <image src='{{item.imgUrlHd}}' class='bottom_img'></image>
+          <view class='bottom_wenzi' style="color:#333333">{{item.title}}</view>
+        </navigator>
+      </block>
+    </block>
+
+  </view>
+</custom-component>

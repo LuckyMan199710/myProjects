@@ -1,0 +1,75 @@
+<!--pages/motion/motion.wxml-->
+<import src="../common/counter"/>
+<view class="container">
+  <view class="page-body">
+    <view class="header" style="background: url('{{bgimgurl}}') no-repeat; background-size: 100% 100%;">
+      <view class="abs">
+        <view class="name">亲爱的<text> {{username}}</text></view>
+        <view class="desc">本掌柜掂量了一下，你当前：</view>
+        <view class="mybox">
+          <view class="number">
+            <view class="tt">今日步数</view>
+            <view class="dd">{{todaystep}}步</view>
+          </view>
+          <view class="number">
+            <view class="tt">累计步数</view>
+            <view class="dd">{{totalstep}}步</view>
+          </view>
+        </view>
+        <view class="desc">可典当累计步数兑换一下物品</view>
+        <view class="price">(名额有限，典当有风险，具体见活动规则)</view>
+      </view>
+    </view>
+    <view class="Surplus_order box">
+      <navigator url="/pages/motion/account?leftstep={{leftstep}}" class="surplus">
+        当前步数余额： <text>{{leftstep}}</text>
+      </navigator>
+      <navigator url="/pages/motion/exchhistory" class="order">我的兑换订单</navigator>
+    </view>
+    <view class="product_tit">
+      <view class="tit">可兑换物品</view>
+      <navigator url="/pages/motion/rule?billno={{billno}}" class="rule">活动规则</navigator>
+    </view>
+    <view class="product">
+      <view class="item" wx:for="{{prizelist}}" wx:for-item="item" data-detail="{{item}}" bindtap="getexchange" wx:key="{{item.prize_id}}">
+        <view class="img_nav">
+          <image src="{{item.imageurl}}" mode='aspectFit'></image>
+        </view>
+        <view class="product_content">
+          <view class="product_name">{{item.name}}</view>
+          <view class="redtag">
+            <view class="need">步数:{{item.usestep}}</view>
+            <view class="tag" wx:if="{{leftstep>item.usestep && item.left_qty>0}}">
+              可兑换
+            </view>
+            <view class="notag" wx:else>不可兑换</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="timechoose" wx:if="{{exchange_toggle}}">
+      <view class="exchange_content">
+        <view class="title">{{detail.name}}</view>
+        <view bindtap="handleclose" class="close">
+          <image src="/images/icon_close.png"></image>
+        </view>
+        <!-- <view class="choose_tit">选择兑换数量:</view>
+        <view class="mynum box box-align-center">
+          <template is="counter" data="{{wig_counter_data}}" />
+          <view class="stock">剩余库存：{{detail.left_qty}}件</view>
+        </view> -->
+        <view class="mynum box box-align-center">
+          <view class="stock">剩余库存：{{detail.left_qty}}件</view>
+        </view>
+        
+        <view class="section_inner">
+          <button bindtap="bindBuy" data-prize_id="{{detail.prize_id}}" wx:if="{{exchageable}}" size='mini' plain='true' class="submit_btn on" style='background-color:{{base_conf.color_primary}}'>立即兑换</button>
+          <button wx:else size='mini' plain='true' class="submit_btn off">步数不足</button>
+        </view>
+      </view>
+      <view class="make"></view>
+    </view>
+    
+  </view>
+</view>

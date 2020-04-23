@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view class="container" style="text-align:center;padding-top:100px;">
+  <!--<view  bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>-->
+  <view class="auth-contain">
+    <view class="auth-wrap">
+      <view class="sys_tip">系统申请获得您的以下信息，请确认授权</view>
+      <view class="sys_tip_list">
+        <view class="sys_tip_before"></view>获得您的公开信息（昵称、头像等）</view>
+      <button class="mini-btn auth-btn" open-type='getUserInfo' bindgetuserinfo="auth_getuserinfo" wx:if="{{!loading}}">确认授权</button>
+      <button class="mini-btn auth-btn" wx:else>正在授权...</button>
+      <button class="mini-btn reset-btn" bindtap="handleReset">取消</button>
+    </view>
+  </view>
+</view>

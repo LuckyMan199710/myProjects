@@ -1,0 +1,99 @@
+<import src="../common/mall"/>
+<import src="../common/dialog"/>
+
+<import src="../common/addcart"/>
+
+<!-- style="position: absolute; left: 0; top:0px; bottom: 0; right: 0;" -->
+<scroll-view class="bigWrap" scroll-y="true" bindscrolltolower="lower" lower-threshold="200" style="height:100%;">  
+ 
+<view class="container">
+
+
+
+<view class='top'>
+  <template is="control_pailie" data="{{image_size:image_size,hidden:hidden,tianimg:tianimg,hengimg:hengimg,tianimgs:tianimgs}}" />
+</view>
+
+<!-- 列表 -->
+<view class="control_prodtype clearfix">
+  <block wx:if="{{prods.length>0}}">
+    <view class="prodtype_inner prodtype_size_{{image_size}} clearfix">
+        
+      <view class="prod_space" wx:for="{{prods}}"  wx:for-index="idx1" wx:for-item="item2" wx:key="unique">
+        <view class="prod_space_inner">
+          <block wx:if="{{item2.group_saleprice && item2.promo_num}}">
+          <navigator url="/pages/mall/{{item2.gifttype=='K'?'bargainprod':'groupprod'}}?plat_num_iid={{item2.plat_num_iid}}&promo_num={{item2.promo_num}}">
+            <view class="prod_cover">
+              <image src="{{imgbase}}{{item2.image_url}}" mode='widthFix' />
+              <view wx:if="{{item2['timeprod']}}" class="discount box box-align-center {{item2['timeprod']['activetype'] == 'Y' ? '' : 'green'}}">
+                <view class="tt flex">
+                  限时折扣
+                </view>
+                <view class="myprice">
+                  <block wx:if="{{image_size=='S'}}">
+                    <text wx:if="{{item2['timeprod']['activetype'] == 'N'}}">预</text>售价
+                  </block>
+                  ￥{{item2['timeprod']['saleprice']}}
+                </view>
+              </view>
+            </view>
+            <view class="prod_ctn">
+              <view class="disp_prod_name"><text class="icon_txt" >{{item2.gifttype=='K'?'砍价':'拼团'}}</text>{{item2.plat_num_name || '商品标题未设置'}}</view>
+              <view class='disp_prod_price'>
+                <text class="disp_price">￥{{(item2.gifttype=='K'?item2.min_price:item2.saleprice)|| item2.minprice}}</text>
+                <!-- <text class="disp_saleqty">销量:{{item2.soldqty}}</text> -->
+              </view>
+            </view>
+          </navigator>
+          </block>
+          <block wx:else>
+          <navigator url="/pages/mall/proddetail?plat_num_iid={{item2.plat_num_iid}}&keyword={{keyword}}">
+            <view class="prod_cover">
+              <image src="{{imgbase}}{{item2.image_url}}" mode='widthFix' />
+              <view wx:if="{{item2['timeprod']}}" class="discount box box-align-center {{item2['timeprod']['activetype'] == 'Y' ? '' : 'green'}}">
+                <view class="tt flex">
+                  限时折扣
+                </view>
+                <view class="myprice">
+                  <block wx:if="{{image_size=='S'}}">
+                    <text wx:if="{{item2['timeprod']['activetype'] == 'N'}}">预</text>售价
+                  </block>
+                  ￥{{item2['timeprod']['saleprice']}}
+                </view>
+              </view>
+            </view>
+            <view class="prod_ctn">
+              <view class="disp_prod_name"><text class="icon_txt" wx:if="{{item2.saleprice}}">限时折扣</text>{{item2.plat_num_name || '商品标题未设置'}}</view>
+              <view class='disp_prod_price'>
+                <text class="disp_price">￥{{item2.saleprice || item2.minprice}}</text>
+                <!-- <text class="disp_saleqty">销量:{{item2.soldqty}}</text> -->
+              </view>
+            </view>
+          </navigator>
+          </block>
+          <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/car.png' 
+            class="disp_buy_btn" style='width:40rpx' data-pid="{{item2.plat_num_iid}}" bindtap="bindAddcart"></image>
+        </view>
+      </view>
+
+    </view>
+  </block>
+  <block wx:else>
+    <!-- 数据为空，且只要加载过一次 -->
+    <view class="empty_tip" hidden="{{ !(prods.length == 0 && data_load) }}">暂无商品~</view>
+  </block>
+  <!-- 加载 -->
+  <view class="loading_tip" hidden="{{ !(is_loading && !data_load) }}">加载中...</view>
+  <!-- 没有了 -->
+  <view class="nomore_tip" hidden="{{ !(!is_loading && data_load && load_end) }}">没有了~</view>
+
+</view>
+<!-- end 列表 -->
+
+<template is="wid_dialog" data="{{imgbase:imgbase,wid_dialog_conf }}" />
+
+</view>
+</scroll-view> 
+
+
+<template is="comp_addcart" data="{{imgbase,addcart_good_cover,is_addcart_show,skulvl,curskuid,sku1,sku2,curbuyqty,preventMaskMove}}"/>

@@ -1,0 +1,308 @@
+<import src="common/bottom" />
+<import src="common/floor" />
+<import src="/pages/common/dialog" />
+<!--index.wxml-->
+<view class="container" style="padding-bottom:{{mallfunc_status=='Y'?52:0}}px;background:#fff;">
+  <!-- 底部菜单 -->
+
+  <view class="control_bottom clearfix" wx:if="{{mallfunc_status=='Y'}}">
+    <template is="control_bottom" data="{{ontabpage,page_path,base_conf}}" />
+  </view>
+  <!-- 一级页面banner -->
+  <view class="bannar" style="height:{{bannarH || 150}}px;overflow:hidden">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+
+      <swiper-item wx:key="unique" wx:for="{{banners}}" wx:for-index="idx" wx:for-item="item">
+        <!-- 活动 -->
+        <navigator wx:if="{{item.reltype=='IMAGE'}}" url="/pages/vipactivity?type={{item.bytype}}&shopid={{item.shop_id}}&bannarid={{item.bannar_id}}">
+          <image src="{{imgbase}}{{item.image_url}}" class="slide-image" mode="widthFix" />
+        </navigator>
+        <!-- 产品 -->
+        <navigator wx:elif="{{item.reltype=='PROD'}}" url="/pages/mall/proddetail?plat_num_iid={{item.plat_num_iid}}">
+          <image src="{{imgbase}}{{item.image_url}}" class="slide-image" mode="widthFix" />
+        </navigator>
+        <!-- 领券 -->
+        <view wx:elif="{{item.reltype=='COUPON'}}">
+          <image src="{{imgbase}}{{item.image_url}}" id="{{item.coupon_id}}" class="slide-image" bindtap='bindGetCpn' mode="widthFix" />
+        </view>
+        <!--搭配优惠-->
+        <navigator wx:elif="{{item.reltype=='ASSORT'}}" url="/pages/mall/promproddetail?prom_id={{item.rel_billno}}">
+          <image src="{{imgbase}}{{item.image_url}}" class="slide-image" mode="widthFix" />
+        </navigator>
+        <!--抽奖-->
+        <navigator wx:elif="{{item.reltype=='LUTTERY'}}" url="/pages/game/zhuanpan?billno={{item.rel_billno}}">
+          <image src="{{imgbase}}{{item.image_url}}" class="slide-image" mode="widthFix" />
+        </navigator>
+        <!--问券-->
+        <navigator wx:elif="{{item.reltype=='VOTE'}}" url="/pages/activity/ques_detail?billno={{item.rel_billno}}">
+          <image src="{{imgbase}}{{item.image_url}}" class="slide-image" mode="widthFix" />
+        </navigator>
+        <!--积分商城-->
+        <navigator wx:elif="{{item.reltype=='POINT'}}" url="/pages/vip/exchange">
+          <image src="{{imgbase}}{{item.image_url}}" class="slide-image" mode="widthFix" />
+        </navigator>
+        <!--直播列表-->
+        <navigator wx:elif="{{item.reltype=='LIVE'}}" url="/pagesA/live/home">
+          <image src="{{imgbase}}{{item.image_url}}" class="slide-image" mode="widthFix" />
+        </navigator>
+        <!--页面模版-->
+        <navigator wx:elif="{{item.reltype=='PAGE'}}" url="/pages/mall/main?billno={{item.rel_billno}}&shopid={{item.page_shop_id}}">
+          <image src="{{imgbase}}{{item.image_url}}" class="slide-image" mode="widthFix" />
+        </navigator>
+        <!-- 微信运动 -->
+        <navigator wx:elif="{{item.reltype=='WERUN'}}" url="/pages/motion/motion?billno={{item.rel_billno}}">
+          <image src="{{imgbase}}{{item.image_url}}" class="slide-image" mode="widthFix" />
+        </navigator>
+        <view wx:else>
+          <image src="{{imgbase}}{{item.image_url}}" class="slide-image" mode="widthFix" />
+        </view>
+
+      </swiper-item>
+
+    </swiper>
+  </view>
+
+  <!-- 会员信息 -->
+  <view class="barcode_wrap" wx:if="{{is_vip && barcodeurl && showbarcode=='Y'}}">
+    <image style="height:68px;" bindtap='scaleBarcode' src="{{imgbase}}{{barcodeurl}}" />
+  </view>
+
+  <navigator class="barcode" style="color:red;font-size:14px;text-decoration:none;border-bottom:0px solid #000;"  url="/pages/game/sjb"></navigator>
+
+  <block wx:if="{{true}}">
+    <view class="userinfo" wx:if="{{is_vip}}" style="background:{{base_conf['color_primary']}};text-align:center;position:relative;">
+      <view class="userinfo_l" style="border-right:0px solid #fff;padding:10px 0px 0px 0px;" bindtap="updateHeaderImg">
+        <image style="border-radius:50%;width:65px;height:65px;margin-left:0px;position:relative;left:50%;transform:translate(-50%,0);" src="{{headimgurl || base_conf.STATIC_URL+'wap/default/cssimg/userpic.png'}}"></image>
+
+      </view>
+      <view class="userinfo_r" style="flex:2;padding-top:10px;text-decoration:none;">
+        <view class="userinfo_top" style="line-height:23px">
+          <view class="barcode" style="flex:1;text-align:left;text-decoration:none;border-bottom:0px solid #fff;">会员卡号：{{phone}}</view>
+          <view style="position:absolute;top:40px;right:-20px;width:100px;">
+            <view hidden='{{!get_card_hidden}}' class="getvipcard" bindtap="getVipCard">立即领卡</view>
+            <view hidden='{{!getcard_loading}}' class="getvipcard">正在领卡</view>
+          </view>
+        </view>
+        <view class="userinfo_bottom" style="flex:1;text-align:left;line-height:23px">
+          <view style="display:inline-block;">会员等级:{{lvl_name}}</view>
+          <view style="display:inline-block;margin-left:20px;text-decoration:underline;" bindtap='vipjump' id='/pages/vip/point'>积分余额:{{vip_point||0}}</view>
+          <view style="display:inline-block;color:#D3D3D3">{{lvl_desc}}</view>
+        </view>
+
+      </view>
+
+    </view>
+    <!-- 会员信息，会员注册 -->
+    <view class="userreg" style="background-color: {{base_conf['color_primary']}};" wx:else>
+      <button class="reg_btn" size='mini' plain='true' bindtap="signVip" wx:if="{{!loading}}">申请新会员</button>
+      <button class="reg_btn" size='mini' plain='true' wx:else>正在注册</button>
+    </view>
+  </block>
+  <view class='order' wx:if="{{mallfunc_status=='Y'}}" style="text-align:center;display:flex;justify-content:center;box-shadow:0 0 2px #bbb;">
+    <block style="flex:1;" wx:key="unique" wx:for="{{menus}}" wx:for-index="idx" wx:for-item="item" wx:if="{{item.menu_type=='order'}}">
+      <navigator url="/pages/mall/orders?status=waitpay" class='order_item' wx:if="{{item.menu_id=='waitPay'}}">
+        <view>
+          <image class="menu__icon" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/waitpay.png' style="width:22px;" mode='widthFix'></image>
+        </view>
+        <text class="menu__name" style='color:{{base_conf["color_primary"]}};'>待支付</text>
+      </navigator>
+      <navigator url="/pages/mall/orders?status=waitsend" class='order_item' wx:if="{{item.menu_id=='waitSend'}}">
+
+        <view>
+          <image class="menu__icon" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/waitsend.png' style="width:22px;" mode='widthFix'></image>
+        </view>
+        <text class="menu__name" style='color:{{base_conf["color_primary"]}};'>待发货</text>
+      </navigator>
+      <navigator url="/pages/mall/orders?status=waitrec" class='order_item' wx:if="{{item.menu_id=='waitRec'}}">
+
+        <view>
+          <image class="menu__icon" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/waitrec.png' style="width:22px;" mode='widthFix'></image>
+        </view>
+        <text class="menu__name" style='color:{{base_conf["color_primary"]}};'>待收货</text>
+      </navigator>
+      <navigator url="/pages/mall/orders?status=all" class='order_item' wx:if="{{item.menu_id=='orderlist_merge'}}">
+
+        <view>
+          <image class="menu__icon" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/all.png' style="width:22px;" mode='widthFix'></image>
+        </view>
+        <text class="menu__name" style='color:{{base_conf["color_primary"]}};'>全部订单</text>
+      </navigator>
+      <navigator url="/pages/refund/refundhistory" class='order_item' wx:if="{{item.menu_id=='myrefund'}}">
+
+        <view>
+          <image class="menu__icon" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/refund.png' style="width:22px;" mode='widthFix'></image>
+        </view>
+        <text class="menu__name" style='color:{{base_conf["color_primary"]}};'>退款</text>
+      </navigator>
+    </block>
+  </view>
+  <!-- 二级页面菜单 -->
+  <view class="menu" style="display:flex;align-items:center;justify-content:flex-start;" wx:if="{{!exclusive}}">
+
+    <view class="menu__item {{(!base_conf['color_second'] || base_conf['color_second']==base_conf['color_primary'] || base_conf['color_second']=='#fff')?'menu__item__left':''}}" style='color:{{base_conf["color_primary"]}};' wx:key="unique" wx:for="{{menus}}"
+      wx:for-index="idx" wx:for-item="item" wx:if="{{item.menu_type!='order'}}">
+
+      <view wx:if="{{item.vipjump=='Y'}}" class="menu__item__inner" style="{{(!base_conf['color_second'] || base_conf['color_second']==base_conf['color_primary'] || base_conf['color_second']=='#fff')?'border-right:1px solid #D9D9D9;border-bottom:1px solid #D9D9D9;margin:0px;background-color:#fff':'background-color:'+base_conf['color_second']}};"
+        bindtap='vipjump' id='{{item.link}}'>
+        <i class="num_icon" wx:if="{{item.count>0}}">{{item.count}}</i>
+        <view>
+          <image class="menu__icon" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/{{item.icon}}.png'></image>
+        </view>
+        <text class="menu__name" style='color:{{base_conf["color_primary"]}};'>{{item.custom_name}}</text>
+      </view>
+      <view wx:elif="{{item.menu_id=='exclusive_service'}}">
+        <view class="menu__name cell menu__item__inner" style="{{(!base_conf['color_second'] || base_conf['color_second']==base_conf['color_primary'] || base_conf['color_second']=='#fff')?'border-right:1px solid #D9D9D9;border-bottom:1px solid #D9D9D9;margin:0px;background-color:#fff':'background-color:'+base_conf['color_second']}};">
+          <view>
+            <image class="menu__icon" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/{{item.icon}}.png'></image>
+          </view>
+          <text class="menu__name" style='color:{{base_conf["color_primary"]}};'>专属客服</text>
+
+        </view>
+        <view class="concell" bindtap='getmessage'>
+        </view>
+      </view>
+      <button wx:elif="{{item.menu_id=='onlineservice'}}" class="menu__name" class="menu__item__inner" style="{{(!base_conf['color_second'] || base_conf['color_second']==base_conf['color_primary'] || base_conf['color_second']=='#fff')?'border-right:1px solid #D9D9D9;border-bottom:1px solid #D9D9D9;margin:0px;background-color:#fff':'background-color:'+base_conf['color_second']}};"
+        open-type="contact">
+        <view>
+          <image class="menu__icon" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/{{item.icon}}.png'></image>
+        </view>
+        <text class="menu__name" style='color:{{base_conf["color_primary"]}};'>{{item.custom_name}}</text>
+      </button>
+      <navigator class="menu__item__inner" style="{{(!base_conf['color_second'] || base_conf['color_second']==base_conf['color_primary'] || base_conf['color_second']=='#fff')?'border-right:1px solid #D9D9D9;border-bottom:1px solid #D9D9D9;margin:0px;background-color:#fff':'background-color:'+base_conf['color_second']}};"
+        wx:else url="{{item.link}}">
+        <i class="num_icon" style="background:{{base_conf['color_primary']}}" wx:if="{{item.count>0}}">{{item.count}}</i>
+        <view>
+          <image class="menu__icon" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/{{item.icon}}.png'></image>
+        </view>
+        <text class="menu__name" style='color:{{base_conf["color_primary"]}};'>{{item.custom_name}}</text>
+      </navigator>
+    </view>
+    <!-- <view class="menu__item">
+      <navigator class="menu__item__inner" style="{{(!base_conf['color_second'] || base_conf['color_second']==base_conf['color_primary'] || base_conf['color_second']=='#fff')?'border-right:1px solid #D9D9D9;border-bottom:1px solid #D9D9D9;margin:0px;background-color:#fff':'background-color:'+base_conf['color_second']}};" url="/pages/game/main">
+        <view><image class="menu__icon" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/game.png'></image></view>
+        <text class="menu__name" style='color:{{base_conf["color_primary"]}};'>摇一摇</text>
+      </navigator>
+    </view> -->
+    <!-- 微信运动 -->
+    <!-- <view class="menu__item">
+      <navigator class="menu__item__inner" style="{{(!base_conf['color_second'] || base_conf['color_second']==base_conf['color_primary'] || base_conf['color_second']=='#fff')?'border-right:1px solid #D9D9D9;border-bottom:1px solid #D9D9D9;margin:0px;background-color:#fff':'background-color:'+base_conf['color_second']}};"
+        url="/pages/motion/motion?billno=WR19081401">
+        <view>
+          <image class="menu__icon" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/game.png'></image>
+        </view>
+        <text class="menu__name" style='color:{{base_conf["color_primary"]}};'>微信运动</text>
+      </navigator>
+    </view> -->
+    <!-- 问题反馈 -->
+    <!-- <view class="menu__item">
+      <navigator class="menu__item__inner" style="{{(!base_conf['color_second'] || base_conf['color_second']==base_conf['color_primary'] || base_conf['color_second']=='#fff')?'border-right:1px solid #D9D9D9;border-bottom:1px solid #D9D9D9;margin:0px;background-color:#fff':'background-color:'+base_conf['color_second']}};"
+        url="/pages/test/feedback">
+        <view>
+          <image class="menu__icon" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/game.png'></image>
+        </view>
+        <text class="menu__name" style='color:{{base_conf["color_primary"]}};'>问题反馈</text>
+      </navigator>
+    </view> -->
+
+  </view>
+   <!-- style="height: calc(100vh - {{bannarH || 150}}px - 106rpx);" -->
+  <view class="kikc box" wx:if="{{exclusive}}">
+    <!-- <view class="kikc_left" style="width: 300rpx;background: url('https://senwellzy.cn/Public/Images/kikc/img_left.png') no-repeat left 115rpx;background-size: 220rpx 420rpx;position: relative;">
+      <view class="vip_kikc" wx:if="{{is_vip}}">
+        <view class="username">{{vip_name}}</view>
+        <view class="con">
+          <view class="jifen" bindtap='vipjump' id='/pages/vip/point'>积分：{{vip_point||0}}</view>
+          <view class="jifen" bindtap='vipjump' id='/pages/vip/stored'>储值：{{samount||0}}</view>
+          <view class="mem">{{lvl_name}}</view>
+        </view>
+        <view class="bankcard">
+          <view style="position:absolute;top:40px;right:20px;width:100px;">
+            <view hidden='{{!get_card_hidden}}' class="getvipcard" bindtap="getVipCard">立即领卡</view>
+            <view hidden='{{!getcard_loading}}' class="getvipcard">正在领卡</view>
+          </view>
+        </view>
+      </view>
+      <view class="register_kikc" wx:else>
+        <view class="register_btn box box-pack-center">
+          <button class="reg_btn" size='mini' plain='true' bindtap="signVip" wx:if="{{!loading}}">申请新会员</button>
+          <button class="reg_btn" size='mini' plain='true' wx:else>正在注册</button>
+        </view>
+      </view>
+      <view class="code">
+        <image bindtap="previewImg" mode="scaleToFill" src="{{imagePath}}"></image>
+      </view>
+
+      <view class="canvas-box">
+        <canvas hidden="{{canvasHidden}}" style="width: 686rpx;height: 686rpx;background:#f1f1f1;" canvas-id="mycanvas" />
+      </view>
+    </view> -->
+    <view class="kikc_right flex">
+      <view class="kikc_list box">
+        <view class="item" wx:if="{{is_vip}}">
+          <view class="img_nav">
+            <image bindtap="previewImg" mode="scaleToFill" src="{{imagePath}}"></image>
+          </view>
+          <view class="txt">{{vip_name}}</view>
+        </view>
+        <view class="canvas-box">
+          <canvas hidden="{{canvasHidden}}" style="width: 686rpx;height: 686rpx;background:#f1f1f1;" canvas-id="mycanvas" />
+        </view>
+        <block wx:key="unique" wx:for="{{menus}}" wx:for-index="idx" wx:for-item="item" wx:if="{{item.menu_type!='order'}}">
+          <button class="item kfbt" wx:if="{{item.menu_id=='onlineservice'}}" open-type="contact">
+            <view class="img_nav">
+              <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/{{item.icon}}.png'></image>
+            </view>
+            <view class="txt">{{item.custom_name}}</view>
+          </button>
+          <navigator class="item" wx:else url="{{item.link}}">
+            <view class="img_nav">
+              <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/{{item.icon}}.png'></image>
+            </view>
+            <view class="txt">{{item.custom_name}}</view>
+          </navigator>
+        </block>
+      </view>
+    </view>
+
+  </view>
+  <view class="timechoose" wx-if="{{timechoose == true}}">
+    <view class="content">
+      <view class="tit">提示</view>
+      <view class="contactme">
+        <view class="desc">
+          点击下方，然后在服务消息查看，可以添加您的专属客服！！！
+        </view>
+        <cell bind:startmessage='startmessage' bind:completemessage="completemessage" plugid='{{server_component}}' style-type="1" isMask="1" contactText="0" />
+        <button class="customer kfbt box box-align-center" open-type="contact">
+          <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/kefu.png' class='img'></image>
+          <view class="dd flex">会员商城、活动咨询</view>
+          <view class="navigator-arrow"></view>
+        </button>
+      </view>
+
+
+    </view>
+    <view class="make" bindtap='closetimechoose'></view>
+  </view>
+  
+  <template is="floor"></template>
+</view>
+
+<view class="widget_wrap" bindtap='minBarcode' hidden="{{!barcode_status}}">
+  <view style="position:absolute;background:#fff;bottom:0;top:0;left:0;right:0;display:flex;align-items:center">
+    <view style="transform:rotate(90deg);text-align:center;">
+      <view style="padding-bottom:20px;color:#c40">点击屏幕关闭</view>
+      <image style="height:120px;" src="{{imgbase}}{{barcodeurl}}" />
+      <view style="padding-top:20px;">会员卡号：{{phone}}</view>
+    </view>
+  </view>
+</view>
+
+
+<view class="dialog" catchtouchmove="preventTouchMove" hidden='{{!coupondialog_show}}'>
+  <view class="dialogWrap" style='position:relative' catchtouchmove="preventTouchMove">
+    <view class="dialogCtn" style="width:275px;height:276px;background:transparent;">
+      <template is="coupon_notice" data="{{_dialog:coupon_dialog,base_conf:base_conf}}" />
+    </view>
+  </view>
+</view>

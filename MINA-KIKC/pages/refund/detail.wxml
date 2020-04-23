@@ -1,0 +1,55 @@
+<import src="../common/logis"/>
+<import src="../common/nav"/>
+<view class="container">
+
+	<view class="formPanel">
+    <view wx:if="{{(orderstatus=='DD' || orderstatus=='FF') && ( refunddtl['status']=='SA' )}}" class='getlogis' bindtap="logis" data-refundid="{{refunddtl['refund_id']}}" data-logis_company="{{refunddtl['logis_company']}}" data-retinvoiceno="{{refunddtl['retinvoiceno']}}" data-relname="{{item.relname?item.relname+'-'+(item.phone||''):''}}" data-address="{{item.state?item.state+'-'+(item.city||'')+'-'+(item.district||'')+'-'+(item.address||''):''}}">
+      填写退货物流单
+    </view>
+      <view class="section">
+				<text class="section_tit">退款状态</text>
+        <input type='text' class="input_field" value="{{refunddtl['statusname']}}" disabled='true' />
+			</view>
+			<view class="section" wx:if="{{refunddtl['status']=='SR'}}">
+				<text class="section_tit">拒绝退款原因</text>
+				<!--<view class='relname'>{{refunddtl['refuse_reason']}}</view>-->
+	<input type='text' class="input_field" value="{{refunddtl['refuse_reason']}}" disabled='true' />
+			</view>
+			<view class="section">
+				<text class="section_tit">退款类型</text>
+        <input type='text' class="input_field" value="{{refunddtl['returntype_name']}}" disabled='true' />
+			</view>
+
+      <view class="section">
+				<text class="section_tit">退款原因[必填]</text>
+				<input type='text' class="input_field" value="{{refunddtl['reasondesc']}}" disabled='true' />
+			</view>
+
+      <view class="section">
+				<text class="section_tit">退款数量[必填]</text>
+				<input type='number' class="input_field" value="{{refunddtl['qty']}}" disabled='true'  />
+			</view>
+
+      <view class="section" wx:if="{{refunddtl['relname']}}">
+				<text class="section_tit">退货收货人</text>
+				<view class='relname'>{{refunddtl['relname']}}-{{refunddtl['phone']}}</view>
+			</view>
+
+      <view class="section" wx:if="{{refunddtl['state']}}">
+				<text class="section_tit">退货地址</text>
+				<view class='relname'>{{refunddtl['state']}}-{{refunddtl['city']}}-{{refunddtl['district']}}-{{refunddtl['address']}}</view>
+			</view>
+	  
+      <view class="section">退款金额：<text class="price_txt">￥{{refunddtl['refund_fee']}}</text></view>
+     
+			<view class="section" wx:if="{{refunddtl['status'] == 'BR' || refunddtl['status'] == 'SA' || refunddtl['status'] == 'RG' }}">
+					<button class="submit_btn on" bindtap='bindSubmit' size='mini' plain='true' style='background-color:{{base_conf["color_primary"]}}'>取消退款</button>
+			</view>
+	</view>
+  <template is="comp_addlogis" data="{{hidden,logis_company,retinvoiceno,refundid,address,relname,base_conf}}"/>
+	<!-- formPanel end -->
+</view>
+
+
+<!-- 右侧导航栏 -->
+<template is="control_nav"  data="{{navhidden:navhidden,base_conf}}"/>

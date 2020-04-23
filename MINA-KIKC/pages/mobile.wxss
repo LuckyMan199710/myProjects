@@ -1,0 +1,34 @@
+/**index.wxss**/
+page{
+	background-color: #f7f7f7;
+}
+.container{
+	background-color: #fff;
+}
+
+.formPanel{
+	padding: 20rpx;
+}
+
+.section{
+	margin-top: 30rpx;
+	margin-bottom: 40rpx;
+	position: relative;
+}
+
+.section_tit{
+	margin-bottom: 20rpx;
+	display: block;
+}
+
+.sms_btn{
+	position:absolute;
+	right: 0;
+	bottom:4rpx;
+	z-index: 2;
+}
+
+
+.input_field{
+	border-bottom: 1px solid #ddd;
+}

@@ -1,0 +1,13 @@
+<template name="floor">
+  <view class="myfloor">
+    <view class="floor_top box box-pack-center box-align-center">
+      <view class="oo_left oo"></view>
+      <view class="logo box">
+        <image src="/pages/image/floor_logo.png"></image>
+        <view class="txt">赞乎</view>
+      </view>
+      <view class="oo_right oo"></view>
+    </view>
+    <view class="desc">赞乎提供技术支持</view>
+  </view>
+</template>

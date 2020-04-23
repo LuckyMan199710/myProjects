@@ -1,0 +1,145 @@
+/* pages/trend/ranking.wxss */
+
+.header {
+  position: relative;
+}
+
+.header .banner {
+  width: 100%;
+  height: 330rpx;
+  overflow: hidden;
+}
+
+.header .banner image {
+  width: 100%;
+  height: 100%;
+}
+
+.myself {
+  height: 170rpx;
+  background: #f1dddc;
+  align-items: center;
+  padding: 0 30rpx;
+}
+.myself .num {
+  color: #4c4f4d;
+  font-size: 36rpx;
+}
+.myself .info_img {
+  margin-left: 20rpx;
+  width: 146rpx;
+  height: 146rpx;
+  padding: 5rpx;
+  border-radius: 50%;
+  border: 1rpx solid #cd071e;
+}
+
+.myself .info_img image {
+  width: 146rpx;
+  height: 146rpx;
+  border-radius: 50%;
+}
+
+.myself .info_name {
+  margin-left: 20rpx;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #474949;
+}
+
+.myself .integral {
+  align-items: center;
+}
+
+.myself .integral image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 5rpx;
+}
+
+.myself .integral .dd {
+  font-size: 32rpx;
+  color: #cd071e;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.ranklist {
+  
+}
+
+.ranklist .item {
+  height: 170rpx;
+  background: #ffffff;
+  align-items: center;
+  padding: 0 30rpx;
+  border-bottom: 1rpx solid #efefef;
+}
+.ranklist .item:nth-child(1) .num, .ranklist .item:nth-child(2) .num, .ranklist .item:nth-child(3) .num {
+  color: #ce071e;
+}
+.ranklist .item .num {
+  color: #4c4f4d;
+  font-size: 36rpx;
+  font-weight: bolder;
+}
+.ranklist .item .info_img {
+  margin-left: 20rpx;
+  width: 100rpx;
+  height: 100rpx;
+  padding: 5rpx;
+  border-radius: 50%;
+}
+
+.ranklist .item .info_img image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.ranklist .item .info_name {
+  margin-left: 20rpx;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ranklist .item .integral {
+  align-items: center;
+}
+
+.ranklist .item .integral image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 5rpx;
+}
+
+.ranklist .item .integral .dd {
+  font-size: 32rpx;
+  color: #cd071e;
+}

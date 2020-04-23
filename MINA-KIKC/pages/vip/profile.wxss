@@ -1,0 +1,156 @@
+/**index.wxss**/
+page{
+	background-color: #f7f7f7;
+}
+.container{
+	background-color: #fff;
+}
+
+
+
+
+.formPanel{
+	padding: 0rpx;
+  padding-top: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.section{
+  
+	margin-top: 20rpx;
+	margin-bottom: 40rpx;
+	position: relative;
+	padding:5px 20px;
+	margin:0px;
+	border-bottom:1px solid #c7dfed;
+}
+.section_tit{
+	margin-bottom: 15rpx;
+	display: inline-block;
+	width:20%;
+}
+
+.send_tip{
+	padding: 20rpx;
+	margin-bottom: 5px;
+	/*color: #8f5e24*/
+}
+
+.section .input_field{
+	line-height: 1.4rem;
+	display: inline-block;
+	width:80%;
+	border-bottom:0px solid #fff;
+	text-align:right;
+}
+.sms_btn{
+	position:absolute;
+	right: 0;
+	top:0;
+}
+
+button.submit_btn.on{
+  color: #fff;
+	/*background-color: #8f5e24;*/
+	display: block;
+}
+
+.input_field{
+  /*position: relative;*/
+
+}
+input.input_field:focus{
+	border-bottom: 2px solid #c40;
+}
+
+.rule_tip{
+	text-decoration: underline;
+	/*color: #8f5e24;*/
+}
+.picker{
+  display: inline-block;
+  width: 80%;
+  
+}
+.img{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position:absolute;
+  top:10px;
+  left:0px;
+}
+.imgs{
+  position: absolute;
+  top: 20px;
+  left: 0px;
+}
+.curt{
+  /*padding-left: 25px;*/
+}
+.pone{
+  display: inline-block;
+  width: 80%
+}
+.labelname{
+  padding: 5px 10px;
+  border: 1px #8f5e24 solid;
+  margin-left: 10px;
+  margin-top: 10px;
+  float: left;
+}
+.on{
+  /*background: #8f5e24;*/
+  color: #fff;
+}
+.clear{
+  clear: both;
+}
+.common{
+  padding: 5px 10px;
+  /*border: 1px #8f5e24 solid;*/
+  margin-left: 10px;
+  margin-top: 10px;
+  float: left;
+}
+.common .wx-checkbox-input{
+  border: 0px;
+}
+.common .wx-radio-input{
+  border: 0px;
+}
+.common-item{
+  position: absolute;
+  z-index: -1;
+  
+}
+.common-labelname{
+  position: relative;
+  top: 0px;
+  left: 0px;
+}
+.common radio .wx-radio-input.wx-radio-input-checked {
+  background-color: #fff
+}
+.address{
+  /*float: right;*/
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #fff;
+  margin: 10px 10px 0 0;
+}
+.addr_l{
+  padding-left: 10px;
+  
+}
+.shop_item{
+  display: inline-block;
+}
+.shop_ress{
+  float: left;
+}
+
+
+.vip_cell {padding:10px 20px;border-bottom:1px solid #c7dfed;}
+.placeholder-class {color:#a1a1a1;}

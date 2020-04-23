@@ -1,0 +1,54 @@
+<!--pages/trend/detail.wxml-->
+<view class="container">
+  <view class="banner" wx:if="{{myself !== 'Y'}}">
+    <image src="{{bannerurl}}" mode="aspectFill"></image>
+  </view>
+  <view class="photolist" wx:if="{{photolist.length>0}}">
+    <view class="item" wx:for="{{photolist}}" wx:key="{{item.fash_id}}">
+      <view bindtap='handleDetail' data-photoid="{{item.photo_id}}" data-myself="{{myself}}" class="img_nav">
+        <image src="{{item.photo_url}}" class="photo_img"></image>
+        <view class="operation box"  wx:if="{{myself == 'Y'}}">
+          <view class="img_ul box">
+            <view class="img_li flex">
+              <image src="/images/icon_edit.png" catchtap='handleEdit' data-photoid="{{item.photo_id}}"></image>
+            </view>
+            <view class="img_li">
+              <image src="/images/icon_delete.png" catchtap='handleDelete' data-photoid="{{item.photo_id}}"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="fun box">
+        <view class="zan box">
+          <view class="zan_nav" wx:if="{{item.is_liked === 'N'}}" bindtap="handlelike" data-photoid="{{item.photo_id}}" data-index="{{index}}">
+            <image src="/images/icon_zan.png"></image>
+          </view>
+          <view class="zan_nav" wx:else>
+            <image src="/images/icon_zans.png"></image>
+          </view>
+          <view class="num">{{item.liked}}个赞</view>
+        </view>
+        <view class="date">发表于{{item.createdate}}</view>
+      </view>
+      <view class="info box">
+        <view class="name">{{item.nicker ? item.nicker : item.vip_num}}</view>
+        <view class="label">
+          <view class="li" wx:for="{{item.sys_label}}" wx:for-item="sysItem" wx:key="{{sysItem.label_id}}">
+            <view class="desc">
+              {{sysItem.name}}
+            </view>
+          </view>
+          <view class="li" wx:for="{{item.custom_label}}" wx:for-item="customItem" wx:key="unique">
+            <view class="desc">
+              {{customItem}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="list_no box" wx:else>
+    <image src="/images/icon_no.png"></image>
+    <view class="desc">暂无作品</view>    
+  </view>
+</view>

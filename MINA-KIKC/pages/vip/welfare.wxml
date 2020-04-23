@@ -1,0 +1,25 @@
+<!--index.wxml-->
+<view class="container">
+	<view class="container_wrapper" style="margin-left:40px;position:relative;">
+	<navigator url="/pages/activity/quesnaire" style='background: {{base_conf.color_primary}};' >
+		<image class="welfare_icon" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/welfare_quesnaire.png'></image><text class="menu__name">问卷调查</text>
+	</navigator>
+<!-- 
+	<navigator url="/pages/vip/promoter" >
+		<text class="menu__name">荐友有礼</text>
+	</navigator> -->
+
+	<navigator url="/pages/vip/profile" style='background: {{base_conf.color_primary}};' >
+		<image class="welfare_icon" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/welfare_profile.png'></image><text class="menu__name">完善资料</text>
+	</navigator>
+
+	<navigator url="/pages/vip/couponcenter" style='background: {{base_conf.color_primary}};'>
+		<image class="welfare_icon" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/welfare_coupon.png'></image><text class="menu__name">领券中心</text>
+	</navigator>
+
+	<navigator url="/pages/game/main" style='background: {{base_conf.color_primary}};'>
+		<image class="welfare_icon" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/game2.png'></image><text class="menu__name">有奖游戏</text>
+	</navigator>
+
+	</view>
+</view>

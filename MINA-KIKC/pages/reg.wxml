@@ -1,0 +1,70 @@
+<!--index.wxml   只需验证手机号就算完成注册？-->
+<view class="container">
+
+	<view class="formPanel">
+		<form bindsubmit="formSubmit" bindreset="formReset" wx:if="{{!is_fillinfo}}">
+
+			<view class="section">
+				<text class="section_tit">手机号</text>
+				<input id="phone" name="phone" type='number' class="input_field" placeholder="请输入新手机号" bindinput='bindInputBlur' value="{{phone}}"/>
+				<button class="sms_btn" size='mini' plain='true' bindgetphonenumber="getPhoneNumber" open-type="getPhoneNumber">使用微信手机号</button>
+			</view>
+
+			<view class="section">
+				<text class="section_tit">验证码</text>
+				<input id="code" name="code"  type='number' class="input_field" placeholder="请输入验证码" bindinput='bindInputBlur' />
+				<button wx:if="{{second>0}}" class="sms_btn" size='mini' plain='true' disabled='true' >{{second}}s再获取</button>
+				<button class="sms_btn" wx:else size='mini' plain='true' bindtap="bindSendSms" >获取验证码</button>
+			</view>
+
+			<view class="section">
+					<button class="submit_btn on" size='mini' plain='true' formType="submit" style="background:{{base_conf.color_primary}}">立即验证</button>
+			</view>
+		</form>
+
+    
+
+    <!-- 验证后填写信息 -->
+		<form bindsubmit="formSubmitInfo" bindreset="formReset" wx:if="{{is_fillinfo}}">
+			<view class="section" wx:for="{{fields}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+				<text class="section_tit">{{item.text}}</text>
+
+        <image wx:if="{{item.name=='othername1' || item.name=='vip_name'}}" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/name.png' class='img imgs'></image>
+				<image wx:if="{{item.type=='email'}}" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/email.png' class='img imgs'></image>
+        <image wx:if="{{item.name=='address'}}" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/address.png' class='img imgs'></image>
+
+				<input wx:if="{{item.type=='text' || item.type=='email'}}" type="text" name="{{item.name}}" class="input_field curt" placeholder="请输入{{item.text}}" bindblur='bindBlurF' id="{{item.name}}" />
+				<input wx:elif="{{item.type=='number'}}" type="number" name="{{item.name}}" class="input_field curt" placeholder="请输入{{item.text}}" bindblur='bindBlurF' id="{{item.name}}" />
+				
+				<picker wx:elif="{{item.type=='date'}}" class="input_field curt" mode="date" name="{{item.name}}" value="{{inputData[item.name]}}" start="1900-01-01" bindchange="bindPickChange" id="{{item.name}}">
+					<view class="picker" wx:if="{{inputData[item.name]}}">{{inputData[item.name]}}</view>
+					<view class="picker" wx:else>请选择{{item.text}}</view>
+				</picker>
+
+				<picker wx:elif="{{item.type=='sex'}}" class="input_field" mode="selector" bindchange="bindPickChange" value="{{inputData['sex_idx']}}" range="{{sex_codes}}" id="{{item.name}}" range-key="code_name">
+            <view class='pickers'>
+              <image class='img' src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/man.png'></image>
+              <view class="picker weui-input">{{sex_codes[inputData['sex_idx']]['code_name']}}</view>
+            </view>
+        </picker>
+			</view>
+
+			<view class="section">
+					<button class="submit_btn on" size='mini' plain='true' formType="submit" style="background:{{base_conf.color_primary}}">保存</button>
+			</view>
+		</form>
+
+
+
+
+	</view>
+	<!-- formPanel end -->
+
+
+
+
+
+
+
+
+</view>

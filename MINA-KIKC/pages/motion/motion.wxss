@@ -1,0 +1,233 @@
+/* pages/motion/motion.wxss */
+
+.header {
+  width: 100%;
+  height: 380rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.abs {
+  margin-right: 30rpx;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20rpx;
+  padding: 20rpx;
+}
+.abs .name {
+  color: #333333;
+  line-height: 48rpx;
+}
+.abs .name text {
+  font-size: 32rpx;
+  color: #329a62;
+  line-height: 48rpx;
+}
+
+.abs .desc {
+  font-size: 26rpx;
+  color: #333;
+  line-height: 36rpx;
+}
+
+.mybox {
+  /* display: flex;
+  flex-flow: row nowrap; */
+  padding: 10rpx 0;
+  margin-top: -10rpx;
+}
+
+.mybox .number {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-top: 10rpx;
+  /* margin-left: 20rpx; */
+}
+
+.mybox .number .tt {
+  padding: 6rpx 40rpx;
+  font-size: 28rpx;
+  color: #329a62;
+  border: 1rpx solid #329a62;
+}
+
+.mybox .number .dd {
+  font-size: 28rpx;
+  margin-left: 10rpx;
+  color: #329a62;
+  font-weight: bolder;
+}
+
+.abs .price {
+  color: #a11b12;
+  font-size: 24rpx;
+}
+.Surplus_order {
+  height: 64rpx;
+  line-height: 64rpx;
+  margin: 10rpx 20rpx 0;
+  border-bottom: 1rpx dashed #999999;
+}
+.Surplus_order .surplus {
+  font-size: 28rpx;
+  color: #333333;
+  flex: 1;
+}
+.Surplus_order .surplus text {
+  text-decoration: underline;
+}
+.Surplus_order .order {
+  font-size: 32rpx;
+  font-weight: bolder;
+  color: #0068AC;
+  text-decoration: underline;
+}
+.product_tit {
+  height: 64rpx;
+  margin-top: 10rpx;
+  display: flex;
+  padding: 0 20rpx;
+  align-items: center;
+}
+.product_tit .tit {
+  font-size: 28rpx;
+  color: #333333;
+  flex: 1;
+}
+.product_tit .rule {
+  font-size: 26rpx;
+  color: #a11b12;
+} 
+.product {
+  padding: 0 18rpx;
+  display: flex;
+  flex-flow: row wrap;
+  margin-left: -2%;
+}
+
+.product .item {
+  width: 48%;
+  margin-top: 10rpx;
+  margin-left: 2%;
+}
+
+.product .item .img_nav {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  position: relative;
+}
+
+.product .item .img_nav image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.product .content {
+  padding: 2px;
+  position: relative;
+}
+
+.product_name {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-height: 46rpx;
+  
+
+}
+
+/* .redtag {
+  background-color: #c40;
+  color: #333;
+} */
+.product_content .redtag {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.product_content .redtag .need {
+  flex: 1;
+  font-size: 26rpx;
+  color: #333;
+}
+
+.product_content .tag {
+  padding: 0 5rpx;
+  background: #a11b12;
+  border-radius: 2px;
+  color: #fff;
+}
+
+.product_content .notag {
+  padding: 0 5rpx;
+  background: #808080;
+  border-radius: 2px;
+  color: #fff;
+}
+
+
+.timechoose{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left:0;
+  z-index: 88888;
+  /* display: none; */
+}
+.timechoose .exchange_content {
+  position: absolute;
+  width: 80%;
+  top: 50%;
+  left: 10%;
+  margin-top: -200rpx;
+  z-index: 5555;
+  background: #fff;
+}
+.timechoose .exchange_content .close {
+  position: absolute;
+  top: 17rpx;
+  right: 20rpx;
+}
+.timechoose .exchange_content .close image {
+  width: 46rpx;
+  height: 46rpx;
+}
+.choose_tit {
+  padding: 20rpx 20rpx 0;
+  line-height: 40rpx;
+  font-size: 28rpx;
+  color: #333333;
+}
+.exchange_content .mynum {
+  padding: 0 20rpx;
+  height: 100rpx;
+}
+.exchange_content .mynum .stock {
+  color: #999999;
+  margin-left: 20rpx;
+}
+.exchange_content .title {
+  color: #333333;
+  font-size: 30rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+}
+.section_inner{
+	background-color: #fff;
+	padding: 20rpx;
+  margin-top: 50rpx;
+}
+.timechoose .make{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left:0;
+  background: rgba(0,0,0,0.5);
+}

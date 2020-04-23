@@ -1,0 +1,21 @@
+<!--
+  wig_counter_down: 减
+  wig_counter_up: 加
+	wig_counter_listenNumChange:直接输入
+  wig_counter_data: {
+		num:值
+		min：最小
+		max：最大
+	}
+-->
+<template name="counter">
+  <view class="counter">
+		<view class="counter_wrap">
+			<view class="counter_down" bindtap='wig_counter_down'>-</view>
+			<view class="counter_num">
+				<input type="number" class="counter_numinput" bindblur='wig_counter_listenNumBlur' bindinput='wig_counter_listenNumChange'  value="{{wig_counter_data.num}}" />
+			</view>
+			<view class="counter_up" bindtap='wig_counter_up'>+</view>
+		</view>
+  </view>
+</template>

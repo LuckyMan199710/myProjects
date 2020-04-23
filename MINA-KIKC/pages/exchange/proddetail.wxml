@@ -1,0 +1,80 @@
+<!-- 模版导入 -->
+<import src="../common/counter"/>
+
+<!-- 积分实物详情 -->
+<view style="height:{{winWidth}}px;overflow:hidden">
+	<swiper style="height:{{winWidth}}px;" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+	
+		<swiper-item  wx:key="unique" wx:for="{{imgs}}"  wx:for-index="idx" wx:for-item="item">
+			<navigator url="{{item.url}}">
+			<image style="width:100%" src="{{imgbase}}{{item}}" mode='widthFix' class="slide-image"/></navigator>
+		</swiper-item>
+	
+	</swiper>
+</view>
+
+<view class="prod_info">
+	<view class="section_inner">
+		<view class="prod_tit">{{prod.plat_num_name}}</view>
+		<view class="prod_price">{{curskuid.price}}积分</view>
+	</view>
+</view>
+
+<view class="section">
+	<view class="section_inner">
+		<!-- <view>规格</view> -->
+		<!-- <view class="sku_wrap"> -->
+			<block wx:if="{{skulvl==2}}">
+        <view>颜色</view>
+		    <view class="sku_wrap">
+				<view class="sku_item" wx:key="unique" wx:for="{{sku1}}"  wx:for-index="idx" wx:for-item="item" id="{{item.color_num}}" bindtap='bindSku1'>
+					<text wx:if="{{item['color_num']==curskuid['color_num']}}" class="on">{{item.color || item.color_num}}</text>
+					<text wx:else>{{item.color || item.color_num}}</text>
+				</view>
+        </view>
+				<!-- <view style="height:15px;"></view> -->
+        <view>规格</view>
+	    	<view class="sku_wrap">
+				<view class="sku_item" wx:key="unique" wx:for="{{sku2}}"  wx:for-index="idx" wx:for-item="item" id="{{item.spec_num}}" bindtap='bindSku2'>
+          <block wx:if="{{item['stockqty']<1}}">
+            <text class="disabled">{{item.spec || item.spec_num}}</text>
+          </block>
+          <block wx:else>
+            <text wx:if="{{item['spec_num']==curskuid['spec_num']}}" class="on">{{item.spec || item.spec_num}}</text>
+            <text wx:else>{{item.spec || item.spec_num}}</text>
+          </block>
+				</view>
+        </view>
+			</block>
+			<block wx:else>
+        <view>规格</view>
+	    	<view class="sku_wrap">
+				<view class="sku_item" wx:key="unique" wx:for="{{sku1}}"  wx:for-index="idx" wx:for-item="item" id="{{item.sku_id}}" bindtap='bindSkuid'>
+					<text wx:if="{{item['sku_id']==curskuid['sku_id']}}" class="on">{{item.plat_sku_name}}</text>
+					<text wx:else>{{item.plat_sku_name}}</text>
+				</view>
+        </view>
+			</block>
+		<!-- </view> -->
+		<!-- 规格 end -->
+	</view>
+</view>
+
+
+<view class="section">
+	<view class="section_inner">
+		<view style="line-height:30px;">选择兑换数量:</view>
+		<view class="">
+			<template is="counter" data="{{wig_counter_data}}" />
+		</view>
+		<view style="color:#999;">剩余库存：{{curskuid.stockqty}}件</view>
+	</view>
+</view>
+<image src='{{imgbase}}{{prod.pic_detail || imgs[0]}}' class='pic_detail' mode='widthFix'></image>
+<view style="height:70px;"></view>
+<view class="foot__fix" style="z-index:2">
+		<view class="section_inner">
+			<button bindtap="bindBuy" wx:if="{{exchageable}}" size='mini' plain='true' class="submit_btn on" style='background-color:{{base_conf.color_primary}}'>立即兑换</button>
+			<button wx:else size='mini' plain='true' class="submit_btn off">积分不足</button>
+		</view>
+</view>

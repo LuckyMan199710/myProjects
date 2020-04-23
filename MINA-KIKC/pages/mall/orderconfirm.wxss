@@ -1,0 +1,62 @@
+page{
+	background-color: #f7f7f7
+}
+
+.good{
+  padding-bottom:10px;
+}
+
+.good::after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.good .cover{
+	width: 60px;
+  height:60px;
+	float: left;
+	margin-right: 5px;
+}
+.good .cover image{
+	width: 60px;
+  height:60px;
+}
+
+.section{
+	margin-bottom: 15px;
+	
+}
+.section_inner{
+	background-color: #fff;
+	padding: 10px;
+}
+.group_root{text-align:right;line-height:30px;font-size:12px;color:#999;margin:0 10px;border-top:1px dashed #aaa;}
+
+.price_txt{color:#c40}
+.cell_ft{float:right;}
+.under_txt{text-decoration: underline;}
+
+.addressList{font-size:14px;}
+.clear{
+  clear: both;
+}
+.input_field{
+  width: 70%; 
+  float: left;
+}
+.inshopname{
+  float: left;
+  height: 25px;
+  line-height: 25px;
+}
+
+.post_fee{
+  width: 30%;
+  display: inline-block;
+}
+.remark{
+  width: 70%;
+  display: inline-block;
+  text-align: right;
+  color: #999;
+}

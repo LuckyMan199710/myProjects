@@ -1,0 +1,125 @@
+<!-- 模版导入 -->
+<import src="../common/address"/>
+
+<!-- container -->
+<view class="container">
+
+<!-- 积分实物订单确定 -->
+<view>
+	<block wx:if="{{deliver_type=='online'}}">
+	<view class="section_inner"  bindtap='bindSetRecAddr'>
+		<view wx:if="{{!recAddr}}">请选择收货地址</view>
+		<view wx:else><view style="font-size:16px">{{recAddr.relname}} - {{recAddr.phone}}</view><view>{{recAddr.state}}{{recAddr.city}}{{recAddr.district}}{{recAddr.address}}</view></view>
+	</view>
+	</block>
+	<block wx:else>
+			<view class="section_inner"  bindtap='bindSetPickAddr'>
+				<view wx:if="{{!pickAddr}}">请选择取货门店</view>
+				<view wx:else><view style="font-size:16px">{{pickAddr.shop_name}}</view><view>{{pickAddr.address}}</view></view>
+			</view>
+	</block>
+</view>
+
+<view class="section">
+	<view class="section_inner">
+		<view class="good" wx:for="{{prods}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+			<view class="cover">
+				<image src="{{imgbase}}{{item.cover}}" class="slide-image"/>
+			</view>
+      <view class="prod_ctn">
+        <view class="prod_name">{{item.plat_num_name}} - {{item.color}} {{item.spec}}</view>
+        <view><text class="price">{{item.price}}积分</text><text style="margin-left:10px;">数量：{{item.buyqty}}</text></view>
+      </view>
+		</view>
+		<!-- end good -->
+	</view>
+	<view class="section_inner">
+    <!-- <view class='vip_postfee_point'>
+      邮费:<text class='price'>{{post_fee}}积分</text>
+    </view> -->
+    <view class='good_amt'>
+      小计：<text class="price">{{good_amt}}积分</text>
+    </view>
+    <view class='clear'></view>
+  </view>
+</view>
+
+<view class="section">
+	<view class="section_inner">
+		<view>
+      <view class="inshopname">备注：</view> 
+        <input class="input_field" placeholder="请输入备注" data-type="message" bindblur="bindBlur" type="text" /> 
+      <view class='clear'></view>
+    </view>
+	</view>
+</view>
+
+<view class="section">
+	<view class="section_inner" bindtap='bindSetDeliver'>
+		<view>
+      选择配送方式：{{deliver_type=='inshop'?'门店自提':'快递配送'}}
+    </view> 
+	</view>
+  <view class="section_inner" wx:if="{{deliver_type=='online'}}">
+		<view>
+      运费：<text class='price'>{{post_fee}}积分</text>
+    </view> 
+	</view>
+  <view class="section_inner" wx:if="{{deliver_type=='inshop'}}">
+		<view>
+      <view class="inshopname">取货人姓名：</view> 
+      <input class="input_field" placeholder="请输入取货人姓名" data-type="name" bindblur="bindBlur" type="text" /> 
+      <view class='clear'></view>
+    </view> 
+    <view>
+      <view class="inshopname">取货人手机：</view> 
+      <input class="input_field" placeholder="请输入取货人手机" data-type="mobile" bindblur="bindBlur" type="text" /> 
+      <view class='clear'></view>
+    </view> 
+	</view>
+</view>
+
+<view class="section">
+	<view class="section_inner">
+		<view>共需支付：<text class="price">{{pay_amt}}积分</text></view>
+	</view>
+</view>
+
+<view class="section">
+	<view class="section_inner">
+		<button bindtap="BindPay" wx:if="{{exchageable}}" size='mini' plain='true' class="submit_btn on" style='background-color:{{base_conf.color_primary}}'>积分支付</button>
+		<button  wx:else size='mini' plain='true' class="submit_btn off">积分不足</button>
+	</view>
+</view>
+
+</view>
+<!-- container end -->
+
+<!-- widget_wrap -->
+<view class="widget_wrap" bindtap='wig_address_close' id="wig_address_close" hidden="{{!wig_address_status}}">
+	<view style="width:100%;position:absolute;background:#fff;bottom:0;min-height:10%;max-height:90%">
+		<scroll-view scroll-y  style="min-height:10%; max-height:90%;width: {{windowWidth}}px;">
+			<template is="addressList" data="{{wig_address_list,wig_address_curid}}" />
+		</scroll-view>
+	</view>
+</view> 
+
+
+<!-- widget_wrap -->
+<view class="widget_wrap" bindtap='wig_pickshop_close' id="wig_pickshop_close" hidden="{{!wig_pickshop_status}}" style="z-index:200">
+	<view style="width:100%;position:absolute;background:#fff;bottom:0;min-height:{{windowHeight/2}}px;max-height:{{windowHeight-50}}px">
+		<scroll-view scroll-y  style="min-height:{{windowHeight/2}}px; max-height:{{windowHeight-50}}px;width: {{windowWidth}}px;">
+			<template is="shopList" data="{{wig_pickshop_list,wig_pickshop_curid}}" />
+		</scroll-view>
+	</view>
+</view> 
+
+
+<view class="widget_wrap" bindtap='wig_deliver_close' id="wig_deliver_close" hidden="{{!wig_deliver_status}}">
+	<view style="width:100%;position:absolute;background:#fff;bottom:0;min-height:{{windowHeight/2}}px;max-height:{{windowHeight-50}}px">
+		<scroll-view scroll-y  style="min-height:{{windowHeight/2}}px; max-height:{{windowHeight-50}}px;width: {{windowWidth}}px;">
+			<template is="deliverPanel" data="{{wig_deliver_delivertype,wig_deliver_temptype,wig_deliver_curpickshop}}"/>
+		</scroll-view>
+	</view>
+</view> 
+

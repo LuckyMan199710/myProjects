@@ -1,0 +1,163 @@
+<!-- container -->
+<import src="../common/nav" />
+<import src="../common/logis" />
+<view class="container">
+	<view class="section">
+		<view class="section_inner">
+			<navigator class="tips" wx:if="{{order['expressno']}}" url="/pages/mall/logistics?expressno={{order['expressno']}}&stdlogis={{order['stdlogis']}}&billno={{billno}}&stdlogis_name={{order['stdlogis_name']}}">
+		    <!-- 物流信息 -->
+				<view class="box box-align-center">
+					<image class="icon" src="../image/kuaidi.png"></image>
+					<span style="margin-left:14rpx">订单已导入,商家正在通知快递公司取件</span>
+				</view>
+				<view class="createtime">{{order['created']}}</view>
+			</navigator>
+      
+		  <!-- 收货地址 -->
+			<view class="address">
+				<view class="box box-align-center">
+					<image class="icon" src="../image/icon_address.png"></image>
+					<span class="username">{{order['receiver_name']}}</span>
+					<span class="phonenum">{{order['receiver_mobile']}}</span>
+				</view>
+				<view class="deliveryplace">
+					{{order['receiver_state']}}{{order['receiver_city']}}{{order['receiver_district']}}{{order['receiver_address']}}
+				</view>
+			</view>
+		  <!-- 商品详情列表 -->
+		  <!--  <view>订单编号：{{order.billno}}</view>
+			   <view>订单状态：<text class="prict_txt">{{order['status_name']}}</text></view>
+			  <view wx:if="{{exchange.status}}">换货状态：<text class="prict_txt">{{statusList[exchange.status]}}</text></view>     
+			  <view wx:if="{{order['is_group']=='Y' && order['groupstatus_name']}}">拼团状态：<text class="prict_txt">{{order['groupstatus_name']}}</text></view>
+			  <view wx:if="{{order['is_group']=='K' && order['groupstatus_name']}}">砍价状态：<text class="prict_txt">{{order['groupstatus_name']}}</text></view>
+			  <view>下单时间：{{order['created']}}</view> -->
+		</view>
+		<view class="line">
+			<image class="lineimg" src="../image/colorfulline.png"></image>
+		</view>
+	</view>
+	<!-- 商品详情部分 -->
+	<view class="goods_section">
+		<view class="goods_section_inner">
+			<view wx:for="{{orderitem}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+				<view class="good_item" bindtap="bindProdDetail" data-plat_numiid="{{item.plat_num_iid}}" data-group_id="{{item.group_id}}" data-is_group="{{item.is_group}}">
+					<view class='goodpic'>
+					  <image src='{{imgbase}}{{item.goodpic}}' class='goodpic'></image>
+					</view>
+					<view class='goodinfo'>
+						  <view class='goodname'>
+							{{item.plat_num_name}}
+						  </view>
+						  <view class='price'>
+							<view class="prict_txt">￥{{item.price}}</view>
+							<view class="count">x{{item.qty}}</view>
+						  </view>
+						  <view class='spec'>{{item.plat_sku_name || ''}}</view>
+					</view>
+					<!-- 按钮列表 -->
+					<view class="btn-list box box-rl">
+						<block wx:if="{{order['status'] =='PD' || order['status'] =='DD' || order['status'] =='PP' || order['status'] =='FF'}}">
+						  <navigator class="button" catchtap="catchBubbling"  wx:if="{{!item['refund_status']}}" 
+						  url="/pages/refund/request?orderbill={{item.billno}}&plat_num_iid={{item['plat_num_iid']}}&plat_sku_iid={{item['plat_sku_iid']}}">发起售后</navigator>
+						  <navigator url="/pages/refund/detail?orderbill={{item.billno}}&refund_id={{item['refund_id']}}" catchtap="catchBubbling"  class="button" wx:else>查看退款</navigator>
+						</block>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	
+	<!-- 商品结算 -->
+	<view class="count_section">
+		<view class="count_section_inner orderfee">
+			<view>
+				<text>商品总价：</text>
+				<text>￥{{order['prod_fee']}}</text>
+			</view>
+			<!-- 折叠部分 -->
+			<view class="foldbox" hidden="{{!show}}">
+				<view>
+					<text decode='true'>优&ensp;惠&ensp;券：</text>
+					<text>- ￥{{order['coupon_fee']}}</text>
+				</view>
+				<view>
+					<text decode='true'>折&emsp;&emsp;扣：</text>
+					<text>- ￥{{order['discount_fee']}}</text>
+				</view>
+				<view>
+					<text decode='true'>运&emsp;&emsp;费：</text>
+					<text>- ￥0.00</text>
+				</view>
+				<view>
+					<text>积分支付：</text>
+					<text>- ￥{{order['pointpay']}}</text>
+				</view>
+				<view>
+					<text>余额支付：</text>
+					<text>- ￥{{order['pay_bal']}}</text>
+				</view>
+			</view>
+			
+			<view class="box box-pack-between box-align-center">
+			  <text decode='true'>实&ensp;付&ensp;款：</text>
+			  <view bindtap="showView">
+				  <text class="count_prict_txt">￥{{order['prod_fee']}}</text>
+				  <i class="arrow_down hide{{show ? '':'show'}}"></i>
+				  <i class="arrow_up hide{{show ? 'show':''}}"></i>
+			  </view>
+			</view>
+		</view>
+	</view>
+	<!-- 订单信息 -->
+	<view class="order_section">
+	  <view class="order_section_inner">
+	    <view>订单编号：{{order.billno}}</view>
+	    <view>订单状态：{{order['status_name']}}</view>
+	    <view wx:if="{{exchange.status}}">
+        换货状态：{{statusList[exchange.status]}}
+      </view>
+      <view wx:if="{{order['is_group']=='Y' && order['groupstatus_name']}}">
+        拼团状态：{{order['groupstatus_name']}}
+      </view>
+      <view wx:if="{{order['is_group']=='K' && order['groupstatus_name']}}">
+        砍价状态：{{order['groupstatus_name']}}
+      </view>
+	    <view>下单时间：{{order['created']}}</view>
+      <view wx:if="{{order.status=='NP'}}">关联支付单号：<text>￥{{payorder['amount']}}</text></view>
+	    <!-- <view>发货时间：</view> -->
+	    <view wx:if="{{order.stdlogis_name}}">物流公司：{{order.stdlogis_name}}</view>
+	    <view wx:if="{{order.expressno}}">快递单号：{{order.expressno}}</view>
+	  </view>
+	</view>
+  <view class="section_inner pay_button" wx:if="{{order.status=='NP'}}">
+    <button wx:if="{{order['group_status']=='F'}}" size='mini' plain='true' class="submit_btn on" style='background-color:#ccc;'>{{order['is_group']=='K'?'砍价失败，不能支付':''}}{{order['is_group']=='Y'?'拼团失败，不能支付':''}}</button>
+    <button wx:elif="{{msg}}" size='mini' plain='true' class="submit_btn on" style='background-color:#ccc;'>{{msg}}</button>
+    <button wx:else bindtap="BindPay" size='mini' plain='true' class="submit_btn on" style='background-color:{{base_conf["color_primary"]}}'>立即支付</button>
+    <button bindtap="OrderCancel" size='mini' plain='true' class="submit_btn on" style='background-color:#fff; color:#000; margin-top:10px;'>取消订单</button>
+  </view>
+
+  <view class="refund" wx:if="{{order.status!=='NP' && order.status!=='TC'}}">
+    <view class="refund-list box box-pack-center">
+      <view class="refund-item {{selected == item.id ? 'active' : ''}}" wx:for="{{refundList}}" wx:for-item="item" wx:key="index" wx:for-index="index" id="{{item.id}}" bindtap="handleRefundItem">
+        {{item.name}}
+      </view>
+    </view>
+    <view class="refundReason" wx:if="{{selected!==''}}">
+      <view class="refund-content box">
+        <text class="tt">退款类型：</text>
+        <picker class="input_field" mode="selector" bindchange="bindPickerChange" range="{{refundtype}}" range-key="code_name" id="returntype">
+          <view class='picker'>
+            {{refundtype[sel_refund_idx]['code_name']}}
+          </view>
+        </picker>
+      </view>
+      <view class="refund-content box">
+        <text class="tt">退款理由：</text>
+        <textarea class="textarea" row="3" placeholder="请输入退款原因" bindinput="inputReason"></textarea>
+      </view>
+      <view class="sub-btn" bindtap="handlesub">提交</view>
+    </view>
+  </view>
+
+
+</view>

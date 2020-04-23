@@ -1,0 +1,355 @@
+<!-- 在线商城购买页 -->
+<import src="../common/counter"/>
+<import src="../common/mall"/>
+<import src="../common/nav"/>
+<import src="../common/addcart"/>
+
+<view style="height:{{winWidth}}px;overflow:hidden;" wx:if="{{imgs.length && !video_show}}" >
+	<swiper style="height:{{winWidth}}px;width:100%;" indicator-dots="{{indicatorDots}}"  autoplay="{{swiper_play}}" interval="{{interval}}" duration="{{duration}}">
+		<swiper-item  wx:key="unique" wx:for="{{videos}}"  wx:for-index="idx" wx:for-item="item" wx:if="{{item.src.video_url}}">
+			<video id="{{item.mk}}" hidden="{{item.show}}" data-mk="{{item.mk}}"  bindpause="bindpause" bindended="bindended" src="{{imgbase}}{{item.src.video_url}}"  class="slide-image"  style="height:320px;width:70%;margin:0 auto;margin-left:15%;"  poster="{{item.src.first_image_url?(imgbase+item.src.first_image_url):poster_image}}" autoplay="{{item.play}}" enable-danmu="{{false}}" danmu-btn="{{false}}" controls></video>
+  			<view style="position:relative;width:100%;height:100%;" data-mk="{{item.mk}}" data-index="{{idx}}" data-src="{{imgbase+item.src.video_url}}" data-poster="{{imgbase+item.src.first_image_url}}" bindtap="bindposter" hidden="{{!item.show}}">
+  			<image style="width:100%;height:90%;" data-mk="{{item.mk}}" src="{{item.src.first_image_url?(imgbase+item.src.first_image_url):poster_image}}"     class="slide-image"/>
+  			<image style="width:35px;height:35px;position:absolute;top:40%;left:40%;z-index:10;transform:translate(50%,50%);" data-mk="{{item.mk}}" src="{{base_conf.STATIC_URL+'images/play.png'}}"    hidden="{{!item.show}}" />
+  			</view>
+		</swiper-item>
+		
+		<swiper-item  wx:key="unique" wx:for="{{imgs}}"  wx:for-index="idx" wx:for-item="item" wx:if="{{item}}">
+			<image style="width:100%;" src="{{imgbase}}{{item}}" mode='widthFix' class="slide-image"/>
+		</swiper-item>
+	</swiper>
+</view>
+<!--只显示一个视频-->
+<view style="height:{{winWidth}}px;width:100%;overflow:hidden;" wx:key="unique" wx:for="{{videos}}"  wx:for-index="idx" wx:for-item="item"  wx:if="{{item.src.video_url && video_show}}">
+	<video wx:if="{{idx==video_index}}" id="videotest" hidden="{{!video_show}}"  bindpause="bindpause" bindended="bindended" src="{{show_video_url?show_video_url:(imgbase+item.src.video_url)}}"  class="slide-image"  style="height:{{winWidth}}px;width:100%;margin:0 auto;"  poster="{{show_first_image?show_first_image:(imgbase+item.src.first_image_url)}}" autoplay="{{video_autoplay}}" enable-danmu="{{false}}" danmu-btn="{{false}}" controls></video>
+</view>
+
+<view style="background:orange;color:#fff;font-size:14px;padding:5px 10px;" wx:if="{{dist_time>0 && bargain_one.group_status=='A'}}"><text>砍价结束倒计时 </text><text style="margin-left:10px;">{{left_hours}}:{{left_minutes}}:{{left_seconds}}</text></view>
+<view>
+	<view class="section_inner" style='position:relative;'>
+    
+		<view class="prod_tit">{{prod.plat_num_name}}</view>
+		<view>
+		<text style="color:#000;font-size:14px;margin-right:5px;" >砍价</text>
+      <text class="prod_price" wx:if="{{curskuid['promo_p'] && curskuid['promo_p']['isstart']}}">￥{{curskuid['promo_p']['min_price']}}</text>
+      <text class="prod_price" wx:else>￥{{curskuid.price}}</text>
+      <!--<text style="color:#999;font-size:14px;margin-left:30px;" >原价￥{{curskuid['promo_p']['saleprice']}}</text>-->
+    </view>
+    <!--砍价进度小于5%-->
+    <view class="bargain_progress_main" wx:if="{{bargain_one['bargain_progress']>0 && bargain_one['bargain_progress']<0.05}}" >
+     	<view class="bargain_progress_item" style="width:3%;background:{{color_primary}};"> </view>
+     	<view class="bargain_progress_item" style="width:97%;"> </view>
+     	<view class="progress_current_price" style="left:3%;top:0px;background:{{color_primary}};"> 
+     		<text>当前价￥{{bargain_one.current_price}}</text>
+     	</view>
+    </view>
+    <!--砍价进度小于25%-->
+    <view class="bargain_progress_main" wx:if="{{bargain_one['bargain_progress']>=0.05 && bargain_one['bargain_progress']<0.25}}" >
+     	<view class="bargain_progress_item" style="width:10%;background:{{color_primary}};"> </view>
+     	<view class="bargain_progress_item" style="width:90%;"> </view>
+     	<view class="progress_current_price" style="left:10%;top:0px;background:{{color_primary}};"> 
+     		<text>当前价￥{{bargain_one.current_price}}</text>
+     	</view>
+    </view>
+    <!--砍价进度小于50%-->
+    <view class="bargain_progress_main" wx:if="{{bargain_one['bargain_progress']>=0.25 && bargain_one['bargain_progress']<0.5}}" >
+     	<view class="bargain_progress_item" style="width:25%;background:{{color_primary}};"> </view>
+     	<view class="bargain_progress_item" style="width:75%;"> </view>
+     	<view class="progress_current_price" style="left:23%;top:0px;background:{{color_primary}};"> 
+     		<text>当前价￥{{bargain_one.current_price}}</text>
+     	</view>
+    </view>
+    <!--砍价进度大于50%-->
+    <view class="bargain_progress_main" wx:if="{{bargain_one['bargain_progress']>=0.5 && bargain_one['bargain_progress']<1}}" >
+     	<view class="bargain_progress_item" style="width:75%;background:{{color_primary}};"> </view>
+     	<view class="bargain_progress_item" style="width:25%;"> </view>
+     	<view class="progress_current_price" style="right:23%;top:0px;background:{{color_primary}};"> 
+     		<text>当前价￥{{bargain_one.current_price}}</text>
+     	</view>
+    </view>
+    <!--砍价进度等于100%-->
+     <view class="bargain_progress_main" wx:if="{{bargain_one['bargain_progress']==1}}" >
+     	<view class="bargain_progress_item" style="width:100%;background:{{color_primary}};"> </view>
+     	<view class="progress_current_price" style="right:0px;top:0px;background:{{color_primary}};"> 
+     		<text>当前价￥{{bargain_one.current_price}}</text>
+     	</view>
+    </view>
+    <!--砍价进度等于0%-->
+     <view class="bargain_progress_main" wx:if="{{bargain_one['bargain_progress']==0}}" >
+     	<view class="bargain_progress_item" style="width:100%;"> </view>
+     	<view class="progress_current_price" style="left:0px;top:0px;background:{{color_primary}};"> 
+     		<text>当前价￥{{bargain_one.current_price}}</text>
+     	</view>
+    </view>
+		<view class="user_action" style="width:auto;">
+			<text style="display:inline-block;color:#999;font-size:14px;margin-right:25px;">{{curskuid['promo_p']['group_times']}}人参与</text>
+		</view>
+    <view class="prod_num" style='text-decoration: line-through;'>原价：￥{{curskuid['promo_p']['saleprice']}}</view>
+    <view class="prod_num">货号：{{curskuid.prod_num}}</view>
+	</view>
+  <!--<view class="section_inner" wx:if="{{ curskuid['promo_p'] }}" style="font-size:13px;padding-top:0">
+      <text style="background:#f23030;color:#fff">砍价</text>
+      <text wx:if="{{curskuid['promo_p']['isstart']}}">{{curskuid['promo_p']['enddate']}}结束<text style="margin-left:30px;color:#999;">{{curskuid['promo_p']['group_times']}}人参与</text></text> 
+      <text wx:else>{{curskuid['promo_p']['startdate']}}开始</text>
+      <text style="margin-right:15px;float:right;color:#ad2a26;" wx:if="{{!curskuid['promo_p']['isend']}}">{{curskuid['promo_p']['isstart']?'发起砍价':'即将开启'}}</text>
+      <text style="margin-right:15px;float:right;color:#ad2a26;" wx:else>活动已结束</text>
+  </view>-->
+
+</view>
+
+ 
+<view class="section">
+	<view class="section_inner">
+		<view>规格</view>
+		<view class="sku_wrap">
+			<block wx:if="{{skulvl==2}}">
+				<view class="sku_item" wx:key="unique" wx:for="{{sku1}}"  wx:for-index="idx" wx:for-item="item" id="{{item.color_num}}" bindtap='bindSku1'>
+					<text wx:if="{{item['color_num']==curskuid['color_num']}}" class="on">{{item.color || item.color_num}}</text>
+					<text wx:else>{{item.color || item.color_num}}</text>
+				</view>
+				<view style="height:15px;"></view>
+				<view class="sku_item" wx:key="unique" wx:for="{{sku2}}"  wx:for-index="idx" wx:for-item="item" id="{{item.spec_num}}" bindtap="{{item['stockqty']<1?'':'bindSku2'}}">
+          <block wx:if="{{item['stockqty']<1}}">
+            <text class="disabled">{{item.spec || item.spec_num}}</text>
+          </block>
+          <block wx:else>
+            <text wx:if="{{item['spec_num']==curskuid['spec_num']}}" class="on">{{item.spec || item.spec_num}}</text>
+            <text wx:else>{{item.spec || item.spec_num}}</text>
+          </block>
+				</view>
+			</block>
+			<block wx:else>
+				<view class="sku_item" wx:key="unique" wx:for="{{sku1}}"  wx:for-index="idx" wx:for-item="item" id="{{item.sku_id}}" bindtap="{{item['stockqty']<1?'':'bindSkuid'}}">
+          <block wx:if="{{item['stockqty']<1}}">
+            <text class="disabled">{{item.plat_sku_name}}</text>
+          </block>
+          <block wx:else>
+            <text wx:if="{{item['sku_id']==curskuid['sku_id']}}" class="on">{{item.plat_sku_name}}</text>
+            <text wx:else>{{item.plat_sku_name}}</text>
+          </block>
+				</view>
+			</block>
+		</view>
+		<!-- 规格 end -->
+	</view>
+</view>
+
+
+
+<view class="section">
+	<view class="section_inner" bindtap='bindSetCoupon'>
+		<navigator url='/pages/mall/brand?shopid={{shop_info["shop_id"]}}' open-type="reLaunch">店铺：<text>{{shop_info['shop_name']}}</text><text class="cell_ft under_txt">进入店铺></text></navigator>
+  </view>
+</view>
+<view  class="bargain_navigation" style="">
+	<view class="navigation_item" style="margin:auto auto;" bindtap="changeShowType" data-type="prod_detail">
+	<text class="navigation_txt" style="border-bottom:2px solid {{color_primary}};" wx:if="{{showtype=='prod_detail'}}">商品详情</text>
+	<text class="navigation_txt" style="" wx:else>商品详情</text>
+	</view>
+	<view class="navigation_item" style="margin:auto auto;" bindtap="changeShowType" data-type="bargain_detail">
+	<text class="navigation_txt" style="border-bottom:2px solid {{color_primary}};" wx:if="{{showtype=='bargain_detail'}}">好友助力</text>
+	<text class="navigation_txt" style="" wx:else>好友助力</text>
+	</view>
+</view>
+<view style="background-color:#fff;padding:5px 0;width:100%;font-size:12px;" wx:if="{{gradedata.length>0 && showtype=='prod_detail'}}">
+    <view class="table">
+        
+        <view  wx:for="{{gradedata}}" wx:key="unique" wx:for-index="idx" wx:for-item="item" class="tr grade_row{{idx}}" >
+            <view class="td grade_cell_11">{{item.prop_name}}</view>
+            <view class="td grade_cell_22">{{item.prop_value}}</view>
+
+        </view>
+    </view>
+</view>
+
+<image src='{{imgbase}}{{prod.pic_detail}}' class='pic_detail' mode='widthFix' wx:if="{{showtype=='prod_detail'}}"></image>
+
+<view class="control_prodtype clearfix" wx:if="{{showtype=='prod_detail'}}">
+	<template is="control_prodlist" data="{{imgbase:imgbase,image_size:'S',prodlist:relativeprods,base_conf,empty_tip:'1' }}" />
+</view>
+
+<view class="bargain_detail" style="" hidden="{{!(bargain_list.length>0 && showtype=='bargain_detail')}}">
+	<view class="bargain_cell" style="" wx:for="{{bargain_list}}" wx:key="unique" wx:for-index="idx" wx:for-item="item">
+		<view class="bargain_cell_left" style="">
+			<image style="" src="{{item.headimgurl || base_conf.STATIC_URL+'wap/default/cssimg/default_user.png'}}"></image>
+			<view class="cell_left_txt" style=""><text style="">{{item.nicker||''}} </text>帮砍掉<text style="color:red;">{{item.bargain_amt}}元</text></view>
+		</view>
+		<view class="bargain_cell_right" style="">
+			<text>{{item.createdate}}</text>
+		</view>
+		<view wx:if="{{bargain_amt==max_bargain_amt}}" class="more_point" style="">最给力</view>
+	</view>	
+</view>
+
+<view style="height:70px;"></view>	
+
+<view class="foot__fix" style="z-index:2;" wx:if="{{bargain_one && bargain_one.group_status=='A' }}">
+		<!--砍价发起人找人帮砍-->
+		<view class="section_inner bargain_action"  wx:if="{{bargain_one.is_firstvip && (bargain_one.left_person>0 || bargain_one.limit_person==0) && bargain_one.price_bccomp>0 && dist_time>0}}" style="">
+			<view class="bargain_action_left" style="color:#666;border-top:1px solid #eee;" bindtap="bindBuyBargain">
+				<text >当前价购买</text>
+			</view>
+			<view wx:if="{{bargain_one.left_person>0}}" class="bargain_action_right" style="background:{{color_primary}};border-top:1px solid {{color_primary}};" bindtap="bindBargainVisit">
+				<text style="display:block;height:12px;line-height:12px;">找人帮砍</text>
+				<text  style="display:block;height:12px;line-height:12px;font-size:10px;">(还差{{bargain_one.left_person}}人)</text>
+			</view>
+			<view wx:else style="font-size:12px;height:50px;line-height:50px;width:50%;text-align:center;background:{{color_primary}};border-top:1px solid {{color_primary}};" bindtap="bindBargainVisit">
+				<text >找人帮砍</text>
+			</view>
+		</view>
+		<!--砍价发起人以最低价购买-->
+		<view class="section_inner bargain_action"  wx:if="{{bargain_one.is_firstvip && ((bargain_one.limit_person>0 && bargain_one.left_person<=0) || bargain_one.price_bccomp<=0 || dist_time<=0)}}" style="">
+			<view class="bargain_action_left" style="background:{{color_primary}};" bindtap="bindBuyBargain">
+				<text >当前价购买</text>
+			</view>
+			<view class="bargain_over" style="color:#666;" >
+				<text >砍价结束</text>
+			</view>
+		</view>
+		<!--帮TA砍价-->
+		<view class="section_inner bargain_action"  wx:if="{{!bargain_one.is_firstvip && bargain_one.is_group != 'K' && (bargain_one.left_person>0 || bargain_one.limit_person==0) && bargain_one.price_bccomp>0 && dist_time>0}}" style="">
+			<view class="bargain_action_left" style="color:#666;border-top:1px solid #eee;" bindtap="bindGoBargain" >
+				<text >去发起砍价</text>
+			</view>
+			<view style="font-size:12px;height:50px;line-height:50px;width:50%;text-align:center;background:{{color_primary}};border-top:1px solid {{color_primary}};" bindtap="bindHelpBargain">
+				<text >帮TA砍价</text>
+			</view>
+		</view>
+		<!--砍价结束，帮砍人去发起砍价-->
+		<view class="section_inner bargain_action"  wx:if="{{!bargain_one.is_firstvip && (bargain_one.price_bccomp<=0 || (bargain_one.limit_person>0 && bargain_one.left_person<=0) || dist_time<=0)}}" style="">
+			<view class="bargain_action_left" style="color:#666;background:{{color_primary}};" bindtap="bindGoBargain">
+				<text >去发起砍价</text>
+			</view>
+			<view class="bargain_over" style="" >
+				<text >砍价结束</text>
+			</view>
+		</view>
+		<!--帮砍人去分享-->
+		<view class="section_inner bargain_action"  wx:if="{{!bargain_one.is_firstvip && bargain_one.is_group == 'K' && (bargain_one.left_person>0 || bargain_one.limit_person==0) && bargain_one.price_bccomp>0 && dist_time>0}}" style="">
+			<view class="bargain_action_left" style="color:#666;border-top:1px solid #eee;" bindtap="bindGoBargain">
+				<text >去发起砍价</text>
+			</view>
+			<view wx:if="{{bargain_one.left_person>0}}" class="bargain_action_right" style="background:{{color_primary}};border-top:1px solid {{color_primary}};" bindtap="bindBargainVisit">
+				<text style="display:block;height:12px;line-height:12px;">找人帮TA砍价</text>
+				<text style="display:block;height:12px;line-height:12px;font-size:10px;">(还差{{bargain_one.left_person}}人)</text>
+			</view>
+			<view wx:else style="font-size:12px;height:50px;line-height:50px;width:50%;text-align:center;background:{{color_primary}};border-top:1px solid {{color_primary}};" bindtap="bindBargainVisit">
+				<text >找人帮TA砍价</text>
+			</view>
+		</view>
+		
+</view>
+<!--砍价结束，帮砍人去发起砍价-->
+<view class="foot__fix" style="z-index:2;" wx:if="{{bargain_one && bargain_one.group_status!='A' && bargain_one.group_status!='E'&& groupdetail_data.billstatus=='CK'}}">
+		<view class="section_inner bargain_action"  wx:if="">
+			<view  class="bargain_action_left" style="font-size:12px;height:50px;line-height:50px;width:50%;text-align:center;background:{{color_primary}};border-top:1px solid {{color_primary}};" bindtap="bindGoBargain">
+				<text >去发起砍价</text>
+			</view>
+			<view class="bargain_over" style="color:#666;" >
+				<text >砍价结束</text>
+			</view>
+		</view>
+</view>
+<!--当前价购买-->
+<view class="foot__fix" style="z-index:2;" wx:if="{{bargain_one && bargain_one.group_status=='E' && dist_time>0}}">
+		<view class="section_inner bargain_action"  >
+			<view class="bargain_action_left" style="background:{{color_primary}};" bindtap="bindBuyBargain">
+				<text >当前价购买</text>
+			</view>
+			<view class="bargain_over" style="color:#666;" >
+				<text >砍价结束</text>
+			</view>
+		</view>
+</view>
+
+<!--活动规则-->
+<navigator  url="/pages/mall/promorule?gift=K&billno={{promo_num}}">
+<view class="promotion_rule" >
+	<text class="rule_txt" style="">活动规则</text>
+</view>
+</navigator>
+<!--邀请砍价遮幕-->
+<view class="groupvisit-main"  catchtouchmove="preventTouchMove"  wx:if="{{groupvisit}}">
+   
+     <view class="groupvisit-wrap" catchtouchmove="preventTouchMove" style="background-color:#fff;position:fixed;top:0;left:0;width:100%;">
+     	<!--关闭遮幕-->
+     	<view style="position:fixed;top:2%;right:20px;">
+			<image bindtap="closeMarkShare"  style="padding:5px;width:25px;height:25px;"  src="{{base_conf['STATIC_URL']}}wap/images/close.png"></image>
+		</view>
+       <!--canvas 绘制-->
+	    <view class="groupvisit-content" >
+	      <canvas canvas-id="shareCanvas" style="width:275px;height:400px;" />
+	    </view>
+     	<view class="groupvisit-action" hidden="{{false}}">
+     		<view class="groupvisit-cell" >
+     			<image src="{{imgbase+'/wx_f.png'}}" style="width:45px;height:45px;margin:0px auto;"></image>
+     			<text class="shareFriend_txt" style="display:block;text-align:center;margin-top:5px;">发送给朋友</text>
+     			<button open-type='share' bindtap="shareFriend" class="shareFriend_btn" style='width:100%;height:100%;position:absolute;top:0;opacity:0;'>发送给朋友</button>
+     		</view>
+     		<view class="groupvisit-cell" >
+     			<image src="{{imgbase+'/wx_p.png'}}" style="width:45px;height:45px;margin:0px auto;"></image>
+     			<text class="savePhoto_txt" style="display:block;text-align:center;margin-top:5px;">分享朋友圈</text>
+     			<button bindtap="savePhoto" class="savePhoto_btn" style='width:100%;height:100%;position:absolute;top:0;opacity:0;'>分享朋友圈</button>
+     		</view>
+     	</view>
+     </view>
+  </view>
+  
+  <!--自动砍价成功-->
+ <view class="formgroup_mark"  catchtouchmove="preventTouchMove"  wx:if="{{group_success && bargain_one && bargain_one.vip_id==bargain_one.first_vipid}}">
+   
+     <view class="formgroup_wrap" catchtouchmove="preventTouchMove" style="padding:30px 20px;font-size:14px;position:relative;border-radius:5px;">
+       <view class="tip_main" > 
+       		<view style="line-height:60px;height:60px;text-align:center;">
+       			<image src="{{bargain_one.headimgurl || base_conf.STATIC_URL+'wap/default/cssimg/default_user.png'}}" style="width:60px;height:60px;border-radius:50%;"></image>
+       		</view>
+       		<view style="padding:20px 10px;">
+	 	 		<view style="padding:0px 5px;font-size:16px;color:#333;text-align:center;padding:10px 0px;">
+	 	 			<text >成功砍掉</text>
+	 	 			<text style="margin-left:5px;color:red;">{{bargain_one.bargain_amt}}元</text>
+	 	 			
+	 	 		</view>
+	 	 		<view style="text-align:center;color:#999;">
+	 	 			<text style="display:block;">帮你砍掉第一刀</text>
+	 	 			<text style="display:block;">分享给好友多砍几刀吧</text>
+	 	 		</view>
+ 	 		</view>
+ 	 		
+       </view> 
+       <view bindtap="bindBargainVisit" style="text-align:center;height:50px;line-height:50px;background-color:{{color_primary}};color:#fff;">
+       		<text >邀请好友</text>
+        </view> 
+		<view style="position:absolute;bottom:-80px;left:50%;transform:translate(-50%,0)">
+			<image bindtap="closeMarkTip"  style="padding:5px;width:25px;height:25px;"  src="{{base_conf['STATIC_URL']}}wap/images/close.png"></image>
+		</view>
+     </view>
+  </view> 
+  
+  <!--帮砍砍价成功-->
+ <view class="formgroup_mark"  catchtouchmove="preventTouchMove"  wx:if="{{group_success && bargain_one && bargain_one.is_group=='K'}}">
+     <view class="formgroup_wrap" catchtouchmove="preventTouchMove" style="padding:30px 0px 0px;font-size:12px;position:relative;border-radius:5px;top:50%;">
+       <view class="tip_main" > 
+       		<view style="line-height:60px;height:60px;text-align:center;">
+       			<image src="{{bargain_one.headimgurl || base_conf.STATIC_URL+'wap/default/cssimg/default_user.png'}}" style="width:60px;height:60px;border-radius:50%;"></image>
+       		</view>
+       		<view style="padding:5px 10px 15px;">
+	 	 		<view style="padding:0px 5px;font-size:16px;color:#333;text-align:center;padding:10px 0px;">
+	 	 			<text >成功砍掉</text>
+	 	 			<text style="margin-left:5px;color:red;">{{bargain_one.bargain_amt}}元</text>
+	 	 		</view>
+ 	 		</view>
+ 	 		
+       </view> 
+       <view style="height:50px;line-height:50px;display:flex;align-items:center;justify-content:center;border-top:1px solid #eee;">
+       		<view style="text-align:center;flex:1;border-right:1px solid #eee;" bindtap="closeMarkTip">取消</view> 
+       		<view style="text-align:center;flex:1;color:red;" bindtap="bindGoBargain">去发起砍价</view> 
+        </view> 
+
+     </view>
+  </view>
+
+<!-- 右侧导航栏 -->
+<template is="control_nav"  data="{{navhidden:navhidden,base_conf}}"/>
+
+<!-- 购买 -->
+<template is="comp_addcart" data="{{imgbase,addcart_good_cover,is_addcart_show,skulvl,curskuid,sku1,sku2,curbuyqty,actiontype}}"/>

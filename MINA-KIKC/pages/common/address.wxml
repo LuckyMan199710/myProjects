@@ -1,0 +1,85 @@
+<template name="addressList">
+  <view class="addressList">
+		<!-- 地址列表 -->
+		<view class="section" style='margin-bottom:50px;' wx:if="{{wig_address_list.length>0}}">
+      <view class="section_inner">
+        <view wx:for="{{wig_address_list}}" wx:for-index="idx" wx:for-item="item" wx:key="unique"  class="addr_item {{item.isdefault=='Y'?'on':''}}">
+
+          <view class="addr_l"  bindtap='wig_address_selectItem' id="{{item.lineid}}">
+            <view>{{item.relname}}-{{item.phone}}</view>
+            <view>{{item.state}}{{item.city}}{{item.district}}{{item.address}}</view>
+          </view>
+          <view class="addr_r" bindtap='wig_address_modifyItem' id="{{item.lineid}}" style='color:#000'>修改</view>
+          <view class="addr_r" bindtap='wig_address_delItem' id="{{item.lineid}}" style='color:#000'>删除</view>
+        </view>
+
+      </view>
+		</view>
+		<!-- 添加地址 -->
+		<view class="section" style='margin-bottom:0px;position:fixed; left: 0px;bottom: 0px;width: 100%;'>
+			<view class="section_inner">
+				<button bindtap="wig_address_addItem" size='mini'  class="submit_btn on" style="background:{{base_conf.color_primary}}" >新增收货地址</button>
+			</view>
+		</view>
+
+	</view>
+</template>
+
+
+<template name="shopList">
+  <view class="addressList">
+		<!-- 门店列表 -->
+		<view class="section">
+		<view class="section_inner" wx:if="{{wig_pickshop_list.length>0}}">
+			<view wx:for="{{wig_pickshop_list}}" wx:for-index="idx" wx:for-item="item" wx:key="unique"  class="addr_item {{item.shop_id==wig_pickshop_curid?'on':''}}">
+				<view class="addr_l"  bindtap='wig_pickshop_selectItem' id="{{item.shop_id}}">
+					<view>{{item.shop_name}}</view>
+					<view>{{item.address}}</view>
+				</view>
+			</view>
+		</view>
+		</view>
+	</view>
+</template>
+
+
+<!-- 配送方式 -->
+<template name="deliverPanel">
+  <view class="deliverPanel">
+		<!-- 配送方式 -->
+		<view class="section">
+			<view class="section_inner">	
+				<view wx:for="{{wig_deliver_delivertype}}" wx:for-index="idx" wx:for-item="item" wx:key="unique" class="selTag_item" id="{{item.type}}" bindtap='wig_deliver_switchType'>
+					<text class="{{item.type==wig_deliver_temptype?'on':''}}">{{item.name}}</text>
+				</view>
+			</view>
+			<!-- 门店 -->
+			<view class="section_inner" wx:if="{{wig_deliver_temptype=='inshop'}}" bindtap='wig_deliver_showNearshops'>
+				<view>取货门店：<text style="text-decoration:underline;">{{wig_deliver_curpickshop.shop_name}}</text></view>
+			</view>
+		</view>
+		<!-- 确定 -->
+		<view class="section">
+			<view class="section_inner">
+				<button bindtap="wig_deliver_confirm" size='mini' plain='true' class="submit_btn on" style="background:{{base_conf.color_primary}}">确定</button>
+			</view>
+		</view>
+
+	</view>
+</template>
+
+
+
+<template name="couponList">
+  <view class="addressList">
+		<view class="section_inner" wx:if="{{wig_coupon_list.length>0}}">
+			<view wx:for="{{wig_coupon_list}}" wx:for-index="idx" wx:for-item="item" wx:key="unique"  class="addr_item {{item.billno==wig_coupon_curid?'on':''}}">
+				<view class="addr_l"  bindtap='wig_coupon_selectItem' id="{{item.billno}}">
+					<view wx:if="{{item.coupon_type == 'CASH'}}">￥{{item.amount}}</view>
+          <view wx:if="{{item.coupon_type == 'DISCOUNT'}}">{{item.amount * 10}}折</view>
+					<view>{{item.title}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>

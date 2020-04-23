@@ -1,0 +1,214 @@
+<!--index.wxml-->
+<import src="../common/bottom" />
+<view class="container">
+<!-- 	<view class="table-equal">
+		<view class="tbequlitem" >
+			<view class='public'>好友数量</view>
+			<view class='public'>{{sub_cnt}}</view>
+		</view>
+		<view class="tbequlitem" >
+			<view class='public'>累计收益</view>
+			<view class='public'>{{ttl_amt}}</view>
+		</view>
+		<view class="tbequlitem" >
+			<view class='public'>收益余额</view>
+			<view class='public'>{{bal_amt}}</view>
+		</view>
+		<view class="tbequlitem" >
+			<view class='public'>提现金额</view>
+			<view class='public'>{{frz_amt}}</view>
+		</view>
+    <view class="tbequlitem" style='width:21%' >
+			<view class='public'>未到期收益</view>
+			<view class='public'>{{delay_amt}}</view>
+		</view>
+	</view> --> 
+	
+ <!-- <view class="weui_cells">
+    <view class='vip-item'>
+      <view>团队人数:{{total_sub_cnt?total_sub_cnt:0}}</view>
+      <view>今日:{{friends.term_today_person?friends.term_today_person:0}}</view>
+      <view>本月:{{friends.term_month_person?friends.term_month_person:0}}</view>
+      <view>近30日:{{friends.term_30day_person?friends.term_30day_person:0}}</view>
+    </view>
+    <view class='vip-item'>
+      <view>一级消费金额</view>
+      <view>今日:{{friends.self_today_amt?friends.self_today_amt:0}}</view>
+      <view>本月:{{friends.self_month_amt?friends.self_month_amt:0}}</view>
+      <view>近30日:{{friends.self_30day_amt?friends.self_30day_amt:0}}</view>
+    </view>
+    <view class='vip-item'>
+      <view>二级消费金额</view>
+      <view>今日:{{friends.term_today_amt?friends.term_today_amt:0}}</view>
+      <view>本月:{{friends.term_month_amt?friends.term_month_amt:0}}</view>
+      <view>近30日:{{friends.term_30day_amt?friends.term_30day_amt:0}}</view>
+    </view>
+  </view> -->
+  
+<!-- 顶部用户信息 -->
+  <view class='weui_cells'>
+	  <view class="user_income" style="background: url('{{base_conf['STATIC_URL']}}wap/images/bg_icome.png'); background-size: cover;">
+		 <!-- 上半部分 -->
+		  <view class="user_income_top box" style="color: #fff;">
+			  <view class="flex top_item box box-pack-center">
+				  <navigator url="/pages/myrevenue/incomes" class="income_button"  role="navigation" style="background: transparent; color: #FBD4A2;">收益明细</navigator>
+			  </view>
+			  <view class="flex top_item">
+				  <text>团队总人数</text>
+				  <view class="people_count">
+					  {{total_sub_cnt?total_sub_cnt:0}}
+				  </view>
+			  </view>
+			  <view class="flex top_item box box-pack-center">
+				<navigator class="income_button box box-align-center box-pack-center"  role="navigation" style="background: #FBD4A2;color: #333333;" url="/pages/myrevenue/withdrawreq">
+					<image class="buttom_img" src="{{base_conf['STATIC_URL']}}wap/styleicon/{{base_conf['styleicon']}}/icon_cash.png"></image>
+					提现
+				</navigator>
+			  </view>
+		  </view>
+		  <!-- 下半部分 -->
+		  <view class="user_income_bottom">
+			  <view class="bottom_row box">
+				  <view class="bottom_item bordershow">
+					  <view class="money">{{ttl_amt || 0}}</view>
+					  <text>累计收益（元）</text>
+				  </view>		  
+				  <view class="bottom_item">
+				  	  <view class="money">{{bal_amt || 0}}</view>
+				  	  <text>收益余额（元）</text>
+				  </view>
+			  </view>
+			  <view class="bottom_row box" style="margin-top: 24rpx;">
+				  <view class="bottom_item bordershow">
+					  <view class="money">{{frz_amt || 0}}</view>
+					  <text>提现金额（元）</text>
+				  </view>		  
+				  <view class="bottom_item">
+					  <view class="money">{{delay_amt || 0}}</view>
+					  <text>未到期收益（元）</text>
+				  </view>
+			  </view>
+		  </view>
+	  </view>
+      <navigator url='/pages/mymember/sharefriends' class='weui_cell_primary box box-align-center'>
+		<image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/icon_invate.png' class='hand'></image>
+		<text style="font-weight: bold;">邀请好友一起赚!</text>
+      </navigator>
+  </view>
+
+<!-- 我的团队 -->
+	<view class="myteam">
+		<view class="myteam_tap box">
+			<view class="myteam_tap_item box box-pack-center flex">
+				<view class="box box-align-center {{menuTapCurrent=='0' ? 'borders':''}}" data-current='0' bindtap="menuTap" >团队人数</view>
+			</view>
+			<view class="myteam_tap_item box  box-align-center box-pack-center flex">
+				<view class="box box-align-center {{menuTapCurrent == '1'? 'borders':''}}" data-current='1' bindtap="menuTap">一级消费</view>
+			</view>
+			<view class="myteam_tap_item box box-align-center box-pack-center flex">
+				<view class="box box-align-center {{menuTapCurrent=='2' ? 'borders':''}}"data-current= '2' bindtap="menuTap">二级消费</view>
+			</view>
+		</view>
+		<!-- 团队人数 -->
+		<view class="myteam_data box" hidden="{{menuTapCurrent!='0'}}">
+			<view class="myteam_data_item box box-align-center box-pack-center flex">
+				<view class="data">
+					今日:{{friends.term_today_person?friends.term_today_person:0}}
+				</view>		
+			</view>
+			
+			<view class="myteam_data_item box box-align-center box-pack-center flex ">
+				<view class="data middle">
+					本月:{{friends.term_month_person?friends.term_month_person:0}}
+				</view>
+			</view>
+			
+			<view class="myteam_data_item box box-align-center box-pack-center flex">
+				<view class="data">
+					近30日:{{friends.self_30day_amt?friends.self_30day_amt:0}}
+				</view>
+			</view>		
+		</view>
+		<!-- 一级消费 -->
+		<view class="myteam_data box" hidden="{{menuTapCurrent!='1'}}">
+			<view class="myteam_data_item box box-align-center box-pack-center flex">
+				<view class="data">
+					今日:{{friends.self_today_amt?friends.self_today_amt:0}}
+				</view>		
+			</view>
+			
+			<view class="myteam_data_item box box-align-center box-pack-center flex ">
+				<view class="data middle">
+					本月:{{friends.self_month_amt?friends.self_month_amt:0}}
+				</view>
+			</view>
+			
+			<view class="myteam_data_item box box-align-center box-pack-center flex">
+				<view class="data">
+					近30日:{{friends.self_30day_amt?friends.self_30day_amt:0}}
+				</view>
+			</view>		
+		</view>
+		<!-- 二级消费 -->
+		<view class="myteam_data box" hidden="{{menuTapCurrent!='2'}}">
+			<view class="myteam_data_item box box-align-center box-pack-center flex">
+				<view class="data">
+					今日:{{friends.term_today_amt?friends.term_today_amt:0}}
+				</view>		
+			</view>
+			
+			<view class="myteam_data_item box box-align-center box-pack-center flex ">
+				<view class="data middle">
+					本月:{{friends.term_month_amt?friends.term_month_amt:0}}
+				</view>
+			</view>
+			
+			<view class="myteam_data_item box box-align-center box-pack-center flex">
+				<view class="data">
+					近30日:{{friends.term_30day_amt?friends.term_30day_amt:0}}
+				</view>
+			</view>		
+		</view>
+	</view>
+
+  <view class='weui_cells'>
+   <navigator url="/pages/myrevenue/shareorderall" class='weui_cell_primary on'>
+      全部订单
+      <view class="facing"></view> 
+    </navigator>
+    <!-- <navigator url="/pages/myrevenue/shareorder" class='weui_cell_primary on'>
+      好友订单
+      <view class="facing"></view> 
+    </navigator> -->
+    <navigator url="/pages/mymember/friend?isdrp=Y" class='weui_cell_primary on'>
+      我的分销商
+      <view class="facing"></view> 
+    </navigator>
+    <navigator url="/pages/mymember/friend?isdrp=N" class='weui_cell_primary on'>
+      我的粉丝
+      <view class="facing"></view> 
+    </navigator>
+    <!-- <navigator url="/pages/myrevenue/incomes" class='weui_cell_primary on'>
+      收益明细
+      <view class="facing"></view> 
+    </navigator>
+    <navigator url="/pages/myrevenue/withdrawreq" class='weui_cell_primary on'>
+      提现申请
+      <view class="facing"></view> 
+    </navigator> -->
+    <navigator wx:if="{{istocard=='Y'}}" url="/pages/myrevenue/switch" class='weui_cell_primary on'>
+      转会员卡余额
+      <view class="facing"></view> 
+    </navigator>
+    <navigator url="/pages/myrevenue/sharerule" class='weui_cell_primary on'>
+      分销规则说明
+      <view class="facing"></view> 
+    </navigator>
+  </view>
+
+  <view class="control_bottom clearfix" wx:if="{{mallfunc_status=='Y'}}">
+		<template is="control_bottom"  data="{{ontabpage,page_path,base_conf}}"/>
+	</view>
+
+</view>
+

@@ -1,0 +1,65 @@
+<!--pagesA/live/home.wxml-->
+<import src="../common/bottom" />
+<view class="live">
+  <view class="live-list">
+		<view class="live-left">
+			<view class="live-item" wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="index" wx:if="{{index%2 == 0}}" data-item="{{item}}" bindtap="navLive">
+				
+        <image class="live-image" src="{{item.cover_img}}" mode="aspectFill"></image>
+				<view class="live-bg">
+					<view class="live-status box box-align-center">
+						<view class="desc box box-align-center box-pack-center">
+              {{item.status_name}}
+						</view>
+						<!-- <view class="txt" wx:if="{{item.live_status == 101}}">{{item.watch_num || 0}}人观看</view> -->
+					</view>
+					<view class="live-content">
+						<view class="live-floor">
+							<view class="live-name single-hiding">{{item.name}}</view>
+							<view class="live-info box box-align-center">
+								<!-- <image class="live-logo" src="{{item.anchor_img}}"></image> -->
+								<view class="txt two-hiding">{{item.anchor_name}}</view>
+								<view class="flex"></view>
+								<!-- <view class="zan box box-align-center" wx:if="{{item.live_status == 101 || item.live_status == 103}}">
+									<image class="icon" src="../static/img/icon_like.png"></image>
+									<view class="num">{{item.praise_num}}</view>
+								</view> -->
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="live-right">
+			<view class="live-item" wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="index" wx:if="{{index%2 != 0}}" data-item="{{item}}" bindtap="navLive">
+				
+        <image class="live-image" src="{{item.cover_img}}" mode="aspectFill"></image>
+				<view class="live-bg">
+					<view class="live-status box box-align-center">
+						<view class="desc box box-align-center box-pack-center">
+              {{item.status_name}}
+						</view>
+						<!-- <view class="txt" wx:if="{{item.live_status == 101}}">{{item.watch_num || 0}}人观看</view> -->
+					</view>
+					<view class="live-content">
+						<view class="live-floor">
+							<view class="live-name single-hiding">{{item.name}}</view>
+							<view class="live-info box box-align-center">
+								<!-- <image class="live-logo" src="{{item.anchor_img}}"></image> -->
+								<view class="txt two-hiding">{{item.anchor_name}}</view>
+								<view class="flex"></view>
+								<!-- <view class="zan box box-align-center" wx:if="{{item.live_status == 101 || item.live_status == 103}}">
+									<image class="icon" src="../static/img/icon_like.png"></image>
+									<view class="num">{{item.praise_num}}</view>
+								</view> -->
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view class="control_bottom clearfix">
+  <template is="control_bottoms" data="{{ontabpage,page_path,base_conf}}" />
+</view>

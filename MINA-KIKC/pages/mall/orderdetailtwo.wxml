@@ -1,0 +1,83 @@
+<!-- container -->
+<import src="../common/nav"/>
+<import src="../common/logis"/>
+<view class="container">
+	<view class="section">
+    <view class="section_inner">
+      <view>订单编号：{{order.billno}}</view>
+      <view>订单状态：<text class="prict_txt">{{order['status_name']}}</text></view>
+      <view>下单时间：{{order['created']}}</view>
+    </view>
+	</view>
+  
+	<view class="section">
+		<view class="section_inner">
+
+    <block wx:if="{{order['ordertype']=='C'}}">
+    <view wx:for="{{orderitem}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+      <view class="good_item" bindtap="bindProdDetail" data-plat_numiid="{{item.plat_num_iid}}" >
+        <view class='goodlist'>
+          <view class=''>优惠券：{{item.plat_num_name}}</view>
+          <view class=''>优惠券号：{{item.coupon_num || '--'}}</view>
+          <view class=''>购买金额：<text class="prict_txt">￥{{item.price}}</text> 数量：{{item.qty}}</view>
+        </view>
+        <view class='clear'></view>
+      </view>
+    </view>
+    </block>
+
+    <block wx:else>
+    <view wx:for="{{orderitem}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+      <view class="good_item" bindtap="bindProdDetail" data-plat_numiid="{{item.plat_num_iid}}" data-group_id="{{item.group_id}}" data-is_group="{{item.is_group}}" style="padding-bottom:10px;">
+        <view class='goodpic'><image src='{{imgbase}}{{item.goodpic}}' class='goodpic'></image></view>
+        <view class='goodlist'>
+          <view class=''>{{item.plat_num_name}}</view>
+          <view class=''>规格:{{item.plat_sku_name}}</view>
+          <view class=''><text class="prict_txt">￥{{item.price}}</text>  x{{item.qty}}</view>          
+        </view>
+        <view class='clear'></view>
+      </view>
+    </view>
+    </block>
+		</view>
+	</view>
+
+  <view class="section" wx:if="{{order['buyer_message']}}">
+    <view class="section_inner">
+      <view>备注：<text>{{order['buyer_message']}}</text></view>
+    </view>
+  </view>
+  <view class="section">
+		<view class="section_inner orderfee" style="padding:0px;">
+		<view style="padding:10px;background-color:#f6eceb;">
+			<view><text>商品金额：</text><text>￥{{order['prod_fee']}}</text></view>
+      <view><text>运费：</text><text>+ ￥{{order['post_fee']}}</text></view>
+      </view>
+      <view class="orderpay_bg" >
+      <view><text>优惠券：</text><text>- ￥{{order['coupon_fee']}}</text></view>
+      <view><text>折扣：</text><text>- ￥{{order['discount_fee']}}</text></view>
+      <view><text>积分支付：</text><text>- ￥{{order['pointpay']}}</text></view>
+      <view><text>余额支付：</text><text>- ￥{{order['pay_bal']}}</text></view>
+      </view>
+      <view class="orderpay_bg" >
+			<view><text>实付金额：</text><text class="prict_txt">￥{{order['payment']}}</text></view>
+	  </view>
+		</view>
+	</view>
+  <template is="comp_addlogis" data="{{hidden,logis_company,retinvoiceno,refundid,address,relname,base_conf}}"/>
+</view>
+<!-- container end -->
+
+  <view class="section" wx:if="{{order['expressno']}}">
+    <view class="section_inner">
+      <navigator url="/pages/mall/logistics?expressno={{order['expressno']}}&stdlogis={{order['stdlogis']}}&billno={{billno}}&stdlogis_name={{order['stdlogis_name']}}">
+        <view class='logistics'>查看物流</view>
+        <view class='tics'>></view>
+        <view class='clear'></view>
+      </navigator>
+    </view>
+  </view>
+
+<!-- 右侧导航栏 -->
+<template is="control_nav"  data="{{navhidden:navhidden,base_conf}}"/>
+

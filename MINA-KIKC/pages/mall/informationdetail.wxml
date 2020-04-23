@@ -1,0 +1,30 @@
+<!--pages/mall/informationdetail.wxml-->
+<import src="../common/nav"/>
+<import src="../common/mall"/>
+<import src="../common/counter"/>
+<view class="container">
+  <view class="detail">
+    <view class="header">
+      <view class="title">{{title}}</view>
+      <view class="date">{{mydate}}</view>
+    </view>
+    <block class="control_content" wx:key="unique" wx:for="{{ques_list}}"  wx:for-index="idx" wx:for-item="item">
+      <!-- 图片组件 -->
+      <view wx:if="{{item.type_num==12}}">
+        <view class="control_image clearfix" style="width:100%;">
+            <template is="control_image" data="{{imgbase:imgbase,control_image_url:item.control_image_url}}" />
+        </view>
+      </view>
+      <!-- 图片导航组件 -->
+      <view wx:elif="{{item.type_num==13}}">
+        <view class="control_image_nav clearfix" style="width:100%;overflow:hidden;">
+            <template is="control_image_nav" data="{{imgbase:imgbase,image_nav:item.image_nav,shop_listqty:item.shop_listqty,shop_id:vote.shop_id}}" />
+        </view>
+      </view>
+    </block>
+
+  </view>
+</view>
+
+<!-- 右侧导航栏 -->
+<template is="control_nav"  data="{{navhidden:navhidden,base_conf}}"/>

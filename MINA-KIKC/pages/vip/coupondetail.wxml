@@ -1,0 +1,19 @@
+<!--index.wxml-->
+<view class="container">
+		
+		<view class='compname'>{{coupon.comp_name}}</view>
+		
+		<view class='title'>{{coupon.title}}</view>
+    <view class='img'>
+
+      <image style=' width: 80%;' bindtap='scaleBarcode' wx:if="{{barcodeurl}}" src="{{barcodeurl}}" mode='widthFix' />
+
+		</view>
+    <view class='use_notice'>{{coupon.billno}}</view>
+    <view class='use_notice'>{{coupon.use_notice}}</view>
+     <view class='dashed' style='border-bottom: dashed 1rpx {{base_conf.color_primary}};'></view>
+    <view class='remark'>
+			<rich-text nodes="{{coupon.remark}}"></rich-text>
+		</view>
+   
+</view>

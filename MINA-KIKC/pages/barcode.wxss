@@ -1,0 +1,13 @@
+/**index.wxss**/
+page{
+	overflow: hidden;
+}
+
+/* 用户面板 */
+.barcode_wrap{
+	padding: 10px 0 5px 0;
+	text-align: center;
+}
+.barcode_wrap image{
+	width: 200px;
+}

@@ -1,0 +1,59 @@
+/**index.wxss**/
+page{
+	background-color: #f7f7f7;
+}
+.container{
+	background-color: #fff;
+}
+
+.formPanel{
+	padding: 20rpx;
+}
+
+.section{
+	margin-top: 30rpx;
+	margin-bottom: 40rpx;
+	position: relative;
+}
+
+.section_tit{
+	margin-bottom: 20rpx;
+	display: block;
+}
+
+.sms_btn{
+	position:absolute;
+	right: 0;
+	bottom:4rpx;
+	z-index: 2;
+}
+
+
+.input_field{
+	border-bottom: 1px solid #ddd;
+}
+
+.picker{
+  display: inline-block;
+  width: 80%;
+}
+
+.img{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  margin-bottom: -4px;
+}
+.imgs{
+  position: absolute;
+  top: 26px;
+  left: 0px;
+}
+.curt{
+  padding-left: 25px;
+}
+.pone{
+  display: inline-block;
+  width: 80%
+}

@@ -1,0 +1,118 @@
+<!-- 底部 -->
+<template name="control_bottom">
+
+  <view class="bottom" wx:if="{{!base_conf['kikcExclusive']}}">
+    <block wx:for="{{base_conf['mynavlist']}}" wx:for-item="item" wx:key="item.id">
+      <block wx:if="{{page_path == item.url}}">
+        <view class="bottom_content {{ontabpage==item.ontabpage?'on':''}}">
+          <image src='{{item.imgUrl}}' class='bottom_img'></image>
+          <view class='bottom_wenzi'>{{item.title}}</view>
+        </view>
+      </block>
+      <block wx:else>
+        <block wx:if="{{item.url == 'pages/trend/theme'}}">
+          <navigator url='/{{item.url}}' class="bottom_content {{ontabpage=='mall_main'?'on':''}}" open-type='navigate'>
+            <image src='{{item.imgUrlHd}}' class='bottom_img'></image>
+            <view class='bottom_wenzi' style="color:{{base_conf['color_primary']}}">{{item.title}}</view>
+          </navigator>
+        </block>
+        <navigator url='/{{item.url}}' class="bottom_content {{ontabpage=='mall_main'?'on':''}}" open-type='redirectTo' wx:else>
+          <image src='{{item.imgUrlHd}}' class='bottom_img'></image>
+          <view class='bottom_wenzi' style="color:{{base_conf['color_primary']}}">{{item.title}}</view>
+        </navigator>
+      </block>
+    </block>
+  </view>
+  <!-- KIKC专属排版 -->
+  <view class="bottom" wx:else>
+    <block wx:for="{{base_conf['mynavlist']}}" wx:for-item="item" wx:key="item.id">
+      <block wx:if="{{page_path == item.url}}">
+        <view class="bottom_content {{ontabpage==item.ontabpage?'on':''}}">
+          <image src='{{item.imgUrl}}' class='bottom_img'></image>
+          <view class='bottom_wenzi'>{{item.title}}</view>
+        </view>
+      </block>
+      <block wx:else>
+        <block wx:if="{{item.url == 'pages/trend/theme' || item.url == 'pages/mall/main'}}">
+          <navigator url='/{{item.url}}' class="bottom_content {{ontabpage=='mall_main'?'on':''}}" open-type='navigate'>
+            <image src='{{item.imgUrlHd}}' class='bottom_img'></image>
+            <view class='bottom_wenzi' style="color:#333333">{{item.title}}</view>
+          </navigator>
+        </block>
+        <navigator url='/{{item.url}}' class="bottom_content {{ontabpage=='mall_main'?'on':''}}" open-type='redirectTo' wx:else>
+          <image src='{{item.imgUrlHd}}' class='bottom_img'></image>
+          <view class='bottom_wenzi' style="color:#333333">{{item.title}}</view>
+        </navigator>
+      </block>
+    </block>
+
+  </view>
+  <!--蓝色风格-->
+  <!-- <view class="bottom" wx:if="{{base_conf['styleicon'] == 'blue'}}">
+    <block wx:if="{{page_path == 'pages/mall/main'}}">
+      <view class="bottom_content {{ontabpage=='mall_main'?'on':''}}">
+        <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/index.png' class='bottom_img'></image>
+        <view class='bottom_wenzi' >商城首页</view>
+      </view>
+    </block>
+    <block wx:else>
+      <navigator url='/pages/mall/main' class="bottom_content {{ontabpage=='mall_main'?'on':''}}" open-type='reLaunch'>
+        <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/indexs.png' class='bottom_img'></image>
+        <view class='bottom_wenzi' style="color:{{base_conf['color_primary']}}">商城首页</view>
+      </navigator>
+    </block>
+
+    <block wx:if="{{page_path == 'pages/mall/classprods'}}">
+      <view class="bottom_content {{ontabpage=='class_prods'?'on':''}}">
+        <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/class.png' class='bottom_img'></image>
+        <view class='bottom_wenzi' >分类</view>
+      </view>
+    </block>
+    <block wx:else>
+      <navigator url='/pages/mall/classprods' class="bottom_content {{ontabpage=='class_prods'?'on':''}}" open-type='reLaunch'>
+        <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/classs.png' class='bottom_img'></image>
+        <view class='bottom_wenzi' style="color:{{base_conf['color_primary']}}">分类</view>
+      </navigator>
+    </block>
+
+    <block wx:if="{{page_path == 'pages/mall/information'}}">
+      <view class="bottom_content {{ontabpage=='class_prods'?'on':''}}">
+        <image src='/images/information.png' class='bottom_img'></image>
+        <view class='bottom_wenzi' >潮流资讯</view>
+      </view>
+    </block>
+    <block wx:else>
+      <navigator url='/pages/mall/information' class="bottom_content {{ontabpage=='class_prods'?'on':''}}" open-type='reLaunch'>
+        <image src='/images/informationhd.png' class='bottom_img'></image>
+        <view class='bottom_wenzi' style="color:{{base_conf['color_primary']}}">潮流资讯</view>
+      </navigator>
+    </block>
+    
+
+    <block wx:if="{{page_path == 'pages/buycar'}}">
+      <view class="bottom_content {{ontabpage=='buycar'?'on':''}}">
+        <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/cars.png' class='bottom_img'></image>
+        <view class='bottom_wenzi' >购物车</view>
+      </view>
+    </block>
+    <block wx:else>
+      <navigator url='/pages/buycar' class="bottom_content {{ontabpage=='buycar'?'on':''}}" open-type='reLaunch'>
+        <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/carss.png' class='bottom_img'></image>
+        <view class='bottom_wenzi' style="color:{{base_conf['color_primary']}}">购物车</view>
+      </navigator>
+    </block>
+    <block wx:if="{{page_path == 'pages/main'}}">
+      <view class="bottom_content {{ontabpage=='main'?'on':''}}">
+        <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/center.png' class='bottom_img'></image>
+        <view class='bottom_wenzi'   >会员中心</view>
+      </view>
+    </block>
+    <block wx:else>
+      <navigator url='/pages/main' class="bottom_content {{ontabpage=='main'?'on':''}}" open-type='reLaunch'>
+        <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/centers.png' class='bottom_img'></image>
+        <view class='bottom_wenzi' style="color:{{base_conf['color_primary']}}">会员中心</view>
+      </navigator>
+    </block>
+
+  </view> -->
+</template>

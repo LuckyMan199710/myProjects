@@ -1,0 +1,18 @@
+<!--pages/motion/rule.wxml-->
+<view class="container">
+  <view class='imagesize'>
+    <image src="{{detailurl}}" class='in-image' mode='widthFix'>
+    </image>
+  </view>
+  <view class="rule_list">
+    <view class="item">
+      <view class="rule_tit">一、活动时间</view>
+      <view class="rule_con">{{begdate}}至{{enddate}}</view>
+    </view>
+    <view class="item">
+      <view class="rule_tit">一、活动描述</view>
+      <view class="rule_con">{{detail}}</view>
+    </view>
+  </view>
+</view>
+

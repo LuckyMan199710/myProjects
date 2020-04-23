@@ -1,0 +1,191 @@
+/**index.wxss**/
+.clear{
+  clear: both;
+}
+.friends{
+  border-bottom: solid 1px burlywood;
+  padding: 10px;
+  background: #fff;
+}
+.sort{
+  width: 33.33%;
+  display: inline-block;
+  text-align: center;
+  padding: 10px 0px;
+  border-bottom: solid 1px burlywood;
+}
+.friends .left{
+  width: 20%;
+  float: left;
+  text-align: center;
+}
+.friends image{
+  width: 100%;
+  height: 70px;
+  border-radius: 100%;
+}
+.friends .friends-item{
+  float: left;
+  width: 80%;
+}
+.friends_name{
+  height: 30px;
+
+}
+.friends_name label{
+  font-size: 11px;
+  margin-left: 8px;
+}
+.friends_name text{
+  font-size: 8px;
+  margin-left: 5px;
+}
+.vip-item{
+  display: inline-block;
+  width: 33.33%;
+}
+.vip-item view{
+  padding: 2px 0px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.share{
+  /*background: #8f5e24;*/
+  padding: 10px 0px;
+  margin: auto;
+  width: 50%;
+  color: #fff;
+  text-align: center;
+  margin-top: 50px;
+}
+.nofriend{
+  margin-top: 50px;
+  text-align: center;
+}
+.nofriend image{
+  width: 80px;
+  height: 100px;
+}
+.nofriend-on{
+  width: 100%;
+  font-size: 16px;
+  margin-top: 20px;
+}
+.onn{
+  color: #8f5e24;
+  border-bottom: 1px #8f5e24 solid;
+  font-weight: 800;
+}
+
+
+.myclass {
+  background: #fff;
+}
+.headclass {
+  height: 100rpx;
+  padding: 0rpx 20rpx;
+}
+.navigator-arrow {
+  padding-right: 20rpx;
+  position: relative;
+  margin-left: 24rpx;
+}
+
+.navigator-arrow:after {
+  content: " ";
+  display: inline-block;
+  height: 12rpx;
+  width: 12rpx;
+  border-width: 0 2rpx 2rpx 0;
+  border-color: #666666;
+  border-style: solid;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  top: 50%;
+  margin-top: -10rpx;
+  right: 20rpx;
+}
+.head-left {
+  width: 300rpx;
+  
+}
+.head-left .txt {
+  font-size: 26rpx;
+  color: #333;
+}
+.headclass .inputs {
+  width: 100%;
+  height: 60rpx;
+  background-color: #f7f8fa;
+  border-radius: 60rpx;
+  position: relative;
+}
+.headclass .inputs .close {
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  top: 15rpx;
+  right: 20rpx;
+}
+.headclass .inputs input {
+  color: #333333;
+  max-width: 400rpx;
+  font-size: 24rpx;
+  line-height: 60rpx;
+  height: 60rpx;
+  padding-left: 20rpx;
+}
+.headclass .inputs input::-webkit-input-placeholder {
+  color: #c5c6c8;
+  font-size: 24rpx;
+}
+
+
+.times {
+  height: 80rpx;
+}
+
+.times .time_ul {
+  height: 60rpx;
+}
+
+.times .time_ul .time_li {
+  height: 65rpx;
+  margin-left: 16rpx;
+  padding: 0 14rpx;
+  font-size: 28rpx;
+  color: #666666;
+  background-color: #f7f8fa;
+  border-radius: 30rpx;
+  line-height: 63rpx;
+}
+.times .time_ul .time_li.active {
+  background: #fdf0e9;
+  color: #e58b4e;
+}
+.times .zdytime .txt {
+  font-size: 28rpx;
+  color: #666666;
+}
+
+.start-end {
+  height: 160rpx;
+  padding: 0 20rpx;
+}
+
+.start-end .ll {
+  width: 340rpx;
+
+}
+.start-end .ll .start_tit {
+  font-size: 28rpx;
+  color: #666666;
+  line-height: 48rpx;
+}
+.start-end .ll .select {
+  font-size: 36rpx;
+  color: #333333;
+  line-height: 80rpx;
+  font-weight: bold;
+}

@@ -1,0 +1,65 @@
+<!--index.wxml-->
+<view class="container">
+
+	<view class="formPanel">
+		<form bindsubmit="formSubmit" bindreset="formReset">
+
+			<view class="section">
+				<text class="section_tit">收货姓名</text>
+				
+				<input type="text" value="{{inputData['relname']}}" name="relname" class="input_field" placeholder="请输入收货人名" bindinput='bindBlur' id="relname" />
+
+				<!-- <input wx:elif="{{item.type=='number'}}" type="number" name="{{item.name}}" class="input_field" placeholder="请输入{{item.text}}" bindblur='bindBlur' id="{{item.name}}" />
+				
+				<picker wx:elif="{{item.type=='date'}}" class="input_field" mode="date" name="{{item.name}}" value="{{inputData[item.name]}}" start="1900-01-01" bindchange="bindDateChange" id="{{item.name}}">
+					<view class="picker" wx:if="{{inputData[item.name]}}">{{inputData[item.name]}}</view>
+					<view class="picker" wx:else>请选择{{item.text}}</view>
+				</picker>
+
+				<picker wx:elif="{{item.type=='sex'}}" class="input_field" mode="selector" bindchange="bindSexChange" value="{{inputData[item.name] || 0}}" range="{{sex_codes.name}}" id="{{item.name}}">
+            <view class="picker weui-input">{{sex_codes.name[inputData[item.name] || 0 ]}}</view>
+        </picker> -->
+
+			</view>
+
+			<view class="section">
+				<text class="section_tit">手机号</text>
+				<input type="number" name="phone" class="input_field" placeholder="请输入联系手机号" bindinput='bindBlur' id="phone" value="{{inputData['phone']}}"/>
+			</view>
+      <view class="section">
+				<text class="section_tit">所在地区</text>
+        <picker class="input_field" mode="region" id="district" bindchange="bindDateChange" value="{{inputData['district']?inputData['district']:''}}">
+           <view class="picker" wx:if="{{inputData['district']}}">
+              {{inputData['district']}}
+            </view>
+            <view class="picker" wx:else>
+              请选择所在地区
+            </view>
+        </picker>
+      </view>
+			<!--<view class="section">
+				<text class="section_tit">省</text>
+				<input type="text" name="state" class="input_field" placeholder="请输入省" bindblur='bindBlur' id="state" value="{{inputData['state']}}"/>
+			</view>
+			<view class="section">
+				<text class="section_tit">市</text>
+				<input type="text" name="city" class="input_field" placeholder="请输入市" bindblur='bindBlur' id="city" value="{{inputData['city']}}"/>
+			</view>
+			<view class="section">
+				<text class="section_tit">区</text>
+				<input type="text" name="district" class="input_field" placeholder="请输入区" bindblur='bindBlur' id="district" value="{{inputData['district']}}"/>
+			</view>-->
+			<view class="section">
+				<text class="section_tit">详细地址</text>
+				<input type="text" name="address" class="input_field" placeholder="请输入详细地址" bindinput='bindBlur' id="address" value="{{inputData['address']}}"/>
+			</view>
+
+
+			<view class="section">
+					<button class="submit_btn on" size='mini' plain='true' formType="submit" style="background-color:{{base_conf.color_primary}}">保存</button>
+			</view>
+
+		</form>
+	</view>
+	<!-- formPanel end -->
+</view>

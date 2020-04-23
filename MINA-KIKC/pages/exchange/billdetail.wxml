@@ -1,0 +1,80 @@
+<!-- container -->
+<view class="container" wx:if="{{has_load}}">
+
+<view>
+	<view class="section_inner">订单状态：<text>{{order.status_name}}</text></view>
+	<view class="section_inner">创建日期：<text>{{order.created}}</text></view>
+</view>	
+
+<view class="section">
+	<view class="section_inner">
+		<view class="good" wx:for="{{order.goods}}" wx:for-index="idx" wx:for-item="item" wx:key="unique"  bindtap="bindProdDetail" data-plat_numiid="{{item.plat_num_iid}}" >
+			<view class="cover" wx:if="{{order.ordertype!='C'}}">
+				<image src="{{imgbase}}{{item.image_url}}"  class="slide-image"/>
+			</view>
+      <view class="prod_ctn">
+        <view class="prod_name">{{item.plat_num_name}} - {{item.color}} {{item.spec}}</view>
+        <view><text class="price">{{item.price}}积分</text><text style="margin-left:10px;">x {{item.qty}}</text></view>
+      </view>
+		</view>
+		<!-- end good -->
+	</view>
+	<view class="section_inner">
+    <!-- <view class='postfee'>运费：<text class="price">{{order_info.post_fee}}积分</text></view> -->
+    <view class='good_amt'>小计：<text class="price">{{order_info.prod_fee}}积分</text></view>
+    <view class='clear'></view>
+  </view>
+</view>
+
+<view class="section" wx:if="{{order_info.buyer_message}}">
+  <view class="section_inner">
+		<view>备注：{{order_info.buyer_message}}</view>
+	</view>
+</view>
+
+
+<view class="section">
+  <view class="section_inner">
+		<view>运费：<text class="price">{{order_info.post_fee}}积分</text></view>
+	</view>
+	<view class="section_inner">
+		<view>已支付：<text class="price">{{order_info.paypoint}}积分</text></view>
+	</view>
+</view>
+
+
+<!-- 配送方式 -->
+<view class='section'  wx:if="{{order.ordertype!='C'}}">
+	<block wx:if="{{order.deliver_type=='ONLINE'}}">
+	<view class="section_inner">
+		<view>
+			<view style="font-weight:bold;font-size:14px;">快递配送</view>
+			<view style="font-size:15px">{{order.receiver_name}} - {{order.receiver_phone}}</view>
+			<view>{{order.receiver_state}}-{{order.receiver_city}}-{{order.receiver_district}} {{order.receiver_address}}</view>
+		</view>
+	</view>
+	</block>
+	<block wx:else>
+			<view class="section_inner">
+				<view>
+					<view style="font-weight:bold;font-size:14px;">到店取货</view>
+					<view>取货门店：<text>{{order.pickshop.shop_name}}</text></view>
+					<view>门店地址：<text>{{order.pickshop.address}}</text></view>
+					<view>门店电话：<text>{{order.pickshop.phone}}</text></view>
+					<view>取货编码：<text>{{order.pickcode}}</text></view>
+				</view>
+			</view>
+	</block>
+</view>
+
+
+<!-- 
+<view class="section">
+	<view class="section_inner">
+		<button bindtap="BindPay" wx:if="{{exchageable}}" size='mini' plain='true' class="submit_btn on">积分支付</button>
+		<button  wx:else size='mini' plain='true' class="submit_btn off">积分不足</button>
+	</view>
+</view> -->
+
+</view>
+<!-- container end -->

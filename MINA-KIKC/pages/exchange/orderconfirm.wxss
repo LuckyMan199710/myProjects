@@ -1,0 +1,72 @@
+page{
+	background-color: #f7f7f7
+}
+
+.good{
+	border-bottom: 1px dashed #ddd
+}
+.good:last-child{
+	border-bottom:none;
+}
+
+.good::after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.good .cover{
+	width: 80px;
+	float: left;
+	margin-right: 5px;
+}
+.good .cover image{
+	width: 80px;
+  height:80px;
+}
+
+.good .prod_name{
+    padding-top: 10px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.price{
+  color: #f23030
+}
+
+.section{
+	margin-bottom: 15px;
+	
+}
+.section_inner{
+	background-color: #fff;
+	padding: 10px;
+}
+.vip_postfee_point{
+  float: left;
+  
+}
+.good_amt{
+  float: right;
+}
+.clear{
+  clear: both;
+}
+.addressList{font-size: 14px;}
+.deliverPanel{font-size: 14px;}
+.input_field{
+  width: 70%; 
+  float: left;
+}
+.inshopname{
+  float: left;
+  height: 25px;
+  line-height: 25px;
+}
+
+
+

@@ -1,0 +1,74 @@
+<!--index.wxml-->
+<view class="container content{{issubmit}} content{{isend}}" >
+  <image wx:if="{{olr.poster_image}}" src='{{imgbase}}{{olr.poster_image}}' mode='widthFix' class='banner'></image>
+
+  <view class='weui_media_box' wx:if="{{olr.notice && isend!='Y' && issubmit!='Y'}}">
+    <view class="weui_media_title">说明</view>
+    <rich-text nodes="{{olr.notice}}"></rich-text>
+  </view>
+
+  <view wx:if="{{isend=='Y'}}">
+    <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/issubmit.jpg' mode='widthFix' class='issubmitY_img'></image>
+    <view class='issubmitY'>报名已结束！</view>
+  </view>
+  <view wx:elif="{{issubmit=='Y'}}">
+    <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/issubmit.jpg' mode='widthFix' class='issubmitY_img'></image>
+    <view class='issubmitY'>你已经报过名啦！</view>
+  </view>
+  <view wx:else>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class="olrForm">
+
+        <view class="" wx:for="{{olrlabel}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+          <view wx:if="{{item.selected=='Y'}}">
+            <view class="fieldlabel">{{item.fieldlabel}}</view>
+            <view class=" " style="border:1px solid #ddd">
+
+              <view wx:if="{{item.fieldtype=='N'}}">
+                <input type="number" name="{{item.fieldname}}" class="input_field" placeholder="请输入{{item.fieldlabel}}" />
+              </view>
+
+              <view wx:elif="{{item.fieldtype=='D'}}">
+                
+                <picker class="input_field" mode="date" name="{{item.fieldname}}" start="1900-01-01" bindchange="bindDateChange" id="{{item.fieldname}}" value='{{data[item.fieldname]}}'>
+                  <view class='pickers'>
+                    <view class="picker" wx:if="{{data[item.fieldname]}}">
+                      {{data[item.fieldname]}}
+                    </view>
+                    <view class="picker" wx:else>
+                      请输入{{item.fieldlabel}}
+                    </view>
+                  </view>
+                </picker>
+              </view>
+
+              <view wx:elif="{{item.fieldtype=='L'}}">
+                 <view class="row-wrap">
+                    <picker mode="selector" id="{{item.fieldname}}" name="{{item.fieldname}}" bindchange="bindDateChange" value="{{item.listdata[data[item.fieldname]]}}" range="{{item.listdata}}">
+                      <view class="picker" wx:if="{{item.listdata[data[item.fieldname]]}}">
+                        {{item.listdata[data[item.fieldname]]}}
+                      </view>
+                      <view class="picker" wx:else>
+                        请输入{{item.fieldlabel}}
+                      </view>
+                    </picker>
+                  </view>
+              </view>
+
+              <view wx:else>
+                <input type="text" name="{{item.fieldname}}" class="input_field" placeholder="请输入{{item.fieldlabel}}" />
+              </view>
+
+            </view>
+          </view>     
+        </view>
+
+      </view>
+
+      <view class="section">
+					<button class="submit_btn on" size='mini' plain='true' formType="submit" style='background-color:{{base_conf["color_primary"]}}'>提交</button>
+			</view>
+    </form>
+  </view>
+</view>
+

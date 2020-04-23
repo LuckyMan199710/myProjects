@@ -1,0 +1,36 @@
+/**index.wxss**/
+page{
+ background:  #ff4200;
+}
+.container image{
+  width: 100px;
+  height: 100px;
+}
+.common{
+  text-align: center;
+  margin-top: 20px;
+  color:#fff;
+}
+.on{
+  border-radius: 50%;
+}
+
+.unagree_tip {
+	color:#fff;
+	font-size:13px;
+	padding:15px 5px;
+	text-align:center;
+}
+
+.unagree_reason {
+	color:#fff;
+	font-size:13px;
+	padding:0px 5px 30px 5px;
+	text-align:center;
+}
+
+.apply_btn {
+	color: #fff;
+	border-color:#e1962d;
+	background:#faa42b;
+}

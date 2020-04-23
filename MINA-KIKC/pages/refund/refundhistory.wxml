@@ -1,0 +1,43 @@
+<import src="../common/logis"/>
+<view class="container">
+  <view id="refundlist" class="section_inner" wx:for="{{refundlists}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+    <view class="item">
+    <navigator url="/pages/refund/detail?orderbill={{item['billno']}}&refund_id={{item['refund_id']}}">
+        <view >单号：{{item.refund_id}}</view>
+        <view >商品：{{item.plat_num_name}}-{{item.plat_sku_name}}</view>
+        <view >金额：<text class="price_txt">￥{{item.refund_fee}}</text> </view>
+        <view >状态：{{item.statusname}}</view>
+        <view>日期：{{item.created}}</view>
+        <view wx:if="{{item.relname}}">退货收货人：{{item.relname}}-{{item.phone}}</view>
+        <view wx:if="{{item.state}}">退货地址：{{item.state}}-{{item.city}}-{{item.district}}-{{item.address}}</view>
+    </navigator>
+    <view wx:if="{{(item['orderstatus']=='DD' || item['orderstatus']=='FF') && (item['status']=='SA')}}" class='getlogis' bindtap="logis" data-refundid="{{item['refund_id']}}" data-logis_company="{{item['logis_company']}}" data-retinvoiceno="{{item['retinvoiceno']}}" data-relname="{{item.relname}}-{{item.phone}}" data-address="{{item.state}}-{{item.city}}-{{item.district}}-{{item.address}}">
+      填写退货物流单
+    </view>
+    </view>
+  </view>
+  <view class="empty_msg" wx:if="{{refundlists.length<=0 && loaded }}"><view class="weui-msg__title">暂无记录</view></view>
+</view>
+
+<template is="comp_addlogis" data="{{hidden,logis_company,retinvoiceno,refundid,address,relname}}"/>
+<!--<view class='widget_wrap' hidden='{{hidden}}'>
+  <view class="logis">
+  <view class='closc' bindtap="hidden">X</view>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class="logis_item">
+        <text class="logis_tit">所选快递:</text>
+        <input type='text' name="logis_company" class="input_field" value="{{logis_company}}" placeholder="请输入快递名称" />
+        <view class='clear'></view>
+      </view>
+      <view class="logis_item">
+        <text class="logis_tit">快递单号:</text>
+        <input type='text' name="retinvoiceno" class="input_field" value="{{retinvoiceno}}" placeholder="请输入快递单号"  />
+        <view class='clear'></view>
+      </view>
+      <view class="logis_item">
+        <input type='text' hidden='true' name="refundid" value="{{refundid}}" />
+        <button class="submit_btn on" size='mini' plain='true' formType="submit">提交</button>
+      </view>
+    </form>
+  </view>
+</view>-->

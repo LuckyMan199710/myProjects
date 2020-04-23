@@ -1,0 +1,116 @@
+<!-- 单选框 -->
+<template name="radio-ques">
+  <view class="vote_ques_col{{q_format}}">
+		<radio-group class="radio-group" bindchange="radioChange" id="{{que_id}}">
+			<label class="radio" wx:for="{{sub_entity}}"  wx:for-index="idx1" wx:for-item="item2" wx:key="unique">
+				<radio value="{{item2.select_num}}" disabled="{{show_lastvote?true:false}}" checked="{{ item2.checked}}"/>
+				{{item2.select_title}}
+			</label>
+		</radio-group>
+  </view>
+</template>
+
+<!-- 多选框数据 -->
+<template name="checkbox-ques">
+  <view class="vote_ques_col{{q_format}}">
+		<checkbox-group bindchange="checkboxChange" id="{{que_id}}">
+			<label class="checkbox" wx:for="{{sub_entity}}"  wx:for-index="idx1" wx:for-item="item2" wx:key="unique">
+				<checkbox value="{{item2.select_num}}" disabled="{{show_lastvote?true:false}}" checked="{{item2.checked}}"/>{{item2.select_title}}
+			</label>
+		</checkbox-group>
+  </view>
+</template>
+
+
+<!-- 多选框数据 -->
+<template name="child-ques">
+  <view class="child_ques child_ques_{{shape}}">
+		<view class="table" style="table-layout:fixed;">
+			<view class="table__h">
+				<view class="first_cell"></view>
+				<view wx:for="{{sub_entity}}"  wx:for-index="idx" wx:for-item="item" wx:key="unique"><rich-text nodes="{{item.select_title || ''}}"></rich-text></view>
+			</view>
+      
+			<view class="table__r table__r{{shape}}" wx:for="{{child_ques}}"  wx:for-index="idx2" wx:for-item="item2" wx:key="unique">
+				<view class="first_cell">{{item2.child_txt}}</view>
+				<block wx:for="{{sub_entity}}"  wx:for-index="idx" wx:for-item="item" wx:key="unique">
+					<view wx:if="{{item.select_num <= item2._result_  }}"  class="star_wrap shape_{{shape}} on"  bindtap='bindChangeChildQues' id="{{que_id+'__'+item2.child_code+'__'+item.select_num+'__'+idx2}}">
+						<block wx:if="{{shape=='star'}}">
+						<image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/xing2.png' style='width:28px;height:28px;'></image>
+						</block>
+						<block wx:elif="{{shape=='ball'}}">
+						<image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/ball2.png' style='width:28px;height:28px;'></image>
+						</block>
+						<block wx:else>
+						<i class="star"></i>
+						</block>
+					</view>
+					
+					<view wx:else class="star_wrap shape_{{shape}}"  bindtap='bindChangeChildQues' id="{{que_id+'__'+item2.child_code+'__'+item.select_num+'__'+idx2}}">
+						<block wx:if="{{shape=='star'}}">
+						<image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/xing1.png' style='width:28px;height:28px;'></image>
+						</block>
+						<block wx:elif="{{shape=='ball'}}">
+						<image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/ball.png' style='width:28px;height:28px;'></image>
+						</block>
+						<block wx:else>
+						<i class="star"></i>
+						</block>
+					</view>
+				</block>
+			</view>
+      
+      
+		</view>
+  </view>
+</template>
+
+<!-- textarea输入框 -->
+<template name="textarea-ques">
+  <view class="">
+		<textarea bindblur="bindBlur"  class="input_field"  id="{{que_id}}" disabled="{{show_lastvote?true:false}}" value="{{last_value?last_value:_result}}"/>
+  </view>
+</template>
+
+<!-- 文本输入框 -->
+<template name="txt-ques">
+  <view class="">
+		<input bindblur="bindBlur" type="text" class="input_field" id="{{que_id}}" disabled="{{show_lastvote?true:false}}" value="{{last_value?last_value:_result}}"/> 
+  </view>
+</template>
+
+
+<!-- 日期输入框 -->
+<template name="date-ques">
+  <view class="">
+		<picker mode="date" value="{{result}}" bindchange="bindDateChange" id="{{que_id}}" disabled="{{show_lastvote?true:false}}">
+			<view class="picker input_date">
+				{{result || last_value || '请选择'}}
+			</view> 
+		</picker>
+  </view>
+</template>
+
+
+
+<!-- 图片选择 -->
+<template name="image-ques">
+  <view class="vote_ques_col{{q_format}}">
+
+		<radio-group wx:if="{{pic_type=='S'}}" class="radio-group" bindchange="radioChange" id="{{que_id}}">
+			<label class="img_radio" wx:for="{{sub_entity}}"  wx:for-index="idx1" wx:for-item="item2" wx:key="unique">
+				<radio value="{{item2.select_num}}" checked="{{item2.checked}}" disabled="{{show_lastvote?true:false}}"/>
+				<image src="{{imgbase2+item2.pic}}" mode="widthFix"/>
+        <view class='select_title'>{{item2.select_title}}</view>
+			</label>
+		</radio-group>
+    <checkbox-group wx:if="{{pic_type=='M'}}" bindchange="checkboxChange" id="{{que_id}}">
+			<label class="img_radio" wx:for="{{sub_entity}}"  wx:for-index="idx1" wx:for-item="item2" wx:key="unique">
+        <checkbox value="{{item2.select_num}}" checked="{{item2.checked}}" disabled="{{show_lastvote?true:false}}"/>
+				<image src="{{imgbase2+item2.pic}}" mode="widthFix"/>
+        <view class='select_title'>{{item2.select_title}}</view>
+			</label>
+		</checkbox-group>
+
+  </view>
+</template>

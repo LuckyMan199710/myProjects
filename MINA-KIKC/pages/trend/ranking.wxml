@@ -1,0 +1,34 @@
+<!--pages/trend/ranking.wxml-->
+<view class="ranking">
+  <view class="header">
+    <view class="banner">
+      <image src="{{imgurl}}wap/images/ruleBanner{{base_conf.compid}}.jpg?v={{random}}" mode='aspectFill'></image>
+    </view>
+  </view>
+  <view class="myself box">
+    <view class="num">NO.{{myself.vip_rank}}</view>
+    <view class="info_img">
+      <image src="{{myself.headimgurl ? myself.headimgurl : '/images/center.png'}}"></image>
+    </view>
+    <view class="info_name">{{myself.nicker ? myself.nicker : myself.vip_num}}</view>
+    <view class="integral box">
+      <view class="dd">{{myself.point_total || 0}}</view>
+      <image src="/images/icon_heat.png"></image>
+    </view>
+  </view>
+  <scroll-view scroll-y bindscrolltolower="handleReach" style="height: {{height - 500}}rpx;" scroll-top="{{scrollTop}}">
+    <view class="ranklist">
+      <view class="item box" wx:for="{{ranklist}}" wx:key="{{item.vip_num}}">
+        <view class="num">NO.{{item.rank}}</view>
+        <view class="info_img" data-vipid="{{item.vip_id}}" bindtap="handleDetail">
+          <image src="{{item.headimgurl ? item.headimgurl : '/images/center.png'}}"></image>
+        </view>
+        <view class="info_name">{{item.nicker ? item.nicker : item.vip_num}}</view>
+        <view class="integral box">
+          <view class="dd">{{item.point_total || 0}}</view>
+          <image src="/images/icon_heat.png"></image>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

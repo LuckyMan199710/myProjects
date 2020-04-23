@@ -1,0 +1,192 @@
+.f-cb:after{content:'';display:block;clear:both;}
+#valsetList{padding:0 12px;}
+#valsetList .taocanitem{padding:3px;width:33.3333%;float:left;}
+#valsetList .m-taocanset{padding:5px 2px;text-align:center;}
+.m-taocanset text.hd{font-size:15px;}
+.m-taocanset text.bd{display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;overflow: hidden;}
+
+.weui_cell_ft {border-color: #c8c8cd;border-style: solid;border-width: 2px 2px 0 0;content: " ";display: inline-block;height: 6px;margin-left: 0.3em;margin-bottom: 0.2em;position: relative;top: -1px;transform: rotate(45deg);width: 6px;}
+.vipcard{padding:10px 15px;text-align:center;}
+.vipcard__left{    -webkit-box-flex: 1;}
+
+.vipcard__right {width: 50px;height:100%;margin:0 auto;}
+.vipcard__logo{width:100%;height:50px;overflow:hidden;}
+.vipcard__logo image{width:100%;height:100%;}
+.flexcell{padding:10px 15px;display:-webkit-box;}
+.flexcell__left{    -webkit-box-flex: 1;min-width:50%;font-size: 15px;}
+.recharge__title{margin:0 15px;padding:20px 0 10px 0;font-size: 15px;}
+.vipaccount{border-bottom:1px solid #ddd;margin:0 15px;padding:10px 0 20px 0;}
+
+.vipcard__num{font-size:20px;letter-spacing:2px;font-weight:bold;line-height:50px;}
+.vipcard__logo{border-radius:50%;}
+
+.m-taocanset {
+  padding: 5px;
+  border: 1px solid #70aa43;
+  border-radius: 5px;
+}
+.m-taocanset text{
+  padding: 5px 0;
+  color: #70aa43;
+}
+.m-taocanset .hd {
+  font-size: 15px;
+}
+.m-taocanset .bd {
+  font-size: 12px;
+}
+
+/**绑定充值卡**/
+ .dialog{
+  background: rgba(0,0,0,0.6);
+  width: 100%;
+  position: fixed;
+  box-sizing: border-box;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 500;
+}
+.dialogWrap{
+  width:100%;
+  height:100%;
+  position: relative;
+} 
+.dialogCtn{
+  position:absolute;
+  width:500rpx;
+  background:#fff;
+  height:290rpx;
+  top:50%;
+  left:50%;
+	transform:translate(-50%, -50%);
+}
+
+page{
+	background-color: #f7f7f7;
+}
+
+.formPanel{
+  padding-top: 0px;
+  overflow: hidden;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+}
+.formPanel .cell{
+  padding: 0 15px;
+  border-bottom: 1px solid #eee;
+}
+.formPanel .cell_hd{
+  width: 60px;
+  font-size:15px;
+  /*max-height:40px;*/
+  line-height: 0;
+  display: inline-block;
+  text-align:justify;
+  text-justify:distribute-all-lines;/*ie6-8*/
+  text-align-last:justify;/* ie9*/
+  -moz-text-align-last:justify;/*ff*/
+  -o-text-align-last:justify;/*ff*/
+  -webkit-text-align-last:justify;/*chrome 20+*/
+}
+.formPanel .input_field{
+	border: 0px solid #fff;
+}
+.formPanel .cell_bd{
+  padding: 0;
+}
+.section{
+	position: relative;
+}
+.section_tit{
+	padding:10px 15px;
+	display: block;
+  background-color: #f7f7f7;
+  font-weight: 600;
+}
+
+.input_field{
+	padding: 10px 15px;
+  font-size: 15px;
+}
+
+.input_field{
+  position: relative;
+
+}
+input.input_field:focus{
+	border-bottom: 2px solid #c40;
+}
+
+.picker{
+  display: inline-block;
+  width: 100%;
+}
+
+.fakeplaceholder{
+  color:#888;
+}
+
+.pone{
+  display: inline-block;
+  width: 80%
+}
+.labelname{
+  padding: 5px 10px;
+  border: 1px #8f5e24 solid;
+  margin-left: 10px;
+  margin-top: 10px;
+  float: left;
+}
+
+.extend_cell-wrap .cell{
+  border-bottom: none;
+}
+.tag_radio label.labelIpt {
+    height: 36px;
+    width: 40%;
+    box-sizing: border-box;
+}
+/* 按钮 button */
+.submitbtn{
+  background-color: #83cc2b;
+	color: #fff;
+}
+/* 按钮 */
+.submitbtn-wrap{
+  text-align: center;
+  padding: 40rpx 0;
+}
+
+.submitbtn-a{
+  display: inline-block;
+  width:100px;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #f60;
+	color: #fff;
+  font-size:16px;
+}
+
+/* 模拟单元格cell */
+.cell{
+  display: -webkit-box;
+  -webkit-box-align: center; 
+}
+
+.cell_bd{
+  padding: 15px 0;
+	-webkit-box-flex: 1;
+}
+.cell_bd .cell_bd_font{
+  color: #ccc; 
+  font-size: 12px;
+   margin-left: 5px;
+}
+.cell_ctn{
+  padding-left: 15px;
+  color:#A3A5AA;
+}
+.cell_ft{
+  vertical-align: middle;
+}

@@ -1,0 +1,22 @@
+<import src="../common/bottom" />
+
+<view class="container">
+  <scroll-view class="bigWrap" scroll-y="true" height="-50">
+    <view class="list" wx:if="{{infor_list.length > 0 }}">
+      <navigator url="/pages/mall/informationdetail?id={{item.id}}" class="item" wx:for="{{infor_list}}" wx:for-item="item">
+        <image src="{{imgbase}}{{item.image_url}}" mode="aspectFill"></image>
+        <view class="content">
+          <view class="title">{{item.title}}</view>
+          <view class="date">{{item.createdate}}</view>
+        </view>
+      </navigator>
+    </view>
+    <view class="undata" wx:else>
+      暂无潮流资讯
+    </view>
+  </scroll-view>
+
+  <view class="control_bottom clearfix">
+    <template is="control_bottom" data="{{ontabpage,page_path,base_conf}}" />
+  </view>
+</view>

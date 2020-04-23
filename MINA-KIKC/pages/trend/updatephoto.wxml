@@ -1,0 +1,32 @@
+<!--pages/trend/updatephoto.wxml-->
+<view class="container">
+  <view class="upload">
+    <view class="img_nav">
+      <image src="{{photourl}}"></image>
+    </view>
+    <view class="Label">
+      <view class="ul">
+        <view class="li">{{sys_name}}</view>
+      </view>
+    </view>
+    <view class="list">
+      <view class="item box" wx:for="{{labelList}}" wx:key="key">
+        <view class="desc">{{item}}</view>
+        <view class="reduce" bindtap='handleReduce' data-index="{{index}}">
+          <image src="/images/icon_reduce.png"></image>
+        </view>
+      </view>
+    </view>
+    <view class="floor">
+      <view class="mybtn">
+        <view class="inputBox box">
+          <input placeholder='特色标签可点击加号，自定义标签请输入' class="zdy_input" placeholder-class="input_holder" value='{{content}}' bindinput="bindinput"></input>
+          <view class="add">
+            <image src="/images/icon_add.png" bindtap="handleAdd"></image>
+          </view>
+        </view>
+        <button class="kfbt submit" bindtap="handleSubmit">确定添加</button>
+      </view>
+    </view>
+  </view>
+</view>

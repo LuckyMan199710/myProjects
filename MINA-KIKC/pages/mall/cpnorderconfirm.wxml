@@ -1,0 +1,28 @@
+<!-- container -->
+<view class="container">
+	<view class="section coupon_bannar">
+		<view class="coupon_tit">{{coupon.title}}</view>
+		<view class="coupon_amt">抵现金额￥{{coupon.amount || '-'}}</view>
+		<view class="coupon_amt">有效期:{{coupon.dateval}}</view>
+		<!-- <view class="coupon_amt" wx:else>{{coupon.amount*10}}折</view> -->
+	</view>
+	<view class="section">
+		<view style=" margin:10px;">
+		使用说明:
+		</view>
+		<view wx:if="{{coupon.remark}}" style="margin:10px;margin-top:5px; color:#c40;white-space:pre-line;">{{coupon.remark}}</view>
+		<view class="section_inner">数量：1</view>
+	</view>
+	<view class="section">
+		<view class="section_inner">
+			<view>共需支付：<text style="color:#f23030">￥{{coupon.buy_amount}}</text></view>
+		</view>
+	</view>
+	<view class="section">
+		<view class="section_inner">
+			<button wx:if="{{!msg}}" bindtap="BindPay" size='mini' plain='true' class="submit_btn on" style='background-color:{{base_conf.color_primary}};'>微信支付</button>
+			<button wx:else  size='mini' plain='true' class="submit_btn on" style='background-color:#ddd;'>{{msg}}</button>
+		</view>
+	</view>
+</view>
+<!-- container end -->

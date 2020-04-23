@@ -1,0 +1,54 @@
+/**index.wxss**/
+page{
+	background-color: #f7f7f7;
+}
+.container{
+	background-color: #fff;
+}
+
+
+
+
+.formPanel{
+	padding: 20rpx;
+}
+
+.section{
+	margin-top: 30rpx;
+	margin-bottom: 40rpx;
+	position: relative;
+}
+.section_tit{
+	margin-bottom: 20rpx;
+	display: block;
+}
+
+.input_field{
+	line-height: 1.4rem;
+	
+}
+.sms_btn{
+	position:absolute;
+	right: 0;
+	top:0;
+}
+
+button.submit_btn.on{
+  color: #fff;
+	background-color: #004D9F;
+	display: block;
+}
+
+.input_field{
+	border-bottom: 1px solid #ddd;
+}
+input.input_field:focus{
+	border-bottom: 2px solid #c40;
+}
+
+.activity_shop{
+	padding: 10px;
+}
+.shop_name{
+	text-decoration: underline;
+}

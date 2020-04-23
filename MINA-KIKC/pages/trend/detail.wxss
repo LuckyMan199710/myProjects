@@ -1,0 +1,13 @@
+/* pages/trend/detail.wxss */
+
+.banner {
+  width: 100%;
+  height: 120rpx;
+  position: relative;
+}
+
+.banner image {
+  width: 100%;
+  height: 120rpx;
+  overflow: hidden;
+}

@@ -1,0 +1,72 @@
+<!--index.wxml-->
+<import src="../common/nav"/>
+<import src="../common/bottom" />
+<view class="container">
+  <view class="pointProfile" style='border-bottom:1px solid {{base_conf.color_primary}};'>
+		<!-- <text> -->
+		<navigator url="/pages/vip/point">当前积分余额：<text style="text-decoration:underline;color:#000;">{{vip_point||0}}</text></navigator>
+		<!-- </text> -->
+		<navigator class="pointProfile_r" url="/pages/exchange/exchhistory">我的兑换订单</navigator>
+	</view>
+  <view class="control_bottom clearfix">
+    <template is="control_bottom" data="{{ontabpage,page_path,base_conf}}" />
+  </view>
+
+	<!-- exc__coupon start -->
+	<view wx:if="{{coupons.length>0}}">
+		<view class="exc__coupon">
+			<view class="exc__coupon_tit">
+				<text class="exc__coupon__tip" style='color:{{base_conf.color_primary}};border-bottom:1px solid {{base_conf.color_primary}};'>优惠券</text>
+				<text class="exc__coupon__titr" style='color:{{base_conf.color_primary}};' bindtap='bindLoadMore' id="cpn">更多可兑换券></text>
+			</view>
+			<view class="coupon" style="background-image:url('{{imgbase+item.cpn_bg}}')" wx:for="{{coupons}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+				
+				<view class="coupon__r {{item.cpn_bg?'hasbg':''}}" style="border-right: 2px dashed {{item.cpn_bg?'':base_conf.color_primary}} ; " >
+					<view class="coupon__tit" style="color: {{item.cpn_bg?'#fff':base_conf.color_primary}}">{{item.title}}</view>
+					<!-- <view class="coupon__sub">{{item.use_notice}}</view> -->
+					<view>使用期限：{{item.enddate}}</view> 
+					<view>所需积分：{{item.point}}
+						<text wx:if="{{item.excable=='Y'}}" class="tag redtag">可兑换</text>
+						<text wx:else class="tag disabletag">不可兑换</text>
+					</view> 
+				</view>
+				<view class="coupon__l {{item.cpn_bg?'hasbg':''}}" id="{{item.exch_id}}" bindtap='bindExchCpn' data-exchable="{{item.excable}}" style="color: {{item.cpn_bg?'':base_conf.color_primary}};">立即兑换</view>
+			</view>
+			<!-- <view class="more more-bt" bindtap='bindLoadMore' id="cpn" wx:if="{{!is_cpn_loadmore}}">查看更多</view> -->
+
+		</view>	
+	</view>
+	<!-- exc__coupon end -->
+
+	<!-- exc__product start -->
+	<view wx:if="{{prods.length>0}}">
+		<view class="exc__product">
+			<!-- <view class="section_tit">礼品</view> -->
+			<view class="exc__coupon_tit">
+				<text class="exc__coupon__tip" style='color:{{base_conf.color_primary}};border-bottom:1px solid {{base_conf.color_primary}};'>礼品</text>
+				<text class="exc__coupon__titr" style='color:{{base_conf.color_primary}};' bindtap='bindLoadMore' id="prod">更多可兑礼品></text>
+			</view>
+			<view class="product" wx:for="{{prods}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+					<view class="product__wrapper">
+						<navigator url='/pages/exchange/proddetail?plat_num_iid={{item.plat_num_iid}}' class="product__cover">
+							<image src="{{imgbase}}{{item.cover}}"></image>
+              <view wx:if="{{!item.stockqty}}" class="noqty_tip">没有库存</view>
+						</navigator> 
+						<view class="product__info">
+							<view class="product__name">{{item.plat_num_name}}</view>
+							<view>积分{{item.minprice}}
+								<text wx:if="{{item.excable=='Y'}}" class="tag redtag">可兑换</text>
+								<text wx:else class="tag disabletag">积分不足</text>
+							</view>
+						</view>
+					</view>
+			</view>
+		</view>
+		<!-- <view class="more more-bt" bindtap='bindLoadMore' id="prod" wx:if="{{!is_prod_loadmore}}">查看更多</view> -->
+	</view>
+	<!-- exc__product end -->
+
+</view>
+
+<!-- 右侧导航栏 -->
+<template is="control_nav"  data="{{navhidden:navhidden,base_conf}}"/>

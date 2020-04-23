@@ -1,0 +1,9 @@
+<!--pages/mall/find.wxml-->
+
+<import src="../common/bottom" />
+
+<view class="container">
+  <view class="control_bottom clearfix">
+    <template is="control_bottom" data="{{ontabpage,page_path,base_conf}}" />
+  </view>
+</view>

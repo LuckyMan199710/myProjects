@@ -1,0 +1,26 @@
+<!--index.wxml-->
+<import src="../common/nav"/>
+<view class="container">
+
+  <view class='common'>
+    <image src='{{headimgurl}}' mode='widthFix' class='on'></image>
+  </view>
+
+  <view class='common'>
+    <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/moneypoket.png' mode='widthFix'></image>
+  </view>
+  <view class='common' wx:if="{{status==1}}">
+    授权审核中...
+  </view>
+  <view class='common' wx:elif="{{status==2}}">
+    <view style="margin-bottom:20px;">您已消费{{vipmoney}}元，申请授权分销员，您需要消费{{leftmoney}}元</view>
+    <button style="color:#fff;border-color:#e1962d;background:#faa42b;" size='mini' plain='true' bindtap="shopping">前往商城</button>
+  </view>
+  <view class='common' wx:elif="{{status==4}}">
+    <view class="unagree_tip">您的申请没有通过，请联系客服咨询详情</view>
+    <view class="unagree_reason" wx:if="{{remarks}}">未通过原因：{{remarks}}</view>
+    <button class="apply_btn" style="color: #fff;border-color:#e1962d;background:#faa42b;" size='mini' plain='true' bindtap="reapply">重新申请</button>
+  </view>
+</view>
+<!-- 右侧导航栏 -->
+<template is="control_nav"  data="{{navhidden:navhidden,base_conf}}"/>

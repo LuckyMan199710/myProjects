@@ -1,0 +1,23 @@
+<view style='text-align:center;font-size:15px;padding:30px 0;'>
+  当前余额 <text style='color:#EA4343;font-weight:bold;'>{{amount}}</text> 元
+</view>
+
+<view class="weui_cells" style="font-size:15px;">
+  <view class="weui_panel_hd">最近账务明细</view>
+  <view class="weui_panel_bd">
+    <block wx:if="{{account_detail.length>0}}">
+        <view class="weui_cell" wx:for="{{account_detail}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+          <view class="weui_cell_bd weui_cell_primary">
+            <view>{{item['busstxt']}}</view>
+            <view>日期{{item['work_date']}}</view>
+          </view>
+          <view class="weui_cell_ft" wx:if="{{item['amount']<0}}"  style='color:#04BE02;font-weight:bold;'>{{item['amount']}}元</view>
+          <view class="weui_cell_ft" wx:else style='color:#EA4343;font-weight:bold;'>{{item['amount']}}元</view>
+        </view>
+    </block>
+    <block wx:else>
+      <view style="padding:30px 0;text-align:center;">暂无明细</view>
+    </block>
+  </view>
+   
+</view>

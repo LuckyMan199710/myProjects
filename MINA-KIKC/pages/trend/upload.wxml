@@ -1,0 +1,47 @@
+<!--pages/trend/upload.wxml-->
+<view class="container">
+  <view class="upload">
+    <view class="img_nav">
+      <image src="{{canvasImg}}"></image>
+    </view>
+    <view class="Label">
+      <view class="ul">
+        <view class="li" wx:for="{{sys_label}}" wx:key="{{index}}">{{item}}</view>
+      </view>
+    </view>
+    <view class="list">
+      <view class="item box" wx:for="{{labelList}}" wx:key="key">
+        <view class="desc">{{item}}</view>
+        <view class="reduce" bindtap='handleReduce' data-index="{{index}}">
+          <image src="/images/icon_reduce.png"></image>
+        </view>
+      </view>
+    </view>
+    <view class="floor">
+      <view class="mybtn">
+        <view class="inputBox box">
+          <input placeholder='特色标签可点击加号，自定义标签请输入' class="zdy_input" placeholder-class="input_holder" value='{{content}}' bindinput="bindinput"></input>
+          <view class="add">
+            <image src="/images/icon_add.png" bindtap="handleAdd"></image>
+          </view>
+        </view>
+        <button class="kfbt submit" bindtap="handleSubmit">确定添加</button>
+      </view>
+    </view>
+  </view>
+  <view class="timechoose" wx:if="{{uploadToggle == 'Y'}}">
+    <view class="content">
+      <view class="tips box">
+        <view class="tit">上传成功</view>
+        <view class="ul">
+          <view class="li">现在为你的照片添加主题标签吧！</view>
+          <view class="li">别忘加这一步喔，</view>
+          <view class="li">更好地定义你的照片会让它受到</view>
+          <view class="li">更多红人的关注！</view>
+        </view>
+        <button class="kfbt mybtn" bindtap='handleclose'>我知道了</button>
+      </view>
+    </view>
+    <view class="mark"></view>
+  </view>
+</view>

@@ -1,0 +1,17 @@
+<!-- 右侧导航 -->
+<template name="control_nav">
+  <view class="fixed">
+    <image class="open" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/zangkai.png' bindtap='nav'></image>
+    <view class="nav" hidden='{{navhidden}}'>
+      <view class="triangle_border_up"></view>
+      <navigator class="nav-ti" url="/pages/mall/main">
+        <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/index-right.png' class='nav_img' mode="scaleToFill"></image>
+        首页
+      </navigator>
+      <navigator class="nav-ti" url="/pages/main">
+        <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/center-right.png' class='nav_img' mode="scaleToFill"></image>
+        会员中心
+      </navigator>
+    </view>
+  </view>
+</template>

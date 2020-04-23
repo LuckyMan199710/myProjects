@@ -1,0 +1,4 @@
+<!--index.wxml-->
+<view class="container">
+	<image style="width:100%" class="rule_img" src="{{imgbase}}{{img}}" mode='widthFix' class="slide-image"/>
+</view>

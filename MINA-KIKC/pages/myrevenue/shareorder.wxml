@@ -1,0 +1,93 @@
+<!--index.wxml-->
+<view class="container" >
+  <!-- <view class="classlist box">
+    <view class="item {{ selected == index ? 'active' : ''}}" wx:for="{{navlist}}" wx:for-index="index"  wx:for-item="item" data-id="{{item.id}}" bindtap="handleNav">
+      {{item.name}}
+    </view>
+  </view> -->
+  <view class="myclass">
+    <view class="headclass box box-align-center">
+      <view class="head-left box">
+        <!-- <view class="txt">分享</view> -->
+        <picker bindchange="bindPickerChange" value="{{navIndex}}" range="{{navlist}}" range-key="name">
+          <view class="box box-align-center flex">
+            <view class="txt">
+              {{navlist[navIndex].name}}
+            </view>
+            <view class="navigator-arrow"></view>
+          </view>
+          
+        </picker>
+        
+      </view>
+      <view class="inputs flex">
+        <input type="text" value="{{code}}" bindinput="handleInput" bindconfirm="handleConfirm" placeholder="输入客户手机号或订单号搜索" confirm-type="search" />
+          <image wx:if="{{code}}" src="/pages/image/icon_close.png" class="close" bindtap="handleClear"></image>
+      </view>
+    </view>
+    <view class="times box box-align-center">
+      <view class="time_ul box box-align-center">
+        <view class="time_li {{time_type == '' ? 'active' : ''}}" data-type="" bindtap="handleSetTime">全部</view>
+        <view class="time_li {{time_type == 'today' ? 'active' : ''}}" data-type="today" bindtap="handleSetTime">今日</view>
+        <view class="time_li {{time_type == 'yestoday' ? 'active' : ''}}" data-type="yestoday" bindtap="handleSetTime">昨日</view>
+        <view class="time_li {{time_type == 'week' ? 'active' : ''}}" data-type="week" bindtap="handleSetTime">近七日</view>
+      </view>
+      <view class="flex"></view>
+      <view class="zdytime box" bindtap="handleCustom">
+        <view class="txt">自定义时间</view>
+        <view class="navigator-arrow"></view>
+      </view>
+    </view>
+    <view class="start-end box box-align-center" wx:if="{{timeToggle}}">
+      <view class="ll">
+        <view class="start_tit">开始时间</view>
+        <picker mode="date" value="{{start_date}}" start="2015-09-01" end="{{end_time}}" bindchange="bindStartDateChange">
+          <view class="select" wx:if="{{start_date}}">
+            {{start_date}}
+          </view>
+          <view class="select" wx:else>
+            请选择
+          </view>
+        </picker>
+
+      </view>
+      <view class="flex"></view>
+      <view class="ll">
+        <view class="start_tit">结束时间</view>
+        <picker mode="date" value="{{end_date}}" start="2015-09-01" end="{{end_time}}" bindchange="bindEndDateChange">
+          <view class="select" wx:if="{{end_date}}">
+            {{end_date}}
+          </view>
+          <view class="select" wx:else>
+            请选择
+          </view>
+        </picker>
+      </view>
+    </view>
+
+
+  </view>
+  <view class="myclassHL"></view>
+
+  <view class="container-out" wx:key="unique" wx:for="{{orderlist}}"  wx:for-index="idx" wx:for-item="item">
+    <view class='left'>
+      <view class='orderno commom'>订单号:{{item.billno}}</view>
+      <view class='commom'>订单金额:{{item.total_fee}}</view>
+      <view class='commom'>退货金额:{{item.return_amount}}</view>
+      <view class='commom' wx:if="{{item.status=='NP' || item.status=='PD' }}">预计提成金额:尚未计算收益</view>
+      <view class='commom' wx:else>预计提成金额:￥{{item.amount}}</view>
+      <view class='commom'>订单日期:{{item.created}}</view>
+      <view class='commom'>好友姓名:{{item.vip_name}}</view>
+      <view class='commom'>分销等级:{{item.revenue_level}}</view>
+    </view>
+    <view class='right'>
+      {{item.statusname}}
+    </view>
+    <view class='clear'></view>
+  </view>
+  <view class='noorder' wx:if="{{!orderlist}}">
+    <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/orderlist2.png'></image>
+    <view class='noorder-on'>您还没有相关订单</view>
+  </view>
+</view>
+

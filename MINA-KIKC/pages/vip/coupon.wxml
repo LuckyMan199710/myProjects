@@ -1,0 +1,120 @@
+<!--index.wxml-->
+<import src="../common/nav"/>
+<view class="container">
+
+  <view class="coupon_tab">
+    <view class="navtab">
+      <view class="navtab__item" style='background-color:{{curType=="W"?base_conf.color_primary:"#333333"}};' bindtap="switchTab" id="W">待领取<text style="display:block;">({{coupons['W'].length}})</text></view>
+      <view class="navtab__item" style='background-color:{{curType=="E"?base_conf.color_primary:"#333333"}};' bindtap="switchTab" id="E">可兑换<text style="display:block;">({{coupons['E'].length}})</text></view>
+      <view class="navtab__item" style='background-color:{{curType=="V"?base_conf.color_primary:"#333333"}};' bindtap="switchTab" id="V">未使用<text style="display:block;">({{coupons['V'].length}})</text></view>
+      <view class="navtab__item" style='background-color:{{curType=="U"?base_conf.color_primary:"#333333"}};' bindtap="switchTab" id="U">已使用<text style="display:block;">({{coupons['U'].length}})</text></view>
+      <view class="navtab__item" style='background-color:{{curType=="O"?base_conf.color_primary:"#333333"}};margin-right:0px;' bindtap="switchTab" id="O">已过期<text style="display:block;">({{coupons['O'].length}})</text></view>
+    </view>
+  </view>
+
+  <view class="my__coupon">
+  	<block wx:if="{{curType != 'W' && curType != 'E'}}">
+    <view style="position:relative;" wx:key="unique" wx:for="{{coupons[curType]}}" bindtap="{{(curType=='O' || curType=='U')?'':'bindViewCoupon'}}" wx:for-index="idx" wx:for-item="item" class="coupon {{curType=='O'?'coupon_outdate':''}}" id="{{item.billno}}">
+				<!-- <view class="coupon__l" wx:if="{{item.coupon_type=='DISCOUNT'}}">{{item.amount*10}}折</view>
+				<view class="coupon__l" wx:else>{{item.amount}}元</view> -->
+				<view class="coupon__r" style='background-color: {{base_conf.color_primary}};' wx:if="{{item.bg_image}}" style="background-image:url('{{imgbase+item.bg_image}}');background-size:100% 120px;{{(curType=='O' || curType=='U')?'opacity:0.4;':''}}">
+					<view class="coupon__tit">{{item.title}}</view>
+					<view class="coupon__sub">{{item.use_notice}}</view>
+					<view>使用期限：<text>{{item.startdate}}至{{item.enddate}}</text></view>
+          <view wx:if="{{item.coupon_type === 'CASH'}}">面额： <text>{{item.amount}}元</text></view>
+          <view wx:elif="{{item.coupon_type === 'DISCOUNT'}}">折扣： <text>{{item.amount*100/100}}折</text></view>
+				</view>
+				
+				<view class="coupon__r" style="background-color: {{base_conf.color_primary}};{{(curType=='O' || curType=='U')?'opacity:0.4;':''}}" wx:else>
+					<view class="coupon__tit">{{item.title}}</view>
+					<view class="coupon__sub">{{item.use_notice}}</view>
+					<view>使用期限：<text>{{item.startdate}}至{{item.enddate}}</text></view>
+          <view wx:if="{{item.coupon_type === 'CASH'}}">面额： <text>{{item.amount}}元</text></view>
+          <view wx:elif="{{item.coupon_type === 'DISCOUNT'}}">折扣： <text>{{item.amount*100/100}}折</text></view>
+				</view>
+				<view style="position:absolute;top:50%;right:20%;width:60px;height:60px;transform:translate(0,-50%);">
+					<image src="{{base_conf.STATIC_URL+'wap/images/outdate.png'}}" wx:if="{{curType=='O'}}" style="width:60px;height:60px;"></image>
+					<image src="{{base_conf.STATIC_URL+'wap/images/used.png'}}" wx:if="{{curType=='U'}}" style="width:60px;height:60px;"></image>
+	    		</view>
+    </view>
+    </block>
+    
+    <!-- 待领取 -->
+    <block wx:if="{{curType == 'W'}}" wx:key="unique" wx:for="{{coupons[curType]}}" wx:for-index="idx" wx:for-item="item">
+			<view class="coupon hasbg wait" wx:if="{{item.bg_image}}" style="background-position:center center;background-image:url('{{imgbase+item.bg_image}}');background-size: 100% 120px;">
+					<view class="coupon__r" >
+						<view class="coupon__tit">{{item.title}}</view>
+						<view class="coupon__sub">{{item.use_notice}}</view>
+						<view>使用期限：<text>{{item.startdate}}至{{item.enddate}}</text></view>
+            <view wx:if="{{item.coupon_type === 'CASH'}}">面额： <text>{{item.amount}}元</text></view>
+          <view wx:elif="{{item.coupon_type === 'DISCOUNT'}}">折扣： <text>{{item.amount*100/100}}折</text></view>
+					</view>
+					<view class="coupon__l" style='background-color: {{base_conf.color_primary}};' bindtap='bindGetCpn' id="{{item.coupon_id}}">
+						<text>立即领取</text>
+					</view>
+			</view>
+			<view wx:else class="coupon wait">
+				<view class="coupon__r" >
+					<view class="coupon__tit">{{item.title}}</view>
+					<view class="coupon__sub">{{item.use_notice}}</view>
+					<view>使用期限：<text>{{item.startdate}}至{{item.enddate}}</text></view>
+          <view wx:if="{{item.coupon_type === 'CASH'}}">面额： <text>{{item.amount}}元</text></view>
+          <view wx:elif="{{item.coupon_type === 'DISCOUNT'}}">折扣： <text>{{item.amount*100/100}}折</text></view>
+				</view>
+				<view class="coupon__l" style='background-color: {{base_conf.color_primary}};' bindtap='bindGetCpn' id="{{item.coupon_id}}">
+					<text>立即领取</text>
+				</view>
+   		</view>
+		</block>
+		
+	<!-- 可兑换 -->
+    <block wx:if="{{curType == 'E'}}" wx:key="unique" wx:for="{{coupons[curType]}}" wx:for-index="idx" wx:for-item="item">
+    		<view class="coupon hasbg wait" wx:if="{{item.bg_image}}" style="background-position:center center;background-image:url('{{imgbase+item.bg_image}}');background-size: 100% 120px;">
+			<view class="coupon__r {{item.cpn_bg?'hasbg':''}}"  >
+					<view class="coupon__tit" style="color: {{item.cpn_bg?'#fff':base_conf.color_primary}}">{{item.title}}</view>
+					<!-- <view class="coupon__sub">{{item.use_notice}}</view> -->
+					<view>使用期限：{{item.enddate}}</view> 
+					<view>所需积分：{{item.point}}</view> 
+          <view wx:if="{{item.coupon_type === 'CASH'}}">面额： <text>{{item.amount}}元</text></view>
+          <view wx:elif="{{item.coupon_type === 'DISCOUNT'}}">折扣： <text>{{item.amount*100/100}}折</text></view>
+				</view>
+				<view class="coupon__l {{item.cpn_bg?'hasbg':''}}" id="{{item.exch_id}}" bindtap='bindExchCpn' data-exchable="{{item.excable}}" style='background-color: {{base_conf.color_primary}};'>立即兑换</view>
+			</view>
+			
+			<view wx:else class="coupon wait">
+			<view class="coupon__r {{item.cpn_bg?'hasbg':''}}"  >
+					<view class="coupon__tit" style="color: {{item.cpn_bg?'#fff':base_conf.color_primary}}">{{item.title}}</view>
+					<!-- <view class="coupon__sub">{{item.use_notice}}</view> -->
+					<view>使用期限：{{item.enddate}}</view> 
+					<view>所需积分：{{item.point}}</view> 
+          <view wx:if="{{item.coupon_type === 'CASH'}}">面额： <text>{{item.amount}}元</text></view>
+          <view wx:elif="{{item.coupon_type === 'DISCOUNT'}}">折扣： <text>{{item.amount*100/100}}折</text></view>
+				</view>
+				<view class="coupon__l {{item.cpn_bg?'hasbg':''}}" id="{{item.exch_id}}" bindtap='bindExchCpn' data-exchable="{{item.excable}}" style='background-color: {{base_conf.color_primary}};'>立即兑换</view>
+			</view>
+		</block>
+
+    <view hidden="{{has_loaded && coupons[curType].length>0}}" class="empty_msg"><view class="weui-msg__title">没有记录</view></view> 
+  </view>
+
+
+	<!-- <view>
+		<view class="my__coupon">
+
+			<view class="coupon" wx:for="{{coupons}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+				<view class="coupon__l">{{item.amount}}</view>
+				<view class="coupon__r">
+					<view class="coupon__tit">{{item.title}}</view>
+					<view class="coupon__sub">{{item.use_notice}}</view>
+					<view>使用期限：<text>{{item.startdate}}/{{item.enddate}}</text></view>
+				</view>
+			</view>
+
+		</view>	
+	</view> -->
+
+
+</view>
+
+<!-- 右侧导航栏 -->
+<template is="control_nav"  data="{{navhidden:navhidden,base_conf}}"/>

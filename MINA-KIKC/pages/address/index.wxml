@@ -1,0 +1,21 @@
+<!--index.wxml-->
+<view class="container">
+<view class="section">
+	<view class="section_inner" wx:if="{{vipAddrs.length>0}}">
+ 	  <view class="addr_item" wx:for="{{vipAddrs}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+		 	<view class="addr_l"  bindtap='bindSelAddr' id="{{item.lineid}}">
+				<view>{{item.relname}}-{{item.phone}}</view>
+				<view>{{item.state}}{{item.city}}{{item.district}}{{item.address}}</view>
+			</view>	
+			<view class="addr_r"  bindtap='bindModifyAddr' id="{{item.lineid}}">修改</view>
+		</view>
+	</view>
+</view>
+
+<view class="section">
+	<view class="section_inner">
+		<button bindtap="bindNewAddr" size='mini' plain='true' class="submit_btn on">新增收货地址</button>
+	</view>
+</view>
+
+</view>

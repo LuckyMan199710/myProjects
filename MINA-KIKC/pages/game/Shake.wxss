@@ -1,0 +1,272 @@
+/* pages/motion/Shake.wxss */
+
+page {
+    /* background-color: greenyellow; */
+    height: 100%;
+}
+
+.panel_root {
+    /* background-color: red; */
+    height: 100%;
+}
+
+.view_top {
+    position: absolute;
+    display: block;
+    height: 40%;
+    width: 100%;
+    background-color: #2d3132;
+    text-align: center;
+}
+
+.view_bottom {
+    position: absolute;
+    top: 40%;
+    display: block;
+    height: 60%;
+    width: 100%;
+    background-color: #2d3132;
+    text-align: center;
+}
+
+.img_top {
+    position: absolute;
+    bottom: 0;
+    width: 8rem;
+    height: 7rem;
+    margin-bottom: -3.5rem;
+    margin-left: -4rem;
+    clip: rect(0px, 8rem, 3.5rem, 0px);
+}
+
+.img_bottom {
+    position: absolute;
+    top: 0;
+    width: 8rem;
+    height: 7rem;
+    margin-top: -3.5rem;
+    margin-left: -4rem;
+    clip: rect(3.5rem, 8rem, 200px, 0px);
+}
+
+.btn_test {
+    position: absolute;
+    bottom: 0;
+    margin: 2rem;
+}
+
+.win_line_top {
+    position: absolute;
+    bottom: 0;
+    height: 0.3rem;
+    width: 100%;
+    display: block;
+    background-color: gray;
+    border-bottom: 1px solid black;
+}
+
+.win_line_bottom {
+    position: absolute;
+    top: 0;
+    height: 0.3rem;
+    width: 100%;
+    display: block;
+    background-color: gray;
+    border-bottom: 1px top black;
+}
+
+.panel_bottom {
+    width: 100%;
+    position: absolute;
+    top: 5rem;
+    color: white;
+}
+
+.panel_content {
+    width: 100%;
+    position: relative;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.img_loading {
+    width: 1rem;
+    height: 1rem;
+}
+
+.text_lable {
+    font-size: 0.8rem;
+    line-height: 2rem;
+    height: 2rem;
+}
+
+.panel_result {
+    position: fixed;
+    z-index: 2000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* animation: change 5s;
+  -moz-animation: change 5s;    
+  -webkit-animation: change 5s;    
+  -o-animation: change 5s; */
+    width: 90%;
+    height: 500rpx;
+    background: #fff;
+    border-radius: 0.3rem;
+}
+
+/* @keyframes change{
+  from {width: 10px;height: 10px;opacity: 0;}
+  to {width: 90%;height: 500rpx;opacity: 1;}
+} */
+
+.dialog-face {
+    position: fixed;
+    background: #a02418;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+}
+
+/* 弹窗布局样式 */
+
+.dialog-root {
+    position: fixed;
+    z-index: 2000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 弹窗容器 */
+
+.dialog-wrapper {
+    background: #e74c3c;
+    width: 635px;
+    height: 375px;
+    overflow: hidden;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.panel_result .close {
+    position: absolute;
+    top: 20rpx;
+    right: 20rpx;
+}
+
+.panel_result .close image {
+    width: 50rpx;
+    height: 50rpx;
+}
+
+.panel_result .content {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.panel_result .tit {
+    text-align: center;
+    margin-top: 80rpx;
+    color: #333;
+    font-size: 28rpx;
+}
+
+.panel_result .prize {
+    height: 300rpx;
+}
+
+.panel_result .prize image {
+    height: 100%;
+    margin: 0 auto;
+}
+
+.panel_result .btnlist {
+    display: flex;
+    margin-left: -60rpx;
+}
+
+.panel_result .btnlist .item {
+    margin-left: 60rpx;
+    color: #c40;
+}
+
+/*结果提示*/
+
+.dialog {
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    position: fixed;
+    box-sizing: border-box;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 500;
+}
+
+.dialogWrap {
+    width: 100%;
+    height: 100%;
+    position: relative
+}
+
+.dialogCtn {
+    position: absolute;
+    width: 80%;
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1rpx solid #bbb;
+    z-index: 500;
+    border-radius: 8px;
+}
+
+.game_main {
+	position: absolute;
+	bottom: 30rpx;
+	width: 100%;
+
+}
+.game_content {
+	padding: 0 20rpx;
+}
+.rule {
+	
+	color: #fff;
+	font-size: 28rpx;
+	z-index: 8888;
+	text-align: right;
+}
+
+.rule_content{
+  position: fixed;
+  top: 7%;
+  left: 7%;
+  background: #fff;
+  z-index: 100;
+  min-width: 80%;
+  min-height: 80%;
+  padding: 0px 10px;
+}
+.section_inner {
+	text-align:center;
+	font-size:26rpx;
+	color:#fff;
+	background:transparent;
+	padding:20rpx 0px;
+}
+.game_rule{
+	word-wrap: break-word;
+	font-size: 12px;
+}
+.hidden{
+  text-align: right;
+}

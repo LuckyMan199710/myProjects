@@ -1,0 +1,23 @@
+/* pages/mall/informationdetail.wxss */
+
+@import "/pages/mall/main.wxss";
+.header {
+  padding: 10rpx 30rpx;
+}
+.header .title {
+  font-size: 32rpx;
+  color: #030303;
+  font-weight: bolder;
+  line-height: 45rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.header .date {
+  font-size: 26rpx;
+  color: #040404;
+  line-height: 45rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

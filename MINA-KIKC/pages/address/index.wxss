@@ -1,0 +1,31 @@
+page{
+	background-color: #f7f7f7
+}
+.section{
+	margin-bottom: 15px;
+	
+}
+.section_inner{
+	background-color: #fff;
+	padding: 10px;
+}
+
+.addr_item{
+	padding: 10px 0;
+	border-bottom: 1px dashed #ddd;
+	display: -webkit-box;
+}
+
+.addr_item:last-child{
+	border-bottom:none;
+}
+
+.addr_r{
+	width:60px;
+	text-align: center;
+	text-decoration: underline;
+	line-height: 50px;
+}
+.addr_l{
+	-webkit-box-flex: 1;
+}

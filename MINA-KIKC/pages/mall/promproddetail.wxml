@@ -1,0 +1,102 @@
+<import src="../common/mall"/>
+<import src="../common/nav"/>
+<import src="../common/bottom"/>
+<import src="../common/addcart"/>
+<import src="../common/newcarts"/>
+
+<view class="container {{is_addcart_show?'hideOverflow':''}}">
+
+<!-- 套餐详情页 -->
+<image wx:if="{{bannar}}" style="width:100%;" src="{{imgbase}}{{bannar}}" class="slide-image" mode='widthFix' /> 
+
+<!-- 标题 -->
+<view class="mb15" style="margin-bottom:15px;">
+	<view class="section_inner">
+		<view class="prod_tit">{{promo.promo_name}}</view>
+		<view class="prod_price">套餐价:￥{{promo.laster_amt}}</view>
+    <view class="prod_price" wx:if="{{promo.disp_diffamt=='Y'}}">节省:￥{{promo.discount_amt}}</view>
+	</view>
+  <view class="section_inner" wx:if="{{promo.isstart}}">
+		<view style="color:#999">活动结束日期:{{promo.enddate}}</view>
+	</view>
+  <view class="section_inner" wx:else>
+		<view style="color:#999">活动开始日期:{{promo.startdate}}</view>
+	</view>
+	<view class="section_inner" wx:if="{{promo.remark}}">
+		<view style="color:#999">{{promo.remark || ''}}</view>
+	</view>
+  <view class="section_inner" wx:if="{{errmsg}}" >
+    <view style="color:#999">{{errmsg || ''}}</view>
+  </view>
+</view>
+
+
+
+
+<view wx:if="{{showgoods}}">
+	<view class="section_inner bdr-b box box-align-center">
+		<view class="flex">优惠套餐</view>
+    <!-- <view class="" bindtap="handleBuymeal">购买该套餐</view> -->
+	</view>
+	<view class="section_inner">
+		<view class="control_prodtype clearfix">
+			<view class="prodtype_inner prodtype_size_L clearfix">
+			
+				<view class="prod_space" wx:for="{{prods}}"  wx:for-index="idx1" wx:for-item="item2" wx:key="unique" >
+					<view class="prod_space_inner">
+            <!-- proddetail -->
+            
+						<navigator wx:if="{{exclusive}}" url="/pages/mall/proddetail?plat_num_iid={{item2.plat_num_iid}}&share_vipid={{share_vipid}}">
+							<view class="prod_cover">
+								<image src="{{imgbase}}{{item2.image_url}}"  />
+							</view>
+							<view class="prod_ctn">
+								<view class="disp_prod_name">{{item2.plat_num_name}}</view>
+								<view class='disp_prod_price'>
+									<text class="disp_price">￥{{item2.minprice}}</text>
+								</view>
+							</view>
+						</navigator>
+            <navigator wx:if="{{!exclusive}}" url="/pages/mall/proddetail?plat_num_iid={{item2.plat_num_iid}}&source_promo={{prom_id}}&share_vipid={{share_vipid}}">
+							<view class="prod_cover">
+								<image src="{{imgbase}}{{item2.image_url}}"  />
+							</view>
+							<view class="prod_ctn">
+								<view class="disp_prod_name">{{item2.plat_num_name}}</view>
+								<view class='disp_prod_price'>
+									<text class="disp_price">￥{{item2.minprice}}</text>
+								</view>
+							</view>
+						</navigator>
+            <!-- addcart_btn -->
+            <!-- <view wx:if="{{is_addcart_access}}">
+					      <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/car.png' class="disp_buy_btn" data-pid="{{item2.plat_num_iid}}" bindtap="bindAddcart"></image>
+            </view> -->
+					</view>
+				</view>
+
+			</view>
+
+		</view>
+	</view>
+
+  <view class="buy_btn" bindtap="handleBuymeal">
+    加入购物车
+  </view>
+
+</view>
+
+</view>
+
+<template is="comp_addcart" data="{{imgbase,addcart_good_cover,is_addcart_show,skulvl,curskuid,sku1,sku2,curbuyqty}}"/>
+
+<!-- 全部商品列表 -->
+<template is="new_comp_addcart" data="{{imgbase,skuList,new_is_addcart_show,intoindex}}"/>
+
+<view class="control_bottom clearfix"><template is="control_bottom" data="{{base_conf}}" /></view>
+
+<!-- 右侧导航栏 -->
+<template is="control_nav"  data="{{navhidden:navhidden,base_conf}}"/>
+
+
+

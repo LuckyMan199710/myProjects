@@ -1,0 +1,31 @@
+page{
+	background-color: #f7f7f7
+}
+.section{
+	margin-bottom: 15px;
+	
+}
+.section_inner{
+	background-color: #fff;
+	padding: 10px;
+  margin: 15px 0px;
+}
+
+.addr_item{
+	padding: 10px 0;
+	border-bottom: 1px dashed #ddd;
+	display: -webkit-box;
+  line-height: 10px;
+  position: relative;
+}
+.title{
+	font-weight: bold;
+  font-size: 15px;
+}
+.enddate{
+  font-size: 12px;
+  margin-right: 0px;
+  position: absolute;
+  right: 0px;
+}
+

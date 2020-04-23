@@ -1,0 +1,25 @@
+<!--index.wxml-->
+<view class="container" >
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="amount">
+      <label>金额</label>
+      <input type="text" name="amount" placeholder='当前可提现{{withable}}元' /> 
+    </view>
+    <view wx:if="{{max_cash_amt==0}}" class='min_max'>
+      无提现金额
+    </view>
+    <view wx:else class='min_max'>
+      最低提现金额为{{drp_minamt_cash}}元，最高提现金额为{{max_cash_amt}}元。
+    </view>
+    <view style='padding:0 10px;'>
+      <block wx:if="{{max_cash_amt!=0}}">
+        <button class="submit_btn on" size='mini' plain='true' formType="submit" style='background-color:{{base_conf.color_primary}}'>提交申请</button>
+      </block>
+      <block wx:else>
+        <button class="submit_btn" size='mini' plain='true'>不可提现</button>
+      </block>
+    </view>
+  </form>
+  <navigator class='withdrawhistory' url='/pages/myrevenue/withdrawhistory'>查看提现记录>></navigator>
+</view>
+

@@ -1,0 +1,95 @@
+<!--index.wxml-->
+<view class="container">
+
+  <view class="section">
+    <view class="section_inner" wx:if="{{games.length>0}}">
+      <view wx:for="{{games}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+        <navigator url='/pages/game/zhuanpan?billno={{item.billno}}&background={{item.color_name}}' class="game_item"
+          id="{{item.lineid}}" wx:if="{{item.gametype=='T'}}"
+          style='color:{{base_conf["color_primary"]}};border-bottom: 1px dashed {{base_conf["color_primary"]}};'>
+          <view class='imgs'>
+            <image wx:if="{{item.bannar}}" src="{{imgbase+item.bannar}}" mode='scaleToFill' class='img'
+              style='height:{{height}}px'></image>
+            <image wx:else src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/game01.jpg'
+              mode='scaleToFill' class='img' style='height:{{height}}px'></image>
+          </view>
+          <view class='title'>{{item.title}}</view>
+          <view class='cons_point'>
+            <view class='left'>抽奖积分：{{item.cons_point}}</view>
+            <view class='right'>立即参与>></view>
+            <view class='clear'></view>
+          </view>
+          <view class='enddate'>
+            活动时间: {{item.begdate}}至{{item.enddate}}
+          </view>
+        </navigator>
+        <navigator url='/pages/game/guaka?billno={{item.billno}}&background={{item.color_name}}' class="game_item"
+          id="{{item.lineid}}" wx:if="{{item.gametype=='C'}}"
+          style='color:{{base_conf["color_primary"]}};border-bottom: 1px dashed {{base_conf["color_primary"]}};'>
+          <view class='imgs'>
+            <image wx:if="{{item.bannar}}" src="{{imgbase+item.bannar}}" mode='scaleToFill' class='img'
+              style='height:{{height}}px'></image>
+            <image wx:else src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/game01.jpg'
+              mode='scaleToFill' class='img' style='height:{{height}}px'></image>
+          </view>
+          <view class='title'>{{item.title}}</view>
+          <view class='cons_point'>
+            <view class='left'>抽奖积分：{{item.cons_point}}</view>
+            <view class='right'>立即参与>></view>
+            <view class='clear'></view>
+          </view>
+          <view class='enddate'>
+            活动时间: {{item.begdate}}至{{item.enddate}}
+          </view>
+        </navigator>
+        <navigator url='/pages/game/jindan?billno={{item.billno}}&background={{item.color_name}}' class="game_item"
+          id="{{item.lineid}}" wx:if="{{item.gametype=='E'}}"
+          style='color:{{base_conf["color_primary"]}};border-bottom: 1px dashed {{base_conf["color_primary"]}};'>
+          <view class='imgs'>
+            <image wx:if="{{item.bannar}}" src="{{imgbase+item.bannar}}" mode='scaleToFill' class='img'
+              style='height:{{height}}px'></image>
+            <image wx:else src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/game01.jpg'
+              mode='scaleToFill' class='img' style='height:{{height}}px'></image>
+          </view>
+          <view class='title'>{{item.title}}</view>
+          <view class='cons_point'>
+            <view class='left'>抽奖积分：{{item.cons_point}}</view>
+            <view class='right'>立即参与>></view>
+            <view class='clear'></view>
+          </view>
+          <view class='enddate'>
+            活动时间: {{item.begdate}}至{{item.enddate}}
+          </view>
+        </navigator>
+        <navigator url='/pages/game/Shake?billno={{item.billno}}&background={{item.color_name}}' class="game_item"
+          id="{{item.lineid}}" wx:if="{{item.gametype=='F'}}"
+          style='color:{{base_conf["color_primary"]}};border-bottom: 1px dashed {{base_conf["color_primary"]}};'>
+          <view class='imgs'>
+            <image wx:if="{{item.bannar}}" src="{{imgbase+item.bannar}}" mode='scaleToFill' class='img'
+              style='height:{{height}}px'></image>
+            <image wx:else src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/game01.jpg'
+              mode='scaleToFill' class='img' style='height:{{height}}px'></image>
+          </view>
+          <view class='title'>{{item.title}}</view>
+          <view class='cons_point'>
+            <view class='left'>抽奖积分：{{item.cons_point}}</view>
+            <view class='right'>立即参与>></view>
+            <view class='clear'></view>
+          </view>
+          <view class='enddate'>
+            活动时间: {{item.begdate}}至{{item.enddate}}
+          </view>
+        </navigator>
+      </view>
+    </view>
+
+
+    <navigator url='/pages/game/prize' class="prizes">
+      <view class='jiangpin' style=' background:{{base_conf["color_primary"]}}'>我的奖品</view>
+    </navigator>
+
+    <view hidden="{{games.length>0}}" class="empty_msg">
+      <view class="weui-msg__title">暂无内容</view>
+    </view>
+  </view>
+</view>

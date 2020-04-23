@@ -1,0 +1,48 @@
+<view class="container">
+	<!-- 顶部  start-->
+	<view class="top box box-align-center">
+		<view class="shop_img">
+			<image src="https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2534506313,1688529724&fm=26&gp=0.jpg"></image>
+		</view>
+		<view class="shop_title">
+			<view>乔丹</view>
+			<view>测试介绍</view>
+		</view>
+	</view>
+	<!-- 顶部  end-->
+	<!-- 筛选栏 start-->
+	<view class="orderby">
+		<view class="order_title"  >
+			<view class="orderby_type"  bindtap="bindOrderBy" data-type="soldqty" data-order="down">
+				<text class="orderby_txt" style="width:30%;color:{{currOrder.type=='soldqty'?'red':'#666'}};" >销量</text>
+			</view>
+			<view class="orderby_type"  bindtap="bindOrderBy" data-type="price" data-order="up">
+			<text class="orderby_txt" style="margin-right:5px;color:{{currOrder.type=='price'?'red':'#666'}};" >价格</text>
+				<view class="orderby_image" >
+				<image  wx:if="{{currOrder.type=='price' && currOrder.order=='up'}}" style="transform:rotateZ(180deg);position:absolute;top:14px;" src="{{base_conf['STATIC_URL']}}wap/images/red_down.png" />
+				<image  wx:if="{{!(currOrder.type=='price' && currOrder.order=='up')}}" style="position:absolute;top:14px;{{orderOpen?'transform:rotateZ(180deg)':''}}" src="{{base_conf['STATIC_URL']}}wap/images/gray_up.png" />
+				<image  wx:if="{{!(currOrder.type=='price' && currOrder.order=='down')}}" style="transform:rotateZ(180deg);" src="{{base_conf['STATIC_URL']}}wap/images/gray_up.png" />
+				<image  wx:if="{{currOrder.type=='price' && currOrder.order=='down'}}" style="" src="{{base_conf['STATIC_URL']}}wap/images/red_down.png" />
+				</view>
+			</view>
+			
+			<view class="orderby_type"  bindtap="bindOrderBy" data-type="uptime" data-order="down">
+				<text class="orderby_txt" style="margin-right:5px;color:{{currOrder.type=='uptime'?'red':'#666'}};" >发布时间</text>
+				<view class="orderby_image" >
+					<image  wx:if="{{currOrder.type=='uptime' && currOrder.order=='up'}}" style="transform:rotateZ(180deg);position:absolute;top:14px;" src="{{base_conf['STATIC_URL']}}wap/images/red_down.png" />
+					<image  wx:if="{{!(currOrder.type=='uptime' && currOrder.order=='up')}}" style="position:absolute;top:14px;{{orderOpen?'transform:rotateZ(180deg)':''}}" src="{{base_conf['STATIC_URL']}}wap/images/gray_up.png" />
+					<image  wx:if="{{!(currOrder.type=='uptime' && currOrder.order=='down')}}" style="transform:rotateZ(180deg);" src="{{base_conf['STATIC_URL']}}wap/images/gray_up.png" />
+					<image  wx:if="{{currOrder.type=='uptime' && currOrder.order=='down'}}" style="" src="{{base_conf['STATIC_URL']}}wap/images/red_down.png" />	
+				</view>
+			</view>
+			
+			<view class="orderby_type box box-align-center box-pack-center" bindtap="rlistshow">
+				<text class="orderby_txt" style="width:30%;color:{{currOrder.type=='soldqty'?'red':'#666'}};" >筛选</text>
+				<image src="{{base_conf['STATIC_URL']}}wap/styleicon/{{base_conf['styleicon']}}/icon_screen.png" style="width: 30rpx; height: 30rpx;"></image>
+			</view>	
+		</view>
+	</view>
+	<!-- 筛选栏 end-->
+	<!-- <image style="width:100%" class="rule_img" src="{{imgbase}}{{img}}" mode='widthFix' class="slide-image"/> -->
+</view>
+

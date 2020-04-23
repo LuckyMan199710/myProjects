@@ -1,0 +1,12 @@
+<import src="common/nav"/>
+<view class="container">
+	<view>
+		<image style="width:100%" src="{{imgbase}}{{bannar.content_img || bannar.image_url}}" mode='widthFix' class="slide-image"/>
+	</view>
+	<view wx:if="{{shop}}" class="activity_shop">
+		活动门店：<text class="shop_name"  bindtap="openmap" id="{{shop.latitude}}_{{shop.longitude}}">{{shop.shop_name}}</text>
+	</view>
+</view>
+
+<!-- 右侧导航栏 -->
+<template is="control_nav"  data="{{navhidden:navhidden,base_conf}}"/>

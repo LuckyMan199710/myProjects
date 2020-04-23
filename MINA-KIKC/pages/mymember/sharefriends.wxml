@@ -1,0 +1,49 @@
+<!--index.wxml-->
+<import src="../common/nav"/>
+<view class="container" style='background-image: url({{imgbase}}{{brandlogo}}); background-size:100% 100vh; height: 100vh;'>
+  <view class="page-body">
+    <view>
+      <image src="{{headimgurl}}" style="border-radius:50%;width:65px;height:65px;margin-top:12%;" class='imgurl' mode='widthFix'></image>
+    </view>
+    <view class="tips" style="text-align:center;font-size: 28rpx;color: #333333;margin-top: 20rpx;" wx:if="{{base_conf['kikcExclusive']}}">
+      <view>你好，我是你的时尚搭配师 <text style="font-weight: bold;">{{name}}</text></view>
+      <view style="margin-top: 10rpx;">我为KIKC代言</view>
+    </view>
+    <image src="{{imgurl}}" bindtap="bindPreviewPic" class='imgurl' mode='widthFix'></image>
+    <view class="user_reapply" wx:if="{{reapply}}" style='background-color: {{base_conf["color_primary"]}};'>
+      <view class="tip" style="color:#fff;font-size:13px;padding:15px 5px;text-align:center;">您的申请没有通过，请联系客服咨询详情</view>
+      <view class="reason" style="color:#fff;font-size:13px;padding:0px 5px 30px 5px;text-align:center;" wx:if="{{remarks}}">未通过原因：{{remarks}}</view>
+      <button class="reg_btn" size='mini' plain='true' bindtap="reapply">重新申请</button>
+    </view>
+    <!-- <view class='wenzi'>长按识别二维码</view> -->
+    <view class="userreg" wx:if="{{!is_vip}}" style='background-color: {{base_conf["color_primary"]}};'>
+      <button class="reg_btn" size='mini' plain='true' bindtap="signVip">申请新会员</button>
+    </view>
+    <view class="userreg" wx:else style='background-color: {{base_conf["color_primary"]}};'>
+      <button class="reg_btn" size='mini' plain='true' bindtap="drawImage">保存海报</button>
+    </view>
+  </view>
+
+  <!--canvas 绘制-->
+  <view class="groupvisit-content">
+    <canvas canvas-id="shareCanvas" style="width:750px;height:1332px;" />
+  </view>
+  <!-- <view class="groupvisit-action" hidden="{{false}}">
+    <view class="groupvisit-cell">
+      <image src="{{imgbase+'wx_p.png'}}" style="width:45px;height:45px;margin:0px auto;"></image>
+      <text class="savePhoto_txt" style="display:block;text-align:center;margin-top:5px;">保存图片(分享专用)</text>
+      <button bindtap="savePhoto" class="savePhoto_btn" style='width:100%;height:100%;position:absolute;top:0;opacity:0;'>分享朋友圈</button>
+    </view>
+  </view> -->
+
+
+
+
+
+
+  <!-- <view class="share-img">
+    <image src="{{shareImg}}" mode="widthFix"></image>
+  </view> -->
+</view>
+<!-- 右侧导航栏 -->
+<template is="control_nav"  data="{{navhidden:navhidden,base_conf}}"/>

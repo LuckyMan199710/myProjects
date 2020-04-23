@@ -1,0 +1,103 @@
+page{
+	min-height: 100%;
+	background: #f7f7f7;
+}
+.shopNearby{
+	padding: 5px;
+}
+
+.shop_wrap{
+	margin-bottom: 20rpx;
+	background: #fff;
+	padding:5px;
+}
+
+
+
+.shop_news .shop_coupons{
+	padding: 5px 0;
+	position: relative;
+}
+.shop_news .shop_coupons text.coupon_icon{
+	/* border: 1px dashed #c40; */
+	font-size: 12px;
+	padding: 2px;
+	/* border-radius: 4px; */
+	color: #fff;
+	/*background: #8f5e24;*/
+	margin-left: 80px;
+}
+.shop_news .shop_coupons text.coupon_more{
+	float:right;
+	font-size:12px;
+	/*color:#8f5e24;*/
+	line-height: 20px;
+}
+
+.shop_news .shop_activity{
+	font-size: 12px;
+	line-height: 30px;
+	color: #000;
+	font-weight: 600;
+}
+
+.shop_news .shop_activity text{
+	/*color:#8f5e24;*/
+}
+
+.shop{
+	height: 85px;
+	display: -webkit-box;
+	/* background-color: #fafafa */
+}
+.coupon__l{
+	width: 80px;
+	line-height: 80px;
+	text-align: center;
+	font-size: 12px;
+}
+.coupon__li{
+	width: 70px;
+	line-height: 70px;
+	text-align: center;
+	font-size: 12px;
+}
+
+.shop_cover{
+	width: 60px;
+	height: 60px;
+	vertical-align:middle;
+}
+
+.shop__name{
+	font-weight: bold;
+	font-size: 15px;
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:1;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	color: #32435f;
+}
+.shop__addr{
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:2;
+	overflow:hidden;
+	line-height: 15px;
+	text-overflow:ellipsis;
+	font-size: 13px;
+}
+.shop__tel{
+	font-size: 13px;
+}
+
+.coupon__r{
+	padding-left: 20rpx;
+	padding-top: 20rpx;
+	-webkit-box-flex: 1;
+}
+.coupon__r view{
+	/* display: block; */
+	margin-bottom: 10rpx;
+}

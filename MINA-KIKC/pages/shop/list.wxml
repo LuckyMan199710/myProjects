@@ -1,0 +1,35 @@
+<!--logs.wxml-->
+<!--index.wxml-->
+<import src="../common/bottom" />
+<scroll-view style="height: {{windowHeight-50}}px; width: {{windowWidth}}px;" scroll-y  bindscrolltolower="lower" lower-threshold="80" scroll-top="{{scrollTop}}">
+	<view>
+		<view class="shopNearby">
+			<view class="shop_wrap" wx:key="unique" wx:for="{{shops}}" wx:for-index="idx" wx:for-item="item">
+				<view class="shop">
+					<view class="coupon__li" ><image class="shop_cover" src="{{item.image_url?imgbase+item.image_url : fakeshopcover }}" /></view>
+					<view class="coupon__r">
+						<view class="shop__name">{{item.shop_name}}</view>
+						<view class="shop__addr">{{item.address || '-'}}</view>
+						<view class="shop__tel" bindtap="makephoneCall" id="{{item.tel}}">电话：{{item.tel || '-'}}</view>
+					</view>
+					<view class="coupon__l"  bindtap="openmap" id="{{item.shop_id}}">{{item.distance?item.distance:'-'}}km ></view>
+				</view>
+				<view class="shop_news">
+					<navigator class="shop_coupons" wx:if="{{item.valid_coupons>0}}" url="/pages/vip/couponcenter?shopid={{item.shop_id}}">
+							<!-- <text wx:key="unique" wx:for="{{item.valid_coupons}}" wx:for-index="idx" wx:for-item="item1">{{item1.title}}</text> -->
+							<text class="coupon_icon" style='background: {{base_conf.color_primary}};'>优惠券</text>
+							<text class="coupon_more" style='color: {{base_conf.color_primary}};'>更多></text>
+					</navigator>
+					<view class="shop_activity" wx:if="{{item.promotion_tip}}"><text style='color:{{base_conf.color_primary}};'>参与活动</text>：{{item.promotion_tip || ''}}</view>
+				</view>
+			</view>
+
+		</view>	
+		<!-- end shopNearby -->
+	</view>
+  <view class="control_bottom clearfix">
+    <template is="control_bottom"  data="{{ontabpage,page_path,base_conf}}"/>
+  </view>
+</scroll-view>
+
+

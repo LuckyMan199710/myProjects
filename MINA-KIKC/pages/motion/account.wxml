@@ -1,0 +1,36 @@
+<!--pages/motion/account.wxml-->
+<import src="../common/nav" />
+<view class="container">
+  <view class="pointProfile">
+    <view class="pointProfile_tit" style='border-bottom: 2px solid {{base_conf.color_primary}};'>步数变动</view>
+    <view>您当前的步数为：{{leftstep || 0}}</view>
+  </view>
+
+  <view class="pointHistory">
+    <block wx:if="{{billlist.length>0}}">
+      <view class="table">
+        <view class="table__h">
+          <view style='background-color: {{base_conf.color_primary}};'>日期</view>
+          <view style='background-color: {{base_conf.color_primary}};'>来源</view>
+          <view style='background-color: {{base_conf.color_primary}};'>明细</view>
+        </view>
+        <view class="table__r" wx:key="unique" wx:for="{{billlist}}" wx:for-index="idx" wx:for-item="item">
+          <view class="date">{{item.createdate}}</view>
+          <view>{{item.reltype}}</view>
+          <view>{{item.changestep}}</view>
+        </view>
+      </view>
+      <view class="undata" wx:if="{{dataend}}">已无更多数据</view>
+    </block>
+    <view wx:else class="undata">暂无数据</view>
+
+    <!-- <view class="more more-bt" bindtap='bindLoadMore' id="cpn" wx:if="{{!is_point_loadmore}}">查看更多</view> -->
+  </view>
+
+
+
+
+</view>
+
+<!-- 右侧导航栏 -->
+<template is="control_nav" data="{{navhidden:navhidden,base_conf}}" />

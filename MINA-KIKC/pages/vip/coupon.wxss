@@ -1,0 +1,96 @@
+/**vip_point.wxss**/
+page{
+	min-height: 100%;
+	background-color: #f7f7f7;
+}
+
+
+.my__coupon{
+	padding: 20rpx;
+}
+.my__coupon .coupon{
+	margin-bottom: 20rpx;
+}
+
+
+.coupon{
+	height: 120px;
+	display: -webkit-box;
+  display: flex;
+}
+
+.coupon_outdate .coupon__r{
+	background-color: #bbb;
+}
+
+.coupon__l{
+	width: 20px;
+  height: 80px;
+  padding: 20px 10px;
+	line-height: 20px;
+	text-align: center;
+	background-color: #999;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	color: #fff;
+	font-size: 32rpx;
+  align-self: flex-end;
+  opacity: 0.8;
+  writing-mode:lr-tb;
+  margin:0 auto;
+}
+.coupon__r{
+	padding-top: 10rpx;
+	padding-left: 10rpx;
+	-webkit-box-flex: 1;
+	/* background-color: #8f5e24;*/
+	color: #fff;
+
+	/* background-size: auto 90px; */
+  background-size: cover;
+	background-repeat: no-repeat;
+	background-position:center center;
+  flex: 1;
+  
+}
+.coupon__r view{
+	 margin-bottom: 10rpx; 
+	 font-size: 12px;
+}
+.coupon__r .coupon__tit{
+	font-size: 16px;
+	line-height: 40px;
+}
+.coupon__tit,
+.coupon__notice{
+	display:-webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp:1;
+	overflow:hidden;
+}
+
+.coupon__r text{
+	font-size: 24rpx;
+}
+
+/*待领取*/
+.my__coupon .wait {background-color:#fff;}
+.wait .coupon__r .coupon__tit {color:#333;}
+.wait .coupon__r .coupon__sub {color:#333;}
+.coupon.wait .coupon__r view {color:#333;}
+
+.hasbg.wait .coupon__r .coupon__tit {color:#fff;}
+.hasbg.wait .coupon__r .coupon__sub {color:#fff;}
+.hasbg.wait .coupon__r view {color:#fff;}
+
+.navtab__item {
+padding:15px 0;
+text-align:center;
+font-size:14px;
+margin-right:3px;
+background-color:#46a7c7;
+color:#fff;
+border-bottom-right-radius:5px;
+border-bottom-left-radius:5px;
+}
+

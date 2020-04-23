@@ -1,0 +1,33 @@
+<!--pagesA/live/replay.wxml-->
+<view class="live">
+  <view class="live_list">
+    <view class="live_item" wx:for="{{list}}" wx:for-item="item" wx:for-index="idx" wx:key="idx" data-url="{{item.media_url}}" bindtap="navVideo">
+      <view class="img_nav">
+        <image class="live_bg" src="{{item.cover_img}}" mode="aspectFill"></image>
+        <view class="play box box-align-center box-pack-center">
+          <image src="../images/icon_play.png"></image>
+        </view>
+        <!-- <view class="status box box-align-center">
+						<view class="icon box box-align-center box-pack-center" wx:if="item.live_status == 101">
+							<image src="../../static/img/loading.gif"></image>
+						</view>
+						<view class="desc box box-align-center box-pack-center" wx:if="item.live_status == 103">
+							回放
+						</view>
+						<view class="txt">2445人观看</view>
+					</view> -->
+      </view>
+      <view class="live_content">
+        <view class="head box box-align-center">
+          <view class="icon">
+            <image src="../images/icon_video.png"></image>
+          </view>
+          <view class="title single-hiding">
+            {{item.create_time}}
+          </view>
+          <view class="flex"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

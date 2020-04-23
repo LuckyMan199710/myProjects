@@ -1,0 +1,32 @@
+<!--index.wxml   只需验证手机号就算完成注册？-->
+<view class="container">
+
+  <view class="msg error" wx:if="{{err_msg}}">错误提示</view> 
+
+	<view class="formPanel" wx:if="{{loadend}}">
+		<form bindsubmit="formSubmit" bindreset="formReset">
+			<view class="section" wx:for="{{fields}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+				<text class="section_tit">{{item.text}}</text>
+				
+				<input wx:if="{{item.type=='text' || item.type=='email'}}" type="text" name="{{item.name}}" class="input_field" placeholder="请输入{{item.text}}" bindblur='bindBlur' id="{{item.name}}" />
+				<input wx:elif="{{item.type=='number'}}" type="number" name="{{item.name}}" class="input_field" placeholder="请输入{{item.text}}" bindblur='bindBlur' id="{{item.name}}" />
+				
+				<picker wx:elif="{{item.type=='date'}}" class="input_field" mode="date" name="{{item.name}}" value="{{inputData[item.name]}}" start="1900-01-01" bindchange="bindDateChange" id="{{item.name}}">
+					<view class="picker" wx:if="{{inputData[item.name]}}">{{inputData[item.name]}}</view>
+					<view class="picker" wx:else>请选择{{item.text}}</view>
+				</picker>
+
+				<picker wx:elif="{{item.type=='sex'}}" class="input_field" mode="selector" bindchange="bindSexChange" value="{{inputData[item.name] || 0}}" range="{{sex_codes.name}}" id="{{item.name}}">
+            <view class="picker weui-input">{{sex_codes.name[inputData[item.name] || 0 ]}}</view>
+        </picker>
+
+			</view>
+
+
+			<view class="section">
+					<button class="submit_btn on" size='mini' plain='true' formType="submit" style="background:{{base_conf.color_primary}}">保存</button>
+			</view>
+		</form>
+	</view>
+	<!-- formPanel end -->
+</view>

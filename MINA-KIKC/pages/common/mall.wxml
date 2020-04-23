@@ -1,0 +1,705 @@
+<!-- 广告图 -->
+<template name="control_bannar">
+  <block wx:if="{{banner_display=='L'}}">
+    <swiper indicator-dots="{{true}}" autoplay="{{true}}" interval="{{2000}}" duration="{{500}}" style="height:175px;">
+      <swiper-item wx:key="unique" wx:for="{{banners}}" wx:for-index="idx" wx:for-item="item">
+        <!--	领取优惠券-->
+        <view wx:if="{{item.reltype=='COUPON'}}">
+          <image lazy-load src="{{imgbase}}{{item.image_url}}" id="{{item.coupon_id}}" class="slide-image" bindtap='bindGetCpn' />
+        </view>
+        <!--商品-->
+        <navigator wx:elif="{{item.reltype=='PROD'}}" url="/pages/mall/proddetail?plat_num_iid={{item.plat_num_iid}}">
+          <image lazy-load src="{{imgbase}}{{item.image_url}}" class="slide-image" />
+        </navigator>
+        <!--	外部地址-->
+        <view wx:elif="{{item.reltype=='URL'}}">
+          <image lazy-load src="{{imgbase}}{{item.image_url}}" class="slide-image" />
+        </view>
+        <!--搭配优惠-->
+        <navigator wx:elif="{{item.reltype=='ASSORT'}}" url="/pages/mall/promproddetail?prom_id={{item.rel_billno}}">
+          <image lazy-load src="{{imgbase}}{{item.image_url}}" class="slide-image" />
+        </navigator>
+        <!--抽奖-->
+        <navigator wx:elif="{{item.reltype=='LUTTERY'}}" url="/pages/game/zhuanpan?billno={{item.rel_billno}}">
+          <image lazy-load src="{{imgbase}}{{item.image_url}}" class="slide-image" />
+        </navigator>
+        <!--问券-->
+        <navigator wx:elif="{{item.reltype=='VOTE'}}" url="/pages/activity/ques_detail?billno={{item.rel_billno}}">
+          <image lazy-load src="{{imgbase}}{{item.image_url}}" class="slide-image" />
+        </navigator>
+        <!--积分商城-->
+        <navigator wx:elif="{{item.reltype=='POINT'}}" url="/pages/vip/exchange">
+          <image lazy-load src="{{imgbase}}{{item.image_url}}" class="slide-image" />
+        </navigator>
+        <!--页面模版-->
+        <navigator wx:elif="{{item.reltype=='PAGE'}}" url="/pages/mall/main?billno={{item.rel_billno}}&shopid={{item.page_shop_id}}">
+          <image lazy-load src="{{imgbase}}{{item.image_url}}" class="slide-image" />
+        </navigator>
+        <!--直播列表-->
+        <navigator wx:elif="{{item.reltype=='LIVE'}}" url="/pagesA/live/home">
+          <image lazy-load src="{{imgbase}}{{item.image_url}}" class="slide-image" />
+        </navigator>
+        <!--其他类型-->
+        <view wx:else>
+          <image lazy-load src="{{imgbase}}{{item.image_url}}" class="slide-image" />
+        </view>
+      </swiper-item>
+    </swiper>
+  </block>
+  <block wx:else>
+    <view class="bannar_inner bannar_type_D bannar_size_{{image_size}}" style="height:100%">
+      <view class="bannar_item" wx:key="unique" wx:for="{{banners}}" wx:for-index="idx" wx:for-item="item">
+        <!--	领取优惠券-->
+        <navigator wx:if="{{item.reltype=='COUPON'}}" url="/pages/vipactivity?type={{item.bytype}}&shopid={{item.shop_id}}&bannarid={{item.bannar_id}}">
+          <image lazy-load src="{{imgbase}}{{item.image_url}}" />
+        </navigator>
+        <!--商品-->
+        <navigator wx:elif="{{item.reltype=='PROD'}}" url="/pages/mall/proddetail?bannarid={{item.bannar_id}}">
+          <image lazy-load src="{{imgbase}}{{item.image_url}}" />
+        </navigator>
+        <!--	外部地址-->
+        <navigator wx:elif="{{item.reltype=='URL'}}" url="{{item.exter_url}}">
+          <image lazy-load src="{{imgbase}}{{item.image_url}}" />
+        </navigator>
+        <!--搭配优惠-->
+        <navigator wx:elif="{{item.reltype=='ASSORT'}}" url="/pages/mall/promproddetail?prom_id={{item.rel_billno}}">
+          <image lazy-load src="{{imgbase}}{{item.image_url}}" class="slide-image" />
+        </navigator>
+        <!--抽奖-->
+        <navigator wx:elif="{{item.reltype=='LUTTERY'}}" url="/pages/game/zhuanpan?billno={{item.rel_billno}}">
+          <image lazy-load src="{{imgbase}}{{item.image_url}}" class="slide-image" />
+        </navigator>
+        <!--问券-->
+        <navigator wx:elif="{{item.reltype=='VOTE'}}" url="/pages/activity/ques_detail?billno={{item.rel_billno}}">
+          <image lazy-load src="{{imgbase}}{{item.image_url}}" class="slide-image" />
+        </navigator>
+        <!--积分商城-->
+        <navigator wx:elif="{{item.reltype=='POINT'}}" url="/pages/vip/exchange">
+          <image lazy-load src="{{imgbase}}{{item.image_url}}" class="slide-image" />
+        </navigator>
+        <!--直播列表-->
+        <navigator wx:elif="{{item.reltype=='LIVE'}}" url="/pagesA/live/home">
+          <image lazy-load src="{{imgbase}}{{item.image_url}}" class="slide-image" />
+        </navigator>
+        <navigator wx:else>
+          <image lazy-load src="{{imgbase}}{{item.image_url}}" class="slide-image" />
+        </navigator>
+      </view>
+    </view>
+  </block>
+</template>
+
+<!-- 搜索 -->
+<template name="control_search">
+  <view class="search_inner" style="padding:10px 5px;background:{{search_color}}">
+    <view id="{{shop_id}}" bindtap="bindSearchScan">
+      <image lazy-load src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/search_scan.png' class='search_img' style="left:10px;"></image>
+    </view>
+
+    <input type="text" placeholder='请输入搜索的商品' bindinput="SearchInput" bindconfirm="bindSearch" id="{{shop_id}}" confirm-type="search" style="margin-left:35px;" value='{{search_val}}' />
+
+  </view>
+  <view id="{{shop_id}}" bindtap="bindSearch">
+    <image lazy-load src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/search_img.png' class='search_img'></image>
+  </view>
+</template>
+
+<!-- 商品列表 -->
+<template name="control_prodclass">
+  <view class="prodtype_inner prodtype_size_{{image_size}} clearfix">
+
+    <view class="prod_space" wx:for="{{prodslist}}" wx:for-index="idx1" wx:for-item="item2" wx:key="unique">
+      <view class="prod_space_inner">
+
+        <view class="prod_cover imghidden">
+
+
+          <navigator wx:if="{{item2.promo_num}}" url="{{item2.group_url}}">
+            <image lazy-load src="{{imgbase}}{{item2.image_url}}" mode='widthFix' />
+            <!-- <image lazy-load  src="{{imgbase}}{{item2.image_url}}" mode="aspectFill" data-thumb="{{imgbase}}{{item2.image_url}}" data-myindex="{{item2.myindex}}" bindload="imageOnLoad" style="display:none"></image>
+              <image lazy-load  src="{{item2.loaded ? imgbase+item2.image_url : item2.tempthumb}}" mode="widthFix"></image> -->
+            <view wx:if="{{!item2.stockqty}}" class="noqty_tip">没有库存</view>
+          </navigator>
+          <navigator wx:else url="/pages/mall/proddetail?plat_num_iid={{item2.plat_num_iid}}">
+            <image lazy-load src="{{imgbase}}{{item2.image_url}}" mode='widthFix' />
+            <!-- <image lazy-load  src="{{imgbase}}{{item2.image_url}}" mode="aspectFill" data-thumb="{{imgbase}}{{item2.image_url}}" data-myindex="{{item2.myindex}}" bindload="imageOnLoad" style="display:none"></image>
+              <image lazy-load  src="{{item2.loaded ? imgbase+item2.image_url : item2.tempthumb}}" mode="aspectFill"></image> -->
+            <view wx:if="{{!item2.stockqty}}" class="noqty_tip">没有库存</view>
+          </navigator>
+        </view>
+
+        <!--拼团商品或砍价-->
+        <navigator wx:if="{{item2.groupprod && item2.group_saleprice}}" url="{{item2.group_url}}">
+          <view wx:if="{{disp_prod_name=='Y'}}" class="disp_prod_name">
+            <text class="icon_txt">{{item2.gifttype=='K'?'砍价':'拼团'}}</text> {{item2.plat_num_name || '商品标题未设置'}}
+          </view>
+          <view class='disp_orig_price'>
+            <view wx:if="{{disp_orig_price=='Y'}}" class="orig_price">
+              吊牌价
+              <view style="text-decoration: line-through;display:inline-block;color: #c40;">￥{{item2.mkt_price}}</view>
+            </view>
+          </view>
+          <view class='disp_prod_price'>
+            <view wx:if="{{disp_price=='Y'}}" class="disp_price">
+              ￥{{(item2.gifttype=='K'?item2.min_price:item2.saleprice)|| item2.price}}
+            </view>
+            <view wx:if="{{disp_saleqty=='Y'}}" class="disp_saleqty">
+              销量:{{item2.soldqty}}
+            </view>
+            <view class='clear'></view>
+          </view>
+          <view class='clear'></view>
+        </navigator>
+
+        <!--非拼团商品-->
+        <navigator wx:else url="/pages/mall/proddetail?plat_num_iid={{item2.plat_num_iid}}">
+          <view wx:if="{{disp_prod_name=='Y'}}" class="disp_prod_name">
+            <text class="icon_txt {{item2.timeprod['isStart'] == 'N' ? 'green' : ''}}" wx:if="{{item2.timeprod}}">限时折扣</text> {{item2.plat_num_name || '商品标题未设置'}}
+          </view>
+          <view class='disp_orig_price'>
+            <view wx:if="{{disp_orig_price=='Y'}}" class="orig_price">
+              吊牌价
+              <view style="text-decoration: line-through;display:inline-block;color: #c40;">￥{{item2.mkt_price}}</view>
+            </view>
+          </view>
+          <view class='disp_prod_price'>
+            <view wx:if="{{disp_price=='Y'}}" class="disp_price">
+              ￥{{item2.saleprice || item2.price}}
+            </view>
+            <view wx:if="{{disp_saleqty=='Y'}}" class="disp_saleqty">
+              销量:{{item2.soldqty}}
+            </view>
+            <view class='clear'></view>
+          </view>
+          <view class='clear'></view>
+        </navigator>
+
+
+        <view wx:if="{{disp_collet_btn=='Y'}}">
+          <view wx:if="{{item2.pagecollectcnt>0}}">
+            <image lazy-load src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/collection2.png' class="disp_collet_btn" style='width:40rpx' data-num="{{item2.plat_num_iid}}" data-id="{{item2.shop_id}}" bindtap="delcollection"></image>
+          </view>
+          <view wx:else>
+            <image lazy-load src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/collection.png' class="disp_collet_btn" style='width:40rpx' data-num="{{item2.plat_num_iid}}" data-id="{{item2.shop_id}}" bindtap="collection"></image>
+          </view>
+        </view>
+        <view wx:if="{{disp_buy_btn=='Y'}}">
+          <image lazy-load src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/car.png' class="disp_buy_btn" data-num="{{item2.plat_num_iid}}" bindtap="buy" style='width:40rpx'></image>
+        </view>
+
+      </view>
+
+    </view>
+    <view wx:if="{{prodslist.length>0}}" class="prod_spaces">
+      <navigator url="/pages/mall/prodlist?shop_id={{shop_id}}&prodtype={{prod_source}}">更多</navigator>
+    </view>
+  </view>
+</template>
+
+<!-- 选择商品 -->
+<template name="control_prodtype">
+  <view class="prodtype_inner prodtype_size_{{image_size}} clearfix">
+    <view class="prod_space" wx:for="{{prodsource}}" wx:for-index="idx1" wx:for-item="item2" wx:key="unique">
+
+      <view class="prod_space_inner">
+        <view class="prod_cover imghidden">
+
+
+          <navigator wx:if="{{item2.promo_num}}" url="{{item2.group_url}}">
+            <image lazy-load src="{{imgbase}}{{item2.image_url}}" mode='widthFix' />
+            <!-- <image lazy-load  src="{{imgbase}}{{item2.image_url}}" mode="aspectFill" data-thumb="{{imgbase}}{{item2.image_url}}" data-myindex="{{item2.myindex}}" bindload="imageOnLoad2" style="display:none"></image>
+              <image lazy-load  src="{{item2.loaded ? imgbase+item2.image_url : item2.tempthumb}}" mode="aspectFill"></image> -->
+            <view wx:if="{{!item2.stockqty}}" class="noqty_tip">没有库存</view>
+          </navigator>
+          <navigator wx:else url="/pages/mall/proddetail?plat_num_iid={{item2.plat_num_iid}}">
+            <image lazy-load src="{{imgbase}}{{item2.image_url}}" mode='widthFix' />
+            <!-- <image lazy-load  src="{{imgbase}}{{item2.image_url}}" mode="aspectFill" data-thumb="{{imgbase}}{{item2.image_url}}" data-myindex="{{item2.myindex}}" bindload="imageOnLoad2" style="display:none"></image>
+              <image lazy-load  src="{{item2.loaded ? imgbase+item2.image_url : item2.tempthumb}}" mode="aspectFill"></image> -->
+            <view wx:if="{{!item2.stockqty}}" class="noqty_tip">没有库存</view>
+          </navigator>
+        </view>
+
+        <!--拼团商品或砍价-->
+        <navigator wx:if="{{item2.groupprod && item2.group_saleprice}}" url="{{item2.group_url}}">
+          <view class="disp_prod_name">
+            <text class="icon_txt">{{item2.gifttype=='K'?'砍价':'拼团'}}</text> {{item2.plat_num_name || '商品标题未设置'}}
+          </view>
+          <view>
+
+            <view wx:if="{{disp_orig_price=='Y'}}" class="disp_orig_price">
+              吊牌价
+              <view style="text-decoration: line-through;display:inline-block;color: #c40;">￥{{item2.mkt_price}}</view>
+            </view>
+            <view class="disp_price">
+              ￥{{(item2.gifttype=='K'?item2.min_price:item2.saleprice)|| item2.price}}
+            </view>
+            <view wx:if="{{disp_saleqty=='Y'}}" class="disp_saleqty">
+              销量:{{item2.soldqty}}
+            </view>
+            <view class='clear'></view>
+
+
+          </view>
+        </navigator>
+
+        <!--非拼团商品-->
+        <navigator wx:else url="/pages/mall/proddetail?plat_num_iid={{item2.plat_num_iid}}">
+          <view class="myprice box box-align-center">
+            <view class="present_price">￥{{item2.saleprice || item2.price}}</view>
+            <view class="dispsaleqty">￥{{item2.mkt_price}}</view>
+          </view>
+          <view class="disp_prod_name">
+            <text class="icon_txt {{item2.timeprod['isStart'] == 'N' ? 'green' : ''}}" wx:if="{{item2.timeprod}}">限时折扣</text> {{item2.plat_num_name || '商品标题未设置'}}
+          </view>
+          <view>
+            <!-- <view wx:if="{{disp_orig_price=='Y'}}" class="disp_orig_price">
+                吊牌价1<view style="text-decoration: line-through;display:inline-block;color: #c40;">￥{{item2.mkt_price}}</view>
+              </view>
+            <view class="disp_price">
+              ￥{{item2.saleprice || item2.price}}
+            </view>
+            <view  class="disp_saleqty">
+              销量:{{item2.soldqty}}
+            </view>
+            <view class='clear'></view> -->
+          </view>
+        </navigator>
+
+        <view wx:if="{{disp_collet_btn=='Y'}}">
+          <view wx:if="{{item2.pagecollectcnt>0}}">
+            <image lazy-load src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/collection2.png' class="disp_collet_btn" style='width:40rpx' data-num="{{item2.plat_num_iid}}" data-id="{{item2.shop_id}}" bindtap="delcollection"></image>
+          </view>
+          <view wx:else>
+            <image lazy-load src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/collection.png' class="disp_collet_btn" style='width:40rpx' data-num="{{item2.plat_num_iid}}" data-id="{{item2.shop_id}}" bindtap="collection"></image>
+          </view>
+        </view>
+        <view wx:if="{{disp_buy_btn=='Y'}}">
+          <image lazy-load src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/car.png' class="disp_buy_btn" data-num="{{item2.plat_num_iid}}" style='width:40rpx' bindtap="buy"></image>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</template>
+
+<!-- 商品分组 -->
+<template name="control_group">
+  <view wx:if="{{group_position=='T'}}">
+    <scroll-view scroll-x="true">
+      <view class='group_class group_class_{{group_position}}'>
+        <view wx:for="{{classname}}" wx:for-index="idx" wx:for-item="item" wx:key="unique" data-num="{{item.classnum}}" data-templ="{{templ_num}}" data-control="{{control_num}}" bindtap="ClassProds" class=" {{(item.classnum==prodtype)? 'curts' : 'class_name'}}">{{item.classname}}</view>
+        <view class='clear'></view>
+      </view>
+    </scroll-view>
+  </view>
+  <view wx:else>
+    <view class='group_class group_class_{{group_position}}'>
+      <view wx:for="{{classname}}" wx:for-index="idx" wx:for-item="item" wx:key="unique" data-num="{{item.classnum}}" data-templ="{{templ_num}}" data-control="{{control_num}}" bindtap="ClassProds" class=" {{(item.classnum==prodtype)? 'curts' : 'class_name'}}">{{item.classname}}</view>
+      <view class='clear'></view>
+    </view>
+  </view>
+  <view class='group_shop group_shop_{{group_position}}'>
+    <view class='prodgroup_size_{{image_size}}'>
+      <view wx:for="{{prodgroup}}" wx:for-index="idx11" wx:for-item="item22" wx:key="unique" class="prod_group prod_space curt">
+        <view class="box">
+
+          <view class="box-list">
+            <view class="prod_cover imghidden" style='position:relative;'>
+
+
+              <navigator wx:if="{{item22.promo_num}}" url="{{item22.group_url}}">
+                <image lazy-load src="{{imgbase}}{{item22.image_url}}" mode='widthFix' />
+                <view wx:if="{{!item22.stockqty}}" class="noqty_tip">没有库存</view>
+              </navigator>
+              <navigator wx:else url="/pages/mall/proddetail?plat_num_iid={{item22.plat_num_iid}}">
+                <image lazy-load src="{{imgbase}}{{item22.image_url}}" mode='widthFix' />
+                <view wx:if="{{!item22.stockqty}}" class="noqty_tip">没有库存</view>
+              </navigator>
+            </view>
+
+            <!--拼团商品-->
+            <navigator wx:if="{{item22.groupprod && item22.group_saleprice}}" url="{{item22.group_url}}">
+              <view class="disp_prod_name">
+                <text class="icon_txt" wx:if="{{item22.group_saleprice}}">{{item22.gifttype=='K'?'砍价':'拼团'}}</text> {{item22.plat_num_name || '商品标题未设置'}}
+              </view>
+              <view class='disp_orig_price'>
+                <view wx:if="{{disp_orig_price=='Y'}}" class="orig_price">
+                  吊牌价
+                  <view style="text-decoration: line-through;display:inline-block;color: #c40;">￥{{item22.mkt_price}}</view>
+                </view>
+                <view class='clear'></view>
+              </view>
+              <view class='disp_prod_price'>
+                <view class="disp_price">
+                  ￥{{(item22.gifttype=='K'?item22.min_price:item22.saleprice)||item22.price}}
+                </view>
+                <view wx:if="{{disp_saleqty=='Y'}}" class="disp_saleqty">
+                  销量:{{item22.soldqty}}
+                </view>
+                <view class='clear'></view>
+              </view>
+              <view class='clear'></view>
+            </navigator>
+
+            <!--非拼团商品-->
+            <navigator wx:else url="/pages/mall/proddetail?plat_num_iid={{item22.plat_num_iid}}">
+              <view class="disp_prod_name">
+                <text class="icon_txt {{item2.timeprod['isStart'] == 'N' ? 'green' : ''}}" wx:if="{{item22.timeprod}}">限时折扣</text> {{item22.plat_num_name || '商品标题未设置'}}
+              </view>
+              <view class='disp_orig_price'>
+                <view wx:if="{{disp_orig_price=='Y'}}" class="orig_price">
+                  吊牌价
+                  <view style="text-decoration: line-through;display:inline-block;color: #c40;">￥{{item22.mkt_price}}</view>
+                </view>
+                <view class='clear'></view>
+              </view>
+              <view class='disp_prod_price'>
+                <view class="disp_price">
+                  ￥{{item22.saleprice ||item22.price}}
+                </view>
+                <view wx:if="{{disp_saleqty=='Y'}}" class="disp_saleqty">
+                  销量:{{item22.soldqty}}
+                </view>
+                <view class='clear'></view>
+              </view>
+              <view class='clear'></view>
+            </navigator>
+
+
+            <view wx:if="{{disp_collet_btn=='Y'}}">
+              <view wx:if="{{item22.pagecollectcnt>0}}">
+                <image lazy-load src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/collection2.png' class="disp_collet_btn" style='width:40rpx; height:40rpx' data-num="{{item22.plat_num_iid}}" data-id="{{item22.shop_id}}" data-cla='{{idx1}}' bindtap="delcollection"></image>
+              </view>
+              <view wx:else>
+                <image lazy-load src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/collection.png' class="disp_collet_btn" style='width:40rpx; height:40rpx' data-num="{{item22.plat_num_iid}}" data-id="{{item22.shop_id}}" data-cla='{{idx1}}' bindtap="collection"></image>
+              </view>
+
+            </view>
+            <view wx:if="{{disp_buy_btn=='Y'}}">
+              <image lazy-load src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/car.png' class="disp_buy_btn" data-num="{{item22.plat_num_iid}}" bindtap="buy" style='width:40rpx; height:40rpx'></image>
+            </view>
+          </view>
+
+        </view>
+      </view>
+      <view class='clear'></view>
+    </view>
+
+
+    <view wx:if="{{prodgroup}}" class="prod_spaces">
+      <navigator url="/pages/mall/prodlist?shop_id={{shop_id}}&prodtype={{prodtype}}">
+        更多
+      </navigator>
+    </view>
+  </view>
+
+  <view class='clear'></view>
+</template>
+
+
+<!-- 优惠券列表 -->
+<template name="control_coupon">
+  <view class="coupon_inner">
+    <view class="coupon_space" wx:for="{{coupon}}" wx:for-index="idx1" wx:for-item="item2" wx:key="unique">
+      <view wx:if="{{item2.grant_channel=='CSH'}}">
+        <navigator url="/pages/mall/cpnorderconfirm?coupon_id={{item2.coupon_id}}&shop_id={{shop_id}}">
+          <view class="coupon_space_inner" style='background:gold'>
+            <text class="coupon_tit">{{item2.title}}</text>
+            <text class="coupon_sub">售价：{{item2.buy_amount}}元</text>
+          </view>
+        </navigator>
+      </view>
+      <view wx:else>
+        <view class="coupon_space_inner" id="{{item2.coupon_id}}" bindtap='bindGetCpn'>
+          <text class="coupon_tit">{{item2.title}}</text>
+          <text class="coupon_sub">满{{item2.amount}}元使用</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!-- 营销活动 -->
+<template name="control_promotion">
+  <view wx:if="{{promotion.isvalid!='N'}}" class="prod_space_inner">
+    <navigator url='/pages/mall/promproddetail?prom_id={{promotion.billno}}&shop_id={{promotion.shop_id}}'>
+      <view class="prod_covers">
+        <image lazy-load src="{{imgbase}}{{promotion.pic}}" class='promotion_pic'></image>
+        <view class='promo_list'>
+          <view class='dapei public'>搭配优惠</view>
+          <view class='promo_price public'>
+            <view class='laster_origin_amt'>
+              <view class='vipprice public'>￥{{promotion.laster_amt}}</view>
+              <view class='price public'>￥{{promotion.origin_amt}}</view>
+              <view wx:if="{{promotion.disp_diffamt=='Y'}}">
+                优惠：￥{{promotion.origin_amt-promotion.laster_amt}}
+              </view>
+            </view>
+            <view class='end_list' wx:if="{{promotion.isstart}}">
+              <view class='end public'>活动结束日期</view>
+              <view class='endtime public'>{{promotion.enddate}}</view>
+            </view>
+            <view class='end_list' wx:else>
+              <view class='end public'>活动开始日期</view>
+              <view class='endtime public'>{{promotion.startdate}}</view>
+            </view>
+          </view>
+          <view class="promo_name">{{promotion.promo_name}}</view>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</template>
+
+<!-- 公告 -->
+<template name="control_notice">
+  <view class="notice_inner" style="height:20px;">
+    <view class="scroll_text" style="-webkit-animation:scroll_text_left 20s infinite;animation-timing-function:linear;">{{notice}}</view>
+  </view>
+</template>
+
+
+<!-- 文本标题 -->
+<template name="control_textTitle">
+  <view class="textTitle_inner textTitle_inner{{text_align}}" style="background:{{text_bgcolor}}">
+    <view class="textTitle_tit">{{text_title}}</view>
+    <view class="textTitle_sub">{{text_subtitle}}</view>
+  </view>
+</template>
+
+<!-- 店铺 -->
+<template name="control_shop">
+  <view class="prodtype_inner prodtype_size_{{shop_listqty}} clearfix">
+
+    <view class="prod_space" wx:for="{{shop}}" wx:for-index="idx1" wx:for-item="item2" wx:key="unique">
+
+      <view class="prod_space_inner">
+        <view class="prod_cover">
+          <navigator url="/pages/mall/brand?shopid={{item2.shop_id}}">
+            <!--<view class='shop_name'>{{item2.shop_name}}</view>-->
+            <image lazy-load class='shopimg' src="{{imgbase}}{{item2.shopimg}}"></image>
+          </navigator>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</template>
+
+<!-- 图片组件 -->
+<template name="control_image">
+  <view class="search_inner" style="width:100%;font-size: 0;overflow:hidden;">
+    <image lazy-load style="width:100%;height:auto;vertical-align: top;" src="{{imgbase}}{{control_image_url}}" mode='widthFix'></image>
+  </view>
+  <view class='clear'></view>
+</template>
+
+<!-- 图片导航组件 -->
+<template name="control_image_nav">
+  <view wx:for="{{image_nav}}" wx:for-index="idx" wx:for-item="item" wx:key="unique" class="shop_listqty{{shop_listqty}}" style="float:left;">
+    <!--页面模板-->
+    <navigator wx:if="{{item.link_type=='W'}}" style="width:100%;" url="/pages/mall/main?billno={{item.prod_source}}&shopid={{shop_id}}">
+      <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+    <!--商品详情-->
+    <navigator wx:elif="{{item.link_type=='P'}}" style="width:100%;" url="/pages/mall/proddetail?plat_num_iid={{item.prod_source}}">
+      <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+    <!--拼团商品-->
+    <navigator wx:elif="{{item.link_type=='R'}}" style="width:100%;" url="/pages/mall/groupprod?plat_num_iid={{item.plat_num_iid || item.prod_source}}&promo_num={{item.promo_num}}">
+      <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+    <!--砍价商品-->
+    <navigator wx:elif="{{item.link_type=='K'}}" style="width:100%;" url="/pages/mall/bargainprod?plat_num_iid={{item.plat_num_iid || item.prod_source}}&promo_num={{item.promo_num}}">
+      <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+    <!--搭配优惠-->
+    <navigator wx:elif="{{item.link_type=='A'}}" style="width:100%;" url='/pages/mall/promproddetail?prom_id={{item.prod_source}}'>
+      <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+    <!--商品分类-->
+    <navigator wx:elif="{{item.link_type=='G'}}" style="width:100%;" url="/pages/mall/classdetail?shop_id={{shop_id}}&prodtype={{item.prod_source}}">
+      <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+    <!--投票活动-->
+    <navigator wx:elif="{{item.link_type=='V'}}" style="width:100%;" url="/pages/activity/ques_detail?billno={{item.prod_source}}&title={{item.title}}">
+      <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+    <!--直播列表-->
+    <navigator wx:elif="{{item.link_type=='X'}}" style="width:100%;" url="/pagesA/live/home">
+      <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+    <block wx:if="{{item.link_type=='L'}}">
+      <!--转盘-->
+      <navigator wx:if="{{item.gametype=='T'}}" style="width:100%;" url='/pages/game/zhuanpan?billno={{item.prod_source}}'>
+        <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+        <view class='imgtitle'>{{item.title}}</view>
+      </navigator>
+      <!--刮刮卡-->
+      <navigator wx:elif="{{item.gametype=='C'}}" style="width:100%;" url='/pages/game/guaka?billno={{item.prod_source}}'>
+        <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+        <view class='imgtitle'>{{item.title}}</view>
+      </navigator>
+      <!--抽检-->
+      <navigator wx:elif="{{item.gametype=='E'}}" style="width:100%;" url='/pages/game/jindan?billno={{item.prod_source}}'>
+        <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+        <view class='imgtitle'>{{item.title}}</view>
+      </navigator>
+      <!--摇一摇-->
+      <navigator wx:elif="{{item.gametype=='F'}}" style="width:100%;" url='/pages/game/Shake?billno={{item.prod_source}}'>
+        <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+        <view class='imgtitle'>{{item.title}}</view>
+      </navigator>
+
+    </block>
+    <!-- 微信会员卡 -->
+    <block wx:if="{{item.link_type=='H'}}">
+      <view bindtap='openVipCard'>
+        <view class="myicon_nav">
+          <image lazy-load src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix' class="icon_img"></image>
+        </view>
+        <view class='imgtitle'>{{item.title}}</view>
+      </view>
+    </block>
+    <!-- 我的权益 -->
+    <navigator wx:elif="{{item.link_type=='Q'}}" url="/pages/myrevenue/main">
+      <view class="myicon_nav">
+        <image lazy-load src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix' class="icon_img"></image>
+      </view>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+    <!-- 邀请好友 -->
+    <navigator wx:elif="{{item.link_type=='D'}}" url="/pages/mymember/sharefriends">
+      <view class="myicon_nav">
+        <image lazy-load src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix' class="icon_img"></image>
+      </view>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+    <!-- 分类功能 -->
+    <navigator wx:elif="{{item.link_type=='F'}}" url="/pages/mall/classprods">
+      <view class="myicon_nav">
+        <image lazy-load src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix' class="icon_img"></image>
+      </view>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+    <!-- 购物车 -->
+    <navigator wx:elif="{{item.link_type=='O'}}" url="/pages/buycar">
+      <view class="myicon_nav">
+        <image lazy-load src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix' class="icon_img"></image>
+      </view>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+    <!-- 附近门店 -->
+    <navigator wx:elif="{{item.link_type=='N'}}" url="/pages/shop/list">
+      <view class="myicon_nav">
+        <image lazy-load src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix' class="icon_img"></image>
+      </view>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+
+
+    <navigator wx:elif="{{item.link_type=='C'}}" style="width:100%;" url="/pages/main">
+      <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+    <navigator wx:elif="{{item.link_type=='E'}}" style="width:100%;" url='/pages/external/external?url={{item.prod_source}}'>
+      <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+    <navigator wx:elif="{{item.link_type=='S'}}" style="width:100%;" url="/pages/shop/list">
+      <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+    <navigator wx:if="{{item.link_type=='M'}}" style="width:100%;" url="/pages/mall/brand?shopid={{item.shop_id}}&shop_name={{item.shop_name}}">
+      <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+    <navigator wx:if="{{item.link_type=='T'}}" style="width:100%;" url="/pages/vip/exchange">
+      <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+    <navigator wx:if="{{item.link_type=='U' && item.grant_channel=='CSH'}}" style="width:100%;" url="/pages/mall/cpnorderconfirm?coupon_id={{item.coupon_id}}&shop_id={{shop_id}}">
+      <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+    <navigator wx:if="{{item.link_type=='Y'}}" style="width:100%;" url="/pages/mall/cpnorderconfirm?buycon_num={{item.buycon_num}}&shop_id={{shop_id}}">
+      <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+      <view class='imgtitle'>{{item.title}}</view>
+    </navigator>
+    <block wx:if="{{item.link_type=='U' && item.grant_channel!='CSH'}}">
+      <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix' id="{{item.coupon_id}}" bindtap='bindGetCpn'></image>
+      <view class='imgtitle'>{{item.title}}</view>
+    </block>
+    <block wx:if="{{item.link_type=='B'}}">
+      <navigator wx:if="{{item.prod_source=='waitRec'}}" style="width:100%;" url="/pages/mall/orders?status=waitrec">
+        <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+        <view class='imgtitle'>{{item.title}}</view>
+      </navigator>
+      <navigator wx:if="{{item.prod_source=='waitSend'}}" style="width:100%;" url="/pages/mall/orders?status=waitsend">
+        <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+        <view class='imgtitle'>{{item.title}}</view>
+      </navigator>
+      <navigator wx:if="{{item.prod_source=='waitPay'}}" style="width:100%;" url="/pages/mall/orders?status=waitpay">
+        <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+        <view class='imgtitle'>{{item.title}}</view>
+      </navigator>
+      <navigator wx:if="{{item.prod_source=='allOrder'}}" style="width:100%;" url="/pages/mall/orders?status=all">
+        <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+        <view class='imgtitle'>{{item.title}}</view>
+      </navigator>
+      <navigator wx:if="{{item.prod_source=='myRefund'}}" style="width:100%;" url="/pages/refund/refundhistory">
+        <image lazy-load style="width:100%;height:100%;display:block;" src="{{imgbase}}{{item.control_image_url_nav}}" mode='widthFix'></image>
+        <view class='imgtitle'>{{item.title}}</view>
+      </navigator>
+    </block>
+  </view>
+</template>
+
+
+
+
+
+<!-- 商品列表 -->
+<template name="control_prodlist">
+  <view class="prodtype_inner prodtype_size_{{image_size}} clearfix">
+
+    <view class="prod_space" wx:for="{{prodlist}}" wx:for-index="idx1" wx:for-item="item2" wx:key="unique">
+      <view class="prod_space_inner">
+        <navigator url="/pages/mall/proddetail?plat_num_iid={{item2.plat_num_iid}}&keyword={{keyword}}">
+          <view class="prod_cover">
+            <!-- <view wx:if="{{disp_collet_btn=='Y'}}">
+              <image lazy-load  src="{{(item2.shop_id==shopid)?  iscollection:collection }}" class="disp_collet_btn" style='width:40rpx' data-id="{{item2.shop_id}}" bindtap="collection"></image>
+            </view>
+            <view wx:if="{{disp_buy_btn=='Y'}}">
+					    <image lazy-load  src='{{car}}' class="disp_buy_btn" style='width:40rpx'></image>
+            </view> -->
+
+            <image lazy-load src="{{imgbase}}{{item2.image_url}}" mode='widthFix' />
+          </view>
+          <view class="disp_prod_name">{{item2.plat_num_name || '商品标题未设置'}}</view>
+          <view class='disp_prod_price'>
+            <text class="disp_price">￥{{item2.minprice}}</text>
+            <text class="disp_saleqty">销量:{{item2.soldqty}}</text>
+          </view>
+
+        </navigator>
+        <image lazy-load src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/car.png' class="disp_buy_btn" style='width:40rpx' data-pid="{{item2.plat_num_iid}}" bindtap="bindAddcart"></image>
+        <view class='clear'></view>
+      </view>
+      <view class='clear'></view>
+    </view>
+    <!-- 1不显示提示 -->
+    <view class='noorder' wx:if="{{!prodlist && empty_tip!='1'}}">
+      <view class='noorder-on'>暂无商品</view>
+    </view>
+
+  </view>
+</template>

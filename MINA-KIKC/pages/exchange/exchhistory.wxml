@@ -1,0 +1,70 @@
+<!--index.wxml-->
+<view class="container">
+<view class="">
+	<view class="section_inner" wx:if="{{exchs.length>0}}">
+ 	  <view class="addr_item" wx:for="{{exchs}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+       <block wx:if="{{item.ordertype=='G'}}">
+		 	   <navigator url='/pages/exchange/billdetail?billno={{item.billno}}' class='gator'>
+       
+      
+        <view style="margin:0 10px;">
+        <view class='top'>
+          <view class='billno'>{{item.billno}}</view>
+          <view class='statusname'>{{item.statusname}}</view>
+          <view class='clear'></view>
+        </view>
+        <view class='center' wx:for="{{item.items}}" wx:for-index="idxs" wx:for-item="items" wx:key="unique">
+          <view class='picmain' wx:if="{{items.picmain}}"><image src="{{imgbase}}{{items.picmain}}" class='img'></image></view>
+          <view class='name'>{{items.plat_num_name}}{{items.plat_sku_name}}</view>
+          <view class='clear'></view>
+        </view>
+        <view class='bottom' style='color:#999;font-size:12px;'>创建日期：{{item.created}}</view>
+        <view class='bottom'>
+				  <view class='fee'><view class='jifen'>兑换积分：</view>
+            <view class='red' wx:if="{{item.ordertype!='C'}}">{{item.paypoint}}</view>
+            <view class='red' wx:else>{{item.paypoint}}</view>
+          </view>
+          <view class='ttqty'><view class='jifen'>数量：x</view><view class='red'>{{item.qty}}</view></view>
+           <view class='order'>查看订单</view> 
+          <view class='clear'></view>
+        </view>
+        </view>
+      
+        </navigator>
+      </block>
+      <!-- 优惠券 -->
+       <block wx:else>
+        <view class='gator'>
+       
+      
+        <view style="margin:0 10px;">
+        <view class='top'>
+          <view class='billno'>{{item.billno}}</view>
+          <view class='statusname'>{{item.statusname}}</view>
+          <view class='clear'></view>
+        </view>
+        <view class='center' wx:for="{{item.items}}" wx:for-index="idxs" wx:for-item="items" wx:key="unique">
+          <view class='picmain' wx:if="{{items.picmain}}"><image src="{{imgbase}}{{items.picmain}}" class='img'></image></view>
+          <view class='name'>优惠券：{{items.plat_num_name}}{{items.plat_sku_name}}</view>
+          <view class='clear'></view>
+        </view>
+        <view class='bottom' style='color:#999;font-size:12px;'>创建日期：{{item.created}}</view>
+        <view class='bottom'>
+				  <view class='fee'><view class='jifen'>兑换积分：</view>
+            <view class='red' wx:if="{{item.ordertype!='C'}}">{{item.paypoint}}</view>
+            <view class='red' wx:else>{{item.paypoint}}</view>
+          </view>
+          <view class='ttqty'><view class='jifen'>数量：x</view><view class='red'>{{item.qty}}</view></view>
+           <view class='order'>查看订单</view> 
+          <view class='clear'></view>
+        </view>
+        </view>
+      
+        </view>
+       </block>
+			
+		</view>
+	</view>
+	<view class="empty_msg" wx:if="{{exchs.length<=0 && load_end }}"><view class="weui-msg__title">暂无记录</view></view>
+</view>
+</view>

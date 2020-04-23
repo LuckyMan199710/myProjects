@@ -1,0 +1,64 @@
+/**index.wxss**/
+page{
+	background-color: #f7f7f7;
+  min-height: 100%;
+}
+
+.formPanel{
+	padding: 20rpx;
+}
+
+.section{
+	margin-top: 30rpx;
+	margin-bottom: 40rpx;
+	position: relative;
+}
+
+.section_inner{
+  padding: 10px;
+  background: #fff;
+  border-bottom:1px dashed #aaa;
+}
+.price_txt{color:#c40}
+.norefundlists{
+  margin-top: 50px;
+  text-align: center;
+}
+.norefundlists image{
+  width: 80px;
+  height: 100px;
+}
+.norefundlists-on{
+  width: 100%;
+  font-size: 16px;
+  margin-top: 20px;
+}
+.getlogis{
+  text-decoration: underline;
+  padding: 10px 0px;
+}
+/*.getlogis{
+  background: #fff;
+  width: 80%;
+  height: 150px;
+  margin: auto;
+  padding: 10px;
+  margin-top: 20%;
+}
+.closc{
+  text-align: right;
+}
+.logis_tit{
+	float: left;
+  width: 25%;
+  font-size: 16px;
+}
+.logis_item input{
+  float: right;
+  width: 70%;
+  font-size: 16px;
+}
+.clear{
+  clear: both;
+}*/
+

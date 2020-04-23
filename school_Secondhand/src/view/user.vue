@@ -22,7 +22,7 @@
       </van-col>
       <van-col span="12">
         <van-icon name="logistics" @click="runToDeliver"/>
-        已出单
+        已发布
       </van-col>
     </van-row>
 

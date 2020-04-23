@@ -1,0 +1,25 @@
+<!--index.wxml-->
+<view class="container" >
+  <view class="container-out" wx:key="unique" wx:for="{{incomes}}"  wx:for-index="idx" wx:for-item="item">
+    <view>
+      <view class='commom'>{{item.vip_name}}</view>
+      <view class='commom right items'>{{item.amount}}</view>
+    </view>
+    <view>
+      <view class='commom'>订单号：{{item.sale_billno}}</view>
+      <view class='commom right' wx:if="{{item.prod_num}}">{{item.prod_num}}   {{item.prod_name}}</view>
+    </view>
+    <view>
+      <view class='commom'>订单金额：{{item.baseamount}} X {{item.lvl_name}}</view>
+    </view>
+    <view class='busstxt'>
+      <view class='commom'>{{item.busstxt}}</view>
+      <view class='commom right'>{{item.workdate}}</view>
+    </view>
+  </view>
+  <view class='noorder' wx:if="{{!incomes}}">
+    <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/money1.png'></image>
+    <view class='noorder-on'>您还没有相关收入</view>
+  </view>
+</view>
+

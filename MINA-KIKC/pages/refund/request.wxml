@@ -1,0 +1,192 @@
+<!--index.wxml   只需验证手机号就算完成注册？-->
+<import src="../common/addcart" />
+<view class="container">
+
+  <!-- 商品详情部分 -->
+  <view class="goods_section">
+  	<view class="goods_section_inner">
+		<view class="good_item">
+			<view class='goodpic'>
+			  <image src="{{imgbase}}{{orderitem['picmain']}}" class='goodpic'></image>
+			</view>
+			<view class='goodinfo'>
+				  <view class='goodname'>
+					{{orderitem['plat_num_name']}}
+				  </view>
+				  <view class='price'>
+					<view class="prict_txt">￥{{orderitem['payment']}}</view>
+					<view class="count">x{{orderitem['qty']}}</view>
+				  </view>
+				  <view class='spec'>{{orderitem['plat_num_name']}}{{orderitem['plat_sku_name'] || ''}}</view>
+			</view>
+		</view>
+  	</view>
+  </view>
+<!--  <view class="section_inner">
+    <view class="good">
+      <view class="cover">
+        <image src="{{imgbase}}{{orderitem['picmain']}}"></image>
+      </view>
+      <view class="item_ctn">
+        <view>{{orderitem['plat_num_name']}}{{orderitem['plat_sku_name'] || ''}}</view>
+        <view>
+          <text class="prict_txt">￥{{orderitem['payment']}}</text> x{{orderitem['qty']}}</view>
+      </view>
+    </view>
+  </view> -->
+
+<!-- 填写退货 -->
+  <view class="formPanel">
+    <form class="formPanel-inner" bindsubmit="formSubmit" bindreset="formReset">
+
+    <!-- <view class="section" wx:if="{{orderitem['status']!='PD'}}">
+        <text class="section_tit">到货类型</text> 
+        <radio-group class="radio-group" bindchange="radioChange" id="has_goods">
+          <label class="radio">
+            <radio value="DD" checked="{{orderitem['checkedDD']}}" /> 仅退款
+          </label>
+          <label class="radio">
+            <radio value="FF" checked="{{orderitem['checkedFF']}}" /> 退货退款
+          </label>
+          <label class="radio">
+            <radio value="EC" checked="{{orderitem['checkedEE']}}" /> 换货
+          </label>
+        </radio-group>
+      </view> -->
+	  
+	  <view class="type-selection box">
+		  <view class="flex {{menuvalues == 'DD' ? 'isselected' : ''}}" data-value="DD" bindtap="menuChange">仅退款</view>
+		  <view class="flex {{menuvalues == 'FF' ? 'isselected' : ''}}" data-value="FF" bindtap="menuChange">退货退款</view>
+		  <view class="flex {{menuvalues == 'EC' ? 'isselected' : ''}}" data-value="EC" bindtap="menuChange">换货</view>
+	  </view>
+	  
+	  
+      <!-- 仅退款、退货退款 -->
+      <block wx:if="{{!mytype}}">
+        <view class="section">
+          <text class="section_tit">退款类型</text>
+          <!-- <input name="returntype" class="input_field" placeholder="请输入新手机号" bindinput='bindBlur'/> -->
+          <picker class="input_field" mode="selector" bindchange="bindPickerChange" range="{{refundtype}}" range-key="code_name" id="returntype">
+            <view class='picker'>
+              {{refundtype[sel_refund_idx]['code_name']}}
+            </view>
+          </picker>
+        </view>
+        <view class="section">
+          <text class="section_tit">退款原因[必填]</text>
+          <input name="reasondesc" id="reasondesc" type='text' class="input_field" placeholder="请输入退款原因" bindinput='bindInput' />
+        </view>
+
+        <view class="section">
+          <text class="section_tit">退款数量[必填]</text>
+          <input name="qty" id="qty" type='number' class="input_field" placeholder="请输入退款数量" bindinput='bindInput' value="{{input_qty}}" />
+        </view>
+
+        <view class="section">
+			<text class="section_tit">退款金额：</text>
+          <text class="price_txt">￥{{input_amt || '-'}}</text>
+        </view>
+      </block>
+	  
+      <!-- 换货 -->
+      <view class="exchange" wx:else>
+		<!-- 商品更换部分 -->
+		<view class="section">
+			<text class="section_tit">换货原因</text>
+			<input name="exchangedesc" id="exchangedesc" type='text' class="input_field" maxlength="30" placeholder="请输入换货原因" />
+		</view>
+        <view class="section box box-pack-between">
+          <text class="section_tit">请选择更换的商品规格</text>
+		  <view  bindtap="exchange" data-num="{{plat_num_iid}}">
+		  	<text class="sku_value" wx:if="{{color_name || spec_num}}">颜色:{{color_name}};尺码:{{spec_num}};</text>
+			<text class="sku_value" wx:else>请输入商品规格</text>
+		  	<view class="arrow_right"></view>
+		  </view>
+		</view>
+		
+		<view class="returnInfo">
+			<!-- <view class="section " >
+				<text class="section_tit">退货收货人</text> 
+				<view class='relname'>{{refunddtl['relname']}}-{{refunddtl['phone']}}</view>
+			</view> -->
+			<!-- wx:if="{{refunddtl['state']}}" -->
+				<text class="returnInfo_tit">收货地址</text>
+				<view class='relname'>
+					<text decode="{{true}}">{{returndesc.relname || ''}}&nbsp;&nbsp;&nbsp;&nbsp;{{returndesc.phone || ''}}</text>
+				</view>
+				<view class='relname'>{{returndesc.state || ''}}{{returndesc.city || ''}}{{returndesc.area || ''}}{{returndesc.address || ''}}</view>
+		</view>
+		<!-- 收货地址 -->
+		<!-- <view class="ul">
+		  <view class="li"> -->
+		  <!-- 损坏、弄脏不予退货、退货是请将退货卡与衣物一起退货、退货请注明换货的颜色和尺码 -->
+			<!-- <text>退换货说明：</text>{{returndesc.ecdesc || ''}}
+		  </view>
+		  <view class="li">
+				<text>收货地址：　</text>{{returndesc.state || ''}}{{returndesc.city || ''}}{{returndesc.area || ''}}{{returndesc.address || ''}}
+		  </view>
+		  <view class="li">
+		    <text>手机号码：　</text>{{returndesc.phone || ''}}
+		  </view>
+		  <view class="li">
+		    <text>收货人：　　</text>{{returndesc.relname || ''}}
+		  </view>
+		  <view class="li">
+		    <text>特别说明：　</text>{{returndesc.specialdesc || ''}}
+		  </view>
+		</view> -->
+          <!-- <view class="size_section_inner">
+            <view>
+              <block wx:if="{{skulvl==2}}">
+                <view class="sku_tit">颜色</view>
+                <view class="sku_item" wx:key="unique" wx:for="{{sku1}}" wx:for-index="idx" wx:for-item="item" id="{{item.color_num}}" bindtap='bindSku1'>
+                  <text wx:if="{{item['color_num']==curskuid['color_num']}}" class="on">{{item.color || item.color_num}}</text>
+                  <text wx:else>{{item.color || item.color_num}}</text>
+                </view>
+                <view style="height:15px;"></view>
+                <view class="sku_tit">尺码</view>
+				
+                <view class="sku_item" wx:key="unique" wx:for="{{sku2}}" wx:for-index="idx" wx:for-item="item" id="{{item.spec_num}}" bindtap="{{item['stockqty']<1?'':'bindSku2'}}">
+                  <block wx:if="{{item['stockqty']<1 || item.sku_id == orderitem.sku_id}}">
+                    <text class="disabled">{{item.spec || item.spec_num}}</text>
+                  </block>
+                  <block wx:else>
+                    <text wx:if="{{item['spec_num']==curskuid['spec_num']}}" class="on">{{item.spec || item.spec_num}}</text>
+                    <text wx:else>{{item.spec || item.spec_num}}</text>
+                  </block>
+                </view>
+              </block>
+			  
+              <block wx:else>
+                <view class="sku_tit">尺码</view>
+                <view class="sku_item" wx:key="unique" wx:for="{{sku1}}" wx:for-index="idx" wx:for-item="item" id="{{item.sku_id}}" bindtap="{{item['stockqty']<1?'':'bindSkuid'}}">
+                  <block wx:if="{{item['stockqty']<1 || item.sku_id == orderitem.sku_id}}">
+                    <text class="disabled">{{item.plat_sku_name}}</text>
+                  </block>
+                  <block wx:else>
+                    <text wx:if="{{item['sku_id']==curskuid['sku_id']}}" class="on">{{item.plat_sku_name}}</text>
+                    <text wx:else>{{item.plat_sku_name}}</text>
+                  </block>
+                </view>
+              </block>
+            </view>
+          </view> -->
+        
+		<!-- <view class="section">
+			<text class="section_tit">换货原因[必填]</text>
+			<view class="section_tit">换货原因[必填]</view>
+		</view> -->
+        <!-- <view class="section">退款金额：
+          <text class="price_txt">￥{{input_amt_exchange || '-'}}</text>
+        </view> -->
+      </view>
+      <view class="section">
+        <button class="submit_btn on" size='mini' plain='true' formType="submit" style="background:{{base_conf.color_primary}}">提交申请</button>
+      </view>
+    </form>
+  </view>
+  <!-- formPanel end -->
+  
+  <!-- 购物车 -->
+  <template is="comp_addcart" data="{{imgbase,addcart_good_cover,is_addcart_show,skulvl,curskuid,sku1,sku2,curbuyqty,actiontype}}" />
+</view>

@@ -1,0 +1,197 @@
+<!--index.wxml-->
+<view class="container">
+  <view class='orderstatus box '>
+    <view class="status flex " data-ordertype='all' bindtap="ordertype">
+      <view class="{{(ordertype==''||ordertype=='all')?'curt':''}}">全部</view>
+    </view>
+    <view class="status flex " data-ordertype='waitpay' bindtap="ordertype">
+      <view class="{{(ordertype=='waitpay')?'curt':''}}">待支付</view>
+    </view>
+    <view class="status flex" data-ordertype='waitsend' bindtap="ordertype">
+      <view class="{{(ordertype=='waitsend')?'curt':''}}">待发货</view>
+    </view>
+    <view class="status flex" data-ordertype='waitrec' bindtap="ordertype">
+      <view class="{{(ordertype=='waitrec')?'curt':''}}">待收取</view>
+    </view>
+    <view class='clear'></view>
+  </view>
+
+  <view class="content">
+    <view class="section_inner" wx:if="{{orderlist.length>0}}">
+      <view class="addr_item" wx:for="{{orderlist}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+
+        <!-- wx:if="{{item.plat_type=='PNT'}}" -->
+
+        <!-- 积分兑换时的信息 -->
+        <block wx:if="{{item.plat_type=='PNT'}}">
+          <view class='gator'>
+            <view class='top box box-pack-between'>
+              <view class='billno single-hiding'>订单编号：{{item.billno}}</view>
+              <view class="flex"></view>
+              <!-- <view class='created'>{{item.created}}</view> -->
+              <view class="box">
+                <view class='statusname'>{{item.statusname}}</view>
+                <view class='arrow_next'></view>
+              </view>
+            </view>
+
+            <view class='center box box-lr box-align-center' wx:for="{{item.items}}" wx:for-index="idxs" wx:for-item="items" wx:key="unique">
+              <navigator style="padding-top: 24rpx; background: #f5f5f5; width: 100%;" url='/pages/mall/orderdetailone?billno={{item.billno}}&paybillno={{item.pay_billno}}'>
+                <view class='center box box-lr' wx:for="{{item.items}}" wx:for-index="idxs" wx:for-item="items" wx:key="unique">
+                  <view class='box box-lr goodsinfo'>
+                    <view class='picmain'>
+                      <image src="{{imgbase}}{{items.picmain?'uploads/'+items.picmain:'/wap/images/nopic.jpg'}}" mode='scaleToFill' class='img'></image>
+                    </view>
+                    <view class='box box-tb' style="width:100%">
+                      <view class='name'>{{items.plat_num_name}}{{items.plat_sku_name}}</view>
+                      <view class='price box box-lr box-pack-between'>
+                        <view>￥{{item.payment}}</view>
+                        <view>x{{item.ttqty}}</view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </navigator>
+            </view>
+
+            <view class="count box box-lr box-pack-between box-align-center">
+              <view class="created">
+                {{item.created}}
+              </view>
+              <view class='fee'>
+                <view class='jifen'>实付：</view>
+                <view class='red'>{{item.paypoint}}积分</view>
+              </view>
+
+              <view wx:if="{{item.status=='NP'}}">
+                <navigator class='order' url='/pages/exchange/billdetail?billno={{item.billno}}'>立即支付</navigator>
+              </view>
+            </view>
+            <!-- <view class='bottom box'>
+              <view class='createdtime'>{{item.created}}</view>
+              <view class='fee'>
+                <view class='jifen'>实付：</view>
+                <view class='red'>{{item.paypoint}}积分</view>
+              </view>
+              <view class='ttqty'>
+                <view class='jifen'>数量：x</view>
+                <view class='red'>{{item.ttqty}}</view>
+              </view>
+              <view wx:if="{{item.status=='NP'}}">
+                <navigator class='order' url='/pages/exchange/billdetail?billno={{item.billno}}'>立即支付</navigator>
+              </view>
+            </view> -->
+            <view class='bottom' wx:if="{{item.status =='NP'}}">
+              <view class="buttonList box box-rl">
+                <view wx:if="{{item.status=='NP'}}">
+                  <navigator class='button' url='/pages/exchange/billdetail?billno={{item.billno}}'>立即支付</navigator>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+
+        <!-- 正常购买 -->
+        <block wx:else>
+          <view class='gator'>
+            <view class='top box box-pack-between'>
+              <view class='billno single-hiding'>订单编号：{{item.billno}}</view>
+              <view class="flex"></view>
+              <!-- <view class='created'>{{item.created}}</view> -->
+              <!-- 交易成功 -->
+              <view class="box">
+                <view class='statusname' style="color: #1DA120;" wx:if="{{item.status == 'FF'}}">{{item.statusname}}</view>
+                <!-- 关闭交易 -->
+                <view class='statusname' style="color: #999999;" wx:if="{{item.status == 'TC'}}">{{item.statusname}}</view>
+                <!-- 待付款 -->
+                <view class='statusname' style="color: #C12B00;" wx:if="{{item.status == 'NP'}}">{{item.statusname}}</view>
+                <!-- 已付款 -->
+                <view class='statusname' style="color: #FBAB15;" wx:if="{{item.status == 'PD'}}">{{item.statusname}}</view>
+                <!-- 已发货 -->
+                <view class='statusname' style="color: #87CEFA;" wx:if="{{item.status == 'DD'}}">{{item.statusname}}</view>
+
+                <view wx:if="{{item.is_exchange=='Y'}}" class="statusname">·换货订单</view>
+                <view wx:if="{{item.is_exchange=='S'}}" class="statusname">·换货中</view>
+                <view wx:if="{{item.refusestatus=='FF'}}" class="statusname">·退货中</view>
+
+                <view class='arrow_next'></view>
+              </view>
+
+            </view>
+
+            <!--  -->
+
+            <!-- 组团购物状态-->
+            <view class='topGroup box box-align-center' hidden="{{!item.group_status}}">
+              <view class='billno flex' style="color:green;" wx:if="{{item.group_status=='S'}}">{{item.group_statusname}}</view>
+              <view class='billno flex' style="color:red;" wx:elif="{{item.group_status=='F'}}">{{item.group_statusname}}</view>
+              <view class='billno flex' style="color:orange;" wx:elif="{{item.group_status=='A'}}">{{item.group_statusname}}</view>
+              <view class='billno flex' style="color:orange;" wx:elif="{{item.group_status=='E'}}">{{item.group_statusname}}</view>
+              <view class='billno flex' style="color:red;" wx:elif="{{item.group_status=='B'}}">{{item.group_statusname}}</view>
+              <navigator url='/pages/mall/groupdetail?group_id={{item.group_id}}' wx:if="{{item.is_group=='Y'}}">
+                <view class='statusname' style="padding:0px 10px;border:1px solid {{base_conf.color_primary || '#ad2a26'}};border-radius:5px;color:{{base_conf.color_primary || '#ad2a26'}};font-weight: normal;opacity: 0.8;">参团详情</view>
+              </navigator>
+              <navigator url='/pages/mall/bargaindetail?group_id={{item.group_id}}' wx:if="{{item.is_group=='K'}}">
+                <view class='statusname' style="padding:0px 10px;border:1px solid {{base_conf.color_primary || '#ad2a26'}};border-radius:5px;color:{{base_conf.color_primary || '#ad2a26'}};font-weight: normal;opacity: 0.8;">砍价详情</view>
+              </navigator>
+              <view class='clear'></view>
+            </view>
+
+            <!-- 商品信息 -->
+            <navigator style="padding-top: 24rpx; background: #fff;" url='/pages/mall/orderdetailone?billno={{item.billno}}&paybillno={{item.pay_billno}}'>
+              <view class='center box box-lr' wx:for="{{item.items}}" wx:for-index="idxs" wx:for-item="items" wx:key="unique">
+                <view class='box box-lr goodsinfo'>
+                  <view class='picmain'>
+                    <image src="{{imgbase}}{{items.picmain?'uploads/'+items.picmain:'/wap/images/nopic.jpg'}}" mode='scaleToFill' class='img'></image>
+                  </view>
+                  <view class='box box-tb' style="width:100%">
+                    <view class='name'>{{items.plat_num_name}}{{items.plat_sku_name}}</view>
+                    <view class='price box box-lr box-pack-between'>
+                      <view>￥{{item.payment}}</view>
+                      <view>x{{item.ttqty}}</view>
+                    </view>
+                    <view class='clear'></view>
+                  </view>
+                </view>
+              </view>
+            </navigator>
+            <!-- 底部日期和价格 -->
+            <view class="count box box-lr box-pack-between  box-align-center">
+              <view class="created">
+                {{item.created}}
+              </view>
+              <view class="countmoney">
+                共{{item.ttqty}}件商品 实付款：
+                <span class="money">￥{{item.payment}}</span>
+              </view>
+            </view>
+            <!-- 底部按钮 -->
+            <view class='bottom' wx:if="{{item.status !='TC' && item.status!='FF' }}">
+              <view class="buttonList box box-rl">
+                <!-- 待支付状态 -->
+                <view wx:if="{{item.status=='NP'}}" class="order box">
+                  <navigator class="button" url='/pages/mall/orderdetailone?billno={{item.billno}}&paybillno={{item.pay_billno}}'>去支付</navigator>
+                </view>
+                <!-- 支付成功但未收货状态 -->
+                <view wx:if="{{item.status=='PD'|| item.status=='DD'}}" class='order box'>
+                  <!-- <navigator class="button">查看物流</navigator> -->
+                  <view bindtap='bindFinishOrder' class="button" data-billno="{{item.billno}}">确认收货</view>
+                </view>
+                <!-- 交易成功 -->
+                <!-- <view wx:if="{{item.status=='FF'}}" class='order box'>
+                  <view class="button" data-billno="{{item.billno}}">删除订单</view>
+                  <navigator class="button">再来一单</navigator>
+                  <navigator class="button">评价</navigator>
+                </view> -->
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="empty_msg" wx:if="{{orderlist.length<=0 && load_end }}">
+	  <image class="weui-msg_img" src="{{base_conf['STATIC_URL']}}wap/styleicon/{{base_conf['styleicon']}}/icon_nothing.png"></image>
+      <view class="weui-msg__title">暂无记录</view>
+    </view>
+  </view>
+</view>

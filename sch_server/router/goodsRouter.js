@@ -91,21 +91,42 @@ router.post('/saveGoodsInfo',upload.any(),(req,res)=>{
 })
 //查询发布的商品信息
 router.post('/getGoodsInfo',(req,res)=>{
-	let select_sql = 'and gi.seller_Id ="'+ req.session.userId+'" ' || '';
-	db('select *,GROUP_CONCAT(gis.good_img_url) from goods_info gi INNER JOIN goods_img gis where gi.good_id = gis.good_id '+select_sql+' group by gis.good_id',(err,data) => {
-		if(err){
-			console.log(err)
-			res.json({
-				err:-1,
-				msg:'falid'
-			})
-		}
-		else{
-			res.json({
-				success:1,
-				goodsList:data
-			})
-		}
-	})
+	/* let select_sql = 'and gi.seller_Id ="'+ req.session.userId+'" ' || ''; */
+	if(req.body.param === 'random'){
+		db('select * from goods_info order by rand() limit 6',(err,data)=>{
+			if(err){
+				console.log(err)
+				res.json({
+					err:-1,
+					msg:'falid'
+				})
+			}
+			else{
+				res.json({
+					success:1,
+					goodsList:data
+				})
+			}
+		})
+	}
+	//从随便看看跳转，获取所有商品
+	else if(!req.body.param){
+		db('select *,GROUP_CONCAT(gis.good_img_url) from goods_info gi INNER JOIN goods_img gis where gi.good_id = gis.good_id  group by gis.good_id',(err,data) => {
+			if(err){
+				console.log(err)
+				res.json({
+					err:-1,
+					msg:'falid'
+				})
+			}
+			else{
+				res.json({
+					success:1,
+					goodsList:data
+				})
+			}
+		})
+	}
 })
+
 module.exports = router

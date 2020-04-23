@@ -1,0 +1,30 @@
+<!--pages/vip/giftpack.wxml-->
+<import src="../common/nav"/>
+<view class="container">
+  <view class="Bg">
+    <image src="{{imgpublic + bg_image}}" mode="aspectFill"></image>
+    <block wx:if="{{coupon.sendstatus==0}}">
+      <button loading='{{loading}}' wx:if="{{!loading}}" class="btn" bindtap="handlegetGift">
+        领取礼包 
+      </button>
+      <button wx:else class="btn">
+        领取中...
+      </button>
+    </block>
+    <button class="btnsended"  wx:if="{{coupon.sendstatus==1}}">
+      已领取 
+    </button>           
+    <!-- <text  class="text" decode="{{true}}">
+      活动状态：{{couponmsg}} &nbsp;&nbsp;领取状态：{{sendmsg}}    </text>    -->
+    <view class="status box box-pack-center">
+      活动状态：
+      <text>{{coupon.couponmsg}}</text>
+      <!-- <text wx:if="{{coupon.status == 'A'}}">活动进行中</text>
+      <text wx:else>活动进行中</text> -->
+    </view>
+    
+  </view>
+  
+<!-- 右侧导航栏 -->
+<template is="control_nav"  data="{{navhidden:navhidden,base_conf}}"/>
+</view>

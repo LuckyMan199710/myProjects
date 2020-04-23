@@ -1,0 +1,19 @@
+<!--index.wxml-->
+<view class="container" >
+  <view class="container-out" wx:key="unique" wx:for="{{whistory}}"  wx:for-index="idx" wx:for-item="item">
+    <view class='left'>
+      <view class='orderno'>提现订单:{{item.billno}}</view>
+      <view class='commom'><text>日期:</text>{{item.billdate}}</view>
+      <view class='commom'><text>状态:</text><lable style="color: {{base_conf['color_primary']}};">{{item.billstatus}}</lable></view>
+    </view>
+    <view class='right'>
+      ￥{{item.cash_amount}}
+    </view>
+    <view class='clear'></view>
+  </view>
+  <view class='noorder' wx:if="{{!whistory}}">
+    <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/orderlist2.png'></image>
+    <view class='noorder-on'>您还没有相关订单</view>
+  </view>
+</view>
+

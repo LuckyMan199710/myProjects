@@ -1,0 +1,54 @@
+<!--pages/trend/allworks.wxml-->
+<import src="../common/bottom" />
+<import src="../common/photo" />
+<view class="container">
+  <!-- 所有活动列表 -->
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="banner" circular="true" bindchange="onSwiperChange" circular="{{circular}}" indicator-active-color="#c0b6be" indicator-color="rgba(0,0,0,0.3)" current="{{current}}">
+    <block wx:for="{{banner}}" wx:key="index">
+      <swiper-item>
+        <image src="{{item.bannerurl}}" class="slide-image" mode="aspectFill" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="classlist box">
+    <view class="item {{order == 'createdate' ? 'active' : ''}}" bindtap="{{order == 'createdate' ? '' : 'handleClass'}}" data-order="createdate">
+      按时间
+    </view>
+    <view class="item {{order == 'liked' ? 'active' : ''}}" bindtap="{{order == 'liked' ? '' : 'handleClass'}}" data-order="liked">
+      按热度
+    </view>
+    <view class="item" bindtap="handleRanking">
+      排行榜
+    </view>
+    <view class="item" bindtap="handleSearch">
+      搜索
+    </view>
+  </view>
+  <scroll-view
+    scroll-y
+    bindscrolltolower="handleReach"
+    style="height: {{height - 300}}rpx;"
+    scroll-top="{{scrollTop}}">
+    <template is="photo_list" data="{{photolist, nickName}}" />
+  </scroll-view>
+  <view class="act_add" wx:if="{{status == 'starting'}}" data-fashid="{{fashid}}" bindtap='handleAdd'>
+    <view class="con box">
+      <image src="/images/icon_add2.png"></image>
+      <view class="txt">上传</view>
+    </view>
+  </view>
+  <view class="act_add" wx:if="{{status == 'wait'}}" data-fashid="{{fashid}}">
+    <view class="con box">
+      <view class="txt big">请期待</view>
+    </view>
+  </view>
+  <view class="act_add" wx:if="{{status == 'end'}}" data-fashid="{{fashid}}">
+    <view class="con box">
+      <view class="txt big">已结束</view>
+    </view>
+  </view>
+  <!-- 底部菜单 -->
+  <view class="control_bottom clearfix">
+    <template is="control_bottom" data="{{ontabpage,page_path,base_conf}}" />
+  </view>
+</view>

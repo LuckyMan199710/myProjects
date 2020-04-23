@@ -1,0 +1,4 @@
+<!--index.wxml-->
+<view class="container">
+		<text class="menu__name">会员二维码 </text>
+</view>

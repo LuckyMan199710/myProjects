@@ -1,0 +1,71 @@
+/* pages/vip/giftpack.wxss */
+
+.container {
+  padding-bottom: 0;
+}
+
+.Bg {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.Bg image {
+  width: 100%;
+  height: 100vh;
+}
+
+.Bg .btn {
+  position: absolute;
+  bottom: 200rpx;
+  left: 50%;
+  width: 280rpx;
+  height: 80rpx;
+  margin-left: -140rpx;
+  color: #fff;
+  border-radius: 20rpx;
+  background-color: #0068AC;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 30rpx;
+
+}
+
+.Bg .btnsended {
+  position: absolute;
+  bottom: 200rpx;
+  left: 50%;
+  width: 280rpx;
+  height: 80rpx;
+  margin-left: -140rpx;
+  color: #fff;
+  border-radius: 20rpx;
+  background-color:rgb(194, 189, 189);
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 30rpx;
+
+}
+
+.Bg .text {
+  position:relative;
+  bottom: 160rpx;
+  width: 100%;
+  height: 80rpx;
+  color: #fff;
+  border-radius: 20rpx;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 30rpx;
+
+}
+
+.status {
+  position: absolute;
+  bottom: 150rpx;
+  left: 0;
+  width: 100%;
+  font-size:14px;
+  color: #fff;
+}

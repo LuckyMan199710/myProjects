@@ -1,0 +1,59 @@
+/* pages/vip/stored.wxss */
+page{
+	min-height: 100%;
+	background-color: #f7f7f7;
+}
+
+.pointProfile{
+	padding: 30rpx 20rpx;
+	
+	background-color: #fff;
+}
+.pointProfile text{
+	font-size: 15px;
+}
+.pointProfile_tit{
+	line-height: 25px;
+	font-size: 15px;
+  font-weight: bolder;
+	/*border-bottom: 2px solid #8f5e24;*/
+}
+
+
+.pointHistory{
+	padding: 20rpx;
+	background-color: #fff;
+}
+.table__h view,
+.table__r view{
+	padding: 20rpx 0;
+}
+.table__h view{
+	/*background-color: #8f5e24;*/
+}
+.table__h .tit {
+  color: #333333;
+}
+
+.table__r:nth-child(2n) view{
+	background-color: #f1f1f1;
+}
+
+.table__r view.date{
+	width: 90px;
+}
+.table__r view.buss{
+	width: 50%;
+}
+.table__r .detail{
+	vertical-align: top;
+}
+.table__r .detail text{
+	text-align: left;
+	display: block;
+}
+
+.more{
+	line-height: 30px;
+	text-decoration: underline;
+}

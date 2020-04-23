@@ -1,0 +1,26 @@
+page{
+	background-color: #f7f7f7
+}
+.coupon_bannar{
+	padding: 20px 0;
+	text-align: center;
+}
+.coupon_bannar .coupon_amt{
+	font-size: 13px;
+	color: #c40
+}
+.coupon_tit{
+	font-size: 15px;
+	font-weight: bold;
+}
+.section{
+	margin-bottom: 15px;
+	
+}
+.section_inner{
+	background-color: #fff;
+	padding: 10px;
+}
+
+
+

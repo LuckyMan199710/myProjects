@@ -1,0 +1,253 @@
+<import src="../common/bottom" />
+<import src="../common/counter" />
+<import src="../common/addcart" />
+
+
+<!-- start container -->
+<view class="container">
+
+<!-- 排序  这里不用 新建页面时需要-->
+<!-- <view class="orderby">
+	<view class="order_title"  >
+		<view class="orderby_type"  bindtap="bindOrderBy" data-type="soldqty" data-order="down">
+		<text class="orderby_txt" style="width:30%;color:{{currOrder.type=='soldqty'?'red':'#666'}};" >销量</text>
+		</view>
+		<view class="orderby_type"  bindtap="bindOrderBy" data-type="price" data-order="up">
+		<text class="orderby_txt" style="margin-right:5px;color:{{currOrder.type=='price'?'red':'#666'}};" >价格</text>
+			<view class="orderby_image" >
+			<image  wx:if="{{currOrder.type=='price' && currOrder.order=='up'}}" style="transform:rotateZ(180deg);position:absolute;top:14px;" src="{{base_conf['STATIC_URL']}}wap/images/red_down.png" />
+			<image  wx:if="{{!(currOrder.type=='price' && currOrder.order=='up')}}" style="position:absolute;top:14px;{{orderOpen?'transform:rotateZ(180deg)':''}}" src="{{base_conf['STATIC_URL']}}wap/images/gray_up.png" />
+			<image  wx:if="{{!(currOrder.type=='price' && currOrder.order=='down')}}" style="transform:rotateZ(180deg);" src="{{base_conf['STATIC_URL']}}wap/images/gray_up.png" />
+			<image  wx:if="{{currOrder.type=='price' && currOrder.order=='down'}}" style="" src="{{base_conf['STATIC_URL']}}wap/images/red_down.png" />
+			
+			</view>
+		</view>
+		
+		<view class="orderby_type"  bindtap="bindOrderBy" data-type="uptime" data-order="down">
+		<text class="orderby_txt" style="margin-right:5px;color:{{currOrder.type=='uptime'?'red':'#666'}};" >发布时间</text>
+			<view class="orderby_image" >
+			<image  wx:if="{{currOrder.type=='uptime' && currOrder.order=='up'}}" style="transform:rotateZ(180deg);position:absolute;top:14px;" src="{{base_conf['STATIC_URL']}}wap/images/red_down.png" />
+			<image  wx:if="{{!(currOrder.type=='uptime' && currOrder.order=='up')}}" style="position:absolute;top:14px;{{orderOpen?'transform:rotateZ(180deg)':''}}" src="{{base_conf['STATIC_URL']}}wap/images/gray_up.png" />
+			<image  wx:if="{{!(currOrder.type=='uptime' && currOrder.order=='down')}}" style="transform:rotateZ(180deg);" src="{{base_conf['STATIC_URL']}}wap/images/gray_up.png" />
+			<image  wx:if="{{currOrder.type=='uptime' && currOrder.order=='down'}}" style="" src="{{base_conf['STATIC_URL']}}wap/images/red_down.png" />
+			
+			</view>
+		</view>
+	</view>
+</view> -->
+    
+      <view class=" clearfix" style='padding-left:0;'>
+
+        <!-- 一级分类 -->
+        <view class="top_category">
+        <scroll-view style="width:100%;height:100%;" scroll-y="true">
+          <view class='group_class group_class_L'>
+			  <!-- color:#fff;background-color:'+base_conf.color_primary -->
+            <view wx:for="{{classname}}" wx:for-index="idx" wx:for-item="item" wx:key="unique" data-num="{{item.classnum}}"  bindtap="classProds" class="class_name">
+              <view class="class_name_inner {{item.classnum==prodtype? 'selected' : '' }}">{{item.classname}}</view>
+            </view>
+            <view class='clear'></view>
+          </view>
+        </scroll-view>
+        </view>
+
+
+        <!-- 右边商品 -->
+          <!--<view style="position:fixed;top:30px;bottom:51px;left:105px;right:5px;">
+          <scroll-view style="width:100%;height:100%;" scroll-y="true">
+          <view class='group_shop group_shop_L' style='width:100%;margin-left:0;float:none;' wx:if="{{prodgroup.length>0}}">
+            <view class='prodgroup_size_L'>
+              <view wx:for="{{prodgroup}}" wx:for-index="idx11" wx:for-item="item22" wx:key="unique" class="prod_group prod_space curt">
+                <view class="box">
+                  <view class="box-list">
+                    <view class="prod_cover imghidden" style='position:relative;'>
+                      <navigator wx:if="{{item22.group_saleprice && item22.promo_num}}" url="/pages/mall/{{item22.gifttype=='K'?'bargainprod':'groupprod'}}?plat_num_iid={{item22.plat_num_iid}}&promo_num={{item22.promo_num}}">
+                        <image src="{{imgbase}}{{item22.image_url}}" mode='widthFix' />
+                      </navigator>
+                      <navigator wx:else url="/pages/mall/proddetail?plat_num_iid={{item22.plat_num_iid}}">
+                        <image src="{{imgbase}}{{item22.image_url}}" mode='widthFix' />
+                      </navigator>
+                    </view>
+                    <block wx:if="{{item22.group_saleprice && item22.promo_num}}">
+                    <navigator url="/pages/mall/{{item22.gifttype=='K'?'bargainprod':'groupprod'}}?plat_num_iid={{item22.plat_num_iid}}&promo_num={{item22.promo_num}}">
+                      <view class="disp_prod_name">
+                        <text class="icon_txt" >{{item22.gifttype=='K'?'砍价':'拼团'}}</text> {{item22.plat_num_name || '商品未设置标题'}}
+                      </view>
+                      <view class='disp_orig_price'>
+                        <view class="orig_price">吊牌价<text style="text-decoration: line-through;color: #c40;">￥{{item22.mkt_price}}</text></view>
+                        <view class='clear'></view>
+                      </view>
+                      <view class='disp_prod_price'>
+                        <view class="disp_price">￥{{item22.gifttype=='K'?(item22.min_price||item22.price):(item22.saleprice ||item22.price)}}</view>
+                        <view class="disp_saleqty">销量:{{item22.soldqty || 0}}</view>
+                        <view class='clear'></view>
+                      </view>
+                      <view class='clear'></view>
+                    </navigator>
+                    </block>
+                    <block wx:else>
+                    <navigator url="/pages/mall/proddetail?plat_num_iid={{item22.plat_num_iid}}">
+                      <view class="disp_prod_name">
+                        <text class="icon_txt" wx:if="{{item22.timeprod}}">限时折扣</text> {{item22.plat_num_name || '商品未设置标题'}}
+                      </view>
+                      <view class='disp_orig_price'>
+                        <view class="orig_price">吊牌价<text style="text-decoration: line-through;color: #c40;">￥{{item22.mkt_price}}</text></view>
+                        <view class='clear'></view>
+                      </view>
+                      <view class='disp_prod_price'>
+                        <view class="disp_price">￥{{item22.saleprice ||item22.price}}</view>
+                        <view class="disp_saleqty">销量:{{item22.soldqty || 0}}</view>
+                        <view class='clear'></view>
+                      </view>
+                      <view class='clear'></view>
+                    </navigator>
+                    </block>
+                    <view>
+                      <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/car.png' 
+                      class="disp_buy_btn" data-num="{{item22.plat_num_iid}}" bindtap="buy" style='width:40rpx; height:40rpx'></image>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class='clear'></view>
+            </view>
+          </view>
+          <view style="text-align:center;color:#999;padding-top:20px;" wx:else>
+            暂无内容
+          </view>
+          </scroll-view>
+          </view>-->
+          
+          <!--右边商品使用分页加载  二级标题-->
+          <!--start-->
+          <view class="second_category">
+			  <view class="category_list box box-wrap">
+				  <view class="category_list_item" wx:for ="[1,1]">
+					  <image class="item_img" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2651628541,3421601007&fm=26&gp=0.jpg" style="height: 150rpx; width: 150rpx;"></image>
+					  <view class="item_name">测试名字少时诵诗书所所所所所所</view>
+				  </view>
+			  </view>
+          </view>
+          <!-- <view style="width:100%;height:100%;" >
+          <view class='group_shop group_shop_L' style='width:100%;margin-left:0;float:none;' wx:if="{{prodgroup.length>0}}">
+            <view class='prodgroup_size_L'>
+              <view wx:for="{{prodgroup}}" wx:for-index="idx11" wx:for-item="item22" wx:key="unique" class="prod_group prod_space curt">
+                <view class="box">
+                  <view class="box-list">
+                    <view class="prod_cover imghidden" style='position:relative;'>
+                      <view class="img_nav">
+                        <navigator wx:if="{{item22.group_saleprice && item22.promo_num}}" url="/pages/mall/{{item22.gifttype=='K'?'bargainprod':'groupprod'}}?plat_num_iid={{item22.plat_num_iid}}&promo_num={{item22.promo_num}}">
+                          <image src="{{imgbase}}{{item22.image_url}}" mode="aspectFill" />
+                        </navigator>
+                        <!-- 新增促销活动 -->
+                        <!-- <navigator wx:elif="{{item22.promo_num && item22.gifttype=='X'}}" url="/pages/mall/proddetail?plat_num_iid={{item22.plat_num_iid}}&source_promo={{item22.promo_num}}">
+                          <image src="{{imgbase}}{{item22.image_url}}" mode="aspectFill" />
+                        </navigator>
+                        <navigator wx:else url="/pages/mall/proddetail?plat_num_iid={{item22.plat_num_iid}}">
+                          <image src="{{imgbase}}{{item22.image_url}}" mode="aspectFill" />
+                        </navigator>
+                        <view class="salce" wx:if="{{soldqty_visible=='Y'}}">已售{{item22.soldqty || 0}}件</view>
+                      </view> -->
+                      
+                    <!-- </view>
+                    <block wx:if="{{item22.group_saleprice && item22.promo_num}}">
+                      <navigator wx:if="{{item22.gifttype=='K' || item22.gifttype=='P'}}" url="/pages/mall/{{item22.gifttype=='K'?'bargainprod':'groupprod'}}?plat_num_iid={{item22.plat_num_iid}}&promo_num={{item22.promo_num}}">
+                        <view class="disp_prod_name">
+                          <text class="icon_txt" >{{item22.gifttype=='K'?'砍价':'拼团'}}</text> {{item22.plat_num_name || '商品未设置标题'}}
+                        </view>
+                        <view class="disp_orig_price">
+                          <view class="myprice box box-align-center">
+                            <view class="present_price">￥{{(item22.gifttype=='K'?item22.min_price:item22.saleprice)|| item22.price}}</view>
+                            <view class="dispsaleqty">￥{{item22.mkt_price}}</view>
+                          </view>
+                        </view> -->
+                        <!-- <view class='disp_orig_price'>
+                          <view class="orig_price">吊牌价1<text style="text-decoration: line-through;color: #c40;">￥{{item22.mkt_price}}</text></view>
+                          <view class='clear'></view>
+                        </view>
+                        <view class='disp_prod_price'>
+                          <view class="disp_price">￥{{(item22.gifttype=='K'?item22.min_price:item22.saleprice)|| item22.price}}</view>
+                          <view class="disp_saleqty">销量:{{item22.soldqty || 0}}</view>
+                          <view class='clear'></view>
+                        </view>
+                        <view class='clear'></view> -->
+                     <!-- </navigator>
+                    </block>
+                    <block wx:elif="{{item22.promo_num && item22.gifttype=='X'}}">
+                      <navigator url="/pages/mall/proddetail?plat_num_iid={{item22.plat_num_iid}}&source_promo={{item22.promo_num}}">
+                        <view class="disp_prod_name">
+                          <text class="icon_cu">促销</text> {{item22.plat_num_name || '商品未设置标题'}}
+                        </view>
+                        <view class="disp_orig_price">
+                          <view class="myprice box box-align-center">
+                            <view class="present_price">￥{{(item22.gifttype=='K'?item22.min_price:item22.saleprice)|| item22.price}}</view>
+                            <view class="dispsaleqty">￥{{item22.mkt_price}}</view>
+                          </view>
+                        </view>
+                      </navigator>
+                    </block>
+
+                    
+                    <block wx:else>
+                    <navigator url="/pages/mall/proddetail?plat_num_iid={{item22.plat_num_iid}}">
+                      <view class="disp_prod_name">
+                        <text class="icon_txt {{item22.timeprod.activetype == 'N' ? 'green' : ''}}" wx:if="{{item22.timeprod}}">限时</text> 
+                        <text class="icon_cu {{item22.timeprod_x.isStart == 'N' ? 'green' : ''}}" wx:if="{{item22.timeprod_x}}">促销</text> 
+                        
+                        {{item22.plat_num_name || '商品未设置标题'}}
+                      </view> -->
+                      <!-- <view class="price">
+                        <view class="">￥{{item22.saleprice ||item22.price}}</view>
+                      </view> -->
+                      <!-- <view class="disp_orig_price">
+                        <view class="myprice box box-align-center">
+                          <view class="present_price">￥{{item22.saleprice ||item22.price}}</view>
+                          <view class="dispsaleqty">￥{{item22.mkt_price}}</view>
+                        </view>
+                      </view> -->
+                      
+                      <!-- <view class='disp_orig_price'>
+                        <view class="orig_price">吊牌价222<text style="text-decoration: line-through;color: #c40;">￥{{item22.mkt_price}}</text></view>
+                        <view class='clear'></view>
+                      </view>
+                      <view class='disp_prod_price'>
+                        <view class="disp_price">￥{{item22.saleprice ||item22.price}}</view>
+                        <view class="disp_saleqty">销量:{{item22.soldqty || 0}}</view>
+                        <view class='clear'></view>
+                      </view>
+                      <view class='clear'></view> -->
+                    <!-- </navigator>
+                    </block>
+                    <view>
+                      <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/car.png' 
+                      class="disp_buy_btn" data-num="{{item22.plat_num_iid}}" data-promo_num="{{item22.promo_num}}" bindtap="buy" style='width:40rpx; height:40rpx'></image>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class='clear'></view>
+            </view>
+          </view>
+          <view style="text-align:center;color:#999;padding-top:20px;" wx:else>
+            暂无内容
+          </view> -->
+          <!-- </view> -->
+          
+         
+	<!--end-->
+
+      </view>
+
+    <view class="control_bottom clearfix">
+      <template is="control_bottom" data="{{ontabpage,page_path,base_conf}}" />
+      <!-- <bottom-component ontabpage="{{ontabpage}}" page_path="{{page_path}}" base_conf="{{base_conf}}" /> -->
+    </view>
+
+
+
+</view>
+<!-- end container -->
+
+
+
+<template is="comp_addcart" data="{{imgbase,addcart_good_cover,is_addcart_show,skulvl,curskuid,sku1,sku2,curbuyqty,actiontype}}" />

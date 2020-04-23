@@ -1,0 +1,59 @@
+/* pages/test/feedback.wxss */
+.container {
+  background: #f8f8f8;
+}
+
+.list-content {
+  padding: 20rpx 18rpx;
+}
+.list {
+  background: #ffffff;
+  border-radius: 12rpx;
+  padding-bottom: 48rpx;
+}
+.list .item {
+  padding: 16rpx 18rpx;
+}
+.list .item .fd {
+  white-space: nowrap;
+  font-size: 30rpx;
+  line-height: 48rpx;
+}
+.list .item .hd {
+  width: 100%;
+  background: #f8f8f8;
+  margin-left: 18rpx;
+  padding: 4rpx 18rpx;
+}
+.list .item .hd {
+  color: #2f2f2f;
+  font-size: 30rpx;
+  line-height: 48rpx;
+}
+.list .item .hd input::placeholder {
+  color: #d0d0d0;
+}
+.list .item .hd .con {
+  padding: 16rpx 0rpx;
+}
+.list .item .hd textarea {
+  width: 100%;
+  height: 200rpx;
+}
+
+.btn {
+  margin: 20rpx auto;
+  border-radius: 12rpx;
+}
+
+.btn button {
+  width: 380rpx;
+  height: 68rpx;
+  margin: 40rpx auto;
+  line-height: 68rpx;
+  background: #0068af;
+  text-align: center;
+  font-size: 32rpx;
+  color: #ffffff;
+  border-radius: 4rpx;
+}

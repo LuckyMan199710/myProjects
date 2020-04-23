@@ -1,0 +1,44 @@
+<!--pages/trend/search.wxml-->
+<import src="../common/photo" />
+<view class="container">
+  <view class="search box">
+    <view class="search_input">
+      <input value='{{searchcon}}' bindinput="handleSearch" confirm-type="搜索" bindfocus="handleFocus" bindconfirm="handleSubmit"></input>
+      <view class="search_img" bindtap='handleSubmit'>
+        <image src="/images/icon_search.png"></image>
+      </view>
+    </view>
+  </view>
+  <view class="search_list" wx:if="{{searchflat}}">
+    <view class="item">
+      <view class="tit">历史搜索</view>
+      <view class="ul box" wx:if="{{historyList.length>0}}">
+        <view class="li" wx:for="{{historyList}}" wx:key="{{index}}" bindtap="handleHistory" data-name="{{item}}">
+          {{item}}
+        </view>
+      </view>
+      <view class="undata" wx:else>暂无记录</view>
+    </view>
+    <view class="item">
+      <view class="tit">搜索发现</view>
+      <view class="ul box">
+        <view class="li" wx:for="{{findList}}" wx:key="{{item.label_id}}" bindtap="handleFind" data-labelid="{{item.label_id}}" data-name="{{item.name}}">
+          {{item.name}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="photo" wx:else>
+    <view class="classlist box">
+      <view class="item {{order == 'createdate' ? 'active' : ''}}" bindtap="{{order == 'createdate' ? '' : 'handleClass'}}" data-order="createdate">
+        按时间
+      </view>
+      <view class="item {{order == 'liked' ? 'active' : ''}}" bindtap="{{order == 'liked' ? '' : 'handleClass'}}" data-order="liked">
+        按热度
+      </view>
+    </view>
+    <scroll-view scroll-y bindscrolltolower="handleReach" style="height: {{height - 160}}rpx;" scroll-top="{{scrollTop}}">
+      <template is="photo_list" data="{{photolist}}" />
+    </scroll-view>
+  </view>
+</view>

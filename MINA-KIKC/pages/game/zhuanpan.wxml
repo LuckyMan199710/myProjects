@@ -1,0 +1,70 @@
+<!--index.wxml-->
+<import src="../common/nav" />
+<import src="../common/dialog" />
+<view class="game_container" style="background: {{info.color_name}};">
+  <view class='bannerurl'>
+    <image src='{{imgbase}}{{info.bannerurl}}' style="width:100%;height:100%;"></image>
+  </view>
+  <view class="game_main" style="{{info.background?'background-image:url('+imgbase+info.background+')':''}};background-size:100% 100%;padding-bottom:100px;/*position:relative;top:-5px;left:0px;*/">
+    <view class='rule' bindtap="rule">活动规则
+      <text></text>
+    </view>
+    <!-- 中奖名单 -->
+    <view class="section_inner" style="text-align:center;font-size:14px;color:{{info.background?'#fff':'#333'}};background:transparent;" hidden="{{!(lefttimes>0)}}">
+      <view>您还剩余{{lefttimes}}次抽奖机会</view>
+    </view>
+    <view class="container-out">
+      <view class="circle" wx:for="{{circleList}}" wx:key="unique" style="top:{{item.topCircle}}px;left:{{item.leftCircle}}px;background-color: {{(index%2==0)?colorCircleFirst:colorCircleSecond}};"></view>
+      <view class="container-in">
+        <view class="content-out {{(index==indexSelect)?'on':''}} {{((item.topAward==5 && item.leftAward==5) || (item.topAward==5 && item.leftAward==205) || (item.topAward==205 && item.leftAward==205) || (item.topAward==205 && item.leftAward==5))?'onn':''}}"
+          style="top:{{item.topAward}}px;left:{{item.leftAward}}px;" wx:for="{{awardList}}" wx:key="unique">
+
+          <view class="award-image {{(item.seqid!=0)?'on':''}}" style="position:relative;">
+            <block class='prizetype' wx:if="{{item.imageUrl}}">
+              <image class="award-image " src="{{imgbase+item.imageUrl}}"></image>
+            </block>
+            <block class='prizetype' wx:elif="{{item.prizetype=='A'}}">
+              <!-- <image class="award-image" src="../../images/prod.png"></image> -->
+            </block>
+            <view class='prizetype' wx:elif="{{item.prizetype=='C'}}">
+              <image class="award-image" src="../../images/coupon1.png"></image>
+            </view>
+            <block class='prizetype' wx:elif="{{item.prizetype=='F'}}">
+              <!-- <image class="award-image" src="../../images/prods.png"></image> -->
+            </block>
+            <view class='prizetype' wx:elif="{{item.prizetype=='P'}}">
+              <image class="award-image" src="../../images/point.png"></image>
+            </view>
+            <view class='prizetype' wx:else>
+              <image class="award-image" src="../../images/no.png"></image>
+            </view>
+            <view class="imageAward {{item.prizetype}} {{item.imageUrl?'imageurl':''}} {{(index==indexSelect)?'on':''}} {{((item.topAward==5 && item.leftAward==5) || (item.topAward==5 && item.leftAward==205) || (item.topAward==205 && item.leftAward==205) || (item.topAward==205 && item.leftAward==5))?'onn':''}}">{{item.imageUrl?'':item.imageAward}}</view>
+            <view class='clear'></view>
+          </view>
+        </view>
+        <view class="start-btn" bindtap="startGame" style=" background-color:{{isRunning?'#e7930a':'#e7930a'}}">开始抽奖</view>
+      </view>
+
+    </view>
+    <view class='cons_point'>每次消耗{{info.cons_point}}积分</view>
+  </view>
+</view>
+
+
+
+<!-- 右侧导航栏 -->
+<template is="control_nav" data="{{navhidden:navhidden,base_conf}}" />
+
+<!-- 中奖名单 -->
+<view class="widget_wrap" hidden='{{hidden}}'>
+  <view class="rule_content">
+    <view bindtap="hidden" class='hidden'>x</view>
+    <view>活动说明:</view>
+    <view class="game_rule">
+      <rich-text nodes="{{info.remark}}"></rich-text>
+    </view>
+  </view>
+</view>
+
+<!--  中奖结果-->
+<template is="game2" data="{{navhidden:navhidden,base_conf,wid_dialog_conf:wid_dialog_conf}}" />

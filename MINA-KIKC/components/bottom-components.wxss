@@ -1,0 +1,40 @@
+/* components/bottom-components.wxss */
+.bottom {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.bottom_content{
+  width: 100%;
+  display: inline-block;
+	text-align: center;
+  /* border-left: 1px solid lightgray; */
+  /* border-top: 1px solid lightgray; */
+  height: 100rpx;
+}
+
+.bottomindex_img{
+  width: 50%;
+  height: 18px;
+  margin-top: 15px;
+}
+.bottom_img{
+  margin-top: 5px;
+  width: 24px;
+  height: 24px;
+  /*display: inline-block;
+  margin: 20px 5px 0px 10px;*/
+}
+.bottom_wenzi{
+  /* width: 70%; 
+  height: 30px;
+  display: inline-block;*/
+  font-size: 10px;
+  font-weight: 500;
+  color: #686468;
+}
+
+.bottom_content.on .bottom_wenzi{
+	/*color:#c40;*/
+  /*color:#8f5e24;*/
+  color:#686468;
+}

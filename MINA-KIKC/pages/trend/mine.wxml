@@ -1,0 +1,37 @@
+<!--pages/trend/mine.wxml-->
+<import src="../common/bottom" />
+<import src="../common/photo" />
+<view class="container">
+  <view class="classlist box">
+    <view class="item {{order == '0' ? 'active' : ''}}" bindtap="{{order == '0' ? '' : 'handleClass'}}" data-order="0">
+      我的潮拍
+    </view>
+    <view class="item {{order == '1' ? 'active' : ''}}" bindtap="{{order == '1' ? '' : 'handleClass'}}" data-order="1">
+      我赞过的人
+    </view>
+  </view>
+  <scroll-view scroll-y bindscrolltolower="handleReach" style="height: {{height - 180}}rpx;">
+    <template is="photo_list" data="{{photolist, nickName, myself}}" />
+  </scroll-view>
+  <view class="timechoose" wx:if="{{mineToggle == 'Y'}}">
+    <view class="content">
+      <view class="tips box">
+        <view class="img_nav">
+          <image src="/images/icon_success.png"></image>
+        </view>
+        <view class="close" bindtap='handleclose'>x</view>
+        <view class="ul">
+          <view class="li">你的照片已成功上传</view>
+          <view class="li">可以再“我的潮拍”中查看</view>
+          <view class="li">待通过审核后</view>
+          <view class="li">将被更多的红人们看到哦</view>
+        </view>
+      </view>
+    </view>
+    <view class="mark" bindtap='handleclose'></view>
+  </view>
+  <!-- 底部菜单 -->
+  <view class="control_bottom clearfix">
+    <template is="control_bottom" data="{{ontabpage,page_path,base_conf}}" />
+  </view>
+</view>

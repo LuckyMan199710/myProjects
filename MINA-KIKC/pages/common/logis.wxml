@@ -1,0 +1,36 @@
+<!-- 加购物车主体 -->
+<template name="comp_addlogis">
+<view class='widget_wrap' hidden='{{hidden}}'>
+  <view class="logis">
+  <view class='closc' bindtap="hidden">X</view>
+    <view class="logis_item">
+      <text class="logis_tit">退货收货人:</text>
+      <view class='refund_address'>{{relname}}</view>
+      <view class='clear'></view>
+    </view>
+    <view class="logis_item">
+      <text class="logis_tit">退货地址:</text>
+      <view class='refund_address'>{{address}}</view>
+      <view class='clear'></view>
+    </view>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class="logis_item">
+        <text class="logis_tit">所选快递:</text>
+        <input type='text' name="logis_company" class="input_field" value="{{logis_company}}" placeholder="请输入快递名称" />
+        <view class='clear'></view>
+      </view>
+      <view class="logis_item">
+        <text class="logis_tit">快递单号:</text>
+        <input type='text' name="retinvoiceno" class="input_field" value="{{retinvoiceno}}" placeholder="请输入快递单号"  />
+        <view class='clear'></view>
+      </view>
+      <view class="logis_item">
+        <input type='text' hidden='true' name="refundid" value="{{refundid}}" />
+        <button class="submit_btn on" size='mini' plain='true' formType="submit" style='background-color:{{base_conf["color_primary"]}}'>提交</button>
+      </view>
+    </form>
+  </view>
+</view>
+</template>
+
+

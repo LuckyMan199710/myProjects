@@ -1,0 +1,337 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.8.2",
+	"appid": "wx70b826db028612d4",
+	"projectname": "KIKC-mall",
+	"cloudfunctionTemplateRoot": "",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"scripts": {},
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "潮流资讯",
+					"pathName": "pages/mall/information",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "咨询详情",
+					"pathName": "pages/mall/informationdetail",
+					"query": "id=11"
+				},
+				{
+					"id": -1,
+					"name": "发现",
+					"pathName": "pages/mall/find",
+					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "商品详情",
+					"pathName": "pages/mall/proddetail",
+					"query": "scene=plat_num_iid%3d1578366718342686",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "商品详情222",
+					"pathName": "pages/mall/proddetail",
+					"query": "plat_num_iid=1583462455632506&keyword=",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "商城首页",
+					"pathName": "pages/mall/main",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "分销规则说明",
+					"pathName": "pages/myrevenue/sharerule",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "微信摇一摇",
+					"pathName": "pages/game/Shake",
+					"query": "billno=LT1907000006",
+					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "微信运动",
+					"pathName": "pages/motion/motion",
+					"query": "billno=WR19081401",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "积分兑换记录",
+					"pathName": "pages/exchange/exchhistory",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "步数变动",
+					"pathName": "pages/motion/account",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "潮拍上传",
+					"pathName": "pages/trend/upload",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "潮拍主题",
+					"pathName": "pages/trend/theme",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 13,
+					"name": "上传界面",
+					"pathName": "pages/trend/upload",
+					"query": "imgurl=http://tmp/wx70b826db028612d4.o6zAJs0KIrxdN4UcHLJjvdgVq14Q.7UGmQG9jb1u3dcd929af6053bf3a25dd12a55fae417b.png&fash_id=1&sys_label=[\"钟情一夏style#\",\"good DAY\"]",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "所有作品",
+					"pathName": "pages/trend/allworks",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的潮拍",
+					"pathName": "pages/trend/mine",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "搜索",
+					"pathName": "pages/trend/search",
+					"query": "imgurl=http://tmp/wx70b826db028612d4.o6zAJs0KIrxdN4UcHLJjvdgVq14Q.fDDP7NnnOpRV4b719dbcdca4e2d937a66629ceffacba.png&fash_id=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人公开作品",
+					"pathName": "pages/trend/vipphotos",
+					"query": "vipid=67984",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "排行榜",
+					"pathName": "pages/trend/ranking",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 19,
+					"name": "领取礼包",
+					"pathName": "pages/vip/giftpack",
+					"query": "coupon_id=78",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "确认订单",
+					"pathName": "pages/mall/orderconfirm",
+					"query": "plat_num_iid=1543888764514776&plat_sku_iid=19803456916028120&buyqty=1&share_vipid=",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "微信运动",
+					"pathName": "pages/motion/motion",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 22,
+					"name": "微信摇一摇",
+					"pathName": "pages/game/zhuanpan",
+					"query": "billno=LT1907000001",
+					"scene": 1047
+				},
+				{
+					"id": -1,
+					"name": "礼包",
+					"pathName": "pages/vip/giftpack",
+					"query": "coupon_id=73",
+					"scene": null
+				},
+				{
+					"id": 24,
+					"name": "砍价规则图",
+					"pathName": "pages/mall/promorule",
+					"query": "gift=K&billno=PM1907230000002",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "测试快递费变动",
+					"pathName": "pages/mall/orderconfirm",
+					"query": "plat_num_iid=1543934436412109&plat_sku_iid=13503151126042110&buyqty=1&share_vipid=",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "会员充值",
+					"pathName": "pages/vip/recharge",
+					"query": "billno=WR19081401",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "商品分类",
+					"pathName": "pages/mall/classprods",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "购物车",
+					"pathName": "pages/buycar",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "登录页",
+					"pathName": "pages/userauth",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "好友订单",
+					"pathName": "pages/myrevenue/shareorder",
+					"query": "plat_num_iid=1583462455632506&keyword=",
+					"scene": null
+				},
+				{
+					"id": 31,
+					"name": "pagesA/live/home",
+					"pathName": "pagesA/live/home",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pagesA/live/video",
+					"pathName": "pagesA/live/video",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "宝贝详情",
+					"pathName": "pages/mall/promproddetail",
+					"query": "prom_id=PM2003180000039",
+					"scene": null
+				},
+				{
+					"id": 34,
+					"name": "搭配拼单",
+					"pathName": "pages/mall/promproddetail",
+					"query": "prom_id=PM2003280000003",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "商品列表",
+					"pathName": "pages/mall/prodlist",
+					"query": "shop_id=20850&prodtype=discount15",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "分享二维码",
+					"pathName": "pages/mymember/sharefriends",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "保存二维码",
+					"pathName": "pages/mymember/sharefriends",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "分类详情",
+					"pathName": "pages/mall/classdetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "门店详情",
+					"pathName": "pages/mall/shopdetail",
+					"scene": null
+				}
+			]
+		}
+	}
+}

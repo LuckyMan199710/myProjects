@@ -1,0 +1,63 @@
+<!-- 模版导入 -->
+<import src="../common/vote"/>
+<import src="../common/nav"/>
+<!--index.wxml-->
+<view class="container">
+  <view class='banner'>
+    <image class="banner-img" wx:if="{{vote.pic}}" src="{{vote.pic}}"></image>
+  </view>
+	<view class="formPanel vote_form">
+		<form bindsubmit="formSubmit" bindreset="formReset">
+			
+			<block class="addr_item" wx:for="{{ques_list}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+			<view class="section">
+				<!-- 问题标题 -->
+				<block wx:if="{{item.q_type!='98'}}">
+					<view class="section_tit" wx:if="{{item.is_mandatory=='1'}}" >{{item.que_code+'、'+item.q_question}}【必填】</view> 
+					<view class="section_tit" wx:else>{{item.que_code+'、'+item.q_question}}</view>
+				</block>
+				<block wx:else>
+					<!-- 描述文字 -->
+					<rich-text nodes="{{item.q_question || ''}}"></rich-text>
+				</block>
+				<!-- 问题内容 -->
+				<view>
+					<block wx:if="{{item.q_type=='2'}}">
+						<template is="radio-ques" data="{{sub_entity:item.sub_entity,entity_type:item.q_type,que_id:item.que_id,result:item._result,q_format:item.q_format,show_lastvote:show_lastvote}}" />
+					</block>
+					<block wx:elif="{{item.q_type=='3'}}">
+						<template is="checkbox-ques" data="{{sub_entity:item.sub_entity,entity_type:item.q_type,que_id:item.que_id,result:item._result,q_format:item.q_format,show_lastvote:show_lastvote}}" />
+					</block>
+					<block wx:elif="{{item.q_type=='4'}}">
+            <block wx:if="{{item.q_format=='1' || item.q_format=='2' || item.q_format=='3'}}">
+						 <template is="txt-ques" data="{{sub_entity:item.sub_entity,entity_type:item.q_type,que_id:item.que_id,result:item._result,q_format:item.q_format,last_value:item.last_value,show_lastvote:show_lastvote,_result:item._result}}" /> 
+             </block>
+             <block wx:else>
+             <template is="textarea-ques" data="{{sub_entity:item.sub_entity,entity_type:item.q_type,que_id:item.que_id,result:item._result,q_format:item.q_format,last_value:item.last_value,show_lastvote:show_lastvote,_result:item._result}}" /> 
+             </block>
+					</block>
+					<block wx:elif="{{item.q_type=='5'}}">
+						 <template is="child-ques" data="{{sub_entity:item.sub_entity,entity_type:item.q_type,que_id:item.que_id,result:item._result,q_format:item.q_format,child_ques:item.child_ques,shape:item.shape,base_conf,show_lastvote:show_lastvote}}" /> 
+					</block>
+					<block wx:elif="{{item.q_type=='10'}}">
+						  <template is="image-ques" data="{{sub_entity:item.sub_entity,entity_type:item.q_type,imgbase2,que_id:item.que_id,result:item._result,q_format:item.q_format,pic_type:item.pic_type,show_lastvote:show_lastvote}}" />  
+					</block>
+					<block wx:elif="{{item.q_type=='15'}}">
+						  <template is="date-ques" data="{{sub_entity:item.sub_entity,entity_type:item.q_type,que_id:item.que_id,result:item._result,q_format:item.q_format,last_value:item.last_value,show_lastvote:show_lastvote}}" />  
+					</block>
+				</view>
+			</view>
+			</block>
+			<block wx:if="{{vote}}">
+			<view class="section">
+					<button class="submit_btn on" size='mini' plain='true' wx:if="{{!tip_msg}}" formType="submit" style="background-color:{{base_conf.color_primary}}">提交</button>
+					<button class="submit_btn on" size='mini' plain='true' wx:else  style="background-color:#ddd;">{{tip_msg}}</button>
+			</view>
+			</block>
+
+		</form>
+	</view>
+	<!-- formPanel end -->
+</view>
+<!-- 右侧导航栏 -->
+<template is="control_nav"  data="{{navhidden:navhidden,base_conf}}"/>

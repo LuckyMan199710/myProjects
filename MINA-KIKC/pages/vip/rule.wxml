@@ -1,0 +1,11 @@
+<!--index.wxml-->
+<view class="container">
+	<block  wx:if="{{brandimg}}">
+		<view style="height:{{bannarH || 120}}px;position:fixed;top:0;width:100%;overflow:hidden;">
+			<image style="width:100%;height:{{bannarH || 120}}px" class="rule_img" src="{{imgbase}}{{brandimg}}" mode='widthFix' class="slide-image"/>	
+		</view>
+		<view style="width:100%;height:{{bannarH || 120}}px"></view>
+	</block>
+
+	<image style="width:100%" class="rule_img" src="{{imgbase}}{{img}}" mode='widthFix' class="slide-image"/>
+</view>

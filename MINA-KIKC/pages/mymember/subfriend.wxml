@@ -1,0 +1,120 @@
+<!--index.wxml-->
+<scroll-view class="bigWrap" scroll-y="true" bindscrolltolower="lower" scroll-top="{{scrollTop}}" style="height:600px;"> 
+<view class="container">
+<view class="myclass">
+    <view class="headclass box box-align-center">
+      <view class="head-left box">
+        <!-- <view class="txt">分享</view> -->
+        <picker bindchange="bindPickerChange" value="{{navIndex}}" range="{{navlist}}" range-key="name">
+          <view class="box box-align-center flex">
+            <view class="txt">
+              {{navlist[navIndex].name}}
+            </view>
+            <view class="navigator-arrow"></view>
+          </view>
+          
+        </picker>
+        
+      </view>
+      <view class="inputs flex">
+        <input type="text" value="{{code}}" bindinput="handleInput" bindconfirm="handleConfirm" placeholder="输入客户手机号搜索" confirm-type="search" />
+          <image wx:if="{{code}}" src="/pages/image/icon_close.png" class="close" bindtap="handleClear"></image>
+      </view>
+    </view>
+    <view class="times box box-align-center">
+      <view class="time_ul box box-align-center">
+        <view class="time_li {{time_type == '' ? 'active' : ''}}" data-type="" bindtap="handleSetTime">全部</view>
+        <view class="time_li {{time_type == 'today' ? 'active' : ''}}" data-type="today" bindtap="handleSetTime">今日</view>
+        <view class="time_li {{time_type == 'yestoday' ? 'active' : ''}}" data-type="yestoday" bindtap="handleSetTime">昨日</view>
+        <view class="time_li {{time_type == 'week' ? 'active' : ''}}" data-type="week" bindtap="handleSetTime">近七日</view>
+      </view>
+      <view class="flex"></view>
+      <view class="zdytime box" bindtap="handleCustom">
+        <view class="txt">自定义时间</view>
+        <view class="navigator-arrow"></view>
+      </view>
+    </view>
+    <view class="start-end box box-align-center" wx:if="{{timeToggle}}">
+      <view class="ll">
+        <view class="start_tit">开始时间</view>
+        <picker mode="date" value="{{start_date}}" start="2015-09-01" end="{{end_time}}" bindchange="bindStartDateChange">
+          <view class="select" wx:if="{{start_date}}">
+            {{start_date}}
+          </view>
+          <view class="select" wx:else>
+            请选择
+          </view>
+        </picker>
+
+      </view>
+      <view class="flex"></view>
+      <view class="ll">
+        <view class="start_tit">结束时间</view>
+        <picker mode="date" value="{{end_date}}" start="2015-09-01" end="{{end_time}}" bindchange="bindEndDateChange">
+          <view class="select" wx:if="{{end_date}}">
+            {{end_date}}
+          </view>
+          <view class="select" wx:else>
+            请选择
+          </view>
+        </picker>
+      </view>
+    </view>
+
+
+  </view>
+  <!-- <view>
+    <view class='sort {{types=="regdate"?"onn":""}}' data-type='regdate' bindtap="sortlist">
+      入会日期优先
+    </view>
+    <view class='sort {{types=="amt"?"onn":""}}' data-type='amt' bindtap="sortlist">
+      消费金额优先
+    </view>
+    <view class='sort {{types=="sub_cnt"?"onn":""}}' data-type='sub_cnt' bindtap="sortlist">
+      团队人数优先
+    </view>
+  </view> -->
+  <view url="/pages/mymember/subfriend?prt_vip_id={{item.vip_id}}" wx:for="{{friends}}" wx:for-index="idx" wx:for-item="item" wx:key="unique" class="friends">
+    <view class='left'>
+      <image src="{{item.headimgurl}}" mode='widthFix'></image>
+      <view>{{item.isdrp}}</view>
+      
+    </view>
+    <view class="friends-item">
+      <view class="friends_name">
+        <label>{{item.vip_name}}</label>
+        <text>会员号:{{item.vip_num}}</text>
+        <text>入会日期:{{item.regdate}}</text>
+      </view>
+      <view class="friends_items">
+        <view class='vip-item'>
+          <view>团队人数:{{item.sub_cnt}}</view>
+          <view>今日:{{item.term_today_person?item.term_today_person:0}}</view>
+          <view>本月:{{item.term_month_person?item.term_month_person:0}}</view>
+          <view>近30日:{{item.term_30day_person?item.term_30day_person:0}}</view>
+        </view>
+        <view class='vip-item'>
+          <view>本人消费金额</view>
+          <view>今日:{{item.self_today_amt?item.self_today_amt:0}}</view>
+          <view>本月:{{item.self_month_amt?item.self_month_amt:0}}</view>
+          <view>近30日:{{item.self_30day_amt?item.self_30day_amt:0}}</view>
+        </view>
+        <view class='vip-item'>
+          <view>下级消费金额</view>
+          <view>今日:{{item.term_today_amt?item.term_today_amt:0}}</view>
+          <view>本月:{{item.term_month_amt?item.term_month_amt:0}}</view>
+          <view>近30日:{{item.term_30day_amt?item.term_30day_amt:0}}</view>
+        </view>
+        
+      </view>
+    </view>
+    <view class="clear"></view>
+  </view>
+  <view class='nofriend' wx:if="{{!friends}}">
+    <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/group17.png'></image>
+    <view class='nofriend-on'>您还没有分享好友</view>
+  </view>
+  <navigator url='/pages/mymember/sharefriends' class="share" style='background: {{base_conf["color_primary"]}};'>分享我的二维码</navigator>
+</view>
+</scroll-view>
+

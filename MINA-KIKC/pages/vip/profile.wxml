@@ -1,0 +1,172 @@
+<!-- 模版导入 -->
+<import src="../common/address"/>
+
+<!--index.wxml   只需验证手机号就算完成注册？-->
+<view class="msg error" wx:if="{{err_msg}}">错误提示</view> 
+<block wx:if="{{send_tip}}">
+	<view class="send_tip" style='color: {{base_conf.color_primary}}'>{{send_tip}}</view>
+</block>
+
+<view class="container" >
+	 <view class="userinfo_head"  style="text-align:center;padding:0px;background-color:#eee;margin:0px;border-radius:50%;width:65px;height:65px;position:absolute;top:25px;left:50%;transform:translate(-50%,0);" >
+   		<image src="{{inputData.headimgurl || base_conf.STATIC_URL+'wap/default/cssimg/userpic.png'}}" style="border-radius:50%;width:65px;height:65px;" ></image>
+   		
+   </view>
+   <view style="width:100%;height:100px;margin-bottom:10px;" wx:if="{{!personal_image_bg}}"></view>
+   <view style="width:100%;margin-bottom:15px;" wx:else><image src="{{base_conf.STATIC_URL+'uploads/'+personal_image_bg}}" style="width:100%;height:{{bannarH || 100}}px;"></image></view>
+	<view bindtap='bindSetRecAddr' class='address' style='text-align:center;margin:10px auto;padding:8px 0px;width:130px;border-radius:15px;background-color: {{base_conf.color_primary}}'>
+    收货地址管理
+  </view>
+  <view class='clear'></view>
+  <view class="formPanel" wx:if="{{platshop}}" style=' margin-top:10px'>
+    <view class="vip_cell" >
+      <view class='shop_item' style='width:25%'>
+        开卡店铺：
+      </view>
+      <view class='shop_item' style='width:75%;text-align:right;'>
+        {{platshop.shop_num}}-{{platshop.shop_name}}
+      </view>
+    </view>
+    <view class="vip_cell">
+      <view class='shop_ress' style='width:25%'>
+        店铺地址：
+      </view>
+      
+      <view class='shop_ress' style='width:75%;text-align:right;'>
+        <!--<text wx:if="{{platshop.state}}">{{platshop.state}}-</text>-->
+        <text wx:if="{{platshop.city && shop_city_show}}">{{platshop.city}}-</text>
+        <text wx:if="{{platshop.area && shop_area_show}}">{{platshop.area}}-</text>
+        <text wx:if="{{platshop.address}}">{{platshop.address}}</text>
+      </view>
+      <view class='clear'></view>
+    </view>  
+  </view>
+	<view class="formPanel" wx:if="{{loadend}}">
+		<form bindsubmit="formSubmit" bindreset="formReset">
+			<view class="section" wx:for="{{fields}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+				<text class="section_tit">{{item.text}}</text>
+        <!-- <image wx:if="{{item.name=='othername1' || item.name=='vip_name'}}" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/name.png' class='img imgs'></image>-->
+        <!-- <image wx:if="{{item.name=='address'}}" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/address.png' class='img imgs'></image>-->
+				<!--<image wx:if="{{item.type=='email'}}" src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/email.png' class='img imgs'></image>-->
+				<view style="text-align:right;display:inline-block;width:65%;padding-top:0px;position:absolute;bottom:5px;right:20px;" wx:if="{{item.type=='text' || item.type=='email'}}">
+				<input  type="text" name="{{item.name}}" style="width:100%" value="{{inputData[item.name]}}" class="input_field curt" placeholder-class="placeholder-class" placeholder="{{inputData[item.name]?'':'请输入'+item.text}}" placeholder-style='text-align:right' bindblur='bindBlur' id="{{item.name}}" disabled='{{(item.status==3)?true:false}}' />
+				</view>
+				<input wx:elif="{{item.type=='number'}}" type="number" name="{{item.name}}" class="input_field" value="{{inputData[item.name]}}" placeholder-class="placeholder-class" placeholder="请输入{{item.text}}" bindblur='bindBlur' id="{{item.name}}" disabled='{{(item.status==3)?true:false}}' />
+				
+				<picker wx:elif="{{item.type=='address'}}" class="input_field" mode="region" name="{{item.name}}" value="{{inputData[item.name]}}" bindchange="bindDateChange" id="{{item.name}}" disabled='{{(item.status==3)?true:false}}'>
+          <view class='pickers'>
+           <!-- <image class='img' src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/address.png'></image>-->
+            <view class="picker" wx:if="{{inputData[item.name]}}">
+              {{inputData[item.name]}}
+            </view>
+            <view class="picker placeholder-class"  wx:else>
+              请选择{{item.text}}
+            </view>
+          </view>
+				</picker>
+
+				<picker disabled="{{inputData[item.name]?true:''}}" wx:elif="{{item.type=='date'}}" class="input_field" mode="date" name="{{item.name}}" value="{{inputData[item.name]}}" start="1900-01-01" bindchange="bindDateChange" id="{{item.name}}">
+          <view class='pickers'>
+            <!--<image class='img' src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/birthday.png'></image>-->
+            <view class="picker" wx:if="{{inputData[item.name]}}">
+              {{inputData[item.name]}}
+            </view>
+            <view class="picker placeholder-class" wx:else>
+              请选择{{item.text}}
+            </view>
+          </view>
+				</picker>
+				<!-- 另加属性读取值 -->
+				<picker wx:elif="{{item.type=='sex'}}" class="input_field" mode="selector" bindchange="bindSexChange" value="{{inputData[item.name+'_sex']}}" range="{{sex_codes.name}}" id="{{item.name}}" disabled='{{(item.status==3)?true:false}}'>
+          <view class='pickers'>
+            <!--<image class='img' src="{{(sex_codes.name[inputData[item.name+'_sex']]=='男')?base_conf.STATIC_URL+'wap/styleicon/'+base_conf.styleicon+'/man.png':base_conf.STATIC_URL+'wap/styleicon/'+base_conf.styleicon+'/female.png' }}"></image>-->
+            <view class="picker weui-input" wx:if="{{sex_codes.name[ inputData[item.name+'_sex'] ]}}">{{sex_codes.name[ inputData[item.name+'_sex'] ]}}</view>
+            <view class="picker weui-input placeholder-class" wx:else>请选择{{item.text}}</view>
+          </view>
+        </picker>
+
+			</view>
+
+			
+
+
+			<view class="section" style="position:relative;">
+				<view class="section_inner">
+					<!--<image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/pone.png' class='img'></image>-->
+          <view class='pone' style="padding:5px 0px;" >当前绑定手机号：{{phone}}</view>
+					<navigator url="/pages/mobile" class="rule_tip" style='position:absolute;top:10px;right:20px;color: {{base_conf.color_primary}};'>点击更换</navigator>
+				</view>
+			</view>
+
+      <!-- <view class="section" wx:for="{{lblclass}}" wx:for-index="idx" wx:for-item="item" wx:key="unique">
+        
+          <view wx:if="{{item.multiselect=='Y'}}">{{item.classname}}[多选]</view>
+          <view wx:else>{{item.classname}}[单选]</view>
+          <view class='label'>
+            <view bindtap="{{item.multiselect=='Y'?'checkboxChange':'radioChange'}}" wx:for="{{item.sub}}" wx:for-index="idx1" wx:for-item="item1" wx:key="unique" class="labelname {{item1.labelnum_v?'on':''}}" data-labelnum="{{item1.labelnum}}" data-classnum="{{item1.classnum}}" value="{{item1.labelname}}">{{item1.labelname}}</view>
+            <view class='clear'></view>
+          </view>
+        
+      </view> -->
+
+      <view class="section" wx:for="{{lblclass}}" wx:for-index="idx" wx:for-item="item" wx:key="unique" >
+          <!-- 多选框数据 -->
+        <view class="vote_ques_col" wx:if="{{item.multiselect=='Y'}}">
+          <view>{{item.classname}}[多选]</view>
+          <checkbox-group name="classnum{{item.classnum}}" bindchange="checkboxChanges" id="{{item.classnum}}">
+            <label class="checkbox common {{item1.checked?'on':''}}" wx:for="{{item.sub}}"  wx:for-index="idx1" wx:for-item="item1" wx:key="unique" style='border: 1px solid {{base_conf.color_primary}}; background: {{item1.checked?base_conf.color_primary:""}};'>
+
+                <checkbox class='common-item' value="{{item1.labelnum}}" checked="{{item1.checked}}"/>
+                <text class='common-labelname'>{{item1.labelname}}</text>
+
+            </label>
+            <view class='clear'></view>
+          </checkbox-group>
+        </view>
+      <!-- 单选框 -->
+        <!-- <view class="vote_ques_col" wx:else>
+          <view>{{item.classname}}[单选]</view>
+          <radio-group name="classnum{{item.classnum}}" class="radio-group" bindchange="radioChanges" id="{{item.classnum}}">
+            <label class="radio common {{item1.checked?'on':''}}" wx:for="{{item.sub}}"  wx:for-index="idx1" wx:for-item="item1" wx:key="unique" style='border: 1px solid {{base_conf.color_primary}}; background: {{item1.checked?base_conf.color_primary:""}};'>
+              <radio class='common-item' value="{{item1.labelnum}}"  checked="{{ item1.checked}}"/>
+              <text class='common-labelname'>{{item1.labelname}}</text>
+            </label>
+            <view class='clear'></view>
+          </radio-group>
+          <view class="cell_ft"></view>
+        </view> -->
+        
+        <view class="vote_ques_col" style="position:relative;"  wx:else>
+          <view style="position:absolute;top:50%;left:0px;transform:translate(0,-50%);">{{item.classname}}</view>
+
+		<picker  class="input_field" style="width:100%;padding:5px 0px;" mode="selector" bindchange="bindLabelChange" value="{{item.label_index}}" range="{{item.label_code}}" id="{{item.classnum}}" >
+          <view class='pickers'>
+            <view class="picker weui-input" wx:if="{{item.label_index>-1}}">{{item.label_codes[item.label_index]['code_name']}}</view>
+            <view class="picker weui-input placeholder-class" wx:else>请选择</view>
+          </view>
+        </picker>
+		
+          <view class="cell_ft"></view>
+        </view>
+        
+      </view>
+      
+		<view class="section" style="text-align:center;margin-bottom:20px;padding:10px 20px;"><navigator url="/pages/vip/rule" class="rule_tip" style='padding:5rpx 0rpx;text-align:center;color: {{base_conf.color_primary}};'>{{vipruletitle}}</navigator></view>
+			<view class="section" style="border-bottom:0px solid #fff;">
+					<button class="submit_btn on" size='mini' plain='true' formType="submit" style='background-color:{{base_conf["color_primary"]}}'>保存</button>
+			</view>
+		</form>
+	</view>
+	<!-- formPanel end -->
+</view>
+
+
+<!-- widget_wrap -->
+<view class="widget_wrap" bindtap='wig_address_close' id="wig_address_close" hidden="{{!wig_address_status}}">
+	<view style="width:100%;position:absolute;background:#fff;bottom:0;min-height:10%;max-height:90%;overflow:auto;">
+		<scroll-view scroll-y  style="min-height:10%; max-height:90%;width: 100%;">
+			<template is="addressList" data="{{wig_address_list,wig_address_curid,base_conf}}" />
+		</scroll-view>
+	</view>
+</view> 
+

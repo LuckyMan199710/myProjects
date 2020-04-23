@@ -1,0 +1,298 @@
+<!-- 在线商城购买页 -->
+<import src="../common/counter" />
+<import src="../common/mall" />
+<import src="../common/nav" />
+<import src="../common/addcart" />
+<import src="/utils/wxParse/wxParse" />
+
+<view style="height:{{winWidth}}px;overflow:hidden;" wx:if="{{imgs.length && !video_show}}">
+  <swiper style="height:{{winWidth}}px;width:100%;" indicator-dots="{{indicatorDots}}" autoplay="{{swiper_play}}" interval="{{interval}}" duration="{{duration}}" autoplay='{{autoplay}}' circular='{{circular}}'>
+    <swiper-item wx:key="unique" wx:for="{{videos}}" wx:for-index="idx" wx:for-item="item" wx:if="{{item.src.video_url}}">
+      <video id="{{item.mk}}" hidden="{{item.show}}" data-mk="{{item.mk}}" bindpause="bindpause" bindended="bindended" src="{{imgbase}}{{item.src.video_url}}" class="slide-image" style="height:320px;width:70%;margin:0 auto;margin-left:15%;" poster="{{item.src.first_image_url?(imgbase+item.src.first_image_url):poster_image}}"
+        autoplay="{{item.play}}" enable-danmu="{{false}}" danmu-btn="{{false}}" controls></video>
+      <view style="position:relative;width:100%;height:100%;" data-mk="{{item.mk}}" data-index="{{idx}}" data-src="{{imgbase+item.src.video_url}}" data-poster="{{imgbase+item.src.first_image_url}}" bindtap="bindposter" hidden="{{!item.show}}">
+        <image style="width:100%;height:90%;" data-mk="{{item.mk}}" src="{{item.src.first_image_url?(imgbase+item.src.first_image_url):poster_image}}" class="slide-image" />
+        <image style="width:35px;height:35px;position:absolute;top:40%;left:40%;z-index:10;transform:translate(50%,50%);" data-mk="{{item.mk}}" src="{{base_conf.STATIC_URL+'images/play.png'}}" hidden="{{!item.show}}" />
+      </view>
+    </swiper-item>
+
+    <swiper-item wx:key="unique" wx:for="{{imgs}}" wx:for-index="idx" wx:for-item="item" wx:if="{{item}}">
+      <image style="width:100%;" src="{{imgbase}}{{item}}" data-src="{{imgbase}}{{item}}" mode='widthFix' class="slide-image" bindtap="bannerImgTap" />
+    </swiper-item>
+  </swiper>
+</view>
+<!--只显示一个视频-->
+<view style="height:{{winWidth}}px;width:100%;overflow:hidden;" wx:key="unique" wx:for="{{videos}}" wx:for-index="idx" wx:for-item="item" wx:if="{{item.src.video_url && video_show}}">
+  <video id="videotest" hidden="{{!video_show}}" bindpause="bindpause" bindended="bindended" src="{{show_video_url?show_video_url:(imgbase+item.src.video_url)}}" class="slide-image" style="height:{{winWidth}}px;width:100%;margin:0 auto;" poster="{{show_first_image?show_first_image:(imgbase+item.src.first_image_url)}}"
+    autoplay="{{video_autoplay}}" enable-danmu="{{false}}" danmu-btn="{{false}}" controls></video>
+</view>
+
+<view>
+  <view class="discount" wx:if="{{ ispromo }}">
+    <view class="begun" wx:if="{{isDiscount}}" style="background: url('{{base_conf.STATIC_URL}}wap/images/start_bg.png') no-repeat center left; background-size: 100% 160rpx;">
+      <view class="limit box box-align-center">
+        <view class="wrap_left">
+          <view class="wrap_info box">
+            <view class="pp">限时折扣 {{zdycurskuid['promo_z']['discount']}}折</view>
+            <!-- <view class="wantbuy">{{zdycurskuid['promo_z']['hadsaled']}}件已售</view> -->
+          </view>
+          <view class="price_content box box-align-center">
+            <view class="price">
+              ￥ <text class="num">{{zdycurskuid['promo_z']['saleprice']}}</text> 
+            </view>
+            <view class="yj_price">
+              价格 <text class="nn">￥{{prod.mkt_price}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="flex"></view>
+        <view class="wrap_right box box-tb box-align-center box-pack-center">
+          <view class="tt">
+            限时折扣
+          </view>
+          <view class="date">
+            <view class="month">距结束仅剩</view>
+            <view class="time">{{formatcountDown}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+    <view class="begun" wx:else style="background: url('{{base_conf.STATIC_URL}}wap/images/begun_bg.png') no-repeat center left; background-size: 100% 160rpx;">
+      <view class="limit box box-align-center">
+        <view class="wrap_left">
+          <view class="wrap_info box">
+            <view class="pp">限时折扣 {{zdycurskuid['promo_z']['discount']}}折</view>
+            <!-- <view class="wantbuy">{{zdycurskuid['promo_z']['wantbuynum']}}人想买</view> -->
+          </view>
+          <view class="price_content box box-align-center">
+            <view class="price">
+              ￥ <text class="num">{{zdycurskuid['promo_z']['saleprice']}}</text> 
+            </view>
+            <view class="yj_price">
+              价格 <text class="nn">￥{{prod.mkt_price}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="flex"></view>
+        <view class="wrap_right box box-tb box-align-center box-pack-center">
+          <view class="tt">
+            限时折扣
+          </view>
+          <view class="date">
+            <view class="month">{{zdycurskuid['promo_z']['startMonthDay']}}</view>
+            <view class="time">{{zdycurskuid['promo_z']['startTime']}} 开抢</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view> 
+  <view class="section_inner" style='position:relative;'>
+
+    <view class="prod_tit">{{prod.plat_num_name}}</view>
+    <view class="box box-align-center prod">
+      <view class="prod_price" wx:if="{{curskuid['promo_z'] && curskuid['promo_z']['isstart']}}">￥{{curskuid['promo_z']['saleprice']}}</view>
+      <view class="prod_price" wx:else>￥{{curskuid.price}}</view>
+
+      <view class="prod_num" style='' wx:if="{{prod_display_mkprice == 'Y'}}">￥{{prod.mkt_price}}</view>
+    </view>
+    <view class="user_action">
+      <!--商品分享图功能不开放，需要的时候再开放 -->
+      <view bindtap='bindBargainVisit' id="2">
+        <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/share.png' class='img'></image>
+      </view>
+      <view bindtap='bindUserAction' id="1" wx:if="{{has_zan==0}}">
+        <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/zan.png' class='img'></image>
+      </view>
+      <view bindtap='delbindUserAction' id="1" wx:else>
+        <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/iszan.png' class='img'></image>
+      </view>
+      <!-- <text bindtap='bindUserAction' id="2">转</text> -->
+      <view bindtap='bindUserAction' id="3" wx:if="{{has_collect==0}}">
+        <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/collection.png' class='img'></image>
+      </view>
+      <view bindtap='delbindUserAction' id="3" wx:else>
+        <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/collection2.png' class='img'></image>
+      </view>
+    </view>
+    <!-- <view class="prod_num" style='text-decoration: line-through;' wx:if="{{prod_display_mkprice == 'Y'}}">市场价：￥{{prod.mkt_price}}</view> -->
+    <!--<view class="prod_num">货号：{{prod.prod_num}}</view>-->
+    <view class="goods_num">货号：{{curskuid.prod_num}}</view>
+  </view>
+
+  <!-- 促销 -->
+  <view class="section_inner" wx:if="{{ curskuid['promo_x'] }}" style="font-size:13px;padding-top:0">
+    <text style="background:#f23030;color:#fff">促销</text>
+    <text style="color:#f23030;margin:0 10px">{{curskuid['promo_x']['promo_name']}}</text>
+    <view wx:if="{{curskuid['promo_x']['isstart']}}">{{curskuid['promo_x']['enddate']}}结束</view>
+    <view wx:else>{{curskuid['promo_x']['startdate']}}开始</view>
+  </view>
+
+</view>
+
+<!-- <view class="section">
+	<view class="section_inner">
+		<view>尺寸</view>
+		<view class="sku_wrap">
+			<block wx:if="{{skulvl==2}}">
+				<view class="sku_item" wx:key="unique" wx:for="{{sku1}}"  wx:for-index="idx" wx:for-item="item" id="{{item.color_num}}" bindtap='bindSku1'>
+					<text wx:if="{{item['color_num']==curskuid['color_num']}}" class="on">{{item.color || item.color_num}}</text>
+					<text wx:else>{{item.color || item.color_num}}</text>
+				</view>
+				<view style="height:15px;"></view>
+				<view class="sku_item" wx:key="unique" wx:for="{{sku2}}"  wx:for-index="idx" wx:for-item="item" id="{{item.spec_num}}" bindtap="{{item['stockqty']<1?'':'bindSku2'}}">
+          <block wx:if="{{item['stockqty']<1}}">
+            <text class="disabled">{{item.spec || item.spec_num}}</text>
+          </block>
+          <block wx:else>
+            <text wx:if="{{item['spec_num']==curskuid['spec_num']}}" class="on">{{item.spec || item.spec_num}}</text>
+            <text wx:else>{{item.spec || item.spec_num}}</text>
+          </block>
+				</view>
+			</block>
+			<block wx:else>
+				<view class="sku_item" wx:key="unique" wx:for="{{sku1}}"  wx:for-index="idx" wx:for-item="item" id="{{item.sku_id}}" bindtap="{{item['stockqty']<1?'':'bindSkuid'}}">
+          <block wx:if="{{item['stockqty']<1}}">
+            <text class="disabled">{{item.plat_sku_name}}</text>
+          </block>
+          <block wx:else>
+            <text wx:if="{{item['sku_id']==curskuid['sku_id']}}" class="on">{{item.plat_sku_name}}</text>
+            <text wx:else>{{item.plat_sku_name}}</text>
+          </block>
+				</view>
+			</block>
+		</view>
+	</view>
+</view> -->
+
+
+<!-- <view class="section">
+	<view class="section_inner">
+		<view>选择数量:</view>
+		<view class="">
+			<template is="counter" data="{{wig_counter_data}}" />
+		</view>
+		<view wx:if="{{curskuid['promo_z'] && curskuid['promo_z']['isstart'] && curskuid['promo_z']['limit_stock']== 'Y'}}">剩余库存：{{curskuid['promo_z']['promo_leftqty']}}件</view>
+		<view wx:else>剩余库存：{{curskuid.stockqty}}件</view>
+	</view>
+</view> -->
+
+<!-- <view class="section">
+	<view class="section_inner" bindtap='bindSetCoupon'>
+		<navigator url='/pages/mall/brand?shopid={{shop_info["shop_id"]}}' open-type="reLaunch">店铺：<text>{{shop_info['shop_name']}}</text><text class="cell_ft under_txt">进入店铺></text></navigator>
+  </view>
+</view> -->
+
+
+<!--<view style="width:100%;" style="background-color:#fff;padding:5px 0;">
+<view class="grade_detail" >
+	<view wx:key="unique" wx:for="{{gradedata}}"  wx:for-index="idx" wx:for-item="item" class="grade_row  grade_row_{{idx}}" >
+		<view class="grade_cell_1  gradecell_{{idx}}" >{{item.prop_name}}</view>
+		<view class="grade_cell_2  gradecell_2_{{idx}}" >{{item.prop_value}}</view>
+		<view style="clear:both;" ></view>
+  </view>
+  
+</view>
+</view>-->
+<view style="background-color:#fff;padding:5px 0;width:100%;font-size:12px;" wx:if="{{gradedata.length>0}}">
+  <view class="table">
+
+    <view wx:for="{{gradedata}}" wx:key="unique" wx:for-index="idx" wx:for-item="item" class="tr grade_row{{idx}}">
+      <view class="td grade_cell_11">{{item.prop_name}}</view>
+      <view class="td grade_cell_22">{{item.prop_value}}</view>
+
+    </view>
+  </view>
+</view>
+<view class="detail-tit">
+  <view class="tit">宝贝详情</view>
+</view>
+
+<image src='{{imgbase}}{{prod.pic_detail}}' class='pic_detail' mode='widthFix' data-src="{{imgbase}}{{prod.pic_detail}}" bindtap="detailImg"></image>
+<view class="tabcontent">
+  <view class="wxParse">
+    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+  </view>
+</view>
+<!-- <view class="section">
+	<view class="section_inner">
+		<view>选择兑换数量:</view>
+		<view class="">
+			<slider bindchange="bindSlider4change" min="1" max="{{prod.stockqty}}" show-value value="{{curbuyqty}}"/>
+		</view>
+		<view>剩余库存：{{curskuid.stockqty}}件</view>
+	</view>
+</view> -->
+
+
+<view class="control_prodtype clearfix">
+  <template is="control_prodlist" data="{{imgbase:imgbase,image_size:'S',prodlist:relativeprods,base_conf,empty_tip:'1' }}" />
+</view>
+
+
+
+<view style="height:70px;"></view>
+
+<view class="foot__fix" style="z-index:2">
+  <view class="section_inner action_bar">
+    <view class="action_idx" style='width:15%;border-top:1px solid #d2d2d2'>
+      <navigator url='/pages/mall/main' style='display:block;height:50px;' open-type='reLaunch'>
+        <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/index.png' mode="scaleToFill" class='cars_img'></image>
+        <view class="cart">首页</view>
+      </navigator>
+    </view>
+    <view class="action_idx" style='width:15%;border-top:1px solid #d2d2d2'>
+      <navigator url='/pages/mall/classprods' style='display:block;height:50px;' open-type='reLaunch'>
+        <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/class.png' mode="scaleToFill" class='cars_img'></image>
+        <view class="cart">分类</view>
+      </navigator>
+    </view>
+    <view class="action_idx" style='width:15%;border-top:1px solid #d2d2d2'>
+      <navigator url='/pages/buycar' style='display:block;height:50px;' open-type='reLaunch'>
+        <view class='cartsum'>{{cartsum || 0}}</view>
+        <image src='{{base_conf["STATIC_URL"]}}wap/styleicon/{{base_conf["styleicon"]}}/cars.png' mode="scaleToFill" class='cars_img'></image>
+        <view class="cart">购物车</view>
+      </navigator>
+    </view>
+    <view class="action_list box" style='width:55%'>
+      <view class="addcart" bindtap='bindAddcart2' data-vid="{{share_vipid}}">加入购物车</view>
+      <!--  <view class="buynow" bindtap='bindBuy' data-vid="{{share_vipid}}">立即购买</view> -->
+    </view>
+    <!-- <button bindtap="bindBuy" size='mini' plain='true' class="submit_btn on">立即购买</button> -->
+  </view>
+</view>
+
+
+<!-- 右侧导航栏 -->
+<template is="control_nav" data="{{navhidden:navhidden,base_conf}}" />
+
+<!-- 购买 -->
+<template is="comp_addcart" data="{{imgbase,addcart_good_cover,is_addcart_show,skulvl,curskuid,sku1,sku2,curbuyqty,actiontype,isClose}}" />
+
+<!-- 分享好友遮幕 -->
+<view class="groupvisit-main" catchtouchmove="preventTouchMove" hidden="{{!groupvisit}}">
+
+  <view class="groupvisit-wrap" catchtouchmove="preventTouchMove" style="background-color:#fff;top:0;left:0;width:100%;">
+    <!--关闭遮幕-->
+    <view style="position:fixed;top:2%;right:20px;">
+      <image bindtap="closeMarkShare" style="padding:5px;width:25px;height:25px;" src="{{base_conf['STATIC_URL']}}wap/images/close.png"></image>
+    </view>
+    <!--canvas 绘制-->
+    <view class="groupvisit-content">
+      <canvas canvas-id="shareCanvas" style="width:275px;height:400px;" />
+    </view>
+    <view class="groupvisit-action" hidden="{{false}}">
+      <!--	<view class="groupvisit-cell" >
+     			<image src="{{imgbase+'/wx_f.png'}}" style="width:45px;height:45px;margin:0px auto;"></image>
+     			<text class="shareFriend_txt" style="display:block;text-align:center;margin-top:5px;">发送给朋友</text>
+     			<button open-type='share' bindtap="shareFriend" class="shareFriend_btn" style='width:100%;height:100%;position:absolute;top:0;opacity:0;'>发送给朋友</button>
+     		</view>-->
+      <view class="groupvisit-cell">
+        <image src="{{imgbase+'wx_p.png'}}" style="width:45px;height:45px;margin:0px auto;"></image>
+        <text class="savePhoto_txt" style="display:block;text-align:center;margin-top:5px;">保存图片(分享专用)</text>
+        <button bindtap="savePhoto" class="savePhoto_btn" style='width:100%;height:100%;position:absolute;top:0;opacity:0;'>分享朋友圈</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,55 @@
+<!--pages/trend/theme.wxml-->
+<view class="container">
+  <view class="imgToggle" wx:if="{{toggle}}">
+    <view class="title">
+      {{sys_name}}
+    </view>
+    <view class="bgimg">
+      <image src="{{bgimgurl}}" mode="widthFix" style="max-height: {{height - 290}}rpx;"></image>
+    </view>
+    <view class="upload box">
+      <view class="border">
+        <button class="kfbt upload_btn" bindtap="chooseImage">我要上传</button>
+      </view>
+      <view class="desc">
+        请在个人信息中填写有效的联系方式，并关注森威商城官方账号，以确保收到获奖通知
+      </view>
+    </view>
+  </view>
+  <view class="themeUpload" wx:else>
+    <view class="img_nav">
+      <scroll-view class="FilePath" style="height:100%;width:100%" catchtouchmove="bindTouchMove" catchtouchend="bindTouchEnd" bindtouchstart="bindTouchStart">
+        <image catchtouchmove="bindTouchMove" bindtouchend="bindTouchEnd" bindtouchstart="bindTouchStart" style=" transform: scale({{img.baseScale}}); position:absolute; top:{{img.top}}px; left:{{img.left}}px;height:{{scaleHeight}}px;width: {{scaleWidth}}px;" class="dtlImg" src="{{img.dataimg}}" bindload='imgload'></image>
+        <view class="reduction" bindtap='handlereduction'>还原</view>
+      </scroll-view>
+    </view>
+    <canvas class="canvas" canvas-id="myCanvas_A" style="width: 710rpx;height: 710rpx;" />
+    <view class="desc" bindtap="handleDesc">
+      操作提示 >>
+    </view>
+    <view class="floor">
+      <view class="mybtn">
+        <button class="kfbt reset" bindtap="chooseImage">重新选择</button>
+        <button class="kfbt submit" bindtap="handleSubmit">提交照片</button>
+      </view>
+    </view>
+    <view class="timechoose" wx:if="{{operationToggle == 'Y'}}">
+      <view class="content">
+        <view class="tips box">
+          <view class="tit">操作提示</view>
+          <view class="ul">
+            <view class="li">
+              <view class="dd">捏放双指缩放照片</view>
+            </view>
+            <view class="li">
+              <view class="dd">点击拖放移动照片</view>
+            </view>
+          </view>
+          <button class="kfbt mybtn" bindtap='handleclose'>我知道了</button>
+        </view>
+      </view>
+      <view class="mark"></view>
+    </view>
+  </view>
+
+</view>

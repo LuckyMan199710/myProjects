@@ -1,0 +1,11 @@
+/**vip_point.wxss**/
+page{
+	min-height: 100%;
+	background-color: #f7f7f7;
+}
+.compname{text-align: center; font-size: 36rpx; margin-top: 50rpx;}
+.title{text-align: center; font-weight: bold; margin-top: 50rpx;}
+.img{text-align: center; margin-top: 30rpx;}
+.use_notice{text-align: center; margin-top: 15rpx;}
+.dashed{/*border-bottom: dashed 1rpx #8f5e24;*/ height: 50rpx; width: 100%;}
+.remark{margin-top: 20rpx; padding: 30rpx;}

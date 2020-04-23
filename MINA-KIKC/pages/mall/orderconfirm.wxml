@@ -1,0 +1,251 @@
+<!-- 模版导入 -->
+<import src="../common/address"/>
+
+<!-- container -->
+<view class="container">
+
+<!-- 积分实物订单确定 -->
+<view class='section'>
+	<block wx:if="{{deliver_type=='online'}}">
+    <view class="section_inner"  bindtap='bindSetRecAddr'>
+      <view wx:if="{{!recAddr}}">请选择收货地址</view>
+      <view wx:else><view style="font-size:15px">{{recAddr.relname}} - {{recAddr.phone}}</view>
+        <view>{{recAddr.state}} {{recAddr.city}} {{recAddr.district}} {{recAddr.address}}</view>
+      </view>
+    </view>
+	</block>
+	<block wx:else>
+			<view class="section_inner"  bindtap='bindSetPickAddr'>
+				<view wx:if="{{!pickAddr}}">请选择取货门店</view>
+				<view wx:else><view style="font-size:15px">{{pickAddr.shop_name}}</view><view>{{pickAddr.address}}</view></view>
+			</view>
+	</block>
+</view>
+
+<!-- 活动组 -->
+<view class="section">
+	<block wx:for="{{promo_prods}}" wx:for-index="idx1" wx:for-item="item1" wx:key="unique">
+	<view class="section_inner">
+		<view style="color:#999;margin-bottom:5px;">{{item1.promo_name}}</view>
+		<view class="good" wx:for="{{item1.user_prods}}" wx:for-index="idx" wx:for-item="item2" wx:key="unique">
+			<view class="cover">
+				<image src="{{imgbase}}{{item2.image_url}}" class="slide-image"/>
+			</view>
+			<view >{{item2.plat_num_name}}-{{item2.plat_sku_name||''}}</view>
+			<view><text class="price_txt">￥{{item2.price}}</text>  x{{item2.buyqty}}</view>
+		</view>
+		<!-- end good -->
+	  <view class="group_root">
+        <text>活动减免{{item1.ttl_promo_disc}}元</text><text>会员折扣减免{{item1.ttl_vip_disc}}元</text>
+    </view>
+	</view>
+	</block>
+</view>
+
+
+<!-- 无活动组 -->
+<view class="section">
+	 <block wx:for="{{shop_prods}}" wx:for-index="idx1" wx:for-item="item1" wx:key="unique"> 
+    <!-- <view>非活动商品</view> -->
+    <view class="section_inner">
+      <view class="good" wx:for="{{item1.user_prods}}" wx:for-index="idx" wx:for-item="item2" wx:key="unique">
+        <view class="cover">
+          <image src="{{imgbase}}{{item2.image_url}}" class="slide-image"/>
+        </view>
+        <view >{{item2.plat_num_name}}-{{item2.plat_sku_name||''}}</view>
+        <view><text class="price_txt">￥{{item2.price}}</text>  x{{item2.buyqty}}</view>
+      </view>
+      <!-- end good -->
+      <view class="group_root">
+          小计：<text>会员折扣减免{{item1.ttl_vip_disc}}元</text>
+      </view>
+    </view>
+	 </block> 
+</view>
+
+<view class="section">
+  <view class="section_inner">
+    <view>
+      <view class="inshopname">备注：</view> 
+      <input class="input_field" placeholder="请输入备注" data-type="message" bindblur="bindBlur" type="text" /> 
+      <view class='clear'></view>
+    </view>
+	</view>
+</view>
+
+<view class="section">
+  <view class="section_inner">
+    <view>商品金额：<text style="color:#c40">￥{{ good_amt }}</text></view>
+	</view>
+  <view class="section_inner">
+    <view>活动减免：<text style="color:#c40">-￥{{ ttl_disc_fee }}</text></view>
+	</view>
+</view>
+
+
+
+<view class="section">
+	<view class="section_inner" bindtap='bindSetPayment' >
+		<view>选择支付方式：<text class="under_txt">{{payment_type=='N'?'在线支付':'货到付款'}}</text></view>
+  </view>
+	<view class="section_inner" bindtap='bindSetDeliver'>
+		<view>选择配送方式：<text class="under_txt">{{deliver_type=='inshop'?'门店自提':'快递配送'}}</text></view>
+  </view>
+  <view class="section_inner" wx:if="{{deliver_type=='online'}}">
+    <view class='post_fee'>快递费：<text style="color:#c40">￥{{ post_fee }}</text></view>
+    <view class='remark'>{{remark?remark:''}}</view>
+	</view>
+  
+  <view class="section_inner" wx:if="{{deliver_type=='inshop'}}">
+		<view>
+      <view class="inshopname">取货人姓名：</view> 
+      <input class="input_field" placeholder="请输入取货人姓名" data-type="name" bindblur="bindBlur" type="text" value="{{user_name}}"/> 
+      <view class='clear'></view>
+    </view> 
+    <view>
+      <view class="inshopname">取货人手机：</view> 
+      <input class="input_field" placeholder="请输入取货人手机" data-type="mobile" bindblur="bindBlur" type="text" value="{{user_phone}}" /> 
+      <view class='clear'></view>
+    </view>
+    <picker bindchange="bindDeliverChange" value="{{deliver_index}}" range-key="code_name" range="{{deliver_status}}" style="padding: 10rpx 0;">
+      <view class="picker">
+        选择货物状态：{{deliver_status[deliver_index].code_name}}
+      </view>
+    </picker>
+	</view>
+
+  <view class="section_inner" wx:if="{{allow_invoice}}">
+    <navigator url='/pages/mall/orderinvoice'>发票信息：<text style="color:#999;" class="under_txt">{{ invoice_tip }}</text></navigator>
+	</view>
+</view>
+
+
+<view class="section">
+	<view class="section_inner" bindtap='bindSetCoupon'>
+		<view>优惠券(优惠券不可抵扣运费)：
+      <text style="color:#c40"  wx:if="{{coupon['coupon_type'] == 'CASH' }}" >-￥{{coupon['amount'] || 0}}</text>
+      <text style="color:#c40"  wx:if="{{coupon['coupon_type'] == 'DISCOUNT' }}" >{{coupon['amount'] * 10 || 0}}折(-￥{{dis_coupon_fee}})</text>
+
+      <text class="cell_ft under_txt" wx:if="{{coupon_message}}">{{coupon_message}}</text>
+      <text class="cell_ft under_txt" wx:else>{{valid_coupons.length || 0}}张可用</text>
+    </view>
+  </view>
+</view>
+
+<!-- 是否使用积分支付 -->
+<block wx:if="{{allow_usepoint && vip_point>0 && payment_type =='N'}}">
+<view class="section">
+	<view class="section_inner">
+		<label style="padding:0px;display:inline-block;"  bindtap="bindRadioTap" class="radio">
+			<radio checked="{{use_point_pay}}"/>使用积分支付(用户当前积分：{{vip_point}})
+		</label>
+		
+		<view wx:if="{{use_point_pay}}" style="padding-top:5px;">
+			<input type="number" placeholder='输入积分为{{vip_point_rate}}的整数倍' 
+			bindinput='bindPointPayBlur' bindblur='bindPointBlur' style="border:1px solid #ddd;" value='{{input_point}}'/>
+			<text style="color:#999">注：兑换￥1需{{vip_point_rate}}积分,<text wx:if="{{mall_point_max!=0}}">积分直接抵扣上限为￥{{mall_point_max}}。</text>积分支付不可抵扣运费。积分一经使用，非系统问题发生的退换货/订单，均不予退回积分。</text>
+		</view>
+
+	</view>
+</view>
+</block>
+
+<!-- 是否使用余额支付 -->
+<block wx:if="{{allow_balpay && vip_amount>0&& payment_type =='N'}}">
+<view class="section">
+	<view class="section_inner">
+		<label style="padding:0px;display:inline-block;"  bindtap="bindRadioTapBal" class="radio">
+			<radio checked="{{use_balpay}}"/>使用余额支付(用户当前余额：￥{{vip_amount}})
+		</label>
+		<view wx:if="{{use_balpay}}" style="padding-top:5px;">
+			<input type="digit" placeholder='输入使用的余额' 
+			bindinput='bindBalPayBlur' style="border:1px solid #ddd;" value='{{input_bal}}'/>
+		</view>
+	</view>
+</view>
+</block>
+
+
+<view class="section">
+	<view class="section_inner">
+		<view style="text-align:center;">还需支付：<text style="color:#c40;font-size:16px;">￥{{pay_amt}}</text></view>
+	</view>
+</view>
+
+<view class="section">
+	<view class="section_inner">
+  		<view class="tips" style="font-size: 24rpx;color: #999999;padding: 6px 0;">
+			{{order_remark}}
+		</view>
+		<button bindtap="BindPay" size='mini' plain='true' class="submit_btn on" style='background-color:{{base_conf.color_primary}}'>确认</button>
+
+	</view>
+	
+</view>
+
+</view>
+<!-- container end -->
+
+
+
+<view class="widget_wrap" bindtap='wig_coupon_close' id="wig_coupon_close" hidden="{{!wig_coupon_status}}">
+	<view style="position:absolute;background:#fff;bottom:0;min-height:{{windowHeight/2}}px;max-height:{{windowHeight-50}}px">
+		<scroll-view scroll-y style="min-height:{{windowHeight/2}}px; max-height:{{windowHeight-50}}px;width: {{windowWidth}}px;">
+			<template is="couponList" data="{{wig_coupon_list:valid_coupons,wig_coupon_curid}}" />
+		</scroll-view>
+	</view>
+</view> 
+
+
+<view class="widget_wrap" bindtap='wig_address_close' id="wig_address_close" hidden="{{!wig_address_status}}">
+	<view style="position:absolute;background:#fff;bottom:0;height: 500rpx">
+		<scroll-view scroll-y  style="height: 100%; width: {{windowWidth}}px;">
+			<template is="addressList" data="{{wig_address_list,wig_address_curid,base_conf:base_conf}}" />
+		</scroll-view>
+	</view>
+</view> 
+
+
+<view class="widget_wrap" bindtap='wig_pickshop_close' id="wig_pickshop_close" hidden="{{!wig_pickshop_status}}" style="z-index:200">
+	<view style="position:absolute;background:#fff;bottom:0;min-height:{{windowHeight/2}}px;max-height:{{windowHeight-50}}px">
+		<scroll-view scroll-y  style="min-height:{{windowHeight/2}}px; max-height:{{windowHeight-50}}px;width: {{windowWidth}}px;">
+			<template is="shopList" data="{{wig_pickshop_list,wig_pickshop_curid}}" />
+		</scroll-view>
+	</view>
+</view> 
+
+
+<view class="widget_wrap" bindtap='wig_deliver_close' id="wig_deliver_close" hidden="{{!wig_deliver_status}}">
+	<view style="position:absolute;background:#fff;bottom:0;min-height:{{windowHeight/2}}px;max-height:{{windowHeight-50}}px">
+		<scroll-view scroll-y  style="min-height:{{windowHeight/2}}px; max-height:{{windowHeight-50}}px;width: {{windowWidth}}px;">
+			<template is="deliverPanel" data="{{wig_deliver_delivertype,wig_deliver_temptype,wig_deliver_curpickshop,base_conf:base_conf}}"/>
+		</scroll-view>
+	</view>
+</view>
+
+<view class="widget_wrap" bindtap='wig_payment_close' id="wig_payment_close" hidden="{{!wig_payment_status}}">
+	<view style="position:absolute;background:#fff;bottom:0;min-height:{{windowHeight/2}}px;max-height:{{windowHeight-50}}px">
+		<scroll-view scroll-y  style="min-height:{{windowHeight/2}}px; max-height:{{windowHeight-50}}px;width: {{windowWidth}}px;">
+			<view class="deliverPanel">
+				<!-- 支付方式 -->
+				<view class="section">
+					<view class="section_inner">	
+						<view wx:for="{{payment_options}}" wx:for-index="idx" wx:for-item="item" wx:key="unique" class="selTag_item" id="{{item.type}}" bindtap='wig_payment_switchType'>
+							<text class="{{item.type==payment_temptype?'on':''}}">{{item.name}}</text>
+						</view>
+					</view>
+					
+				</view>
+				<!-- 确定 -->
+				<view class="section">
+					<view class="section_inner">
+						<button bindtap="wig_payment_confirm" size='mini' plain='true' class="submit_btn on" style="background:{{base_conf.color_primary}}">确定</button>
+					</view>
+					
+				</view>
+	
+			</view>
+		</scroll-view>
+	</view>
+</view>
+

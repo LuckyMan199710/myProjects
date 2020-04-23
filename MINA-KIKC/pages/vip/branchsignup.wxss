@@ -1,0 +1,40 @@
+/**index.wxss**/
+page{
+  background: #fbf9fe;
+}
+.container{
+  padding: 10px;
+}
+.contentY{
+  text-align: center;
+}
+.banner{
+  width: 100%;
+}
+.issubmitY_img{
+  width: 50px;
+  margin-top: 30px;
+}
+.issubmitY{
+  margin-top: 10px;
+  text-align: center;
+}
+.weui_media_title{
+  font-size: 18px;
+  padding: 5px 0px;
+}
+.olrForm{
+  background:#fff;
+  padding: 10px;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+}
+.fieldlabel{
+  padding: 5px 0px;
+}
+.olrForm input{
+  padding: 5px 0px 5px 5px;
+}
+.picker{
+  padding: 5px 0px 5px 5px;
+}

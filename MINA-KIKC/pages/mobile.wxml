@@ -1,0 +1,28 @@
+<!--index.wxml   只需验证手机号就算完成注册？-->
+<view class="container">
+
+	<view class="formPanel">
+		<form bindsubmit="formSubmit" bindreset="formReset" wx:if="{{!is_fillinfo}}">
+
+			<view class="section">
+				<text class="section_tit">新手机号</text>
+				<input id="phone" name="phone" type='number' class="input_field" placeholder="请输入新手机号" bindinput='bindBlur' value="{{wxphone}}"/>
+				<!-- <button class="sms_btn" size='mini' plain='true' bindgetphonenumber="getPhoneNumber" open-type="getPhoneNumber">使用微信手机号</button> -->
+			</view>
+
+			<view class="section">
+				<text class="section_tit">验证码</text>
+				<input id="code" name="code"  type='number' class="input_field" placeholder="请输入验证码" />
+				<button wx:if="{{second>0}}" class="sms_btn" size='mini' plain='true' disabled='true' >{{second}}s再获取</button>
+				<button class="sms_btn" wx:else size='mini' plain='true' bindtap="bindSendSms" >获取验证码</button>
+			</view>
+
+			<view class="section">
+					<button class="submit_btn on" size='mini' plain='true' formType="submit" style="background:{{base_conf.color_primary}}">立即验证</button>
+			</view>
+		</form>
+
+
+	</view>
+	<!-- formPanel end -->
+</view>

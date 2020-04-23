@@ -1,0 +1,146 @@
+<!-- 加购物车主体 -->
+<template name="comp_addcart">
+  <block wx:if="{{is_addcart_show}}">
+    <view class="pop pop-cart" catchtouchmove="preventMaskMove">
+      <view class="pop_mask"></view>
+	  
+      <view class="pop_ctn_wrap pop_ctn_wrap-f">  
+        <!-- 头部 -->
+        <view class="pop_top bdr-b">
+          <view class="pop_top_wrap">
+            <view class="pop_top_ctn">
+              <view class="pop_top_pic">
+                <image src='{{imgbase}}{{addcart_good_cover}}'></image>
+              </view>
+              <view class="pop_top_name">{{curskuid['plat_num_name']}}</view>
+              <view class="pop_top_price">￥{{curskuid['promo_z'] && curskuid['promo_z']['isstart']?curskuid['promo_z']['saleprice']:(curskuid['promo_p'] && curskuid['promo_p']['isstart']?curskuid['promo_p']['saleprice']:curskuid['price'])}}
+                <text wx:if="{{curskuid['promo_z'] && curskuid['promo_z']['isstart'] && curskuid['promo_z']['limit_stock']== 'Y'}}" style='color:#666'>库存：{{curskuid['promo_z']['promo_leftqty']}}件</text>
+                <text wx:elif="{{curskuid['promo_p'] && curskuid['promo_p']['isstart'] && curskuid['promo_p']['limit_stock']== 'Y'}}" style='color:#666'>库存：{{curskuid['promo_p']['promo_leftqty']}}件</text>
+                <text wx:else style='color:#666'>库存：{{curskuid.stockqty}}件</text>
+              </view>
+            </view>
+            <text class="pop_close" bindtap='addcart_bindClode'>X</text>
+          </view>
+
+        </view>
+        <!-- 身体 -->
+        <view class="pop_middle">
+          <scroll-view scroll-y="true" style="height:100%;">
+            <!-- 关闭按钮 -->
+            <view class="close" bindtap="addcart_bindClode" wx:if="{{isClose}}">
+              <image src="../image/icon_close.png"></image>
+            </view>
+            <view class="pop_middle_inner">
+
+              <!-- sku start -->
+              <view class='prod_sku'>
+                <!-- <view class="section_inner"> -->
+                <view class="sku_wrap">
+
+                  <block wx:if="{{skulvl==2}}">
+                    <view>颜色</view>
+                    <view class="sku_item" wx:key="unique" wx:for="{{sku1}}" wx:for-index="idx" wx:for-item="item" id="{{item.color_num}}" bindtap='addcart_bindSku1'>
+                      <text wx:if="{{item['color_num']==curskuid['color_num']}}" class="on">{{item.color || item.color_num}}</text>
+                      <text wx:else>{{item.color || item.color_num}}</text>
+                    </view>
+                    <view style="margin-top: 10rpx;">尺码</view>
+                    <view class="sku_item" wx:key="unique" wx:for="{{sku2}}" wx:for-index="idx" wx:for-item="item" id="{{item.spec_num}}" bindtap="{{item['stockqty']<1?'':'addcart_bindSku2'}}">
+                      <block wx:if="{{item['promo_z'] && item['promo_z']['isstart'] && item['promo_z']['limit_stock']== 'Y' && item['promo_z']['promo_leftqty']<1}}">
+                        <text class="disabled">{{item.plat_sku_name || item.spec_num}}</text>
+                      </block>
+                      <block wx:elif="{{item['promo_p'] && item['promo_p']['isstart'] && item['promo_p']['limit_stock']== 'Y' && item['promo_p']['promo_leftqty']<1}}">
+                        <text class="disabled">{{item.plat_sku_name || item.spec_num}}</text>
+                      </block>
+                      <block wx:elif="{{item['stockqty']<1}}">
+                        <text class="disabled">{{item.plat_sku_name || item.spec_num}}</text>
+                      </block>
+                      <block wx:else>
+                        <text wx:if="{{item['spec_num']==curskuid['spec_num']}}" class="on">{{item.plat_sku_name || item.spec_num}}</text>
+                        <text wx:else>{{item.plat_sku_name || item.spec_num}}</text>
+                      </block>
+                    </view>
+                  </block>
+                  <block wx:else>
+                    <view style="margin-top: 10rpx;">尺码</view>
+                    <view class="sku_item" wx:key="unique" wx:for="{{sku1}}" wx:for-index="idx" wx:for-item="item" id="{{item.sku_id}}" bindtap="{{item['stockqty']<1?'':'addcart_bindSkuid'}}">
+                      <block wx:if="{{item['promo_z'] && item['promo_z']['isstart'] && item['promo_z']['limit_stock']== 'Y' && item['promo_z']['promo_leftqty']<1}}">
+                        <text class="disabled">{{item.plat_sku_name || item.spec_num}}</text>
+                      </block>
+                      <block wx:elif="{{item['promo_p'] && item['promo_p']['isstart'] && item['promo_p']['limit_stock']== 'Y' && item['promo_p']['promo_leftqty']<1}}">
+                        <text class="disabled">{{item.plat_sku_name || item.spec_num}}</text>
+                      </block>
+                      <block wx:elif="{{item['stockqty']<1}}">
+                        <text class="disabled">{{item.plat_sku_name || item.spec_num}}</text>
+                      </block>
+                      <block wx:else>
+                        <text wx:if="{{item['sku_id']==curskuid['sku_id']}}" class="on">{{item.plat_sku_name}}</text>
+                        <text wx:else>{{item.plat_sku_name}}</text>
+                      </block>
+                    </view>
+                  </block>
+
+                </view>
+                <!-- </view> -->
+              </view>
+              <!-- sku end -->
+
+              <!-- count start -->
+              <view class="section_inner" style="padding: 0;margin-top: 10rpx;" wx:if="{{actiontype!=='exchange'}}">
+                <view>购买数量:</view>
+                <view class="prod_nums">
+                  <view class="counter">
+                    <view class="counter_wrap">
+                      <view class="counter_down" bindtap='addcart_decNum'>-</view>
+                      <view class="counter_num counter_border">
+                        <input type="number" name="num" class="counter_numinput4545" bindinput='bindBalPayBlur' value='{{curbuyqty}}' />
+                      </view>
+                      <view class="counter_up" bindtap='addcart_incNum'>+</view>
+                    </view>
+                  </view>
+                </view>
+                 <view class="stockqty">剩余库存：{{curskuid.stockqty}}件</view>
+              </view>
+              <!-- count end -->
+
+            </view>
+
+          </scroll-view>
+        </view>
+        <!-- 脚 -->
+        <view class="pop_bottom">
+          <view class="section_inner action_bar">
+            <view class="action_list box">
+            	<block wx:if="{{curskuid['promo_z'] && curskuid['promo_z']['isstart'] && curskuid['promo_z']['limit_stock']== 'Y' && curskuid['promo_z']['promo_leftqty']<1}}">
+                <view class="nothing flex">活动商品库存不足</view>
+              </block>
+              <block wx:elif="{{curskuid['promo_p'] && curskuid['promo_p']['isstart'] && curskuid['promo_p']['limit_stock']== 'Y' && curskuid['promo_p']['promo_leftqty']<1}}">
+                <view class="nothing flex" >活动商品库存不足</view>
+              </block>
+              <block wx:elif="{{curskuid.stockqty<1}}">
+                <view class="nothing flex" >库存不足</view>
+              </block>
+              <block wx:else>
+                <block wx:if="{{actiontype=='buynow'}}">
+                  <view class="buynow flex"  bindtap='addcart_bindBuy'>立即购买</view>
+                </block>
+                <block wx:elif="{{actiontype=='cartnow'}}">
+                  <view class="addcart flex"  bindtap='addcart_bindAdd'>加入购物车</view>
+                </block>
+				
+                <block wx:elif="{{actiontype=='exchange'}}">
+                  <view class="addcart flex"  bindtap='addcart_bindSelected'>确定</view>
+                </block>
+				
+                <block wx:else>
+                  <view class="addcart" bindtap='addcart_bindAdd'>加入购物车</view>
+                  <view class="buynow" bindtap='addcart_bindBuy'>立即购买</view>
+                </block>
+							
+              </block>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</template>

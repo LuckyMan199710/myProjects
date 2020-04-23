@@ -1,0 +1,46 @@
+<!--index.wxml-->
+<import src="../common/nav"/>
+<view class="container">
+
+  <!-- <view class="coupon_tab">
+    <view class="navtab">
+      <view class="navtab__item {{curType=='V'?'navtab__item--on':''}}" bindtap="switchTab" id="V">未使用({{coupons['V'].length}})</view>
+      <view class="navtab__item {{curType=='U'?'navtab__item--on':''}}" bindtap="switchTab" id="U">已使用({{coupons['U'].length}})</view>
+      <view class="navtab__item {{curType=='O'?'navtab__item--on':''}}" bindtap="switchTab" id="O">已过期({{coupons['O'].length}})</view>
+    </view>
+  </view> -->
+
+  <view class="my__coupon">
+		<block wx:key="unique" wx:for="{{coupons}}" wx:for-index="idx" wx:for-item="item">
+			<view class="coupon hasbg" wx:if="{{item.bg_image}}" style="background-position:center center;background-image:url('{{imgbase+item.bg_image}}')">
+					<view class="coupon__r" >
+						<view class="coupon__tit">{{item.title}}</view>
+						<view class="coupon__sub">{{item.use_notice}}</view>
+						<view>使用期限：<text>{{item.startdate}}至{{item.enddate}}</text></view>
+					</view>
+					<view class="coupon__l" style='background-color: {{base_conf.color_primary}};' bindtap='bindGetCpn' id="{{item.coupon_id}}">
+						<text>立即领取</text>
+					</view>
+			</view>
+			<view wx:else class="coupon">
+				<view class="coupon__r" >
+					<view class="coupon__tit">{{item.title}}</view>
+					<view class="coupon__sub">{{item.use_notice}}</view>
+					<view>使用期限：<text>{{item.startdate}}至{{item.enddate}}</text></view>
+				</view>
+				<view class="coupon__l" style='background-color: {{base_conf.color_primary}};' bindtap='bindGetCpn' id="{{item.coupon_id}}">
+					<text>立即领取</text>
+				</view>
+   		</view>
+		</block>
+		
+
+     <view wx:if="{{coupons.length<1 && load_end}}" class="empty_msg"><view class="weui-msg__title">没有优惠券</view></view>  
+		
+  </view>
+
+
+</view>
+
+<!-- 右侧导航栏 -->
+<template is="control_nav"  data="{{navhidden:navhidden,base_conf}}"/>

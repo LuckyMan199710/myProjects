@@ -1,0 +1,24 @@
+/* pages/myrevenue/sharerule.wxss */
+.container{
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  justify-content: space-between;
+  font-size: 28rpx;
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  box-sizing: border-box;
+  text-align: center;
+  padding-bottom: 0;
+  height: 100vh;
+}
+.page-body {
+  width: 100%;
+  flex-grow: 1;
+  overflow-x: hidden;
+}
+
+.slide-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

@@ -1,0 +1,92 @@
+
+.photolist {
+  padding: 0 20rpx 20rpx;
+}
+.photolist .item {
+  background: #f3f3f3;
+  margin-top: 20rpx;
+}
+.photolist .item .img_nav {
+  width: 100%;
+  height: 710rpx;
+  display: block;
+  position: relative;
+}
+.photolist .item .img_nav image.photo_img {
+  width: 100%;
+  height: 100%;
+}
+.photolist .item .img_nav .operation {
+  position: absolute;
+  width: 100%;
+  height: 70rpx;
+  bottom: 0;
+  left: 0;
+  background: #2b2b2b;
+}
+.photolist .item .img_nav .operation .img_ul {
+  width: 100%;
+  padding: 0 20rpx;
+  align-items: center;
+}
+.photolist .item .img_nav .operation .img_ul .img_li image {
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+}
+.photolist .item .fun {
+  padding: 10rpx 20rpx;
+  align-items: center;
+}
+.photolist .item .fun .zan {
+  align-items: center;
+  flex: 1;
+}
+.photolist .item .fun .zan image {
+  width: 50rpx;
+  height: 50rpx;
+}
+.photolist .item .fun .zan .num {
+  margin-left: 10rpx;
+  font-size: 24rpx;
+}
+.photolist .item .fun .date {
+  font-size: 22rpx;
+  color: #a5a5a5;
+}
+
+.photolist .item .info {
+  padding: 0 20rpx 10rpx;
+
+}
+.photolist .item .info .name {
+  font-size: 26rpx;
+  display: block;
+  max-width: 200rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+.photolist .item .info .label {
+  display: flex;
+  flex-flow: row wrap;
+  margin-left: 10rpx;
+}
+
+.photolist .item .info .label .li {
+  height: 46rpx;
+  align-items: center;
+  margin-right: 10rpx;
+}
+
+.photolist .item .info .label .li .desc {
+  background: #e4b80f;
+  padding: 4rpx 10rpx;
+  text-align: center;
+  height: 28rpx;
+  line-height: 28rpx;
+  font-size: 22rpx;
+  color: #fff;
+  display: inline-block;
+}

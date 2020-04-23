@@ -1,0 +1,11 @@
+<!--index.wxml-->
+<view class="container" >
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="amount">
+      <label>金额</label>
+      <input type="text" name="amount" placeholder='当前可转{{withable}}元' /> 
+    </view>
+    <button class="submit_btn on" size='mini' plain='true' formType="submit" style='background-color:{{base_conf.color_primary}};'>提交申请</button>
+  </form>
+</view>
+

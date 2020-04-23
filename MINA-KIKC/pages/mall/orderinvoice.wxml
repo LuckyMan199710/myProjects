@@ -1,0 +1,46 @@
+<!--pages/mall/orderinvoice.wxml-->
+<view class="section">
+	<view class="section_inner">
+    <radio-group class="radio-group" bindchange="bindRadioChange">
+      <label style="padding:0px;display:inline-block;margin-right:10px;"  class="radio">
+        <radio value='N' checked="{{invoice_type=='N'}}"/>不开票
+      </label>
+      <label style="padding:0px;display:inline-block;margin-right:10px;"  class="radio">
+        <radio value='P' checked="{{invoice_type=='P'}}"/>个人
+      </label>
+      <label style="padding:0px;display:inline-block;" class="radio">
+        <radio value='C' checked="{{invoice_type=='C'}}"/>单位
+      </label>
+    </radio-group>
+
+	</view>
+</view>
+
+<view class="section" wx:if="{{show_head}}">
+  <view class="section_inner">
+    <view>发票抬头【必填】</view>
+    <view style="padding-bottom:10px;">
+        <input type="text" bindinput='bindInputBlur' style="border:1px solid #ddd;" value='{{invoice["invoice_company"]}}' placeholder='请填写单位名称' id="invoice_company" />
+    </view>
+    <view>
+        <input type="text" bindinput='bindInputBlur' style="border:1px solid #ddd;" value='{{invoice["invoice_compay_taxno"]}}' placeholder='请填写纳税人识别号' placeholder-style='color:#c40' id="invoice_compay_taxno" />
+    </view>
+  </view>
+</view>
+
+<view class="section" wx:if="{{show_content}}">
+  <view class="section_inner">
+    <view>发票内容【必填】</view>
+    <view>
+        <input type="text" bindinput='bindInputBlur' style="border:1px solid #ddd;" value='{{invoice["invoice_name"]}}' id="invoice_name" />
+    </view>
+  </view>
+</view>
+
+
+
+<view class="section">
+	<view class="section_inner">
+		<button bindtap="bindConfirm" size='mini' plain='true' class="submit_btn on" style="background:{{base_conf.color_primary}}">确认</button>
+	</view>
+</view>

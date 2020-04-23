@@ -1,0 +1,46 @@
+<!--pages/trend/vipphotos.wxml-->
+<view class="">
+  <view class="header">
+    <view class="info_base"></view>
+    <view class="info box">
+      <view class="info_img">
+        <image src="{{info.headimgurl ? info.headimgurl : '/images/center.png'}}"></image>
+      </view>
+      <view class="info_name">
+        {{info.nicker ? info.nicker : info.vip_num }}
+      </view>
+      <view class="wrapcon box">
+        <view class="wrap_left li">
+          <view class="num">{{info.point_total}}</view>
+          <view class="dd">影响力指数</view>
+        </view>
+        <view class="wrap_right li">
+          <view class="num">{{info.vip_rank}}</view>
+          <view class="dd">影响力排名</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <scroll-view scroll-y bindscrolltolower="handleReach" style="height: {{height - 440}}rpx;" scroll-top="{{scrollTop}}" class="scroll_H">
+    <view class="list box">
+      <view class="item" wx:for="{{photolist}}" wx:key="{{item.photo_id}}">
+        <view bindtap='handleDetail' data-photoid="{{item.photo_id}}" class="img_nav">
+          <image src="{{item.photo_url}}" class="photo_img"></image>
+        </view>
+        <view class="fun box">
+          <view class="zan box">
+            <view class="zan_nav" wx:if="{{item.is_liked === 'N'}}" bindtap="handlelike" data-photoid="{{item.photo_id}}" data-index="{{index}}">
+              <image src="/images/icon_zan.png"></image>
+            </view>
+            <view class="zan_nav" wx:else>
+              <image src="/images/icon_zans.png"></image>
+            </view>
+            <view class="num">{{item.liked}}个赞</view>
+          </view>
+          <view class="date">发表于{{item.createdate}}</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

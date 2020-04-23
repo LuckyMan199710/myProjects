@@ -1,0 +1,44 @@
+<!--pagesA/live/video.wxml-->
+
+<view class="video_content">
+  <video class="video" id="myVideo" src="{{videourl}}" autoplay controls object-fit="{{objectFit}}">
+    <cover-view class="info" style="{{'top:' + headerHeight + 'rpx'}}">
+      <cover-view class="back" bindtap="navBack">
+        <cover-image class="back_img" src="../images/icon_back.png"></cover-image>
+      </cover-view>
+    </cover-view>
+    <cover-view class="goods" bindtap="handlePlay" wx:if="{{goodsToggle}}">
+    </cover-view>
+    <cover-view class="goods_icon" bindtap="handleGoods" wx:if="{{goods && goods.length > 0}}">
+      <cover-view class="limit box box-align-center box-pack-center">
+        <cover-image class="icon" src="../images/icon_buy.png"></cover-image>
+      </cover-view>
+    </cover-view>
+
+    <cover-view class="goodscontent" wx:if="{{goodsToggle}}">
+      <cover-view class="goods_tit">直播商品</cover-view>
+      <cover-view class="goodsList">
+        <cover-view class="goods_item " wx:for="{{goods}}" wx:key="index" wx:for-item="item" data-url="{{item.url}}" bindtap="navGoods">
+          <cover-view class="goods_limit box box-align-center">
+            <cover-view class="img_nav">
+              <cover-image src="{{item.cover_img}}" mode="aspectFill"></cover-image>
+            </cover-view>
+            <cover-view class="goods_content">
+              <cover-view class="goods_name two-hiding">{{item.name}}</cover-view>
+              <cover-view class="price_content box box-align-center">
+                <cover-view class="price">￥{{item.price2}}</cover-view>
+                <cover-view class="price2">￥{{item.price}}</cover-view>
+              </cover-view>
+            </cover-view>
+          </cover-view>
+
+        </cover-view>
+      </cover-view>
+
+
+    </cover-view>
+
+  </video>
+
+</view>
+

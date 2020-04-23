@@ -1,0 +1,37 @@
+.container{
+  background: #ebece9;
+}
+.top{
+  margin-bottom: 30rpx;
+  padding: 20rpx 30rpx;
+  background: #fff;
+}
+
+.top-list{
+  margin: 20rpx 0px;
+  font-size: 18px;
+}
+.nu{
+  font-size: 12px;
+}
+
+.list{
+  border-bottom: dashed 1px #bd9659;
+  padding: 20rpx 50rpx;
+  background: #fff;
+}
+.list .context{
+  font-size: 16px;
+  color: #767973;
+}
+.list .time{
+  font-size: 14px;
+  color: #767973;
+}
+.list .context0{
+  color: #000;
+}
+.list .time0{
+  color: #000;
+}
+

@@ -1,0 +1,28 @@
+/**vip_point.wxss**/
+page{
+	min-height: 100%;
+	background-color: #f7f7f7;
+}
+.container_wrapper{
+	padding: 10px;
+}
+navigator{
+	padding: 20px 10px;
+	/*background: #8f5e24;*/
+	color: #fff;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+}
+
+.welfare_icon{
+	width:30px;
+	height: 30px;
+	margin-right: 10px;
+	position:absolute;
+	left:-30px;
+}
+
+navigator text{line-height: 30px;}
+

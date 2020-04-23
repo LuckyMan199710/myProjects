@@ -1,0 +1,50 @@
+/**index.wxss**/
+page{
+	background-color: #f7f7f7;
+}
+.container{
+	background-color: #fff;
+}
+.relname{
+  margin-left: 20rpx;
+  border-bottom:1px solid #ddd;
+}
+.formPanel{
+	padding: 20rpx;
+}
+
+.section{
+	margin-top: 20rpx;
+	margin-bottom: 20rpx;
+	position: relative;
+}
+
+.section_tit{
+	margin-bottom: 10rpx;
+	display: block;
+  color: gray;
+}
+
+.section_order{
+  margin-top: 70rpx;
+  margin-bottom: 20rpx;
+  display: block;
+  color: gray;
+}
+
+.sms_btn{
+	position:absolute;
+	right: 0;
+	bottom:4rpx;
+	z-index: 2;
+}
+
+.input_field{
+	border-bottom: 1px solid #ddd;
+}
+
+.price_txt{color:#c40}
+.getlogis{
+  text-align: right;
+  text-decoration: underline;
+}

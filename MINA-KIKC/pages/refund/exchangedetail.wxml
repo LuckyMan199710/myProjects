@@ -1,0 +1,96 @@
+<import src="../common/logis" />
+<import src="../common/nav" />
+<view class="container">
+
+  <view class="formPanel">
+    <view wx:if="{{orderstatus=='AE'}}" class='getlogis' bindtap="logis" data-refundid="{{refunddtl['refund_id']}}" data-logis_company="{{refunddtl['refund_receiver_logis']}}" data-retinvoiceno="{{refunddtl['refund_expressno']}}"
+      data-relname="{{refunddtl['refund_receiver_name']?refunddtl['refund_receiver_name']+'-'+(refunddtl['refund_receiver_mobile']||''):''}}" data-address="{{refunddtl['refund_receiver_state']?refunddtl['refund_receiver_state']+'-'+(refunddtl['refund_receiver_city']||'')+'-'+(refunddtl['order_receiver_district']||'')+'-'+(refunddtl['refund_receiver_address']||''):''}}">
+      填写退货物流单
+    </view>
+    <view class="section">
+      <text class="section_tit">换货进度</text>
+      <view class="relname">{{refunddtl['exchange_status_desc']}}</view>
+    </view>
+    <view class="section" wx:if="{{refunddtl['status']=='SR'}}">
+      <text class="section_tit">拒绝换货原因</text>
+      <view class="relname">{{refunddtl['refuse_reason']}}</view>
+    </view>
+    <view class="section">
+      <text class="section_tit">换货原因</text>
+      <view class="relname">{{refunddtl['exchange_reason']}}</view> 
+    </view>
+
+
+    <view class="section">
+      <text class="section_tit">换货数量</text>
+        <view class="relname">{{refunddtl['qty']}}</view> 
+    </view>
+    <view class="section">
+      <text class="section_tit">退回商品</text>
+      <view class="relname">{{refunddtl['refund_plat_num_name']+' '+refunddtl['order_plat_out_id']+'-'+refunddtl['refund_sku_name']}}       </view>
+    </view>
+        <view class="section">
+      <text class="section_tit">退货说明</text>
+      <view class='relname'>{{refunddtl['ecdesc']}}</view>
+    </view>
+        <view class="section">
+      <text class="section_tit">特别说明</text>
+      <view class='relname'>{{refunddtl['specialdesc']}}</view>
+    </view>
+    <view class="section">
+      <text class="section_tit">退回进度</text>
+      <view class="relname">{{refunddtl['refund_status_desc']}}       </view>
+    </view>
+    <view class="section">
+      <text class="section_tit">退货收货人</text>
+      <view class='relname'>{{refunddtl['refund_receiver_name']}}-{{refunddtl['refund_receiver_mobile']}}</view>
+    </view>
+    <view class="section">
+      <text class="section_tit">退货地址</text>
+      <view class='relname'>{{refunddtl['refund_receiver_state']}}-{{refunddtl['refund_receiver_city']}}-{{refunddtl['refund_receiver_district']}}-{{refunddtl['refund_receiver_address']}}</view>
+    </view>
+    <view class="section">
+      <text class="section_tit">快递公司</text>
+      <view class='relname'>{{refunddtl['refund_receiver_logis']}}</view>
+    </view>
+    <view class="section">
+      <text class="section_tit">快递单号</text>
+      <view class='relname'>{{refunddtl['refund_expressno']}}</view>
+    </view>
+    <view class="section_order">
+      <text class="section_tit">换出商品</text>
+      <view class='relname'>{{refunddtl['order_plat_num_name']+' '+refunddtl['refund_plat_out_id']+'-'+refunddtl['order_sku_name']}}        </view>
+    </view>
+    <view class="section">
+      <text class="section_tit">换出进度</text>
+      <view class="relname">{{refunddtl['order_status_desc']}}       </view>
+    </view>
+    <view class="section">
+      <text class="section_tit">收件人</text>
+      <view class='relname'>{{refunddtl['order_receiver_name']}}-{{refunddtl['order_receiver_mobile']}}</view>
+    </view>
+    <view class="section">
+      <text class="section_tit">收件地址</text>
+      <view class='relname'>{{refunddtl['order_receiver_state']}}-{{refunddtl['order_receiver_city']}}-{{refunddtl['order_receiver_district']}}-{{refunddtl['order_receiver_address']}}</view>
+    </view>
+	<view class="section">
+      <text class="section_tit">快递公司</text>
+      <view class='relname'>{{refunddtl['order_logis_name']}}</view>
+    </view>
+        <view class="section">
+      <text class="section_tit">快递单号</text>
+      <view class='relname'>{{refunddtl['order_expressno']}}</view>
+    </view>
+
+
+    <view class="section" wx:if="{{refunddtl['status'] == 'BR' || refunddtl['status'] == 'SA' || refunddtl['status'] == 'RG' }}">
+      <button class="submit_btn on" bindtap='bindSubmit' size='mini' plain='true' style='background-color:{{base_conf["color_primary"]}}'>取消换货</button>
+    </view>
+  </view>
+  <template is="comp_addlogis" data="{{hidden,logis_company,retinvoiceno,refundid,address,relname,base_conf}}" />
+  <!-- formPanel end -->
+</view>
+
+
+<!-- 右侧导航栏 -->
+<template is="control_nav" data="{{navhidden:navhidden,base_conf}}" />
