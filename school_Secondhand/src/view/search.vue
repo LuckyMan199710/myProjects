@@ -28,7 +28,7 @@
 		},
 		methods:{
 			Search(){
-				this.$router.push({name:'list',params:{key:this.value}});
+				this.$router.push({name:'list',params:{search:this.value,keyboard:'search'}});
 			}
 		}
 	}

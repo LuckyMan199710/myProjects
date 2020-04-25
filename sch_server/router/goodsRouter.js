@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
 	},
 	filename:function(req,file,cb){
 		let ext = file.originalname.split('.')[1];
-		let tmpname = new Date().getTime();
+		let tmpname = new Date().getTime()+Math.floor(Math.random()*10000);
 		cb(null,`${tmpname}.${ext}`)
 	}
 });
@@ -93,7 +93,7 @@ router.post('/saveGoodsInfo',upload.any(),(req,res)=>{
 router.post('/getGoodsInfo',(req,res)=>{
 	/* let select_sql = 'and gi.seller_Id ="'+ req.session.userId+'" ' || ''; */
 	if(req.body.param === 'random'){
-		db('select * from goods_info order by rand() limit 6',(err,data)=>{
+		db('select *,GROUP_CONCAT(gis.good_img_url) from goods_info gi INNER JOIN goods_img gis where gi.good_id = gis.good_id group by gis.good_id order by rand() limit 6',(err,data)=>{
 			if(err){
 				console.log(err)
 				res.json({
@@ -127,6 +127,29 @@ router.post('/getGoodsInfo',(req,res)=>{
 			}
 		})
 	}
+	/* 搜索 */
+	else{
+		let select_sql = (req.body.param === 'search') ? 'and gi.good_title like "%'+ req.body.searchInfo+'%" ' : '';
+		db('select *,GROUP_CONCAT(gis.good_img_url) from goods_info gi INNER JOIN goods_img gis where gi.good_id = gis.good_id '+select_sql+' group by gis.good_id',(err,data) => {
+			if(err){
+				console.log(err)
+				res.json({
+					err:-1,
+					msg:'falid'
+				})
+			}
+			else{
+				res.json({
+					success:1,
+					goodsList:data
+				})
+			}
+		})
+	}
 })
 
+/* 获得单个商品信息 */
+router.get('getGoodInfo',(req,res)=>{
+	console.log(req.query)
+})
 module.exports = router

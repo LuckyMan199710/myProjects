@@ -1,12 +1,12 @@
 <template>
 	<div class="goodInfo">
-		<van-cell-group :title="goods.title">
-			<van-cell title="价格" :value="'￥'+goods.price.toFixed(2)" />
+		<van-cell-group :title="goods.good_title">
+			<van-cell title="价格" :value="'￥'+ parseFloat(goods.good_price).toFixed(2)" />
 		</van-cell-group>
 		<van-cell-group title="介绍">
-			<van-cell :value="goods.explain" />
+			<van-cell :value="goods.good_info" />
 		</van-cell-group>
-		<img v-for="img in goods.thumb" v-lazy="img" :key='img.index' fit="contain">
+		<img v-for="(img,index) in imgList" v-lazy="img" :key='index' fit="fill	">
 	</div>
 </template>
 
@@ -19,11 +19,16 @@
 		},
 		data(){
 			return{
-				goods:null   //用来接受商品卡片传过来的对象
+				goods:null,//用来接受商品卡片传过来的对象
+				imgList:[]
 			}
 		},
 		created() {
-			this.goods = this.$route.params;
+			JSON.parse(sessionStorage.getItem('goodsInfo'))
+			this.goods = JSON.parse(sessionStorage.getItem('goodsInfo'));
+			this.imgList = this.goods['GROUP_CONCAT(gis.good_img_url)'].split(',').map(item => {
+				return 'http://localhost:3000/' + item
+			});
 		},
 		mounted() {
 			this.$store.commit('changeTabbarStatusFalse');
@@ -35,6 +40,9 @@
 
 <style lang="less" scoped>
 	.goodInfo{
+		img{
+			width: 100%;
+		}
 		.van-cell__value{
 			color:red
 		}

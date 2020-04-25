@@ -16,9 +16,9 @@
 		</div>
 	</div>
     <van-row class="user-links" >
-      <van-col span="12" @click = "runToOrderPlaced">
+      <van-col span="12" @click = "runToCollection">
         <van-icon name="pending-payment" />
-        已下单
+        已收藏
       </van-col>
       <van-col span="12">
         <van-icon name="logistics" @click="runToDeliver"/>
@@ -26,13 +26,13 @@
       </van-col>
     </van-row>
 
-    <van-cell-group class="user-group">
+    <!-- <van-cell-group class="user-group">
       <van-cell icon="records" title="全部订单" is-link to="/allOrder"/>
-    </van-cell-group>
+    </van-cell-group> -->
 
     <van-cell-group>
       <van-cell icon="manager-o" title="个人信息" to="/usermsg" is-link />
-      <van-cell icon="star-o" title="我的收藏" to="/myCollection" is-link />
+     <!-- <van-cell icon="star-o" title="我的收藏" to="/myCollection" is-link /> -->
       <van-cell icon="close" title="退出登录" @click="out" is-link />
     </van-cell-group>
   </div>
@@ -66,8 +66,8 @@ export default {
 	}
   },
   methods:{
-	runToOrderPlaced(){
-		this.$router.push('./orderPlaced');
+	runToCollection(){
+		this.$router.push('./myCollection');
 	},
 	runToDeliver(){
 		this.$router.push('./deliver')

@@ -15,7 +15,7 @@
 				:desc="item.good_info"
 				:title="item.good_title"
 				:thumb="item.good_img_url"
-				@click = "runTo($event,item)"
+				@click = "runToGoods($event,item)"
 			>
 			</van-card>	
 		</van-list>
@@ -26,13 +26,11 @@
 	import { List,Card,Tag} from 'vant';
 	export default{
 		name:"list",
-		created() {
-			
-		},
 		mounted() {
 			this.$store.commit('changeTabbarStatusFalse');
 			this.$store.commit('changeNavBarStatusTrue');	
 			this.$store.commit('changeTitleName',this.$route.meta.title);
+			console.log(this.$route.params)
 		},
 		components:{
 			[List.name]: List,
@@ -45,33 +43,76 @@
 			loading: false,
 			finished: false,
 			error:false,
+			keybord:'',
+			search:''
 			};
 		},
 		methods: {
 			onLoad() {
-				this.$http.post('/goodsInfo/getGoodsInfo')
-				.then((res)=>{
-					if(res.data.success === 1){
-						for(let i = 0; i<res.data.goodsList.length;i++){
-							this.list.push(res.data.goodsList[i])
-							this.list[i].good_img_url = 'http://localhost:3000/'+res.data.goodsList[i].good_img_url;
-							this.list[i].good_price = (res.data.goodsList[i].good_price).toFixed(2);
-						}
-						this.loading = false;
-						// 数据全部加载完成
-						if (this.list.length >= res.data.goodsList.length ) {
-							this.finished = true;
-						}
-						/* this.list = res.data.goodsList*/
+				if(this.$route.params.keyboard){
+					sessionStorage.setItem('keybord',this.$route.params.keyboard);
+					this.keybord = this.$route.params.keyboard;
+					if(this.$route.params.keyboard === 'search'){
+						sessionStorage.setItem('searchInfo',this.$route.params.search);
+						this.search = this.$route.params.search
 					}
-				})
-				.catch(()=>{
-					this.error = true;
-				})
+				}
+				else{
+					this.keybord = sessionStorage.getItem('keybord')
+					this.search = sessionStorage.getItem('searchInfo')
+				}				
+				/* if(sessionStorage.getItem()) */
+								
+				console.log(sessionStorage.getItem('keybord'))
+				if(this.keybord === 'search'){
+					this.$http.post('/goodsInfo/getGoodsInfo',{
+						param:'search',
+						searchInfo:this.search
+					})
+					.then((res)=>{
+						if(res.data.success === 1){
+							for(let i = 0; i<res.data.goodsList.length;i++){
+								this.list.push(res.data.goodsList[i])
+								this.list[i].good_img_url = 'http://localhost:3000/'+res.data.goodsList[i].good_img_url;
+								this.list[i].good_price = (res.data.goodsList[i].good_price).toFixed(2);
+							}
+							this.loading = false;
+							// 数据全部加载完成
+							if (this.list.length >= res.data.goodsList.length ) {
+								this.finished = true;
+							}
+							/* this.list = res.data.goodsList*/
+						}
+					})
+					.catch(()=>{
+						this.error = true;
+					})
+				}
+				else{
+					this.$http.post('/goodsInfo/getGoodsInfo')
+					.then((res)=>{
+						if(res.data.success === 1){
+							for(let i = 0; i<res.data.goodsList.length;i++){
+								this.list.push(res.data.goodsList[i])
+								this.list[i].good_img_url = 'http://localhost:3000/'+res.data.goodsList[i].good_img_url;
+								this.list[i].good_price = (res.data.goodsList[i].good_price).toFixed(2);
+							}
+							this.loading = false;
+							// 数据全部加载完成
+							if (this.list.length >= res.data.goodsList.length ) {
+								this.finished = true;
+							}
+							/* this.list = res.data.goodsList*/
+						}
+					})
+					.catch(()=>{
+						this.error = true;
+					})
+				}		
 			},
-			runTo(e,item){
-				console.log(item)
+			runToGoods(e,item){
 				this.$router.push('/goods');
+				sessionStorage.setItem('goodsInfo',JSON.stringify(item))
 			}
 		}
 	}
