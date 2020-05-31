@@ -10,6 +10,7 @@ let userRouter = require('./router/userRouter.js')
 let indexRouter = require('./router/indexRouter.js')
 let userInfoRouter = require('./router/userInfoRouter.js')
 let goodsRouter = require('./router/goodsRouter.js')
+let noticeRouter = require('./router/noticeRouter.js')
 
 //cros处理跨域问题
 app.all('*', function(req, res, next) {
@@ -47,6 +48,8 @@ app.use('/index',(req,res,next)=>{
 },indexRouter)
 app.use('/userInfo',userInfoRouter)
 app.use('/goodsInfo',goodsRouter)
+app.use('/notice',noticeRouter)
+
 
 app.listen(3000,() =>{
 	console.log('server start')

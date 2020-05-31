@@ -11,6 +11,7 @@
 				<div class="goods-title">{{ goods.good_title }}</div>
 				<div class="goods-price">{{formatPrice}}</div>
 			</van-cell>
+			<van-cell title="发布时间" :value="formateDate" />
 		</van-cell-group>
 
 		<van-cell-group class="goods-cell-group">
@@ -28,7 +29,7 @@
 		<van-goods-action>
 			<van-goods-action-icon icon="star" :text="text" :color="color" @click="collectGoods" />
 			<van-goods-action-button type="info" @click="collectGoods">
-				收藏
+				{{btnText}}
 			</van-goods-action-button>
 		</van-goods-action>
 	</div>
@@ -68,20 +69,47 @@
 
 		data() {
 			return {
-				goods: null,
+				goods: {},
 				imgList: [],
 				isCollected: false, //判断当前物品是否被收藏
 				color: "black", //收藏状态的改变
-				text: ""
+				text: "",
+				btnText:'收藏'
 			};
 		},
 		created() {
-			JSON.parse(sessionStorage.getItem('goodsInfo'))
-			this.goods = JSON.parse(sessionStorage.getItem('goodsInfo'));
-			this.imgList = this.goods['GROUP_CONCAT(gis.good_img_url)'].split(',').map(item => {
-				return 'http://localhost:3000/' + item
-			});
-
+			let good_id = this.$route.params.good_id;
+			console.log(this.$route.params.good_id)
+			if(good_id){
+				this.$http.post('goodsInfo/getGoodsInfo',{
+					good_id:good_id
+				})
+				.then((res)=>{
+					if(res.data.success === 1){
+						this.goods = res.data.goodsInfo[0];
+						console.log(this.goods['GROUP_CONCAT(gis.good_img_url)'])
+						this.imgList = this.goods['GROUP_CONCAT(gis.good_img_url)'].split(',').map(item => {
+							return 'http://localhost:3000/' + item
+						});
+						this.getCollectionInfo();
+					}
+					else{
+						Toast('获取数据失败！')
+					}
+				})
+				.catch((e)=>{
+					console.log(e)
+					Toast('获取数据失败!')
+				})
+			}
+			else{
+				JSON.parse(sessionStorage.getItem('goodsInfo'))
+				this.goods = JSON.parse(sessionStorage.getItem('goodsInfo'));
+				this.imgList = this.goods['GROUP_CONCAT(gis.good_img_url)'].split(',').map(item => {
+					return 'http://localhost:3000/' + item
+				});
+				this.getCollectionInfo();
+			}
 		},
 		mounted() {
 			this.$store.commit('changeTabbarStatusFalse'); //使导航栏消失避免占用空间
@@ -110,20 +138,79 @@
 				})
 			},
 			collectGoods() {
-				this.isisCollected = !this.isisCollected;
-				if (this.isisCollected === true) {
-					this.color = "skyblue";
-					this.text = "已收藏";
-				} else {
-					this.color = "black";
-					this.text = "";
+				let _this = this;
+				_this.isCollected = !_this.isCollected;
+				if (_this.isCollected === true) {
+					console.log('true')
+					_this.$http.post('goodsInfo/collection',{
+						good_id:_this.goods.good_id
+					})
+					.then((res) => {
+						if(res.data.success === 1){
+							_this.color = "skyblue";
+							_this.text = "已收藏";
+							_this.btnText = '取消收藏'
+							Toast('收藏成功')
+							
+						}				
+					})
+					.catch((err)=>{
+						console.log(err)
+					})
+				} 
+				else {
+					_this.$http.post('goodsInfo/deleteCollection',{
+						good_id:_this.goods.good_id
+					})
+					.then((res)=>{
+						if(res.data.success === 1){
+							_this.color = "black";
+							_this.text = "";
+							_this.btnText = '收藏'
+							Toast('取消收藏成功')
+						}
+					})
 				}
+			},
+			getCollectionInfo(){
+				//判断该商品是否被该用户收藏
+				let _this = this;
+				console.log('判断是否收藏')
+				_this.$http.post('goodsInfo/getCollectionInfo',{
+					good_id:_this.goods.good_id
+				})
+				.then((res)=>{		
+					if(res.data.success === 1){
+						_this.isCollected = true;
+						_this.color = "skyblue";
+						_this.text = "已收藏";
+						_this.btnText = '取消收藏'	
+					}
+					else{
+						console.log('否收藏')
+						_this.color = "black";
+						_this.text = "";
+						_this.btnText = '收藏'
+						_this.isCollected = false;
+					}
+				})
+				.catch((e)=>{
+					console.log(e)
+				})
 			}
 		},
 		computed: {
 			formatPrice() {
 				return '¥' + parseFloat(this.goods.good_price).toFixed(2);
-			}
+			},
+			formateDate() {
+				function addDateZero(num) {
+					return (num < 10 ? "0" + num : num);
+				}
+				let d = new Date(this.goods.p_time);
+				let formatdatetime = d.getFullYear() + '-' + addDateZero(d.getMonth() + 1) + '-' + addDateZero(d.getDate());
+				return formatdatetime;
+			},
 		}
 	};
 </script>

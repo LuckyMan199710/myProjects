@@ -10,7 +10,7 @@
 			</div>
 		</div>
 		<!-- 公告栏 -->
-		<van-notice-bar text="通知内容" left-icon="volume-o" style="margin-top: 10px;" />
+		<van-notice-bar :text="notice" left-icon="volume-o" style="margin-top: 10px;" />
 
 		<div class="goodsTitle">
 			<van-icon :name="require('../assets/icon/推荐.png')" size="16" />
@@ -93,7 +93,6 @@
 							this.$router.replace('/addUserMsg')
 						});
 					} else {
-
 						this.user = this.$store.state.User.userInfo[0];
 						if (!sessionStorage.getItem('goodsList')) {
 							/* 请求页面数据 */
@@ -121,6 +120,17 @@
 					console.log(err)
 					Toast('查询失败!,请重试！')
 				})
+				//获取公告
+				this.$http.get('notice/getNotice')
+				.then((res)=>{
+					if(res.data.success === 1){
+						this.notice = res.data.msg[0].notice_content
+					}
+				})
+				.catch((e)=>{
+					console.log(e)
+					Toast('获取公告失败')
+				})
 		},
 		methods: {
 			runToUser() {
@@ -146,7 +156,8 @@
 			return {
 				status: true,
 				user: '',
-				goodList: ''
+				goodList: '',
+				notice:''
 			}
 		}
 	}

@@ -30,7 +30,6 @@
 			this.$store.commit('changeTabbarStatusFalse');
 			this.$store.commit('changeNavBarStatusTrue');	
 			this.$store.commit('changeTitleName',this.$route.meta.title);
-			console.log(this.$route.params)
 		},
 		components:{
 			[List.name]: List,
@@ -61,8 +60,7 @@
 					this.keybord = sessionStorage.getItem('keybord')
 					this.search = sessionStorage.getItem('searchInfo')
 				}				
-				/* if(sessionStorage.getItem()) */
-								
+				/* if(sessionStorage.getItem()) */						
 				console.log(sessionStorage.getItem('keybord'))
 				if(this.keybord === 'search'){
 					this.$http.post('/goodsInfo/getGoodsInfo',{

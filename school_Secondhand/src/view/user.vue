@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { Row, Col, Icon, Cell, CellGroup,Image,ImagePreview,Dialog} from 'vant';
+import { Row, Col, Icon, Cell, CellGroup,Image,ImagePreview,Dialog,Toast} from 'vant';
 export default {
   components: {
     [Row.name]: Row,
@@ -82,9 +82,16 @@ export default {
 		Dialog.confirm({
 			message: '您确定退出登录吗'
 		}).then(() => {
-			this.$router.push('./login')
+			this.$http.get('userInfo/logout').then((res)=>{
+				//成功退出 清除缓存
+				if(res.data.success === 1){
+					Toast('退出成功')
+					sessionStorage.clear();
+					this.$router.push('/login')		
+				}
+			})
 		}).catch(() => {
-
+			close();
 		});
 	}
   }

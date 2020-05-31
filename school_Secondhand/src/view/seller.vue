@@ -8,24 +8,24 @@
 					height="40px"
 					fit="cover"
 					round
-					:src="seller.img"
+					:src="seller.u_headimg"
 					@click = "imgPreview"
 				/>
 			</van-cell>
-			<van-cell title="用户名" :value="seller.name"/>
+			<van-cell title="用户名" :value="seller.u_name"/>
 			<van-cell title="性别" :value="getSex"/>
-			<van-cell title="年龄" :value="seller.age"/>
-			<van-cell title="生日" :value="seller.name"/>
-			<van-cell title="联系方式" :value="seller.phoneNum"/>
-			<van-cell title="邮箱" :value="seller.email"/>
-			<van-cell title="QQ号" :value="seller.QQnum"/>
-			<van-cell title="微信号" :value="seller.wechatnum"/>
+			<van-cell title="年龄" :value="seller.u_age"/>
+			<van-cell title="生日" :value="seller.u_birthday"/>
+			<van-cell title="联系方式" :value="seller.u_phonenum"/>
+			<van-cell title="邮箱" :value="seller.u_mail"/>
+			<van-cell title="QQ号" :value="seller.u_qq"/>
+			<van-cell title="微信号" :value="seller.u_wechat"/>
 		</van-cell-group>
 	</div>
 </template>
 
 <script>
-	import { Cell, CellGroup,Image,ImagePreview} from 'vant';
+	import { Cell, CellGroup,Image,ImagePreview,Toast} from 'vant';
 	export default{
 		components:{
 			[Cell.name]:Cell,
@@ -33,36 +33,41 @@
 			[Image.name]:Image,
 			[ImagePreview.name]:ImagePreview
 		},
+		created() {
+			this.sellerid = JSON.parse(sessionStorage.getItem('goodsInfo')).seller_id;
+			this.$http.post('userInfo/getUserInfo',{seller_id:this.sellerid})
+			.then((res)=>{
+				this.seller = res.data.msg[0]			
+				this.seller.u_headimg = 'http://localhost:3000/'+this.seller.u_headimg
+				console.log(this.seller)
+			})
+			.catch((e)=>{
+				console.log(e)
+				Toast('获取卖家信息失败,请重试！')
+			})
+		},
 		mounted() {
 			this.$store.commit('changeTabbarStatusFalse');
 			this.$store.commit('changeNavBarStatusTrue');
 			this.$store.commit('changeTitleName',this.$route.meta.title);
+			
 		},
 		data(){
 			return{
-				seller : {
-					name:"飞翔的鱼",
-					img:require('../assets/头像.jpg'),
-					sex:1,
-					age:30,
-					birthday:"1990/01/25",
-					phoneNum:"13643015361",
-					email:"6256325410@qq.com",
-					QQnum:"1292082463",
-					wechatnum:"1292004645"
-				}
+				sellerid:'',
+				seller:{}
 			}
 		},
 		computed:{
 			getSex(){
-				return this.seller.sex === 0 ?  "男" :  "女";
+				return this.seller.u_sex === 0 ?  "男" :  "女";
 			}
 		},
 		methods:{
 			//图片预览
 			imgPreview(){
 				ImagePreview([
-					this.seller.img
+					this.seller.u_headimg
 				]);
 			}
 		}

@@ -63,8 +63,14 @@
 				})
 				.then(function (response) {
 					if(response.data.msg === 'success' ){ //success表示操作成功
-						Toast('登陆成功!');
-						that.$router.push('/home')
+						if(values.username === 'admin@163.cn'){
+							Toast('登陆成功!');
+							that.$router.push('/publishNotice')
+						}
+						else{
+							Toast('登陆成功!');
+							that.$router.push('/home')
+						}				
 					}
 					else{
 						Toast('请检查您的账号和密码是否有误！')

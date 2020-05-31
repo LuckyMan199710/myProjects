@@ -150,6 +150,13 @@ const routes = [
 	meta:{
 		title:'发布闲置'
 	}
+  },
+  {
+	name:'publishNotice',
+	component:() => import('./view/administrator/publishNotice'),
+	meta:{
+		title:'发布公告'
+	}
   }
 ];
 

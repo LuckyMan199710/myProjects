@@ -50,7 +50,8 @@ router.post('/saveGoodsInfo',upload.any(),(req,res)=>{
 	.then((res)=>{
 		goodsId = guid();
 		return new Promise((resovle,reject)=>{
-			db('insert into goods_info (good_id,good_title,good_info,good_price,seller_id,seller) values(?,?,?,?,?,?)',[goodsId,goodsInfo.goodsTitle,goodsInfo.goodsInfo,goodsInfo.value,req.session.userId,res],(err,data)=>{
+			console.log(goodsId)
+			db('insert into goods_info (good_id,good_title,good_info,good_price,seller_id,seller,p_time) values(?,?,?,?,?,?,now())',[goodsId,goodsInfo.goodsTitle,goodsInfo.goodsInfo,goodsInfo.value,req.session.userId,res],(err,data)=>{
 				if(data){
 					resovle();
 				}
@@ -93,7 +94,7 @@ router.post('/saveGoodsInfo',upload.any(),(req,res)=>{
 router.post('/getGoodsInfo',(req,res)=>{
 	/* let select_sql = 'and gi.seller_Id ="'+ req.session.userId+'" ' || ''; */
 	if(req.body.param === 'random'){
-		db('select *,GROUP_CONCAT(gis.good_img_url) from goods_info gi INNER JOIN goods_img gis where gi.good_id = gis.good_id group by gis.good_id order by rand() limit 6',(err,data)=>{
+		db('select *,GROUP_CONCAT(gis.good_img_url) from goods_info gi INNER JOIN goods_img gis where gi.good_id = gis.good_id and seller_id != "'+req.session.userId+'" group by gis.good_id order by rand() limit 6',(err,data)=>{
 			if(err){
 				console.log(err)
 				res.json({
@@ -110,8 +111,8 @@ router.post('/getGoodsInfo',(req,res)=>{
 		})
 	}
 	//从随便看看跳转，获取所有商品
-	else if(!req.body.param){
-		db('select *,GROUP_CONCAT(gis.good_img_url) from goods_info gi INNER JOIN goods_img gis where gi.good_id = gis.good_id  group by gis.good_id',(err,data) => {
+	else if(!req.body.param && !req.body.good_id){
+		db('select *,GROUP_CONCAT(gis.good_img_url) from goods_info gi INNER JOIN goods_img gis where gi.good_id = gis.good_id and seller_id != "'+req.session.userId+'"  group by gis.good_id',(err,data) => {
 			if(err){
 				console.log(err)
 				res.json({
@@ -127,8 +128,26 @@ router.post('/getGoodsInfo',(req,res)=>{
 			}
 		})
 	}
+	else if(req.body.good_id){
+		db('select *,GROUP_CONCAT(gis.good_img_url) from goods_info gi INNER JOIN goods_img gis where gi.good_id = gis.good_id and gi.good_id ="'+req.body.good_id+'" and seller_id != "'+req.session.userId+'" GROUP BY gi.good_id',(err,data)=>{
+			if(err){
+				console.log(err)
+				res.json({
+					err:-1,
+					msg:'falid'
+				})
+			}
+			else{
+				res.json({
+					success:1,
+					goodsInfo:data
+				})
+			}
+		})
+	}
 	/* 搜索 */
 	else{
+		console.log(2)
 		let select_sql = (req.body.param === 'search') ? 'and gi.good_title like "%'+ req.body.searchInfo+'%" ' : '';
 		db('select *,GROUP_CONCAT(gis.good_img_url) from goods_info gi INNER JOIN goods_img gis where gi.good_id = gis.good_id '+select_sql+' group by gis.good_id',(err,data) => {
 			if(err){
@@ -148,8 +167,59 @@ router.post('/getGoodsInfo',(req,res)=>{
 	}
 })
 
-/* 获得单个商品信息 */
-router.get('getGoodInfo',(req,res)=>{
-	console.log(req.query)
+//商品收藏
+router.post('/collection',(req,res)=>{
+	db('insert into user_collection(good_id,user_id) values(?,?)',[req.body.good_id,req.session.userId],(err,data) => {
+		if(err){
+			res.json({
+				err:-1,
+				msg:'未知错误'
+			})
+		}
+		else{
+			res.json({
+				success:1,
+				msg:'收藏成功'
+			})
+		}
+	})
+})
+//取消收藏
+router.post('/deleteCollection',(req,res)=>{
+	db('delete from user_collection where good_id ="'+req.body.good_id+'" and user_id ="'+req.session.userId+'"',(err,data) => {
+		if(err){
+			console.log(err)
+			res.json({
+				err:-1,
+				msg:'未知错误'
+			})
+		}
+		else{
+			res.json({
+				success:1,
+				msg:'取消收藏成功'
+			})
+		}
+	})
+})
+//判断商品是否被该用户收藏
+router.post('/getCollectionInfo',(req,res)=>{
+	db('select * from user_collection where good_id ="'+req.body.good_id+'" and user_id ="'+req.session.userId+'"',(err,data) =>{
+		if(err){
+			console.log(err)
+			res.json({
+				err:-1,
+				msg:'未知错误'
+			})
+		}
+		else{
+			if(data.length != 0){
+				res.json({
+					success:1,
+					msg:'已收藏'
+				})
+			}			
+		}
+	})
 })
 module.exports = router

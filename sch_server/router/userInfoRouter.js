@@ -111,5 +111,104 @@ router.post('/updateUserInfo',upload.single('user'),(req,res)=>{
 		}
 	}
 })
-
+//获取用户数据
+router.post('/getUserInfo',(req,res) => {
+	db('select * from user_info where u_id = "'+req.body.seller_id+'"',(err,data) => {
+		if(err){
+			res.json({
+				err:-1,
+				msg:'未知错误'
+			})
+		}
+		else{
+			res.json({
+				success:1,
+				msg:data
+			})
+		}
+	})
+})
+//清除session
+router.get('/logout',(req,res)=> {
+	req.session.destroy(function(err) {
+	  if(err){
+		  console.log(err)
+		  res.json({
+			  err:-1,
+			  msg:'未知错误'
+		  })
+		}
+		else{
+			res.json({
+				success:1,
+				msg:'退出成功'
+			})
+		}
+	})
+})
+//获得用户收藏的信息
+router.post('/getAllCollection',(req,res)=>{
+	let sql = 'select * from goods_info gi inner join goods_img gim on gi.good_id = gim.good_id INNER JOIN user_collection uc on gi.good_id = uc.good_id where user_id ="'+req.session.userId+'" group by gi.good_id';
+	db(sql,(err,data)=>{
+		if(err){
+			res.json({
+				err:-1,
+				msg:'未知错误',
+			})
+		}
+		else{
+			res.json({
+				success:1,
+				msg:data
+			})
+		}
+	})
+})
+//获取用户发布的信息
+router.post('/getUserPublish',(req,res)=>{
+	db('select * from goods_info gi INNER JOIN goods_img gis where gi.good_id = gis.good_id and gi.seller_id ="'+req.session.userId+'" GROUP BY gi.good_id',(err,data)=>{
+		if(err){
+			res.json({
+				err:-1,
+				msg:'未知错误'
+			})
+		}
+		else{
+			res.json({
+				success:1,
+				msg:data
+			})
+		}
+	})
+})
+//删除用户发布的信息
+router.post('/delUserPublish',(req,res)=>{
+	let good_id = req.body.good_id;
+	db('DELETE goods_img,goods_info FROM goods_info LEFT JOIN goods_img ON goods_info.good_id = goods_img.good_id WHERE  goods_info.good_id ="'+good_id+'"',(err,data)=>{
+		if(err){
+			console.log(err)
+			res.json({
+				err:-1,
+				msg:'未知错误'
+			})
+		}
+		else{
+			db('DELETE from user_collection where good_id = "'+good_id+'"',(err,data)=>{
+				if(err){
+					console.log(err)
+					res.json({
+						err:-1,
+						msg:'未知错误'
+					})
+				}
+				else{
+					res.json({
+						success:1,
+						msg:'删除成功'
+					})
+				}
+			})		
+		}
+	})
+})
 module.exports = router

@@ -9,13 +9,12 @@ let codeMap = new Map();
 function guid() {
      return Number(Math.random().toString().substr(3, 3) + Date.now()).toString(36);
 }
-
 //获取邮箱验证码
 router.get('/sendCode',(req,res)=>{
 		let code = parseInt(Math.random()*10000);
 		codeMap.set(req.query.userName,code);
 		console.log(code)
-		/* let result = send(code,req.query.userName);
+		let result = send(code,req.query.userName);
 		result.then(()=>{
 			res.json({
 				msg:'success'
@@ -26,7 +25,7 @@ router.get('/sendCode',(req,res)=>{
 			res.json({
 				msg:'failed'
 			})
-		})		 */
+		})		
 })
 //注册接口
 router.post('/register',(req,res) =>{
